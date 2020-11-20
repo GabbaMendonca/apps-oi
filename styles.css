@@ -1,0 +1,23 @@
+
+/* body{
+    background-color:rgb(33, 0, 37);
+    color: aliceblue;
+} */
+
+.mascara{
+    max-width: 400px !important;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button {
+    float: right;
+}
+.input {
+    overflow: hidden;
+    padding: 0 3px 0 0;
+}
+.input input {
+    width: 100%
+}
