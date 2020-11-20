@@ -139,7 +139,7 @@ function make(data, causa, solucao) {
     let m = makeMascara(data)
     copyToClipboard(m)
     console.log(m)
-    // console.log(data)
+    console.log(data)
     
 }
 
@@ -195,7 +195,11 @@ class Mascara {
         make(this._data, this._causa.operadora, this._solucao.redeaManobra)
     }
     outraCausa(){
-        make(this._data, this._causa.operadora, this._data["outraCausa"])
+        if ( this._data["checkboxCausaCliente"] ){
+            make(this._data, this._causa.cliente, this._data["outraCausa"])
+        }else{
+            make(this._data, this._causa.operadora, this._data["outraCausa"])
+        }
     }
 
 }
