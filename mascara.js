@@ -136,7 +136,7 @@ function router(data) {
     date = getDate()
     timeRouter = splitTime(data.router)
 
-    document.querySelector("#dataNormalizacao").value = calculaTimeRouter(date, timeRouter)
+    return calculaTimeRouter(date, timeRouter)
 }
 
 
@@ -189,7 +189,6 @@ function make(data, causa, solucao) {
     let m = makeMascara(data)
     copyToClipboard(m)
     console.log(m)
-    // console.log(data)
     
 }
 
@@ -221,15 +220,26 @@ class Mascara {
     }
     
     calcularRouter() {
-        router(this._data)
+        this._data.normalizacao = router(this._data)
     }
-    
+
     copyValidacao() {
         copyToClipboard(this._data["validacao"].toUpperCase() + " CPD")
     }
     copySenha() {
         copyToClipboard("SENHA : " + this._data["senha"])
     }
+
+
+    limpar(){
+        document.querySelector("#dataAbertura").value = ""
+        document.querySelector("#dataNormalizacao").value = ""
+        document.querySelector("#router").value = ""
+        document.querySelector("#validacao").value = ""
+        document.querySelector("#senha").value = ""
+        document.querySelector("#outraCausa").value = ""
+    }
+
 
     // Causa Cliente
     reclamacaoIndevida() {
@@ -271,6 +281,11 @@ class Mascara {
 
 
 // === BUTTONS ===
+
+function buttonLimpar() {
+    m = new Mascara()
+    m.limpar()
+}
 
 function buttonCalcularRouter() {
     m = new Mascara()
