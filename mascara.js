@@ -220,7 +220,7 @@ class Mascara {
     }
     
     calcularRouter() {
-        this._data.normalizacao = router(this._data)
+        document.querySelector("#dataNormalizacao").value = router(this._data)
     }
 
     copyValidacao() {
