@@ -1,6 +1,5 @@
-let dataAbertura = document.querySelector("#dataAbertura").valeu
+// === CLIPBOARD ===
 
-// --- Clipboard ---
 
 function copyToClipboard(text) {
     var dummy = document.createElement("textarea");
@@ -15,84 +14,135 @@ function copyToClipboard(text) {
     document.body.removeChild(dummy);
 }
 
-// --- Botão Senha ---
+
+// === CLIPBOARD ===
+
+// === CALCULO DO ROUTER ===
 
 
-function buttonSenha() {
-    let senha = document.querySelector("#senha").value
+function getDate() {
+    
+    let currentDate = {}
+    
+    let date = new Date()
 
-    senha = "SENHA : " + senha
+    currentDate.hora = date.getHours()
+    currentDate.minuto = date.getMinutes()
+    currentDate.dia = date.getDate()
+    currentDate.mes = date.getMonth() + 1
+    currentDate.ano = date.getFullYear()
 
-    copyToClipboard(senha)
+    return currentDate
 }
 
-// --- Botão Senha ---
 
+function splitTime(routerUp) {
+    
+    timeRouter = {}
+    
+    let router = routerUp.toUpperCase()
 
-// --- Botão Router ---
-
-function router(params) {
-
-    let horaRouter = null
-    let minutoRouter = null
-
-    let router = document.querySelector("#router").value // Pega o valor da caixa input
-
-    router = router.toUpperCase() // Converte para caixa alta
-
-    router = router.split(":") // Separa hora e minuto
+    router = router.split(":")
 
     if (router.length >= 3) {
 
-        horaRouter = router[0]
-        minutoRouter = router[1]
+        timeRouter["hora"] = router[0]
+        timeRouter["minuto"] = router[1]
 
     }
     else {
+
         router = router[0].split("H")
-        horaRouter = router[0]
+        timeRouter["hora"] = router[0]
 
         router = router[1].split("M")
-        minutoRouter = router[0]
-    }
-
-    let dataAtual = new Date()
-
-    let hora = dataAtual.getHours()
-    let minuto = dataAtual.getMinutes()
-    let dia = dataAtual.getDate()
-    let mes = dataAtual.getMonth() + 1
-    let ano = dataAtual.getFullYear()
-
-    minuto = minuto - minutoRouter
-
-    if (minuto < 0) {
-        hora = hora - 1
-        minuto = minuto * (-1)
-    }
-
-    minuto = ("0" + minuto).slice(-2)
-
-    hora = hora - horaRouter
-
-    if (hora < 0) {
-
-        do {
-            dia = dia - 1
-            hora = hora * (-1)
-            hora = 24 - hora
-        } while (hora < 0)
+        timeRouter["minuto"] = router[0]
 
     }
-
-    hora = ("0" + hora).slice(-2)
-
-    let dataNormalizacao = dia + "/" + mes + "/" + ano + " " + hora + ":" + minuto + ":00"
-    document.querySelector("#dataNormalizacao").value = dataNormalizacao
+    
+    return timeRouter
 }
 
-// --- Botão Router ---
 
+function calculaTimeRouter(date, timeRouter) {
+    
+    while (timeRouter.minuto >= 60) {        
+        
+        // Sempre que o valor em minutos up do router for maior 60 min
+        // vamos dropar 1 hora e subtrair estes 60 min do tempo up do router.
+        // Isso nos permite calcular tempo escritos no formato 00h90m00s
+        
+        timeRouter.minuto = timeRouter.minuto - 60
+        date.hora = date.hora - 1
+
+    }
+    if (date.minuto < timeRouter.minuto) {
+        
+        // Se minutos do router é maior que o minuto atual,
+        // logo a conta sera a seguinte :
+        // -10 = 10(minuto atual) - 20(tempo up do router)
+        let min = date.minuto - timeRouter.minuto
+
+        // resta -10 que sera subitraido de 60 min referente a hora anterior
+        // usando a propriedade matematica (+ com - igual -)
+        date.minuto = 60 + min
+
+        // e dropamos uma hora da atual
+        date.hora = date.hora - 1
+
+    }
+    else{
+        
+        // Se não o resultado não sera negativo
+        // 5 = 10 - 5
+        // Então faremos somente a subtração dos minutos
+
+        date.minuto = date.minuto - timeRouter.minuto
+        
+    }
+
+
+    while (timeRouter.hora >= 24) {        
+    
+        timeRouter.hora = timeRouter.hora - 60
+        date.dia = date.dia - 1
+
+    }    
+    if (date.hora < timeRouter.hora) {
+        
+        let hora = date.hora - timeRouter.hora
+        date.hora = 24 + hora
+        date.dia = date.dia - 1
+
+    }
+    else{
+
+        date.hora = date.hora - timeRouter.hora
+        
+    }
+
+    // Inserimos um zero a esquerda caso o numero se menor que 10
+    date.hora = ("0" + date.hora).slice(-2)
+    date.minuto = ("0" + date.minuto).slice(-2)
+    date.dia = ("0" + date.dia).slice(-2)
+
+    let dataNormalizacao =  date.dia + "/" + date.mes + "/" + date.ano + " " + date.hora + ":" + date.minuto + ":00"
+
+    return dataNormalizacao
+}
+
+function router(data) {
+
+    date = getDate()
+    timeRouter = splitTime(data.router)
+
+    document.querySelector("#dataNormalizacao").value = calculaTimeRouter(date, timeRouter)
+}
+
+
+// === CALCULO DO ROUTER ===
+
+// ===  ===
 
 
 function getView() {
@@ -139,9 +189,12 @@ function make(data, causa, solucao) {
     let m = makeMascara(data)
     copyToClipboard(m)
     console.log(m)
-    console.log(data)
+    // console.log(data)
     
 }
+
+
+// ===  ===
 
 
 class Mascara {
@@ -165,8 +218,19 @@ class Mascara {
             "redeaRompimento":"ROMPIMENTO DE FIBRA, RECUPERADO",
             "redeaManobra":"REDE METALICA COM DEFEITO, RECUPERADO",
         }
-    }    
+    }
     
+    calcularRouter() {
+        router(this._data)
+    }
+    
+    copyValidacao() {
+        copyToClipboard(this._data["validacao"].toUpperCase() + " CPD")
+    }
+    copySenha() {
+        copyToClipboard("SENHA : " + this._data["senha"])
+    }
+
     // Causa Cliente
     reclamacaoIndevida() {
         make(this._data, this._causa.cliente, this._solucao.indevida)
@@ -196,12 +260,31 @@ class Mascara {
     }
     outraCausa(){
         if ( this._data["checkboxCausaCliente"] ){
-            make(this._data, this._causa.cliente, this._data["outraCausa"])
+            make(this._data, this._causa.cliente, this._data.outraCausa)
         }else{
-            make(this._data, this._causa.operadora, this._data["outraCausa"])
+            make(this._data, this._causa.operadora, this._data.outraCausa)
         }
     }
 
+}
+
+
+
+// === BUTTONS ===
+
+function buttonCalcularRouter() {
+    m = new Mascara()
+    m.calcularRouter()
+}
+
+function buttonCopyValidacao() {
+    m = new Mascara()
+    m.copyValidacao()
+}
+
+function buttonCopySenha() {
+    m = new Mascara()
+    m.copySenha()
 }
 
 function buttonReclamacaoIndevida() {
@@ -248,3 +331,5 @@ function buttonOutraCausa() {
     m = new Mascara()
     m.outraCausa()
 }
+
+// === BUTTONS ===
