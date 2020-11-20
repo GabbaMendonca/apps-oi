@@ -214,8 +214,8 @@ class Mascara {
             "gabinete":"GABINETE QUEIMADO",
             "modem":"MODEM QUEIMADO, SUBSTITUIDO",
             "fibraRompimento":"ROMPIMENTO DE FIBRA, RECUPERADO",
-            "redeaRompimento":"ROMPIMENTO DE FIBRA, RECUPERADO",
-            "redeaManobra":"REDE METALICA COM DEFEITO, RECUPERADO",
+            "redeaRompimento":"REDE METALICA COM DEFEITO, RECUPERADO",
+            "redeaManobra":"REDE METALICA COM DEFEITO, MANOBRADO",
         }
     }
     
