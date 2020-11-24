@@ -21,9 +21,9 @@ function copyToClipboard(text) {
 
 
 function getDate() {
-    
+
     let currentDate = {}
-    
+
     let date = new Date()
 
     currentDate.hora = date.getHours()
@@ -37,9 +37,9 @@ function getDate() {
 
 
 function splitTime(routerUp) {
-    
+
     timeRouter = {}
-    
+
     let router = routerUp.toUpperCase()
 
     router = router.split(":")
@@ -59,25 +59,25 @@ function splitTime(routerUp) {
         timeRouter["minuto"] = router[0]
 
     }
-    
+
     return timeRouter
 }
 
 
 function calculaTimeRouter(date, timeRouter) {
-    
-    while (timeRouter.minuto >= 60) {        
-        
+
+    while (timeRouter.minuto >= 60) {
+
         // Sempre que o valor em minutos up do router for maior 60 min
         // vamos dropar 1 hora e subtrair estes 60 min do tempo up do router.
         // Isso nos permite calcular tempo escritos no formato 00h90m00s
-        
+
         timeRouter.minuto = timeRouter.minuto - 60
         date.hora = date.hora - 1
 
     }
     if (date.minuto < timeRouter.minuto) {
-        
+
         // Se minutos do router é maior que o minuto atual,
         // logo a conta sera a seguinte :
         // -10 = 10(minuto atual) - 20(tempo up do router)
@@ -91,34 +91,34 @@ function calculaTimeRouter(date, timeRouter) {
         date.hora = date.hora - 1
 
     }
-    else{
-        
+    else {
+
         // Se não o resultado não sera negativo
         // 5 = 10 - 5
         // Então faremos somente a subtração dos minutos
 
         date.minuto = date.minuto - timeRouter.minuto
-        
+
     }
 
 
-    while (timeRouter.hora >= 24) {        
-    
+    while (timeRouter.hora >= 24) {
+
         timeRouter.hora = timeRouter.hora - 60
         date.dia = date.dia - 1
 
-    }    
+    }
     if (date.hora < timeRouter.hora) {
-        
+
         let hora = date.hora - timeRouter.hora
         date.hora = 24 + hora
         date.dia = date.dia - 1
 
     }
-    else{
+    else {
 
         date.hora = date.hora - timeRouter.hora
-        
+
     }
 
     // Inserimos um zero a esquerda caso o numero se menor que 10
@@ -126,7 +126,7 @@ function calculaTimeRouter(date, timeRouter) {
     date.minuto = ("0" + date.minuto).slice(-2)
     date.dia = ("0" + date.dia).slice(-2)
 
-    let dataNormalizacao =  date.dia + "/" + date.mes + "/" + date.ano + " " + date.hora + ":" + date.minuto + ":00"
+    let dataNormalizacao = date.dia + "/" + date.mes + "/" + date.ano + " " + date.hora + ":" + date.minuto + ":00"
 
     return dataNormalizacao
 }
@@ -157,6 +157,8 @@ function getView() {
     data["senha"] = document.querySelector("#senha").value
     data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
+    data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
+    data["pendenteCliente"] = document.getElementsByName("pendenteCliente")
 
     let select = document.querySelector('#falha');
     data["falha"] = select.options[select.selectedIndex].text;
@@ -181,15 +183,59 @@ function makeMascara(data) {
     return mascara
 }
 
+function makeValidacao(data) {
+
+    date = getDate()
+    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00h"
+
+    let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
+        `${data["solucao"]}\n` +
+        `PENDENTE VALIDAR COM ${data["pendenteCliente"]} ` + dataValidacao
+
+    return mascara
+}
+
 function make(data, causa, solucao) {
 
     data["causa"] = causa
     data["solucao"] = solucao
 
-    let m = makeMascara(data)
+    if (data["checkboxAguardandoValidacao"]) {
+
+        for (var i = 0, length = data["pendenteCliente"].length; i < length; i++) {
+            if (data["pendenteCliente"][i].checked) {
+                // do whatever you want with the checked radio
+
+                switch (data["pendenteCliente"][i].value) {
+                    case '0':
+                        
+                        data["pendenteCliente"] = "CPD"
+                        m = makeValidacao(data)
+
+                        break;
+                    case '1':
+                        
+                        data["pendenteCliente"] = "Residente"
+                        m = makeValidacao(data)
+                    
+                        break;
+                    default:
+                        alert("Esse não tem !!!");
+                }
+
+                // only one radio can be logically checked, don't check the rest
+                break;
+            }
+        }
+
+        // m = makeValidacao(data)
+    } else {
+        m = makeMascara(data)
+    }
+
     copyToClipboard(m)
     console.log(m)
-    
+
 }
 
 
@@ -198,27 +244,27 @@ function make(data, causa, solucao) {
 
 class Mascara {
 
-    constructor(){
+    constructor() {
         this._data = getView()
 
         this._causa = {
-            "cliente":"CLIENTE",
-            "operadora":"OPERADORA",
+            "cliente": "CLIENTE",
+            "operadora": "OPERADORA",
         }
 
         this._solucao = {
-            "indevida":"ABERTURA INDEVIDA",
-            "energia":"LOCAL SEM ENERGIA",
-            "naoDetectada":"CAUSA NAO DETECTADA",
+            "indevida": "ABERTURA INDEVIDA",
+            "energia": "LOCAL SEM ENERGIA",
+            "naoDetectada": "CAUSA NAO DETECTADA",
 
-            "gabinete":"GABINETE QUEIMADO",
-            "modem":"MODEM QUEIMADO, SUBSTITUIDO",
-            "fibraRompimento":"ROMPIMENTO DE FIBRA, RECUPERADO",
-            "redeaRompimento":"REDE METALICA COM DEFEITO, RECUPERADO",
-            "redeaManobra":"REDE METALICA COM DEFEITO, MANOBRADO",
+            "gabinete": "GABINETE QUEIMADO",
+            "modem": "MODEM QUEIMADO, SUBSTITUIDO",
+            "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
+            "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
+            "redeaManobra": "REDE METALICA COM DEFEITO, MANOBRADO",
         }
     }
-    
+
     calcularRouter() {
         document.querySelector("#dataNormalizacao").value = router(this._data)
     }
@@ -231,7 +277,7 @@ class Mascara {
     }
 
 
-    limpar(){
+    limpar() {
         document.querySelector("#dataAbertura").value = ""
         document.querySelector("#dataNormalizacao").value = ""
         document.querySelector("#router").value = ""
@@ -250,28 +296,28 @@ class Mascara {
     }
 
     // Causa Operadora
-    causaNaoDetectada(){
+    causaNaoDetectada() {
         make(this._data, this._causa.operadora, this._solucao.naoDetectada)
     }
-    gabineteQueimado(){
+    gabineteQueimado() {
         make(this._data, this._causa.operadora, this._solucao.gabinete)
     }
-    modemQueimado(){
+    modemQueimado() {
         make(this._data, this._causa.operadora, this._solucao.modem)
     }
-    fibraRompimento(){
+    fibraRompimento() {
         make(this._data, this._causa.operadora, this._solucao.fibraRompimento)
     }
-    redeaRompimento(){
+    redeaRompimento() {
         make(this._data, this._causa.operadora, this._solucao.redeaRompimento)
     }
-    redeaManobra(){
+    redeaManobra() {
         make(this._data, this._causa.operadora, this._solucao.redeaManobra)
     }
-    outraCausa(){
-        if ( this._data["checkboxCausaCliente"] ){
+    outraCausa() {
+        if (this._data["checkboxCausaCliente"]) {
             make(this._data, this._causa.cliente, this._data.outraCausa)
-        }else{
+        } else {
             make(this._data, this._causa.operadora, this._data.outraCausa)
         }
     }

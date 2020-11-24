@@ -9,146 +9,190 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
 
-    <title>Document</title>
+    <title>Apps OI</title>
 </head>
 
 <body>
 
-    <div class="container mascara">
 
-        <div class="field">
-            <label class="label is-small">OI</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="oi" class="input is-small" type="text" placeholder="OI">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-id-badge"></i>
-                </span>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label is-small">Nome</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-signature"></i>
-                </span>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label is-small">Data de Abertura</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-calendar-minus"></i>
-                </span>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label is-small">Data de normalização</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-calendar-check"></i>
-                </span>
-            </div>
-        </div>
+    <div class="container">
+        <div class="mascara">
 
-
-        <label class="label is-small">Tempo UP do Router</label>
-        <div class="field is-grouped">
-            <div class="control has-icons-left has-icons-right is-expanded">
-                <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-clock"></i>
-                </span>
-            </div>
-
-            <p class="control">
-                <a onclick="buttonCalcularRouter()" class="button is-small is-info">
-                    Calcular
-                </a>
-            </p>
-
-        </div>
-
-        <label class="label is-small">Validado por</label>
-        <div class="field is-grouped">
-            <div class="control has-icons-left has-icons-right is-expanded">
-                <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user-tie"></i>
-                </span>
-            </div>
-
-            <p class="control">
-                <a class="button is-small is-info" onclick="buttonCopyValidacao()">
-                    Copiar
-                </a>
-            </p>
-
-        </div>
-
-        <label class="label is-small">Senha</label>
-        <div class="field is-grouped">
-            <div class="control has-icons-left has-icons-right is-expanded">
-                <input id="senha" class="input is-small" type="text" placeholder="*****">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-unlock-alt"></i>
-                </span>
-            </div>
-
-            <p class="control">
-                <a class="button is-small is-info" onclick="buttonCopySenha()">
-                    Copiar
-                </a>
-            </p>
-
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <div class="select is-small">
-                    <select id="falha">
-                        <option value="Inoperante" selected>Inoperante</option>
-                        <option value="Intermitente">Intermitente</option>
-                        <option value="PerdaDePacotes">Perda de Pacotes</option>
-                    </select>
+            <div class="field">
+                <label class="label is-small">OI</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="oi" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-id-badge"></i>
+                    </span>
                 </div>
             </div>
-        </div>
-
-        <div class="buttons are-small">
-            <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
-            <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
-        </div>
-
-
-        <p>Causa Cliente</p>
-        <button class="button is-small is-fullwidth" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
-        <button class="button is-small is-fullwidth" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
-
-        <p>Causa Operadora</p>
-        <button class="button is-small is-fullwidth" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-        <button class="button is-small is-fullwidth" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-        <button class="button is-small is-fullwidth" onclick="buttonModemQueimado()">Modem Queimado</button>
-        <button class="button is-small is-fullwidth" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
-        <button class="button is-small is-fullwidth" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
-        <button class="button is-small is-fullwidth" onclick="buttonRedeaManobra()">Redea - Manobra</button>
-
-
-        <div class="field">
-            <div class="control">
-                <input id="outraCausa" class="input is-small" type="text">
+            <div class="field">
+                <label class="label is-small">Nome</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-signature"></i>
+                    </span>
+                </div>
             </div>
+            <div class="field">
+                <label class="label is-small">Data de Abertura</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-calendar-minus"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label is-small">Data de normalização</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-calendar-check"></i>
+                    </span>
+                </div>
+            </div>
+
+
+            <label class="label is-small">Tempo UP do Router</label>
+            <div class="field is-grouped">
+                <div class="control has-icons-left has-icons-right is-expanded">
+                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-clock"></i>
+                    </span>
+                </div>
+
+                <p class="control">
+                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">
+                        Calcular
+                    </a>
+                </p>
+
+            </div>
+
+            <label class="label is-small">Validado por</label>
+            <div class="field is-grouped">
+                <div class="control has-icons-left has-icons-right is-expanded">
+                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-tie"></i>
+                    </span>
+                </div>
+
+                <p class="control">
+                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">
+                        Copiar
+                    </a>
+                </p>
+
+            </div>
+
+            <label class="label is-small">Senha</label>
+            <div class="field is-grouped">
+                <div class="control has-icons-left has-icons-right is-expanded">
+                    <input id="senha" class="input is-small" type="text" placeholder="*****">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-unlock-alt"></i>
+                    </span>
+                </div>
+
+                <p class="control">
+                    <a class="button is-small is-info" onclick="buttonCopySenha()">
+                        Copiar
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <div class="select is-small">
+                        <select id="falha">
+                            <option value="Inoperante" selected>Inoperante</option>
+                            <option value="Intermitente">Intermitente</option>
+                            <option value="PerdaDePacotes">Perda de Pacotes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons are-small">
+                <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
+                <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
+            </div>
+
+            <label class="checkbox">
+                <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
+                Aguardando Validação ?
+            </label>
+
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="pendenteCliente" value="0" checked>
+                    Pendente validar com CPD
+                </label>
+                <br>
+                <label class="radio">
+                    <input type="radio" name="pendenteCliente" value="1">
+                    Pendente validar com Residente
+                </label>
+            </div>
+
+            <br>
+
+            <p>Causa Cliente</p>
+            <button class="button is-small is-fullwidth" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+            <button class="button is-small is-fullwidth" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
+
+            <p>Causa Operadora</p>
+            <button class="button is-small is-fullwidth" onclick="buttonCausaNaoDetectada()">Causa Não
+                Detectada</button>
+            <button class="button is-small is-fullwidth" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+            <button class="button is-small is-fullwidth" onclick="buttonModemQueimado()">Modem Queimado</button>
+            <button class="button is-small is-fullwidth" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
+            <button class="button is-small is-fullwidth" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
+            <button class="button is-small is-fullwidth" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+
+            <p>Voz</p>
+            <button class="button is-small is-fullwidth" onclick="buttonRedeaManobra()" disabled>Falha no PABX</button>
+
+
+            <br>
+            <br>
+            <div class="field">
+                <div class="control">
+                    <input id="outraCausa" class="input is-small" type="text">
+                </div>
+            </div>
+            <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+
+            <label class="checkbox">
+                <input id="checkboxCausaCliente" value="cliente" type="checkbox">
+                Causa Cliente ?
+            </label>
+            <br>
+
         </div>
-        <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
-
-        <label class="checkbox">
-            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
-            Causa Cliente ?
-        </label>
-
     </div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <a href="https://bulma.io">
+                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128"
+                        height="24">
+                </a>
+            </p>
+            <p>
+                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a
+                    href="https://github.com/GabbaMendonca">GitHub</a>.
+            </p>
+        </div>
+    </footer>
+
 
     <script src="mascara.js"></script>
 
