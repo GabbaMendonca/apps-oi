@@ -19,6 +19,7 @@ function copyToClipboard(text) {
 
 // === CLIPBOARD ===
 
+
 // === CALCULO DO ROUTER ===
 
 
@@ -141,30 +142,78 @@ function router(data) {
 
 // === CALCULO DO ROUTER ===
 
-// ===  ===
+
+// === VIEW  ===
 
 
 function getView() {
     let data = {}
 
+    // Input
     data["oi"] = document.querySelector("#oi").value
     data["nome"] = document.querySelector("#nome").value.toUpperCase()
     data["abertura"] = document.querySelector("#dataAbertura").value
     data["normalizacao"] = document.querySelector("#dataNormalizacao").value
     data["router"] = document.querySelector("#router").value
     data["validacao"] = document.querySelector("#validacao").value.toUpperCase()
-    data["senha"] = document.querySelector("#senha").value
+    data["senha"] = document.querySelector("#senha").value.toUpperCase()
     data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
+
+    // Checkbox
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
     data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
+    data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
+
+    // Radio
     data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
     data["radioValidacao"] = document.getElementsByName("radioValidacao")
 
+    // Select
     let select = document.querySelector('#falha');
     data["falha"] = select.options[select.selectedIndex].text;
 
     return data
 }
+
+
+// === VIEW ===
+
+
+// === MAKE MASCARA ===
+
+function verificaRadioPendenteValidar(data) {
+
+    // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
+    // Para isso usamos um for onde percorremos as opções
+
+    for (var i = 0, length = data["radioPendenteCliente"].length; i < length; i++) {
+
+        // Conforme corremos com o for verificamos se a opção esta setada
+
+        if (data["radioPendenteCliente"][i].checked) {
+
+            // Se sim verificamos qual é essa opção com o switch
+
+            switch (data["radioPendenteCliente"][i].value) {
+                case '0':
+
+                    return " CPD "
+
+                case '1':
+
+                    return " RESIDENTE "
+
+                default:
+                    alert("Esse não tem !!!");
+            }
+
+            // Apenas um rádio pode ser verificado logicamente,
+            // interrompemos o resto
+            break;
+        }
+    }
+}
+
 
 function verificaRadioValidacao(data) {
     for (var i = 0, length = data["radioValidacao"].length; i < length; i++) {
@@ -189,12 +238,21 @@ function verificaRadioValidacao(data) {
     }
 }
 
-function makeMascara(data) {
+function makeEncerramento(data) {
     let mascara = " --- ENCERRAMENTO ---"
 
-    if (data["senha"] != "") {
-        mascara = mascara + ` > SENHA : ${data["senha"]}`
+
+    if (data["checkboxChamadoManual"]) {
+        mascara = mascara + ` > SENHA : MANUAL, NAO POSSUI SENHA`
+
+    } else {
+
+        if (data["senha"] != "") {
+            mascara = mascara + ` > SENHA : ${data["senha"]}`
+        }
+
     }
+
 
     mascara = mascara + `\nCOLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}\n` +
         `FALHA : ${data["falha"]}\n` +
@@ -211,71 +269,45 @@ function makeMascara(data) {
 function makeValidacao(data) {
 
     date = getDate()
-    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00h"
+    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00 H"
 
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}\n` +
-        `PENDENTE VALIDAR COM ${data["radioPendenteCliente"]} ` + dataValidacao
+        `PENDENTE VALIDAR COM`
+
+    mascara = mascara + verificaRadioPendenteValidar(data)
+
+    mascara = mascara + dataValidacao
 
     return mascara
 }
 
-function make(data, causa, solucao) {
+function makeMascara(data, causa, solucao) {
 
     data["causa"] = causa
     data["solucao"] = solucao
 
-    // Verifica se o Checkbox "Aguardando Validação ?" esta setado
-    // Se estiver muda a mensagem a ser copiada para a area de transferencia
-    // ao inves da mascara de enceramento, copia uma mensagem, pendente aguardando
-    // a validação do cliente.
+    // Verifica se o Checkbox "Aguardando Validação ?" esta setado.
+    // Se estiver muda a mensagem a ser copiada para a area de transferencia,
+    // ao inves da mascara de enceramento, copia a mensagem, 
+    // aguardando a validação do cliente.
+    // Caso contrario copia a mascara de encerramento.
 
     if (data["checkboxAguardandoValidacao"]) {
 
-        // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
-        // Para isso usamos um for onde percorremos as opções
-
-        for (var i = 0, length = data["radioPendenteCliente"].length; i < length; i++) {
-
-            // Conforme corremos com o for verificamos se a opção esta setada
-
-            if (data["radioPendenteCliente"][i].checked) {
-
-                // Se sim verificamos qual é essa opção com o switch
-
-                switch (data["radioPendenteCliente"][i].value) {
-                    case '0':
-
-                        data["radioPendenteCliente"] = "CPD"
-                        m = makeValidacao(data)
-
-                        break;
-                    case '1':
-
-                        data["radioPendenteCliente"] = "RESIDENTE"
-                        m = makeValidacao(data)
-
-                        break;
-                    default:
-                        alert("Esse não tem !!!");
-                }
-
-                // Apenas um rádio pode ser verificado logicamente,
-                // interrompemos o resto
-                break;
-            }
-        }
+        m = makeValidacao(data)
 
     } else {
 
-        // Se o checkbox não estiver setado executamos esta outra função
-
-        m = makeMascara(data)
+        m = makeEncerramento(data)
     }
 
     copyToClipboard(m)
 
 }
+
+
+// === MAKE MASCARA ===
 
 
 // ===  ===
@@ -331,44 +363,46 @@ class Mascara {
 
     // Causa Cliente
     reclamacaoIndevida() {
-        make(this._data, this._causa.cliente, this._solucao.indevida)
+        makeMascara(this._data, this._causa.cliente, this._solucao.indevida)
     }
     localSemEnergia() {
-        make(this._data, this._causa.cliente, this._solucao.energia)
+        makeMascara(this._data, this._causa.cliente, this._solucao.energia)
     }
 
     // Causa Operadora
     causaNaoDetectada() {
-        make(this._data, this._causa.operadora, this._solucao.naoDetectada)
+        makeMascara(this._data, this._causa.operadora, this._solucao.naoDetectada)
     }
     gabineteQueimado() {
-        make(this._data, this._causa.operadora, this._solucao.gabinete)
+        makeMascara(this._data, this._causa.operadora, this._solucao.gabinete)
     }
     modemQueimado() {
-        make(this._data, this._causa.operadora, this._solucao.modem)
+        makeMascara(this._data, this._causa.operadora, this._solucao.modem)
     }
     fibraRompimento() {
-        make(this._data, this._causa.operadora, this._solucao.fibraRompimento)
+        makeMascara(this._data, this._causa.operadora, this._solucao.fibraRompimento)
     }
     redeaRompimento() {
-        make(this._data, this._causa.operadora, this._solucao.redeaRompimento)
+        makeMascara(this._data, this._causa.operadora, this._solucao.redeaRompimento)
     }
     redeaManobra() {
-        make(this._data, this._causa.operadora, this._solucao.redeaManobra)
+        makeMascara(this._data, this._causa.operadora, this._solucao.redeaManobra)
     }
     outraCausa() {
         if (this._data["checkboxCausaCliente"]) {
-            make(this._data, this._causa.cliente, this._data.outraCausa)
+            makeMascara(this._data, this._causa.cliente, this._data.outraCausa)
         } else {
-            make(this._data, this._causa.operadora, this._data.outraCausa)
+            makeMascara(this._data, this._causa.operadora, this._data.outraCausa)
         }
     }
-
 }
 
 
+// ===  ===
+
 
 // === BUTTONS ===
+
 
 function buttonLimpar() {
     m = new Mascara()

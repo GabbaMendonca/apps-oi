@@ -90,7 +90,7 @@
 
             </div>
 
-            <div class="control">
+            <div class="control" style="padding-bottom: 3px;">
                 <label class="radio">
                     <input type="radio" name="radioValidacao" value="0" checked>
                     CPD
@@ -116,8 +116,12 @@
                         Copiar
                     </a>
                 </p>
-
             </div>
+
+            <label class="checkbox" style="padding-bottom: 12px;">
+                <input id="checkboxChamadoManual" value="manual" type="checkbox">
+                Manual, Não possui senha ?
+            </label>
 
             <div class="field">
                 <div class="control">
@@ -155,36 +159,32 @@
             <br>
 
             <p>Causa Cliente</p>
-            <button class="button is-small is-fullwidth" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
-            <button class="button is-small is-fullwidth" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
 
             <p>Causa Operadora</p>
-            <button class="button is-small is-fullwidth" onclick="buttonCausaNaoDetectada()">Causa Não
-                Detectada</button>
-            <button class="button is-small is-fullwidth" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-            <button class="button is-small is-fullwidth" onclick="buttonModemQueimado()">Modem Queimado</button>
-            <button class="button is-small is-fullwidth" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
-            <button class="button is-small is-fullwidth" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
-            <button class="button is-small is-fullwidth" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem Queimado</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea - Manobra</button>
 
             <p>Voz</p>
-            <button class="button is-small is-fullwidth" onclick="buttonRedeaManobra()" disabled>Falha no PABX</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()" disabled>Falha no PABX</button>
 
-
-            <br>
-            <br>
-            <div class="field">
+            <div class="field" style="margin-top: 15px;">
                 <div class="control">
                     <input id="outraCausa" class="input is-small" type="text">
                 </div>
             </div>
+
             <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
 
-            <label class="checkbox">
+            <label class="checkbox" style="padding-top: 10px;">
                 <input id="checkboxCausaCliente" value="cliente" type="checkbox">
                 Causa Cliente ?
             </label>
-            <br>
 
         </div>
     </div>
