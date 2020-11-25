@@ -90,6 +90,18 @@
 
             </div>
 
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="radioValidacao" value="0" checked>
+                    CPD
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioValidacao" value="1">
+                    Residente
+                </label>
+            </div>
+
             <label class="label is-small">Senha</label>
             <div class="field is-grouped">
                 <div class="control has-icons-left has-icons-right is-expanded">
@@ -112,8 +124,7 @@
                     <div class="select is-small">
                         <select id="falha">
                             <option value="Inoperante" selected>Inoperante</option>
-                            <option value="Intermitente">Intermitente</option>
-                            <option value="PerdaDePacotes">Perda de Pacotes</option>
+                            <option value="BaixoDesempenho">Baixo Desempenho</option>
                         </select>
                     </div>
                 </div>
@@ -131,12 +142,12 @@
 
             <div class="control">
                 <label class="radio">
-                    <input type="radio" name="pendenteCliente" value="0" checked>
+                    <input type="radio" name="radioPendenteCliente" value="0" checked>
                     Pendente validar com CPD
                 </label>
                 <br>
                 <label class="radio">
-                    <input type="radio" name="pendenteCliente" value="1">
+                    <input type="radio" name="radioPendenteCliente" value="1">
                     Pendente validar com Residente
                 </label>
             </div>
@@ -182,13 +193,11 @@
         <div class="content has-text-centered">
             <p>
                 <a href="https://bulma.io">
-                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128"
-                        height="24">
+                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128" height="24">
                 </a>
             </p>
             <p>
-                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a
-                    href="https://github.com/GabbaMendonca">GitHub</a>.
+                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca">GitHub</a>.
             </p>
         </div>
     </footer>

@@ -12,6 +12,8 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+
+    console.log(text);
 }
 
 
@@ -49,8 +51,7 @@ function splitTime(routerUp) {
         timeRouter["hora"] = router[0]
         timeRouter["minuto"] = router[1]
 
-    }
-    else {
+    } else {
 
         router = router[0].split("H")
         timeRouter["hora"] = router[0]
@@ -90,8 +91,7 @@ function calculaTimeRouter(date, timeRouter) {
         // e dropamos uma hora da atual
         date.hora = date.hora - 1
 
-    }
-    else {
+    } else {
 
         // Se não o resultado não sera negativo
         // 5 = 10 - 5
@@ -114,8 +114,7 @@ function calculaTimeRouter(date, timeRouter) {
         date.hora = 24 + hora
         date.dia = date.dia - 1
 
-    }
-    else {
+    } else {
 
         date.hora = date.hora - timeRouter.hora
 
@@ -153,17 +152,41 @@ function getView() {
     data["abertura"] = document.querySelector("#dataAbertura").value
     data["normalizacao"] = document.querySelector("#dataNormalizacao").value
     data["router"] = document.querySelector("#router").value
-    data["validacao"] = document.querySelector("#validacao").value
+    data["validacao"] = document.querySelector("#validacao").value.toUpperCase()
     data["senha"] = document.querySelector("#senha").value
     data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
     data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
-    data["pendenteCliente"] = document.getElementsByName("pendenteCliente")
+    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
+    data["radioValidacao"] = document.getElementsByName("radioValidacao")
 
     let select = document.querySelector('#falha');
     data["falha"] = select.options[select.selectedIndex].text;
 
     return data
+}
+
+function verificaRadioValidacao(data) {
+    for (var i = 0, length = data["radioValidacao"].length; i < length; i++) {
+
+        if (data["radioValidacao"][i].checked) {
+
+            switch (data["radioValidacao"][i].value) {
+                case '0':
+
+                    return " CPD"
+
+                case '1':
+
+                    return " RESIDENTE"
+
+                default:
+                    alert("Esse não tem !!!");
+            }
+
+            break;
+        }
+    }
 }
 
 function makeMascara(data) {
@@ -180,6 +203,8 @@ function makeMascara(data) {
         `CAUSA / SOLUCAO : ${data["causa"]} - ${data["solucao"]}\n` +
         `VALIDADO POR : ${data["validacao"]}`
 
+    mascara = mascara + verificaRadioValidacao(data)
+
     return mascara
 }
 
@@ -190,7 +215,7 @@ function makeValidacao(data) {
 
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}\n` +
-        `PENDENTE VALIDAR COM ${data["pendenteCliente"]} ` + dataValidacao
+        `PENDENTE VALIDAR COM ${data["radioPendenteCliente"]} ` + dataValidacao
 
     return mascara
 }
@@ -200,41 +225,55 @@ function make(data, causa, solucao) {
     data["causa"] = causa
     data["solucao"] = solucao
 
+    // Verifica se o Checkbox "Aguardando Validação ?" esta setado
+    // Se estiver muda a mensagem a ser copiada para a area de transferencia
+    // ao inves da mascara de enceramento, copia uma mensagem, pendente aguardando
+    // a validação do cliente.
+
     if (data["checkboxAguardandoValidacao"]) {
 
-        for (var i = 0, length = data["pendenteCliente"].length; i < length; i++) {
-            if (data["pendenteCliente"][i].checked) {
-                // do whatever you want with the checked radio
+        // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
+        // Para isso usamos um for onde percorremos as opções
 
-                switch (data["pendenteCliente"][i].value) {
+        for (var i = 0, length = data["radioPendenteCliente"].length; i < length; i++) {
+
+            // Conforme corremos com o for verificamos se a opção esta setada
+
+            if (data["radioPendenteCliente"][i].checked) {
+
+                // Se sim verificamos qual é essa opção com o switch
+
+                switch (data["radioPendenteCliente"][i].value) {
                     case '0':
-                        
-                        data["pendenteCliente"] = "CPD"
+
+                        data["radioPendenteCliente"] = "CPD"
                         m = makeValidacao(data)
 
                         break;
                     case '1':
-                        
-                        data["pendenteCliente"] = "Residente"
+
+                        data["radioPendenteCliente"] = "RESIDENTE"
                         m = makeValidacao(data)
-                    
+
                         break;
                     default:
                         alert("Esse não tem !!!");
                 }
 
-                // only one radio can be logically checked, don't check the rest
+                // Apenas um rádio pode ser verificado logicamente,
+                // interrompemos o resto
                 break;
             }
         }
 
-        // m = makeValidacao(data)
     } else {
+
+        // Se o checkbox não estiver setado executamos esta outra função
+
         m = makeMascara(data)
     }
 
     copyToClipboard(m)
-    console.log(m)
 
 }
 
@@ -257,7 +296,7 @@ class Mascara {
             "energia": "LOCAL SEM ENERGIA",
             "naoDetectada": "CAUSA NAO DETECTADA",
 
-            "gabinete": "GABINETE QUEIMADO",
+            "gabinete": "GABINETE QUEIMADO, SUBSTITUIDO",
             "modem": "MODEM QUEIMADO, SUBSTITUIDO",
             "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
             "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
@@ -270,7 +309,10 @@ class Mascara {
     }
 
     copyValidacao() {
-        copyToClipboard(this._data["validacao"].toUpperCase() + " CPD")
+        let validado = this._data["validacao"].toUpperCase()
+        validado = validado + verificaRadioValidacao(this._data)
+
+        copyToClipboard(validado)
     }
     copySenha() {
         copyToClipboard("SENHA : " + this._data["senha"])
@@ -358,6 +400,7 @@ function buttonLocalSemEnergia() {
     m.localSemEnergia()
 
 }
+
 function buttonCausaNaoDetectada() {
     m = new Mascara()
     m.causaNaoDetectada()
