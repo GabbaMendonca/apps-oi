@@ -333,6 +333,7 @@ class Mascara {
             "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
             "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
             "redeaManobra": "REDE METALICA COM DEFEITO, MANOBRADO",
+            "falhaPABX": "FALHA NO PABX DO CLIENTE",
         }
     }
 
@@ -391,6 +392,9 @@ class Mascara {
     }
     redeaManobra() {
         makeMascara(this._data, this._causa.operadora, this._solucao.redeaManobra)
+    }
+    buttonFalhaPABX() {
+        makeMascara(this._data, this._causa.cliente, this._solucao.falhaPABX)
     }
     outraCausa() {
         if (this._data["checkboxCausaCliente"]) {
@@ -472,6 +476,11 @@ function buttonRedeaRompimento() {
 function buttonRedeaManobra() {
     m = new Mascara()
     m.redeaManobra()
+}
+
+function buttonFalhaPABX() {
+    m = new Mascara()
+    m.buttonFalhaPABX()
 }
 
 function buttonOutraCausa() {
