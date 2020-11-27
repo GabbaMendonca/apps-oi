@@ -12,10 +12,29 @@
     <title>Apps OI</title>
 </head>
 
-<body>
+<body onload="encerramento()">
 
 
-    <div class="container">
+    <div class="tabs is-centered">
+        <ul>
+            <li>
+                <a onclick="abertura()">
+                    <span class="icon is-small">
+                        <i class="fas fa-hammer" aria-hidden="true"></i></span>
+                    <span>Abertura</span>
+                </a>
+            </li>
+            <li>
+                <a onclick="encerramento()">
+                    <span class="icon is-small">
+                        <i class="fas fa-band-aid" data-fa-transform="rotate-135" aria-hidden="true"></i></span>
+                    <span>Encerramento</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="encerramento" class="container">
         <div class="mascara">
 
             <div class="field">
@@ -147,25 +166,6 @@
                 <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
             </div>
 
-            <label class="checkbox">
-                <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
-                Aguardando Validação ?
-            </label>
-
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="radioPendenteCliente" value="0" checked>
-                    Pendente validar com CPD
-                </label>
-                <br>
-                <label class="radio">
-                    <input type="radio" name="radioPendenteCliente" value="1">
-                    Pendente validar com Residente
-                </label>
-            </div>
-
-            <br>
-
             <p>Causa Cliente</p>
             <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
             <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
@@ -194,7 +194,39 @@
                 Causa Cliente ?
             </label>
 
+            <br>
+
+            <label class="checkbox" style="margin-top: 30px;">
+                <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
+                Aguardando Validação ?
+            </label>
+
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="radioPendenteCliente" value="0" checked>
+                    Pendente validar com CPD
+                </label>
+                <br>
+                <label class="radio">
+                    <input type="radio" name="radioPendenteCliente" value="1">
+                    Pendente validar com Residente
+                </label>
+            </div>
+
         </div>
+    </div>
+
+    <div id="abertura">
+        <section class="section has-text-centered">
+            <div class="container">
+                <h1 class="title">Ops !!!</h1>
+                <span class="icon has-text-info">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </span>
+                <h2 class="subtitle">Esta pagina ainda não esta pronta !</h2>
+                <h2 class="subtitle">Estamos em contrução !</h2>
+            </div>
+        </section>
     </div>
 
     <footer class="footer">
@@ -211,7 +243,20 @@
     </footer>
 
 
-    <script src="mascara.js"></script>
+    <script src="abertura.js"></script>
+    <script src="encerramento.js"></script>
+
+    <script>
+        function abertura(params) {
+            document.getElementById("encerramento").hidden = true
+            document.getElementById("abertura").hidden = false
+        }
+
+        function encerramento(params) {
+            document.getElementById("encerramento").hidden = false
+            document.getElementById("abertura").hidden = true
+        }
+    </script>
 
 </body>
 
