@@ -340,6 +340,10 @@ class Mascara {
         document.querySelector("#dataNormalizacao").value = router(this._data)
     }
 
+    CopyDataNormalizacao() {
+        copyToClipboard(this._data["normalizacao"])
+    }
+
     copyValidacao() {
         let validado = this._data["validacao"].toUpperCase()
         validado = validado + verificaRadioValidacao(this._data)
@@ -412,6 +416,11 @@ function buttonLimpar() {
 function buttonCalcularRouter() {
     m = new Mascara()
     m.calcularRouter()
+}
+
+function buttonCopyDataNormalizacao() {
+    m = new Mascara()
+    m.CopyDataNormalizacao()
 }
 
 function buttonCopyValidacao() {
