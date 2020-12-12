@@ -183,6 +183,9 @@ function getView() {
 
 function verificaRadioPendenteValidar(data) {
 
+    date = getDate()
+    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00 H"
+
     // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
     // Para isso usamos um for onde percorremos as opções
 
@@ -197,11 +200,15 @@ function verificaRadioPendenteValidar(data) {
             switch (data["radioPendenteCliente"][i].value) {
                 case '0':
 
-                    return " CPD "
+                    return "PENDENTE VALIDAR COM CPD " + dataValidacao
 
                 case '1':
 
-                    return " RESIDENTE "
+                    return "PENDENTE VALIDAR COM RESIDENTE " + dataValidacao
+
+                case '2':
+
+                    return "ENCAMINHADO EMAIL PARA VALIDAÇÃO"
 
                 default:
                     alert("Esse não tem !!!");
@@ -268,16 +275,12 @@ function makeEncerramento(data) {
 
 function makeValidacao(data) {
 
-    date = getDate()
-    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00 H"
+
 
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
-        `${data["solucao"]}\n` +
-        `PENDENTE VALIDAR COM`
+        `${data["solucao"]}\n`
 
     mascara = mascara + verificaRadioPendenteValidar(data)
-
-    mascara = mascara + dataValidacao
 
     return mascara
 }

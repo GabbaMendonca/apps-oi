@@ -12,7 +12,7 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="encerramento()">
+<body onload="abertura()">
 
 
     <div class="tabs is-centered">
@@ -34,27 +34,33 @@
         </ul>
     </div>
 
+    <div class="mascara">
+        <!-- Dados Colaborador -->
+        <div class="field">
+            <label class="label is-small">OI</label>
+            <div class="control has-icons-left has-icons-right">
+                <input id="oi" class="input is-small" type="text" placeholder="OI">
+                <span class="icon is-small is-left">
+                <i class="fas fa-id-badge"></i>
+            </span>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-small">Nome</label>
+            <div class="control has-icons-left has-icons-right">
+                <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                <span class="icon is-small is-left">
+                <i class="fas fa-signature"></i>
+            </span>
+            </div>
+        </div>
+        <!-- Dados Colaborador -->
+    </div>
+
     <div id="encerramento" class="container">
+
         <div class="mascara">
 
-            <div class="field">
-                <label class="label is-small">OI</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="oi" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-id-badge"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="field">
-                <label class="label is-small">Nome</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-signature"></i>
-                    </span>
-                </div>
-            </div>
             <div class="field">
                 <label class="label is-small">Data de Abertura</label>
                 <div class="control has-icons-left has-icons-right">
@@ -150,6 +156,7 @@
                 Manual, Não possui senha ?
             </label>
 
+            <!-- select -->
             <div class="field">
                 <div class="control">
                     <div class="select is-small">
@@ -160,6 +167,7 @@
                     </div>
                 </div>
             </div>
+            <!-- select -->
 
             <div class="buttons are-small">
                 <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
@@ -194,9 +202,9 @@
                 Causa Cliente ?
             </label>
 
-            <br>
+            <hr size=7>
 
-            <label class="checkbox" style="margin-top: 30px;">
+            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
                 <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
                 Aguardando Validação ?
             </label>
@@ -211,22 +219,207 @@
                     <input type="radio" name="radioPendenteCliente" value="1">
                     Pendente validar com Residente
                 </label>
+                <br>
+                <label class="radio">
+                    <input type="radio" name="radioPendenteCliente" value="2">
+                    Encaminhado para Validação
+                </label>
             </div>
-
         </div>
     </div>
 
-    <div id="abertura">
-        <section class="section has-text-centered">
-            <div class="container">
-                <h1 class="title">Ops !!!</h1>
-                <span class="icon has-text-info">
-                    <i class="fas fa-spinner fa-pulse"></i>
+    <!-- ABERTURA -->
+    <div id="abertura" class="container">
+
+
+        <div class="mascara">
+            <div class="field">
+                <label class="label is-small">Reclamante</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
                 </span>
-                <h2 class="subtitle">Esta pagina ainda não esta pronta !</h2>
-                <h2 class="subtitle">Estamos em contrução !</h2>
+                </div>
             </div>
-        </section>
+
+            <div class="field">
+                <label class="label is-small">Designação OI</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                </span>
+                </div>
+            </div>
+
+            <!-- FALHA -->
+            <!-- select -->
+            <label class="label is-small">Falha</label>
+            <div class="field">
+                <div class="control">
+                    <div class="select is-small">
+                        <select id="falha">
+                            <option selected>Inopeante</option>
+                            <option>Intermitente</option>
+                            <option>Perda de Pacote</option>
+                            <option>Taxa de Erro / CRC</option>
+                            <option>Lentidão</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- select -->
+
+            <textarea class="textarea is-small" placeholder="Detalhes / Observações da Falha ..."></textarea>
+            <!-- FALHA -->
+
+
+            <!-- Radio -->
+            <label class="label is-small">Proativo ?</label>
+            <div class="control" style="padding-bottom: 3px;">
+                <label class="radio">
+                    <input type="radio" name="radioProativo" value="0">
+                    Sim
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioProativo" value="1">
+                    Não
+                </label>
+            </div>
+
+            <label class="label is-small">Reincidente ?</label>
+            <div class="control" style="padding-bottom: 3px;">
+                <label class="radio">
+                    <input type="radio" name="radioReincidente" value="0">
+                    Sim
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioReincidente" value="1">
+                    Não
+                </label>
+            </div>
+
+            <label class="label is-small">Tem energia no local ?</label>
+            <div class="control" style="padding-bottom: 3px;">
+                <label class="radio">
+                    <input type="radio" name="radioEletrica" value="0">
+                    Sim
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioEletrica" value="1">
+                    Não
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioEletrica" value="1">
+                    Sem Confirmação
+                </label>
+            </div>
+
+            <label class="label is-small">Possui Backup Ativo ?</label>
+            <div class="control" style="padding-bottom: 3px;">
+                <label class="radio">
+                    <input type="radio" name="radioBackup" value="0">
+                    Sim
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioBackup" value="1">
+                    Não
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioBackup" value="1">
+                    Sem Confirmação
+                </label>
+            </div>
+
+            <label class="label is-small">Vai Ficar Pendente TS ?</label>
+            <div class="control" style="padding-bottom: 3px;">
+                <label class="radio">
+                    <input type="radio" name="radioPendenteTS" value="0">
+                    Sim
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radioPendenteTS" value="1">
+                    Não
+                </label>
+            </div>
+            <!-- Radio -->
+
+            <label class="label is-small">Horário de Acesso</label>
+            <textarea class="textarea is-small" rows="1" style="white-space: nowrap;"></textarea>
+
+            <label class="label is-small">Diagnostico de Rede</label>
+            <textarea class="textarea is-small" placeholder="Teste / Log's / Diagnosticos ..." rows="15" style="white-space: nowrap;"></textarea>
+
+            <!-- select -->
+            <label class="label is-small">Telefone p/ Teste</label>
+            <div class="field">
+                <div class="control">
+                    <div class="select is-small">
+                        <select id="falha">
+                            <option value="Inoperante" selected>Opc I</option>
+                            <option value="BaixoDesempenho">Opc II</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- select -->
+
+            <textarea class="textarea is-small" placeholder="Informações Adicionais ..." rows="10"></textarea>
+
+
+
+            <div class="field">
+                <label class="label is-small">Operadora (OEMP)</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label is-small">Designação (OEMP)</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                </span>
+                </div>
+            </div>
+            <!-- select -->
+            <label class="label is-small">Encerramento</label>
+            <div class="field">
+                <div class="control">
+                    <div class="select is-small">
+                        <select id="falha">
+                            <option value="Inoperante" selected>CGS</option>
+                            <option value="BaixoDesempenho">Sicredi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- select -->
+
+            <div class="field">
+                <label class="label is-small">Chamdo do Cliente</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                </span>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <footer class="footer">
