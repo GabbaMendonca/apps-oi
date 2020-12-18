@@ -12,8 +12,7 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="abertura()">
-
+<body onload="encerramento()">
 
     <div class="tabs is-centered">
         <ul>
@@ -34,33 +33,69 @@
         </ul>
     </div>
 
+
+    <!-- cabeçalho dados OI -->
     <div class="mascara">
+
+
+        <a onclick="ocultarCabecalho()" class="right">
+            <span class="icon">
+                <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h"></i>
+            </span>
+        </a>
+
         <!-- Dados Colaborador -->
-        <div class="field">
-            <label class="label is-small">OI</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="oi" class="input is-small" type="text" placeholder="OI">
-                <span class="icon is-small is-left">
+        <div id="cabecalho">
+            <div class="field">
+                <label class="label is-small">OI</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="oi" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
                 <i class="fas fa-id-badge"></i>
             </span>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label class="label is-small">Nome</label>
-            <div class="control has-icons-left has-icons-right">
-                <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                <span class="icon is-small is-left">
+            <div class="field">
+                <label class="label is-small">Nome</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                    <span class="icon is-small is-left">
                 <i class="fas fa-signature"></i>
             </span>
+                </div>
             </div>
+
+            <!-- <hr size=7> -->
+
         </div>
         <!-- Dados Colaborador -->
+
     </div>
+    <!-- cabeçalho dados OI -->
 
     <div id="encerramento" class="container">
 
         <div class="mascara">
 
+            <!-- select -->
+            <div class="field">
+                <div class="control">
+                    <div class="select is-small">
+                        <select id="falha">
+                            <option value="Inoperante" selected>Inoperante</option>
+                            <option value="BaixoDesempenho">Baixo Desempenho</option>
+                        </select>
+                    </div>
+                    <div class="buttons are-small right">
+                        <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
+                        <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
+                    </div>
+                </div>
+            </div>
+            <!-- select -->
+
+
+            <!-- data de abertura -->
             <div class="field">
                 <label class="label is-small">Data de Abertura</label>
                 <div class="control has-icons-left has-icons-right">
@@ -70,7 +105,11 @@
                     </span>
                 </div>
             </div>
+            <!-- data de abertura -->
 
+            <hr size=7>
+
+            <!-- data de normalização -->
             <label class="label is-small">Data de Normalização</label>
             <div class="field is-grouped">
                 <div class="control has-icons-left has-icons-right is-expanded">
@@ -105,7 +144,11 @@
                 </p>
 
             </div>
+            <!-- data de normalização -->
 
+            <hr size=7>
+
+            <!-- validação -->
             <label class="label is-small">Validado por</label>
             <div class="field is-grouped">
                 <div class="control has-icons-left has-icons-right is-expanded">
@@ -151,28 +194,13 @@
                 </p>
             </div>
 
-            <label class="checkbox" style="padding-bottom: 12px;">
+            <label class="checkbox">
                 <input id="checkboxChamadoManual" value="manual" type="checkbox">
                 Manual, Não possui senha ?
             </label>
+            <!-- validação -->
 
-            <!-- select -->
-            <div class="field">
-                <div class="control">
-                    <div class="select is-small">
-                        <select id="falha">
-                            <option value="Inoperante" selected>Inoperante</option>
-                            <option value="BaixoDesempenho">Baixo Desempenho</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <!-- select -->
-
-            <div class="buttons are-small">
-                <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
-                <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
-            </div>
+            <hr size=7>
 
             <p>Causa Cliente</p>
             <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
@@ -212,18 +240,28 @@
             <div class="control">
                 <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="0" checked>
-                    Pendente validar com CPD
+                    Pendente validar com CPD amanhã 
                 </label>
                 <br>
                 <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="1">
-                    Pendente validar com Residente
+                    Pendente validar com Residente amanhã
                 </label>
                 <br>
                 <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="2">
-                    Encaminhado para Validação
+                    Solicitado validação ao CPD
                 </label>
+                <br>
+                <label class="radio">
+                    <input type="radio" name="radioPendenteCliente" value="3">
+                    Monitoração por 24 h
+                </label>
+                <!-- <br>
+                <label class="radio">
+                    <input type="radio" name="radioPendenteCliente" value="4">
+                    Aguardando Diagnostico
+                </label> -->
             </div>
         </div>
     </div>
@@ -448,6 +486,21 @@
         function encerramento(params) {
             document.getElementById("encerramento").hidden = false
             document.getElementById("abertura").hidden = true
+        }
+
+        function ocultarCabecalho() {
+
+            cabecalho = document.getElementById("cabecalho")
+            seta = document.getElementById("seta")
+
+            if (cabecalho.hidden == false) {
+                seta.setAttribute("data-fa-transform", "flip-v")
+                cabecalho.hidden = true
+            } else {
+                seta.setAttribute("data-fa-transform", "flip-h")
+                cabecalho.hidden = false
+            }
+
         }
     </script>
 

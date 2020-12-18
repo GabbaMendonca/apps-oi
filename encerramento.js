@@ -208,7 +208,15 @@ function verificaRadioPendenteValidar(data) {
 
                 case '2':
 
-                    return "ENCAMINHADO EMAIL PARA VALIDAÇÃO"
+                    return "SOLICITADO VALIDAÇÃO AO CPD"
+
+                case '3':
+
+                    return "EM MONITORAÇÃO POR 24 H"
+
+                case '4':
+
+                    return "AGUARDANDO DIAGNOSTICO"
 
                 default:
                     alert("Esse não tem !!!");
@@ -366,6 +374,10 @@ class Mascara {
         document.querySelector("#validacao").value = ""
         document.querySelector("#senha").value = ""
         document.querySelector("#outraCausa").value = ""
+        document.querySelector("#checkboxCausaCliente").checked = false
+        document.querySelector("#checkboxAguardandoValidacao").checked = false
+        document.querySelector("#checkboxChamadoManual").checked = false
+
     }
 
 
