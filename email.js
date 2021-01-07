@@ -1,6 +1,3 @@
-// ===  ===
-
-
 class Email {
 
     constructor() {
@@ -34,7 +31,7 @@ class Email {
     makeMascara(data, solicitacao) {
         let mascara = `[OI][${data.cliente}][${solicitacao}] - ${data.circuto} - ${data.protocoloOi} - ${data.protocoloCliente}`
 
-        console.log(mascara)
+        copyToClipboard(mascara)
     }
 }
 
