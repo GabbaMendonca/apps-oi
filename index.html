@@ -12,10 +12,13 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="encerramento()">
+<body onload="email()">
 
+    <!-- nav -->
     <div class="tabs is-centered">
         <ul>
+
+            <!-- Guia Abertura -->
             <li>
                 <a onclick="abertura()">
                     <span class="icon is-small">
@@ -23,6 +26,8 @@
                     <span>Abertura</span>
                 </a>
             </li>
+
+            <!-- Guia Encerramento -->
             <li>
                 <a onclick="encerramento()">
                     <span class="icon is-small">
@@ -30,11 +35,22 @@
                     <span>Encerramento</span>
                 </a>
             </li>
+
+            <!-- Guia Email -->
+            <li>
+                <a onclick="email()">
+                    <span class="icon is-small">
+                        <i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
+                    <span>E-mail</span>
+                </a>
+            </li>
+
         </ul>
     </div>
+    <!-- /nav -->
 
 
-    <!-- cabeçalho dados OI -->
+    <!-- Cabeçalho dados OI -->
     <div class="mascara">
 
 
@@ -46,33 +62,36 @@
 
         <!-- Dados Colaborador -->
         <div id="cabecalho">
+
             <div class="field">
                 <label class="label is-small">OI</label>
                 <div class="control has-icons-left has-icons-right">
                     <input id="oi" class="input is-small" type="text" placeholder="OI">
                     <span class="icon is-small is-left">
-                <i class="fas fa-id-badge"></i>
-            </span>
+                        <i class="fas fa-id-badge"></i>
+                    </span>
                 </div>
             </div>
+
             <div class="field">
                 <label class="label is-small">Nome</label>
                 <div class="control has-icons-left has-icons-right">
                     <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
                     <span class="icon is-small is-left">
-                <i class="fas fa-signature"></i>
-            </span>
+                        <i class="fas fa-signature"></i>
+                    </span>
                 </div>
             </div>
 
             <!-- <hr size=7> -->
 
         </div>
-        <!-- Dados Colaborador -->
+        <!-- /Dados Colaborador -->
 
     </div>
-    <!-- cabeçalho dados OI -->
+    <!-- /Cabeçalho dados OI -->
 
+    <!-- ENCERRAMENTO -->
     <div id="encerramento" class="container">
 
         <div class="mascara">
@@ -265,6 +284,7 @@
             </div>
         </div>
     </div>
+    <!-- /ENCERRAMENTO -->
 
     <!-- ABERTURA -->
     <div id="abertura" class="container">
@@ -273,15 +293,69 @@
         <div class="mascara">
             <p class="title is-3 is-spaced">Opa !!!</p>
             <p class="subtitle is-5">Não tem nada aqui ainda !!!</p>
-            <p class="subtitle is-5">Estamos em construção ...</p>
 
-            <figure class="image is-128x128">
-                <img src="https://lh3.googleusercontent.com/proxy/neN_CRCtaGdWFIn5DVRiKXGLTpZfKSago0AmCfBQRBWwRhJfsjK-HetN02xNzwxfto5kwZd9L7Ieto4vNK6vtuhcxHvLPvw">
+            <figure class="image">
+                <img src="https://static.wixstatic.com/media/27b0f6_3744fbfc1bd04ed1b8e63cd09925c2bc~mv2.gif">
             </figure>
 
         </div>
 
     </div>
+    <!-- /ABERTURA -->
+
+    <!-- EMAIL -->
+    <div id="email" class="container">
+        <div class="mascara">
+            <label class="label">Assunto para Email</label>
+
+            <div class="field">
+                <label class="label is-small">Cliente</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="emailCliente" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-id-badge"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label is-small">Circuito</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="emailCircuito" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-id-badge"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label is-small">Protocolo</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-id-badge"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label is-small">Chamado Interno</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="OI">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-id-badge"></i>
+                    </span>
+                </div>
+            </div>
+
+            <hr size=7>
+
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+
+        </div>
+    </div>
+    <!-- /EMAIL -->
 
     <footer class="footer">
         <div class="content has-text-centered">
@@ -291,7 +365,7 @@
                 </a>
             </p>
             <p>
-                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca">GitHub</a>.
+                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
             </p>
         </div>
     </footer>
@@ -299,16 +373,25 @@
 
     <script src="abertura.js"></script>
     <script src="encerramento.js"></script>
+    <script src="email.js"></script>
 
     <script>
-        function abertura(params) {
+        function abertura() {
             document.getElementById("encerramento").hidden = true
             document.getElementById("abertura").hidden = false
+            document.getElementById("email").hidden = true
         }
 
-        function encerramento(params) {
+        function encerramento() {
             document.getElementById("encerramento").hidden = false
             document.getElementById("abertura").hidden = true
+            document.getElementById("email").hidden = true
+        }
+
+        function email() {
+            document.getElementById("encerramento").hidden = true
+            document.getElementById("abertura").hidden = true
+            document.getElementById("email").hidden = false
         }
 
         function ocultarCabecalho() {
