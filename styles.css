@@ -1,13 +1,52 @@
-/* body{
-    background-color:rgb(33, 0, 37);
+/* body {
+    background-color: rgb(33, 0, 37);
     color: aliceblue;
 } */
 
-.mascara {
+.adjustment-padding-top {
+    padding-top: 6px;
+}
+
+
+/* RETIRA A MARGEM DO NAV */
+
+.remove-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+
+/* RETIRA PADDIND DO HERO */
+
+.remove-padding-bottom {
+    padding-top: 0 !important;
+}
+
+
+/* TAMANHO MAXIMO DAS COLUNAS */
+
+.is-width-400px {
     max-width: 400px !important;
     padding: 15px;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+/* MUDA A ORIENTAÇÃO DOS BLOCOS PARA A HORIZONTAL
+CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
+
+@media (min-width: 1200px) {
+    .is-horizontal {
+        display: flex;
+        flex-direction: row;
+    }
+    .is-horizontal div {
+        flex-direction: unset
+    }
+}
+
+.is-right {
+    float: right;
 }
 
 
@@ -27,8 +66,4 @@
 .gap-button {
     margin-top: 3px;
     margin-bottom: 3px;
-}
-
-.right {
-    float: right;
 }

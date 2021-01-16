@@ -15,7 +15,7 @@
 <body onload="encerramento()">
 
     <!-- nav -->
-    <div class="tabs is-centered">
+    <div class="tabs is-centered remove-margin-bottom">
         <ul>
 
             <!-- Guia Abertura -->
@@ -49,313 +49,409 @@
     </div>
     <!-- /nav -->
 
+    <section class="hero is-light">
+        <div class="hero-body remove-padding-bottom">
 
-    <!-- Cabeçalho dados OI -->
-    <div class="mascara">
+            <!-- Cabeçalho dados OI -->
+            <div class="container is-width-400px">
 
+                <a onclick="ocultarCabecalho()" class="is-right">
+                    <span class="icon">
+                    <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h"></i>
+                    </span>
+                </a>
 
-        <a onclick="ocultarCabecalho()" class="right">
-            <span class="icon">
-                <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h"></i>
-            </span>
-        </a>
+            </div>
 
-        <!-- Dados Colaborador -->
-        <div id="cabecalho">
+            <div class="container is-width-400px">
 
-            <div class="field">
-                <label class="label is-small">OI</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="oi" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
+                <!-- Dados Colaborador -->
+                <div id="cabecalho">
+
+                    <div class="field">
+                        <label class="label is-small">OI</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="oi" class="input is-small" type="text" placeholder="OI">
+                            <span class="icon is-small is-left">
                         <i class="fas fa-id-badge"></i>
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="field">
-                <label class="label is-small">Nome</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                    <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Nome</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                            <span class="icon is-small is-left">
                         <i class="fas fa-signature"></i>
                     </span>
-                </div>
-            </div>
-
-            <!-- <hr size=7> -->
-
-        </div>
-        <!-- /Dados Colaborador -->
-
-    </div>
-    <!-- /Cabeçalho dados OI -->
-
-    <!-- ENCERRAMENTO -->
-    <div id="encerramento" class="container">
-
-        <div class="mascara">
-
-            <!-- select -->
-            <div class="field">
-                <div class="control">
-                    <div class="select is-small">
-                        <select id="falha">
-                            <option value="Inoperante" selected>Inoperante</option>
-                            <option value="BaixoDesempenho">Baixo Desempenho</option>
-                        </select>
+                        </div>
                     </div>
-                    <div class="buttons are-small right">
-                        <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
-                        <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
-                    </div>
+
+                    <!-- <hr size=7> -->
+
                 </div>
-            </div>
-            <!-- select -->
-
-
-            <!-- data de abertura -->
-            <div class="field">
-                <label class="label is-small">Data de Abertura</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-calendar-minus"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- data de abertura -->
-
-            <hr size=7>
-
-            <!-- data de normalização -->
-            <label class="label is-small">Data de Normalização</label>
-            <div class="field is-grouped">
-                <div class="control has-icons-left has-icons-right is-expanded">
-                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-calendar-check"></i>
-                    </span>
-                </div>
-
-                <p class="control">
-                    <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
-                        Copiar
-                    </a>
-                </p>
+                <!-- /Dados Colaborador -->
 
             </div>
+            <!-- /Cabeçalho dados OI -->
 
+            <!-- ENCERRAMENTO -->
+            <div id="encerramento" class="container is-fullhd">
 
-            <label class="label is-small">Tempo UP do Router</label>
-            <div class="field is-grouped">
-                <div class="control has-icons-left has-icons-right is-expanded">
-                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-clock"></i>
-                    </span>
-                </div>
+                <div class="is-horizontal">
 
-                <p class="control">
-                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">
-                        Calcular
-                    </a>
-                </p>
+                    <!-- BLOCO ESQUERDO -->
+                    <div class="container is-width-400px">
 
-            </div>
-            <!-- data de normalização -->
+                        <!-- select -->
+                        <div class="container">
 
-            <hr size=7>
+                            <div class="field">
+                                <div class="control">
 
-            <!-- validação -->
-            <label class="label is-small">Validado por</label>
-            <div class="field is-grouped">
-                <div class="control has-icons-left has-icons-right is-expanded">
-                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-user-tie"></i>
-                    </span>
-                </div>
+                                    <div class="select is-small">
+                                        <select id="falha">
+                                        <option value="Inoperante" selected>Inoperante</option>
+                                        <option value="BaixoDesempenho">Baixo Desempenho</option>
+                                        </select>
+                                    </div>
 
-                <p class="control">
-                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">
-                        Copiar
-                    </a>
-                </p>
+                                    <!-- buttons -->
+                                    <div class="buttons are-small is-right">
+                                        <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
+                                        <button class="button is-info" onclick="buttonLog()" disabled>Log</button>
+                                    </div>
+                                    <!-- /buttons -->
 
-            </div>
+                                </div>
+                            </div>
 
-            <div class="control" style="padding-bottom: 3px;">
-                <label class="radio">
+                        </div>
+                        <!-- select -->
+
+                        <!-- data de abertura -->
+                        <div class="container adjustment-padding-top">
+
+                            <div class="field">
+
+                                <label class="label is-small">Data de Abertura</label>
+
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-calendar-minus"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- data de abertura -->
+
+                        <!-- linha -->
+                        <hr size=7>
+
+                        <!-- data de normalização -->
+                        <div class="container">
+
+                            <label class="label is-small">Data de Normalização</label>
+
+                            <div class="field is-grouped">
+
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-calendar-check"></i>
+                                    </span>
+                                </div>
+
+                                <!-- buttons -->
+                                <p class="control">
+                                    <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
+                                    Copiar
+                                    </a>
+                                </p>
+                                <!-- /buttons -->
+
+                            </div>
+
+                        </div>
+                        <!-- data de normalização -->
+
+                        <!-- calcular tempo do router -->
+                        <div class="container adjustment-padding-top">
+
+                            <label class="label is-small">Tempo UP do Router</label>
+
+                            <div class="field is-grouped">
+
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-clock"></i>
+                                    </span>
+                                </div>
+
+                                <!-- buttons -->
+                                <p class="control">
+                                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">
+                                    Calcular
+                                    </a>
+                                </p>
+                                <!-- /buttons -->
+
+                            </div>
+
+                        </div>
+                        <!-- /calcular tempo do router -->
+
+                        <!-- linha -->
+                        <hr size=7>
+
+                        <!-- validação -->
+                        <div class="container">
+
+                            <label class="label is-small">Validado por</label>
+
+                            <div class="field is-grouped">
+
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                                    <span class="icon is-small is-left">
+                            <i class="fas fa-user-tie"></i>
+                        </span>
+                                </div>
+
+                                <!-- buttons -->
+                                <p class="control">
+                                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">
+                            Copiar
+                        </a>
+                                </p>
+                                <!-- /buttons -->
+
+                            </div>
+
+                            <!-- radio buttons -->
+                            <div class="control" style="padding-bottom: 3px;">
+                                <label class="radio">
                     <input type="radio" name="radioValidacao" value="0" checked>
                     CPD
                 </label>
 
-                <label class="radio">
+                                <label class="radio">
                     <input type="radio" name="radioValidacao" value="1">
                     Residente
                 </label>
-            </div>
+                            </div>
+                            <!-- /radio buttons -->
 
-            <label class="label is-small">Senha</label>
-            <div class="field is-grouped">
-                <div class="control has-icons-left has-icons-right is-expanded">
-                    <input id="senha" class="input is-small" type="text" placeholder="*****">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-unlock-alt"></i>
-                    </span>
-                </div>
+                        </div>
+                        <!-- /validação -->
 
-                <p class="control">
-                    <a class="button is-small is-info" onclick="buttonCopySenha()">
-                        Copiar
-                    </a>
-                </p>
-            </div>
+                        <!-- senha -->
+                        <div class="container">
 
-            <label class="checkbox">
-                <input id="checkboxChamadoManual" value="manual" type="checkbox">
-                Manual, Não possui senha ?
-            </label>
-            <!-- validação -->
+                            <label class="label is-small">Senha</label>
 
-            <hr size=7>
+                            <div class="field is-grouped">
 
-            <p>Causa Cliente</p>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="senha" class="input is-small" type="text" placeholder="*****">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-unlock-alt"></i>
+                                    </span>
+                                </div>
 
-            <p>Causa Operadora</p>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem Queimado</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+                                <p class="control">
+                                    <a class="button is-small is-info" onclick="buttonCopySenha()">
+                                    Copiar
+                                    </a>
+                                </p>
 
-            <p>Voz</p>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no PABX</button>
+                            </div>
 
-            <div class="field" style="margin-top: 15px;">
-                <div class="control">
-                    <input id="outraCausa" class="input is-small" type="text">
-                </div>
-            </div>
+                            <label class="checkbox">
+                    <input id="checkboxChamadoManual" value="manual" type="checkbox">
+                    Manual, Não possui senha ?
+                </label>
 
-            <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+                        </div>
+                        <!-- /senha -->
 
-            <label class="checkbox" style="padding-top: 10px;">
-                <input id="checkboxCausaCliente" value="cliente" type="checkbox">
-                Causa Cliente ?
-            </label>
+                        <!-- linha -->
+                        <hr size=7>
 
-            <hr size=7>
+                    </div>
+                    <!-- /BLOCO ESQUERDO -->
 
-            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
-                <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
-                Aguardando Validação ?
-            </label>
+                    <!-- BLOCO CENTRO -->
+                    <div class="container is-width-400px">
 
-            <div class="control">
-                <label class="radio">
+                        <!-- buttons cliente -->
+                        <p>Causa Cliente</p>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
+                        <!-- /buttons cliente -->
+
+                        <!-- buttons operadora -->
+                        <p>Causa Operadora</p>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem Queimado</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+                        <!-- /buttons operadora -->
+
+                        <!-- buttons voz -->
+                        <p>Voz</p>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no PABX</button>
+                        <!-- /buttons voz -->
+
+                        <!-- buttons outra causa -->
+                        <!-- input -->
+
+                        <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
+                            <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-bug"></i>
+                            </span>
+                        </div>
+                        <!-- /input -->
+
+                        <!-- button -->
+                        <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+                        <!-- /button -->
+
+                        <!-- checkbox -->
+                        <label class="checkbox" style="padding-top: 10px;">
+                    <input id="checkboxCausaCliente" value="cliente" type="checkbox">
+                    Causa Cliente ?
+                </label>
+                        <!-- /checkbox -->
+                        <!-- buttons outra causa -->
+                        <!-- linha -->
+                        <hr size=7>
+                    </div>
+                    <!-- /BLOCO CENTRO -->
+
+                    <!-- BLOCO DIREITO -->
+                    <div class="container is-width-400px">
+
+                        <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
+                    <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
+                    Aguardando Validação ?
+                </label>
+
+                        <div class="control">
+                            <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="0" checked>
                     Pendente validar com CPD amanhã 
                 </label>
-                <br>
-                <label class="radio">
+                            <br>
+                            <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="1">
                     Pendente validar com Residente amanhã
                 </label>
-                <br>
-                <label class="radio">
+                            <br>
+                            <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="2">
                     Solicitado validação ao CPD
                 </label>
-                <br>
-                <label class="radio">
+                            <br>
+                            <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="3">
                     Monitoração por 24 h
                 </label>
-                <!-- <br>
+                            <!-- <br>
                 <label class="radio">
                     <input type="radio" name="radioPendenteCliente" value="4">
                     Aguardando Diagnostico
                 </label> -->
+                        </div>
+
+                    </div>
+                    <!-- /BLOCO DIREITO -->
+
+                </div>
             </div>
+            <!-- /ENCERRAMENTO -->
+
+            <!-- ABERTURA -->
+            <div id="abertura" class="container">
+
+
+                <div class="is-width-400px">
+                    <p class="title is-3 is-spaced">Opa !!!</p>
+                    <p class="subtitle is-5">Não tem nada aqui ainda !!!</p>
+
+                    <figure class="image">
+                        <img src="https://static.wixstatic.com/media/27b0f6_3744fbfc1bd04ed1b8e63cd09925c2bc~mv2.gif">
+                    </figure>
+
+                </div>
+
+            </div>
+            <!-- /ABERTURA -->
+
+            <!-- EMAIL -->
+            <div id="email" class="container">
+                <div class="is-width-400px">
+                    <label class="label">Assunto para Email</label>
+
+                    <div class="field">
+                        <label class="label is-small">Cliente</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                            <span class="icon is-small is-left">
+                        <i class="fas fa-user-circle"></i>
+                    </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label is-small">Circuito</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                            <span class="icon is-small is-left">
+                        <i class="fas fa-ethernet"></i>
+                    </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label is-small">Protocolo</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                            <span class="icon is-small is-left">
+                        <i class="fas fa-headset"></i>
+                    </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label is-small">Chamado Interno</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="12345">
+                            <span class="icon is-small is-left">
+                        <i class="fas fa-headset"></i>
+                    </span>
+                        </div>
+                    </div>
+
+                    <hr size=7>
+
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+
+                </div>
+            </div>
+            <!-- /EMAIL -->
+
         </div>
-    </div>
-    <!-- /ENCERRAMENTO -->
-
-    <!-- ABERTURA -->
-    <div id="abertura" class="container">
-
-
-        <div class="mascara">
-            <p class="title is-3 is-spaced">Opa !!!</p>
-            <p class="subtitle is-5">Não tem nada aqui ainda !!!</p>
-
-            <figure class="image">
-                <img src="https://static.wixstatic.com/media/27b0f6_3744fbfc1bd04ed1b8e63cd09925c2bc~mv2.gif">
-            </figure>
-
-        </div>
-
-    </div>
-    <!-- /ABERTURA -->
-
-    <!-- EMAIL -->
-    <div id="email" class="container">
-        <div class="mascara">
-            <label class="label">Assunto para Email</label>
-
-            <div class="field">
-                <label class="label is-small">Cliente</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="emailCliente" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-id-badge"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label is-small">Circuito</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="emailCircuito" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-id-badge"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label is-small">Protocolo</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-id-badge"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label is-small">Chamado Interno</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="OI">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-id-badge"></i>
-                    </span>
-                </div>
-            </div>
-
-            <hr size=7>
-
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-
-        </div>
-    </div>
-    <!-- /EMAIL -->
+    </section>
 
     <footer class="footer">
         <div class="content has-text-centered">
