@@ -2,6 +2,8 @@
 
 # Códigos de Encerramento
 
+Códigos de encerramento mais frequentes
+
 INDEVIDO :
 
 	03696- Abertura indevida ( código de cancelamento correto )
