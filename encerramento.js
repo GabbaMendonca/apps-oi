@@ -200,23 +200,27 @@ function verificaRadioPendenteValidar(data) {
             switch (data["radioPendenteCliente"][i].value) {
                 case '0':
 
-                    return "PENDENTE VALIDAR COM CPD " + dataValidacao
+                    return "\nPENDENTE VALIDAR COM CPD " + dataValidacao
 
                 case '1':
 
-                    return "PENDENTE VALIDAR COM RESIDENTE " + dataValidacao
+                    return "\nPENDENTE VALIDAR COM RESIDENTE " + dataValidacao
 
                 case '2':
 
-                    return "SOLICITADO VALIDAÇÃO AO CPD"
+                    return "\nSOLICITADO VALIDAÇÃO AO CPD"
 
                 case '3':
 
-                    return "EM MONITORAÇÃO POR 24 H"
+                    return "\nEM MONITORAÇÃO POR 24 H"
+
+                case '5':
+
+                    return "\nPENDENTE BAIXA DO POSTO"
 
                 case '4':
 
-                    return "AGUARDANDO DIAGNOSTICO"
+                    return "PENDENTE DIAGNOSTICO"
 
                 default:
                     alert("Esse não tem !!!");
@@ -286,7 +290,7 @@ function makeValidacao(data) {
 
 
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
-        `${data["solucao"]}\n`
+        `${data["solucao"]}`
 
     mascara = mascara + verificaRadioPendenteValidar(data)
 
