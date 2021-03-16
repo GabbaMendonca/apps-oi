@@ -428,7 +428,7 @@
                     </div>
 
                     <div class="field">
-                        <label class="label is-small">Protocolo</label>
+                        <label class="label is-small">Protocolo OI</label>
                         <div class="control has-icons-left has-icons-right">
                             <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
                             <span class="icon is-small is-left">
@@ -440,7 +440,17 @@
                     <div class="field">
                         <label class="label is-small">Chamado Interno</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="12345">
+                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                            <span class="icon is-small is-left">
+                        <i class="fas fa-headset"></i>
+                    </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label is-small">Complemento</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
                             <span class="icon is-small is-left">
                         <i class="fas fa-headset"></i>
                     </span>
@@ -451,6 +461,8 @@
 
                     <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
                     <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
 
                 </div>
             </div>

@@ -6,6 +6,8 @@ class Email {
         this._solicitacao = {
             "agendamento": "AGENDAMENTO",
             "validacao": "VALIDAÇÃO",
+            "escalonamento": "ESCALONAMENTO",
+            "posicionamento": "POSICIONAMENTO",
         }
     }
 
@@ -16,6 +18,7 @@ class Email {
         data["circuto"] = document.querySelector("#emailCircuito").value.toUpperCase()
         data["protocoloOi"] = document.querySelector("#emailProtocoloOi").value.toUpperCase()
         data["protocoloCliente"] = document.querySelector("#emailProtocoloCliente").value.toUpperCase()
+        data["complemento"] = document.querySelector("#emailComplemento").value.toUpperCase()
 
         return data
     }
@@ -28,8 +31,24 @@ class Email {
         this.makeMascara(this._data, this._solicitacao.validacao)
     }
 
+    escalonamento() {
+        this.makeMascara(this._data, this._solicitacao.escalonamento)
+    }
+
+    posicionamento() {
+        this.makeMascara(this._data, this._solicitacao.posicionamento)
+    }
+
     makeMascara(data, solicitacao) {
-        let mascara = `[OI][${data.cliente}][${solicitacao}] - ${data.circuto} - ${data.protocoloOi} - ${data.protocoloCliente}`
+        let mascara = `[OI][${data.cliente}][${solicitacao}] - ${data.circuto} - PROTOCOLO OI : ${data.protocoloOi}`
+        
+        if(data.protocoloCliente){
+            mascara = mascara + ` - CHAMADO INTERNO : ${data.protocoloCliente}`
+        }
+
+        if(data.complemento){
+            mascara = mascara + ` - ${data.complemento}`
+        }
 
         copyToClipboard(mascara)
     }
@@ -50,6 +69,16 @@ function buttonEmailAgendamento() {
 function buttonEmailValidacao() {
     e = new Email()
     e.validacao()
+}
+
+function buttonEmailEscalonamento() {
+    e = new Email()
+    e.escalonamento()
+}
+
+function buttonEmailPosicionamento() {
+    e = new Email()
+    e.posicionamento()
 }
 
 
