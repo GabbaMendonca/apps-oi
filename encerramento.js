@@ -172,6 +172,9 @@ function getView() {
     let select = document.querySelector('#falha');
     data["falha"] = select.options[select.selectedIndex].text;
 
+    // Log
+    data["log"] = textareaLog.value
+
     return data
 }
 
@@ -281,6 +284,13 @@ function makeEncerramento(data) {
         `VALIDADO POR : ${data["validacao"]}`
 
     mascara = mascara + verificaRadioValidacao(data)
+    
+    if (data["log"]){
+
+        mascara = mascara + "\n --- LOG ---\n" +
+            `${data["log"]}`
+
+    }
 
     return mascara
 }
@@ -381,6 +391,7 @@ class Mascara {
         document.querySelector("#checkboxCausaCliente").checked = false
         document.querySelector("#checkboxAguardandoValidacao").checked = false
         document.querySelector("#checkboxChamadoManual").checked = false
+        modalButtonLimpar()
 
     }
 
