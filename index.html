@@ -45,6 +45,15 @@
                 </a>
             </li>
 
+            <!-- Guia Editor de Texto -->
+            <li>
+                <a onclick="editor()">
+                    <span class="icon is-small">
+                        <i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
+                    <span>Editor de Texo</span>
+                </a>
+            </li>
+
         </ul>
     </div>
     <!-- /nav -->
@@ -105,18 +114,19 @@
 
                 <div class="modal-card">
                     <header class="modal-card-head">
-                      <p class="modal-card-title">Log's</p>
-                      <button class="delete" aria-label="close" onclick="modalClose()"></button>
+                        <p class="modal-card-title">Log's</p>
+                        <button class="delete" aria-label="close" onclick="modalClose()"></button>
                     </header>
                     <section class="modal-card-body">
 
-                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
- 
+                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20"
+                            placeholder="Cole os Log's aqui ..."></textarea>
+
                     </section>
                     <footer class="modal-card-foot">
-                      <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
-                      <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
-                      <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
+                        <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
+                        <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
+                        <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
                     </footer>
                 </div>
             </div>
@@ -519,6 +529,58 @@
             </div>
             <!-- /EMAIL -->
 
+            <!-- EDITOR DE TEXTO -->
+
+            <div id="editor" class="container">
+
+                <div class="field has-addons">
+                    <p class="control">
+                        <button class="button" onclick="editorMauisculo()">
+                            <span class="icon is-small">
+                                <i class="fas fa-font"></i>
+                                <i class="fas fa-level-up-alt"></i>
+                            </span>
+                            <span>Maiúsculo</span>
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorMinusculo()">
+                            <span class="icon is-small">
+                                <i class="fas fa-font"></i>
+                                <i class="fas fa-level-down-alt"></i>
+                            </span>
+                            <span>Minúsculo</span>
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button class="button" disabled>
+                            <span class="icon is-small">
+                                <i class="fas fa-remove-format"></i>
+                            </span>
+                            <span>Remover Acentos</span>
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorUnderline()">
+                            <span class="icon is-small">
+                                <i class="fas fa-underline"></i>
+                            </span>
+                            <span>Remover Underline</span>
+                        </button>
+                    </p>
+                </div>
+
+
+                <div class="field">
+                    <div class="control">
+                        <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- /EDITOR DE TEXTO -->
+
         </div>
     </section>
 
@@ -542,25 +604,39 @@
     <script src="encerramento.js"></script>
     <script src="email.js"></script>
     <script src="modal.js"></script>
+    <script src="editor.js"></script>
 
     <script>
+
         function abertura() {
-            document.getElementById("encerramento").hidden = true
             document.getElementById("abertura").hidden = false
+            document.getElementById("encerramento").hidden = true
             document.getElementById("email").hidden = true
+            document.getElementById("editor").hidden = true
         }
 
         function encerramento() {
-            document.getElementById("encerramento").hidden = false
             document.getElementById("abertura").hidden = true
+            document.getElementById("encerramento").hidden = false
             document.getElementById("email").hidden = true
+            document.getElementById("editor").hidden = true
         }
 
         function email() {
+            document.getElementById("abertura").hidden = true
+            document.getElementById("encerramento").hidden = true
+            document.getElementById("email").hidden = false
+            document.getElementById("editor").hidden = true
+        }
+
+        function editor() {
             document.getElementById("encerramento").hidden = true
             document.getElementById("abertura").hidden = true
-            document.getElementById("email").hidden = false
+            document.getElementById("email").hidden = true
+            document.getElementById("editor").hidden = false
         }
+
+
 
         function ocultarCabecalho() {
 
@@ -576,6 +652,7 @@
             }
 
         }
+
     </script>
 
 </body>
