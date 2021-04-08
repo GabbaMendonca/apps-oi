@@ -533,43 +533,55 @@
 
             <div id="editor" class="container">
 
-                <div class="field has-addons">
-                    <p class="control">
-                        <button class="button" onclick="editorMauisculo()">
-                            <span class="icon is-small">
-                                <i class="fas fa-font"></i>
-                                <i class="fas fa-level-up-alt"></i>
-                            </span>
-                            <span>Maiúsculo</span>
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorMinusculo()">
-                            <span class="icon is-small">
-                                <i class="fas fa-font"></i>
-                                <i class="fas fa-level-down-alt"></i>
-                            </span>
-                            <span>Minúsculo</span>
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" disabled>
-                            <span class="icon is-small">
-                                <i class="fas fa-remove-format"></i>
-                            </span>
-                            <span>Remover Acentos</span>
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorUnderline()">
-                            <span class="icon is-small">
-                                <i class="fas fa-underline"></i>
-                            </span>
-                            <span>Remover Underline</span>
-                        </button>
-                    </p>
-                </div>
+                <div class="field is-grouped">
 
+                    <p class="control">
+                        <button class="button is-info" onclick="editorCopiar()">
+                            Copiar
+                        </button>
+                    </p>
+                
+
+                    <div class="field has-addons">
+
+                        <p class="control">
+                            <button class="button" onclick="editorMauisculo()">
+                                <span class="icon is-small">
+                                    <i class="fas fa-font"></i>
+                                    <i class="fas fa-level-up-alt"></i>
+                                </span>
+                                <span>Maiúsculo</span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorMinusculo()">
+                                <span class="icon is-small">
+                                    <i class="fas fa-font"></i>
+                                    <i class="fas fa-level-down-alt"></i>
+                                </span>
+                                <span>Minúsculo</span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button" disabled>
+                                <span class="icon is-small">
+                                    <i class="fas fa-remove-format"></i>
+                                </span>
+                                <span>Remover Acentos</span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorUnderline()">
+                                <span class="icon is-small">
+                                    <i class="fas fa-underline"></i>
+                                </span>
+                                <span>Remover Underline</span>
+                            </button>
+                        </p>
+
+                    </div>
+
+                </div>
 
                 <div class="field">
                     <div class="control">

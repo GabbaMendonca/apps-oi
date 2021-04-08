@@ -17,3 +17,9 @@ function editorUnderline() {
     editorTextarea.value = editorTextarea.value.replace(/_/g,'')
 
 }
+
+function editorCopiar() {
+
+    copyToClipboard( editorTextarea.value )
+
+}
