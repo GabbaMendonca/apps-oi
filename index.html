@@ -19,7 +19,7 @@
         <ul>
 
             <!-- Guia Abertura -->
-            <li>
+            <li id="tab_abertura">
                 <a onclick="abertura()">
                     <span class="icon is-small">
                         <i class="fas fa-hammer" aria-hidden="true"></i></span>
@@ -28,7 +28,7 @@
             </li>
 
             <!-- Guia Encerramento -->
-            <li>
+            <li id="tab_encerramento">
                 <a onclick="encerramento()">
                     <span class="icon is-small">
                         <i class="fas fa-band-aid" data-fa-transform="rotate-135" aria-hidden="true"></i></span>
@@ -37,7 +37,7 @@
             </li>
 
             <!-- Guia Email -->
-            <li>
+            <li id="tab_email" >
                 <a onclick="email()">
                     <span class="icon is-small">
                         <i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
@@ -46,7 +46,7 @@
             </li>
 
             <!-- Guia Editor de Texto -->
-            <li>
+            <li id="tab_editor">
                 <a onclick="editor()">
                     <span class="icon is-small">
                         <i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
@@ -622,30 +622,58 @@
 
         function abertura() {
             document.getElementById("abertura").hidden = false
+            document.querySelector("#tab_abertura").classList.add("is-active")
+            
             document.getElementById("encerramento").hidden = true
+            document.querySelector("#tab_encerramento").classList.remove("is-active")
+            
             document.getElementById("email").hidden = true
+            document.querySelector("#tab_email").classList.remove("is-active")
+            
             document.getElementById("editor").hidden = true
+            document.querySelector("#tab_editor").classList.remove("is-active")  
         }
-
+        
         function encerramento() {
             document.getElementById("abertura").hidden = true
+            document.querySelector("#tab_abertura").classList.remove("is-active")
+            
             document.getElementById("encerramento").hidden = false
+            document.querySelector("#tab_encerramento").classList.add("is-active")
+            
             document.getElementById("email").hidden = true
+            document.querySelector("#tab_email").classList.remove("is-active")
+            
             document.getElementById("editor").hidden = true
+            document.querySelector("#tab_email").classList.remove("is-active")          
         }
-
+        
         function email() {
             document.getElementById("abertura").hidden = true
+            document.querySelector("#tab_abertura").classList.remove("is-active")
+            
             document.getElementById("encerramento").hidden = true
+            document.querySelector("#tab_encerramento").classList.remove("is-active")
+            
             document.getElementById("email").hidden = false
+            document.querySelector("#tab_email").classList.add("is-active")
+            
             document.getElementById("editor").hidden = true
+            document.querySelector("#tab_editor").classList.remove("is-active")
         }
 
         function editor() {
             document.getElementById("encerramento").hidden = true
+            document.querySelector("#tab_encerramento").classList.remove("is-active")
+            
             document.getElementById("abertura").hidden = true
+            document.querySelector("#tab_abertura").classList.remove("is-active")
+            
             document.getElementById("email").hidden = true
+            document.querySelector("#tab_email").classList.remove("is-active")
+            
             document.getElementById("editor").hidden = false
+            document.querySelector("#tab_editor").classList.add("is-active")
         }
 
 
