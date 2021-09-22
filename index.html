@@ -14,7 +14,7 @@
 
 <body onload="encerramento()">
 
-    <!-- nav -->
+    <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
     <div class="tabs is-centered remove-margin-bottom">
         <ul>
 
@@ -37,7 +37,7 @@
             </li>
 
             <!-- Guia Email -->
-            <li id="tab_email" >
+            <li id="tab_email">
                 <a onclick="email()">
                     <span class="icon is-small">
                         <i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
@@ -56,12 +56,14 @@
 
         </ul>
     </div>
-    <!-- /nav -->
+    <!-- /nav | Menu Superior -->
 
+    <!-- PAGE -->
     <section class="hero is-light">
         <div class="hero-body remove-padding-bottom">
 
             <!-- Cabeçalho dados OI -->
+            <!-- Area a seta - Para acultar o cabeçalho -->
             <div class="container is-width-400px">
 
                 <a onclick="ocultarCabecalho()" class="is-right">
@@ -71,12 +73,15 @@
                 </a>
 
             </div>
+            <!-- /Area a seta -->
 
+            <!-- Campos - ID e Nome -->
             <div class="container is-width-400px">
 
                 <!-- Dados Colaborador -->
                 <div id="cabecalho">
 
+                    <!-- Campo ID -->
                     <div class="field">
                         <label class="label is-small">OI</label>
                         <div class="control has-icons-left has-icons-right">
@@ -86,7 +91,9 @@
                             </span>
                         </div>
                     </div>
+                    <!-- /Campo ID -->
 
+                    <!-- Campo Nome -->
                     <div class="field">
                         <label class="label is-small">Nome</label>
                         <div class="control has-icons-left has-icons-right">
@@ -96,6 +103,7 @@
                             </span>
                         </div>
                     </div>
+                    <!-- /Campo Nome -->
 
                     <!-- <hr size=7> -->
 
@@ -103,11 +111,11 @@
                 <!-- /Dados Colaborador -->
 
             </div>
+            <!-- /Campos - ID e Nome -->
             <!-- /Cabeçalho dados OI -->
 
-            <!-- ENCERRAMENTO -->
 
-            <!-- MODAL -->
+            <!-- MODAL - Tela para colocar o log de teste -->
 
             <div id="myModal" class="modal">
                 <div class="modal-background"></div>
@@ -119,8 +127,7 @@
                     </header>
                     <section class="modal-card-body">
 
-                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20"
-                            placeholder="Cole os Log's aqui ..."></textarea>
+                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
 
                     </section>
                     <footer class="modal-card-foot">
@@ -133,6 +140,8 @@
 
             <!-- /MODAL -->
 
+
+            <!-- ENCERRAMENTO -->
 
             <div id="encerramento" class="container is-fullhd">
 
@@ -175,8 +184,7 @@
                                 <label class="label is-small">Data de Abertura</label>
 
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="dataAbertura" class="input is-small" type="text"
-                                        placeholder="--/--/---- --:--:--">
+                                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-calendar-minus"></i>
                                     </span>
@@ -198,8 +206,7 @@
                             <div class="field is-grouped">
 
                                 <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="dataNormalizacao" class="input is-small" type="text"
-                                        placeholder="--/--/---- --:--:--">
+                                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-calendar-check"></i>
                                     </span>
@@ -256,8 +263,7 @@
                             <div class="field is-grouped">
 
                                 <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="validacao" class="input is-small" type="text"
-                                        placeholder="Residente / CPD">
+                                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user-tie"></i>
                                     </span>
@@ -331,18 +337,15 @@
 
                         <!-- buttons cliente -->
                         <p>Causa Cliente</p>
-                        <button class="button is-small is-fullwidth gap-button"
-                            onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
                         <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local
                             Sem Energia</button>
                         <!-- /buttons cliente -->
 
                         <!-- buttons operadora -->
                         <p>Causa Operadora</p>
-                        <button class="button is-small is-fullwidth gap-button"
-                            onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-                        <button class="button is-small is-fullwidth gap-button"
-                            onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                        <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
                         <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem
                             Queimado</button>
                         <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra
@@ -362,8 +365,7 @@
                         <!-- buttons outra causa -->
                         <!-- input -->
 
-                        <div class="control has-icons-left has-icons-right is-expanded"
-                            style="margin-top: 15px; margin-bottom: 15px;">
+                        <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
                             <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-bug"></i>
@@ -495,8 +497,7 @@
                     <div class="field">
                         <label class="label is-small">Chamado Interno</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloCliente" class="input is-small" type="text"
-                                placeholder="Interno / Task / INC">
+                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
@@ -506,8 +507,7 @@
                     <div class="field">
                         <label class="label is-small">Complemento</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input id="emailComplemento" class="input is-small" type="text"
-                                placeholder="Local / UNIORG">
+                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
@@ -516,14 +516,10 @@
 
                     <hr size=7>
 
-                    <button class="button is-small is-fullwidth gap-button"
-                        onclick="buttonEmailAgendamento()">Agendamento</button>
-                    <button class="button is-small is-fullwidth gap-button"
-                        onclick="buttonEmailValidacao()">Validação</button>
-                    <button class="button is-small is-fullwidth gap-button"
-                        onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                    <button class="button is-small is-fullwidth gap-button"
-                        onclick="buttonEmailPosicionamento()">Posicionamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
 
                 </div>
             </div>
@@ -540,7 +536,7 @@
                             Copiar
                         </button>
                     </p>
-                
+
 
                     <div class="field has-addons">
 
@@ -595,22 +591,24 @@
 
         </div>
     </section>
+    <!-- /PAGE -->
+
+    <!-- FOOTER -->
 
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
                 <a href="https://bulma.io">
-                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128"
-                        height="24">
+                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128" height="24">
                 </a>
             </p>
             <p>
-                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a
-                    href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
+                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
             </p>
         </div>
     </footer>
 
+    <!-- /FOOTER -->
 
     <script src="abertura.js"></script>
     <script src="encerramento.js"></script>
@@ -619,45 +617,44 @@
     <script src="editor.js"></script>
 
     <script>
-
         function abertura() {
             document.getElementById("abertura").hidden = false
             document.querySelector("#tab_abertura").classList.add("is-active")
-            
+
             document.getElementById("encerramento").hidden = true
             document.querySelector("#tab_encerramento").classList.remove("is-active")
-            
+
             document.getElementById("email").hidden = true
             document.querySelector("#tab_email").classList.remove("is-active")
-            
+
             document.getElementById("editor").hidden = true
-            document.querySelector("#tab_editor").classList.remove("is-active")  
+            document.querySelector("#tab_editor").classList.remove("is-active")
         }
-        
+
         function encerramento() {
             document.getElementById("abertura").hidden = true
             document.querySelector("#tab_abertura").classList.remove("is-active")
-            
+
             document.getElementById("encerramento").hidden = false
             document.querySelector("#tab_encerramento").classList.add("is-active")
-            
+
             document.getElementById("email").hidden = true
             document.querySelector("#tab_email").classList.remove("is-active")
-            
+
             document.getElementById("editor").hidden = true
-            document.querySelector("#tab_email").classList.remove("is-active")          
+            document.querySelector("#tab_email").classList.remove("is-active")
         }
-        
+
         function email() {
             document.getElementById("abertura").hidden = true
             document.querySelector("#tab_abertura").classList.remove("is-active")
-            
+
             document.getElementById("encerramento").hidden = true
             document.querySelector("#tab_encerramento").classList.remove("is-active")
-            
+
             document.getElementById("email").hidden = false
             document.querySelector("#tab_email").classList.add("is-active")
-            
+
             document.getElementById("editor").hidden = true
             document.querySelector("#tab_editor").classList.remove("is-active")
         }
@@ -665,13 +662,13 @@
         function editor() {
             document.getElementById("encerramento").hidden = true
             document.querySelector("#tab_encerramento").classList.remove("is-active")
-            
+
             document.getElementById("abertura").hidden = true
             document.querySelector("#tab_abertura").classList.remove("is-active")
-            
+
             document.getElementById("email").hidden = true
             document.querySelector("#tab_email").classList.remove("is-active")
-            
+
             document.getElementById("editor").hidden = false
             document.querySelector("#tab_editor").classList.add("is-active")
         }
@@ -692,7 +689,6 @@
             }
 
         }
-
     </script>
 
 </body>
