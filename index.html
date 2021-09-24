@@ -60,58 +60,89 @@
 
     <!-- PAGE -->
     <section class="hero is-light">
-        <div class="hero-body remove-padding-bottom">
+        <div class="hero-body hero-bory-padding-top">
 
             <!-- Cabeçalho dados OI -->
-            <!-- Area a seta - Para acultar o cabeçalho -->
-            <div class="container is-width-400px">
+            <div class="container is-fullhd">
 
-                <a onclick="ocultarCabecalho()" class="is-right">
-                    <span class="icon">
-                        <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h"></i>
-                    </span>
-                </a>
+                <!-- Usando o elemento title para ajustar o tamanho dos campos e deixar centralizado, age como uma grid -->
+                <div class="tile is-ancestor">
 
-            </div>
-            <!-- /Area a seta -->
+                    <!-- Elemento que garante o espaça da esquerda -->
+                    <div class="tile is-parent"></div>
 
-            <!-- Campos - ID e Nome -->
-            <div class="container is-width-400px">
+                    <!-- Elmento com os dados no centro -->
+                    <div class="tile is-parent">
 
-                <!-- Dados Colaborador -->
-                <div id="cabecalho">
+                        <div class="tile is-child is-vertical">
 
-                    <!-- Campo ID -->
-                    <div class="field">
-                        <label class="label is-small">OI</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="oi" class="input is-small" type="text" placeholder="OI">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-id-badge"></i>
-                            </span>
+
+                            <!-- Label com seta para esconder o campo ID e NOME -->
+                            <div class="control">
+
+                                <!-- Main container - Usado o tributo level para alinhar o label e a seta -->
+                                <nav class="level">
+                                    <!-- Left side - onde esta o label -->
+                                    <div class="level-left">
+
+                                        <label class="label is-small level-item" id="label-cabecalho">OI</label>
+
+                                    </div>
+
+                                    <!-- Right side - inde esta a seta -->
+                                    <div class="level-right">
+
+                                        <a onclick="ocultarCabecalho()" class="level-item">
+                                            <span class="icon" style="padding-bottom:7px">
+                                                <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h" ></i>
+                                                </span>
+                                        </a>
+
+                                    </div>
+                                </nav>
+
+                            </div>
+                            <!-- /Label com seta para esconder o campo ID e NOME -->
+
+
+                            <!-- div para esconder os elementos -->
+                            <div id="cabecalho">
+                                <!-- Campo ID -->
+                                <div class="field">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="oi" class="input is-small" type="text" placeholder="OI">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-id-badge"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo ID -->
+
+                                <!-- Campo Nome -->
+                                <div class="field">
+                                    <label class="label is-small">Nome</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-signature"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo Nome  -->
+                            </div>
+                            <!-- /div para esconder os elementos -->
+
                         </div>
-                    </div>
-                    <!-- /Campo ID -->
+                        <!-- is-child -->
 
-                    <!-- Campo Nome -->
-                    <div class="field">
-                        <label class="label is-small">Nome</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-signature"></i>
-                            </span>
-                        </div>
                     </div>
-                    <!-- /Campo Nome -->
+                    <!-- is-parent -->
 
-                    <!-- <hr size=7> -->
+                    <!-- Elemento que garante o espaça da esquerda -->
+                    <div class="tile is-parent"></div>
 
                 </div>
-                <!-- /Dados Colaborador -->
+                <!-- is-ancestor -->
 
             </div>
-            <!-- /Campos - ID e Nome -->
             <!-- /Cabeçalho dados OI -->
 
 
@@ -933,14 +964,18 @@
         function ocultarCabecalho() {
 
             cabecalho = document.getElementById("cabecalho")
+            label_cabecalho = document.getElementById("label-cabecalho")
             seta = document.getElementById("seta")
 
             if (cabecalho.hidden == false) {
                 seta.setAttribute("data-fa-transform", "flip-v")
                 cabecalho.hidden = true
+                label_cabecalho.innerText = ""
+
             } else {
                 seta.setAttribute("data-fa-transform", "flip-h")
                 cabecalho.hidden = false
+                label_cabecalho.innerText = "OI"
             }
 
         }
