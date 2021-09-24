@@ -115,34 +115,10 @@
             <!-- /Cabeçalho dados OI -->
 
 
-            <!-- MODAL - Tela para colocar o log de teste -->
-
-            <div id="myModal" class="modal">
-                <div class="modal-background"></div>
-
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Log's</p>
-                        <button class="delete" aria-label="close" onclick="modalClose()"></button>
-                    </header>
-                    <section class="modal-card-body">
-
-                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
-
-                    </section>
-                    <footer class="modal-card-foot">
-                        <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
-                        <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
-                        <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
-                    </footer>
-                </div>
-            </div>
-
-            <!-- /MODAL -->
+            <!-- -------- -->
 
 
             <!-- ENCERRAMENTO -->
-
             <div id="encerramento" class="container is-fullhd">
 
                 <div class="is-horizontal">
@@ -450,9 +426,8 @@
                 <!-- Bloco ancestral que envolve todos os outros blocos -->
                 <div class="tile is-ancestor">
 
-                    <!-- ABERTURA -->
+                    <!-- BLOCO ABERTURA -->
                     <div class="tile is-parent">
-
                         <div class="tile is-child is-vertical">
                             <div class="tile is-child is-vertical">
 
@@ -520,9 +495,8 @@
 
                             </div>
                         </div>
-
                     </div>
-                    <!-- /ABERTURA -->
+                    <!-- /BLOCO ABERTURA -->
 
                     <!-- BLOCO ATUALIZAÇÃO -->
                     <div class="tile is-parent">
@@ -708,142 +682,167 @@
 
 
             </div>
-
             <!-- /OEMP -->
             <!-- /ABERTURA -->
 
-        </div>
+            <!-- EMAIL -->
+            <div id="email" class="container">
+                <div class="is-width-400px">
+                    <label class="label">Assunto para Email</label>
 
-
-        <!-- EMAIL -->
-        <div id="email" class="container">
-            <div class="is-width-400px">
-                <label class="label">Assunto para Email</label>
-
-                <div class="field">
-                    <label class="label is-small">Cliente</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
-                        <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Cliente</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label is-small">Circuito</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                        <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Circuito</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-ethernet"></i>
                             </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label is-small">Protocolo OI</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
-                        <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Protocolo OI</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label is-small">Chamado Interno</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                        <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Chamado Interno</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label is-small">Complemento</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
-                        <span class="icon is-small is-left">
+                    <div class="field">
+                        <label class="label is-small">Complemento</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                        </div>
                     </div>
+
+                    <hr size=7>
+
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+
                 </div>
-
-                <hr size=7>
-
-                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
-
             </div>
-        </div>
-        <!-- /EMAIL -->
+            <!-- /EMAIL -->
 
-        <!-- EDITOR DE TEXTO -->
+            <!-- EDITOR DE TEXTO -->
+            <div id="editor" class="container">
 
-        <div id="editor" class="container">
-
-            <div class="field is-grouped">
-
-                <p class="control">
-                    <button class="button is-info" onclick="editorCopiar()">
-                            Copiar
-                        </button>
-                </p>
-
-
-                <div class="field has-addons">
+                <div class="field is-grouped">
 
                     <p class="control">
-                        <button class="button" onclick="editorMauisculo()">
+                        <button class="button is-info" onclick="editorCopiar()">
+                            Copiar
+                        </button>
+                    </p>
+
+
+                    <div class="field has-addons">
+
+                        <p class="control">
+                            <button class="button" onclick="editorMauisculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-up-alt"></i>
                                 </span>
                                 <span>Maiúsculo</span>
                             </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorMinusculo()">
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorMinusculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-down-alt"></i>
                                 </span>
                                 <span>Minúsculo</span>
                             </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" disabled>
+                        </p>
+                        <p class="control">
+                            <button class="button" disabled>
                                 <span class="icon is-small">
                                     <i class="fas fa-remove-format"></i>
                                 </span>
                                 <span>Remover Acentos</span>
                             </button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorUnderline()">
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorUnderline()">
                                 <span class="icon is-small">
                                     <i class="fas fa-underline"></i>
                                 </span>
                                 <span>Remover Underline</span>
                             </button>
-                    </p>
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="field">
+                    <div class="control">
+                        <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+                    </div>
+                </div>
 
-            <div class="field">
-                <div class="control">
-                    <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+            </div>
+            <!-- /EDITOR DE TEXTO -->
+
+
+            <!-- -------- -->
+
+
+            <!-- MODAL - Tela para colocar o log de teste -->
+            <div id="myModal" class="modal">
+                <div class="modal-background"></div>
+
+                <div class="modal-card">
+
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Log's</p>
+                        <button class="delete" aria-label="close" onclick="modalClose()"></button>
+                    </header>
+
+                    <section class="modal-card-body">
+
+                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
+
+                    </section>
+
+                    <footer class="modal-card-foot">
+                        <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
+                        <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
+                        <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
+                    </footer>
+
                 </div>
             </div>
-
-        </div>
-
-        <!-- /EDITOR DE TEXTO -->
+            <!-- /MODAL -->
 
         </div>
     </section>
