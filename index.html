@@ -12,7 +12,7 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="abertura()">
+<body onload="encerramento()">
 
     <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
     <div class="tabs is-centered remove-margin-bottom">
@@ -89,7 +89,7 @@
 
                                     </div>
 
-                                    <!-- Right side - inde esta a seta -->
+                                    <!-- Right side - onde esta a seta -->
                                     <div class="level-right">
 
                                         <a onclick="ocultarCabecalho()" class="level-item">
@@ -151,6 +151,325 @@
 
             <!-- ENCERRAMENTO -->
             <div id="encerramento" class="container is-fullhd">
+
+                <!-- Grid de blocos para dividir em 3 partes a tela -->
+                <!-- Bloco ancestral que envolve todos os outros blocos -->
+                <div class="tile is-ancestor">
+
+                    <!-- BLOCO ESQUERDO -->
+                    <div class="tile is-parent">
+                        <div class="tile is-child">
+
+                            <!-- Campo do select e botões -->
+                            <div class="field">
+
+                                <!-- Usando o elemento level para alinha os botoẽs -->
+                                <div class="level">
+
+                                    <!-- Left side - onde esta o select -->
+                                    <div class="level-left">
+
+                                        <!-- select -->
+                                        <div class="select is-small">
+                                            <select id="falha">
+                                            <option value="Inoperante" selected>Inoperante</option>
+                                            <option value="BaixoDesempenho">Baixo Desempenho</option>
+                                        </select>
+                                        </div>
+                                        <!-- select -->
+
+                                    </div>
+
+                                    <!-- Right side - onde estão os botoẽs -->
+                                    <div class="level-right">
+
+                                        <!-- buttons -->
+                                        <div class="buttons are-small">
+                                            <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
+                                            <button class="button is-info" onclick="buttonLog()">Log</button>
+                                        </div>
+                                        <!-- /buttons -->
+
+                                    </div>
+
+                                </div>
+                                <!-- /Usando o elemento level para alinha os botoẽs -->
+
+                            </div>
+                            <!-- /Campo do select e botões -->
+
+                            <!-- data de abertura -->
+                            <div class="field">
+
+                                <label class="label is-small">Data de Abertura</label>
+
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-minus"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <!-- data de abertura -->
+
+                            <!-- linha -->
+                            <hr>
+
+                            <!-- data de normalização -->
+                            <div class="field">
+
+                                <label class="label is-small">Data de Normalização</label>
+
+                                <div class="field is-grouped">
+
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </span>
+                                    </div>
+
+                                    <!-- buttons -->
+                                    <p class="control">
+                                        <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
+                                        Copiar
+                                    </a>
+                                    </p>
+                                    <!-- /buttons -->
+
+                                </div>
+
+                            </div>
+                            <!-- data de normalização -->
+
+                            <!-- calcular tempo do router -->
+                            <div class="field">
+
+                                <label class="label is-small">Tempo UP do Router</label>
+
+                                <div class="field is-grouped">
+
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    </div>
+
+                                    <!-- buttons -->
+                                    <p class="control">
+                                        <a onclick="buttonCalcularRouter()" class="button is-small is-info">
+                                        Calcular
+                                    </a>
+                                    </p>
+                                    <!-- /buttons -->
+
+                                </div>
+
+                            </div>
+                            <!-- /calcular tempo do router -->
+
+                            <!-- linha -->
+                            <hr>
+
+                            <!-- Campo validação e radio buttons -->
+                            <div class="field">
+
+                                <label class="label is-small">Validado por</label>
+
+                                <!-- Campo validação -->
+                                <div class="field is-grouped">
+
+                                    <!-- Campo validação -->
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-tie"></i>
+                                    </span>
+                                    </div>
+                                    <!-- Campo validação -->
+
+                                    <!-- buttons -->
+                                    <p class="control">
+                                        <a class="button is-small is-info" onclick="buttonCopyValidacao()">
+                                        Copiar
+                                    </a>
+                                    </p>
+                                    <!-- /buttons -->
+
+                                </div>
+                                <!-- /Campo validação -->
+
+                                <!-- Radio buttons -->
+                                <div class="field">
+
+                                    <label class="radio">
+                                        <input type="radio" name="radioValidacao" value="0" checked>
+                                        CPD
+                                    </label>
+
+                                    <label class="radio">
+                                        <input type="radio" name="radioValidacao" value="1">
+                                        Residente
+                                    </label>
+
+                                </div>
+                                <!-- /Radio buttons -->
+
+                            </div>
+                            <!-- Campo validação e radio buttons -->
+
+                            <!-- senha -->
+                            <div class="field">
+
+                                <label class="label is-small">Senha</label>
+
+                                <div class="field is-grouped">
+
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="senha" class="input is-small" type="text" placeholder="*****">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-unlock-alt"></i>
+                                    </span>
+                                    </div>
+
+                                    <p class="control">
+                                        <a class="button is-small is-info" onclick="buttonCopySenha()">
+                                        Copiar
+                                    </a>
+                                    </p>
+
+                                </div>
+
+                                <label class="checkbox">
+                                    <input id="checkboxChamadoManual" value="manual" type="checkbox">
+                                    Manual, Não possui senha ?
+                                </label>
+
+                            </div>
+                            <!-- /senha -->
+
+                        </div>
+                    </div>
+                    <!-- /BLOCO ESQUERDO -->
+
+                    <!-- BLOCO CENTRO -->
+                    <div class="tile is-parent">
+                        <div class="title is-child">
+
+                            <!-- buttons cliente -->
+                            <p>Causa Cliente</p>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local
+                            Sem Energia</button>
+                            <!-- /buttons cliente -->
+
+                            <!-- buttons operadora -->
+                            <p>Causa Operadora</p>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem
+                            Queimado</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra
+                            - Rompimento</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea
+                            - Rompimento</button>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea -
+                            Manobra</button>
+                            <!-- /buttons operadora -->
+
+                            <!-- buttons voz -->
+                            <p>Voz</p>
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no
+                            PABX</button>
+                            <!-- /buttons voz -->
+
+                            <!-- buttons outra causa -->
+                            <!-- input -->
+
+                            <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
+                                <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-bug"></i>
+                            </span>
+                            </div>
+                            <!-- /input -->
+
+                            <!-- button -->
+                            <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+                            <!-- /button -->
+
+                            <!-- checkbox -->
+                            <label class="checkbox" style="padding-top: 10px;">
+                            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
+                            Causa Cliente ?
+                        </label>
+                            <!-- /checkbox -->
+                            <!-- buttons outra causa -->
+                            <!-- linha -->
+                            <hr size=7>
+
+
+                        </div>
+                    </div>
+                    <!-- /BLOCO CENTRO -->
+
+                    <!-- BLOCO DIREITO -->
+                    <div class="tile is-parent">
+                        <div class="title is-child">
+
+                            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
+                                <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
+                                Aguardando Validação ?
+                            </label>
+
+                            <div class="control">
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="0" checked>
+                                    Pendente validar com CPD amanhã
+                                </label>
+                                <br>
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="1">
+                                    Pendente validar com Residente amanhã
+                                </label>
+                                <br>
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="2">
+                                    Solicitado validação ao CPD
+                                </label>
+                                <br>
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="3">
+                                    Monitoração por 24 h
+                                </label>
+                                <br>
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="5">
+                                    Pendente Baixa do Posto
+                                </label>
+                                <br>
+                                <label class="radio">
+                                    <input type="radio" name="radioPendenteCliente" value="4">
+                                    Pendente Diagnostico
+                                </label>
+                            </div>
+
+                            <br>
+
+                            <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
+                                <button class="button is-link is-light">Códigos de Encerramento R2</button>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- /BLOCO DIREITO -->
+
+                </div>
+                <!-- /Bloco ancestral que envolve todos os outros blocos -->
+                <!-- /Grid de blocos para dividir em 3 partes a tela -->
+
 
                 <div class="is-horizontal">
 
@@ -460,71 +779,69 @@
                     <!-- BLOCO ABERTURA -->
                     <div class="tile is-parent">
                         <div class="tile is-child is-vertical">
-                            <div class="tile is-child is-vertical">
 
-                                <label class="label">Abertura</label>
+                            <label class="label">Abertura</label>
 
-                                <!-- Campo Nome da Operadora -->
-                                <div class="field">
-                                    <label class="label is-small">Nome da Operadora</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                        <span class="icon is-small is-left">
+                            <!-- Campo Nome da Operadora -->
+                            <div class="field">
+                                <label class="label is-small">Nome da Operadora</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
-                                    </div>
                                 </div>
-                                <!-- /Campo Nome da Operadora -->
-
-                                <!-- Campo Chamado da Operadora -->
-                                <div class="field">
-                                    <label class="label is-small">Chamado</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                        <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                </div>
-                                <!-- /Campo Chamado da Operadora -->
-
-                                <!-- Campo Desgnação -->
-                                <div class="field">
-                                    <label class="label is-small">Designação</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                        <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                </div>
-                                <!-- /Campo Desgnação -->
-
-                                <!-- Campo Atendente -->
-                                <div class="field">
-                                    <label class="label is-small">Atendente / Tecnico</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                        <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                </div>
-                                <!-- /Campo Atendente -->
-
-                                <!-- Campo Obs -->
-                                <div class="field">
-                                    <div class="control">
-                                        <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
-                                    </div>
-                                </div>
-                                <!-- /Campo Obs -->
-
-                                <!-- Botão -->
-                                <div class="field">
-                                    <div class="control">
-                                        <button class="button is-primary">OK</button>
-                                    </div>
-                                </div>
-                                <!-- /Botão -->
-
                             </div>
+                            <!-- /Campo Nome da Operadora -->
+
+                            <!-- Campo Chamado da Operadora -->
+                            <div class="field">
+                                <label class="label is-small">Chamado</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                </div>
+                            </div>
+                            <!-- /Campo Chamado da Operadora -->
+
+                            <!-- Campo Desgnação -->
+                            <div class="field">
+                                <label class="label is-small">Designação</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                </div>
+                            </div>
+                            <!-- /Campo Desgnação -->
+
+                            <!-- Campo Atendente -->
+                            <div class="field">
+                                <label class="label is-small">Atendente / Tecnico</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                </div>
+                            </div>
+                            <!-- /Campo Atendente -->
+
+                            <!-- Campo Obs -->
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <!-- /Campo Obs -->
+
+                            <!-- Botão -->
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary">OK</button>
+                                </div>
+                            </div>
+                            <!-- /Botão -->
+
                         </div>
                     </div>
                     <!-- /BLOCO ABERTURA -->

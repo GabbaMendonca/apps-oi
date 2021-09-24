@@ -19,13 +19,6 @@
 }
 
 
-/* RETIRA PADDIND DO HERO */
-
-.remove-padding-bottom {
-    padding-top: 0 !important;
-}
-
-
 /* TAMANHO MAXIMO DAS COLUNAS */
 
 .is-width-400px {
@@ -49,9 +42,10 @@ CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
     }
 }
 
-.is-right {
+
+/* .is-right {
     float: right;
-}
+} */
 
 
 /* .button {
