@@ -12,7 +12,7 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="encerramento()">
+<body onload="abertura()">
 
     <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
     <div class="tabs is-centered remove-margin-bottom">
@@ -443,151 +443,407 @@
             <!-- /ENCERRAMENTO -->
 
             <!-- ABERTURA -->
-            <div id="abertura" class="container">
+            <!-- OEMP -->
+            <div id="abertura" class="container is-fullhd">
+
+                <!-- Grid de blocos para dividir em 3 partes a tela -->
+                <!-- Bloco ancestral que envolve todos os outros blocos -->
+                <div class="tile is-ancestor">
+
+                    <!-- ABERTURA -->
+                    <div class="tile is-parent">
+
+                        <div class="tile is-child is-vertical">
+                            <div class="tile is-child is-vertical">
+
+                                <label class="label">Abertura</label>
+
+                                <!-- Campo Nome da Operadora -->
+                                <div class="field">
+                                    <label class="label is-small">Nome da Operadora</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo Nome da Operadora -->
+
+                                <!-- Campo Chamado da Operadora -->
+                                <div class="field">
+                                    <label class="label is-small">Chamado</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo Chamado da Operadora -->
+
+                                <!-- Campo Desgnação -->
+                                <div class="field">
+                                    <label class="label is-small">Designação</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo Desgnação -->
+
+                                <!-- Campo Atendente -->
+                                <div class="field">
+                                    <label class="label is-small">Atendente / Tecnico</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /Campo Atendente -->
+
+                                <!-- Campo Obs -->
+                                <div class="field">
+                                    <div class="control">
+                                        <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <!-- /Campo Obs -->
+
+                                <!-- Botão -->
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-primary">OK</button>
+                                    </div>
+                                </div>
+                                <!-- /Botão -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /ABERTURA -->
+
+                    <!-- BLOCO ATUALIZAÇÃO -->
+                    <div class="tile is-parent">
+                        <div class="tile is-child is-vertical">
+
+                            <label class="label">Atualização</label>
+
+                            <!-- Nome da Operadora -->
+                            <div class="field">
+                                <label class="label is-small">Operadora</label>
+                                <div class="field has-addons">
+
+                                    <!-- Campo Opeadora -->
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                    <!-- /Campo Opeadora -->
+
+                                    <!-- Select -->
+                                    <div class="control">
+                                        <div class="select is-small">
+                                            <select>
+                                                <option>Selecione</option>
+                                                <option>Vivo</option>
+                                                <option>Telespazio</option>
+                                                <option>Hughes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /Select -->
+
+                                </div>
+                            </div>
+                            <!-- /Nome da Operadora -->
+
+                            <!-- Nome do Atendente / Tecnico -->
+                            <div class="field">
+                                <label class="label is-small">Atendente / Tecnico</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
+                                <i class="fas fa-user-circle"></i>
+                                </span>
+                                </div>
+                            </div>
+                            <!-- /Nome do Atendente / Tecnico -->
 
 
-                <div class="is-width-400px">
-                    <p class="title is-3 is-spaced">Opa !!!</p>
-                    <p class="subtitle is-5">Não tem nada aqui ainda !!!</p>
-
-                    <figure class="image">
-                        <img src="https://static.wixstatic.com/media/27b0f6_3744fbfc1bd04ed1b8e63cd09925c2bc~mv2.gif">
-                    </figure>
-
-                </div>
-
-            </div>
-            <!-- /ABERTURA -->
-
-            <!-- EMAIL -->
-            <div id="email" class="container">
-                <div class="is-width-400px">
-                    <label class="label">Assunto para Email</label>
-
-                    <div class="field">
-                        <label class="label is-small">Cliente</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
-                            <span class="icon is-small is-left">
+                            <!-- Chamado da Operadora -->
+                            <div class="field">
+                                <label class="label is-small">Chamado da Operadora</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
+                                </div>
+                            </div>
+                            <!-- /Chamado da Operadora -->
+
+                            <!-- Campo Descrição da Informação -->
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <!-- /Campo Descrição da Informação -->
+
+                            <!-- Botão -->
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary">OK</button>
+                                </div>
+                            </div>
+                            <!-- /Botão -->
+
                         </div>
                     </div>
+                    <!-- /BLOCO ATUALIZAÇÃO -->
 
-                    <div class="field">
-                        <label class="label is-small">Circuito</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-ethernet"></i>
-                            </span>
+                    <!-- BLOCO PENDENCIA -->
+                    <div class="tile is-parent">
+                        <div class="tile is-child is-vertical">
+
+                            <label class="label">Pendencia</label>
+
+                            <!-- Nome do Retorno Final / Telefone -->
+                            <div class="field">
+                                <label class="label is-small">Retorno Final</label>
+
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-user-circle"></i></span>
+                                </div>
+
+                            </div>
+                            <!-- /Nome do Retorno Final / Telefone -->
+
+
+                            <!-- Codigo da Pendencia -->
+                            <div class="field">
+                                <label class="label is-small">Codigo da Pendencia</label>
+                                <div class="field has-addons">
+                                    <!-- Campo Opeadora -->
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
+                                        <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                    <!-- /Campo Opeadora -->
+                                    <!-- Select -->
+                                    <div class="control">
+                                        <div class="select is-small">
+                                            <select>
+                                                <option>Selecione</option>
+                                                <option>4053 - Agendado</option>
+                                                <option>4056 - Aguandando  Confirmação</option>
+                                                <option>4055 - Monitoração</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /Select -->
+                                </div>
+                            </div>
+                            <!-- /Codigo da Pendencia -->
+
+                            <!-- Data da Pendencia -->
+                            <div class="field">
+
+                                <label class="label is-small">Data e Hora da Pendencia</label>
+
+                                <div class="field is-grouped">
+
+                                    <!-- has-addons - Deixa na horizontal colado -->
+                                    <!-- is-grouped - Deixa na horizontal separado -->
+
+                                    <!-- Campo Data -->
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+
+                                        <!-- is-expanded  - Espande o campo ate o final do espaço disponivel -->
+                                        <!-- has-icons-left has-icons-right - usados para add um espaço nas laterais do campo -->
+
+                                        <input id="emailCliente" class="input is-small" type="date">
+                                    </div>
+                                    <!-- /Campo Data -->
+
+                                    <!-- Campo Hora -->
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="emailCliente" class="input is-small" type="time">
+                                    </div>
+                                    <!-- /Campo Hora -->
+
+                                </div>
+                            </div>
+                            <!-- /Data da Pendencia -->
+
+                            <!-- Campo Motivo da Pendencia -->
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <!-- /Campo Motivo da Pendencia -->
+
+                            <!-- Botão -->
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary">OK</button>
+                                </div>
+                            </div>
+                            <!-- /Botão -->
+
                         </div>
                     </div>
-
-                    <div class="field">
-                        <label class="label is-small">Protocolo OI</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label is-small">Chamado Interno</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label is-small">Complemento</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <hr size=7>
-
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+                    <!-- /BLOCO PENDENCIA -->
 
                 </div>
+                <!-- /Bloco ancestral que envolve todos os outros blocos -->
+                <!-- /Grid de blocos para dividir em 3 partes a tela -->
+
+
             </div>
-            <!-- /EMAIL -->
 
-            <!-- EDITOR DE TEXTO -->
+            <!-- /OEMP -->
+            <!-- /ABERTURA -->
 
-            <div id="editor" class="container">
+        </div>
 
-                <div class="field is-grouped">
 
-                    <p class="control">
-                        <button class="button is-info" onclick="editorCopiar()">
+        <!-- EMAIL -->
+        <div id="email" class="container">
+            <div class="is-width-400px">
+                <label class="label">Assunto para Email</label>
+
+                <div class="field">
+                    <label class="label is-small">Cliente</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Circuito</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-ethernet"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Protocolo OI</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Chamado Interno</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Complemento</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <hr size=7>
+
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+
+            </div>
+        </div>
+        <!-- /EMAIL -->
+
+        <!-- EDITOR DE TEXTO -->
+
+        <div id="editor" class="container">
+
+            <div class="field is-grouped">
+
+                <p class="control">
+                    <button class="button is-info" onclick="editorCopiar()">
                             Copiar
                         </button>
-                    </p>
+                </p>
 
 
-                    <div class="field has-addons">
+                <div class="field has-addons">
 
-                        <p class="control">
-                            <button class="button" onclick="editorMauisculo()">
+                    <p class="control">
+                        <button class="button" onclick="editorMauisculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-up-alt"></i>
                                 </span>
                                 <span>Maiúsculo</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" onclick="editorMinusculo()">
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorMinusculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-down-alt"></i>
                                 </span>
                                 <span>Minúsculo</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" disabled>
+                    </p>
+                    <p class="control">
+                        <button class="button" disabled>
                                 <span class="icon is-small">
                                     <i class="fas fa-remove-format"></i>
                                 </span>
                                 <span>Remover Acentos</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" onclick="editorUnderline()">
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorUnderline()">
                                 <span class="icon is-small">
                                     <i class="fas fa-underline"></i>
                                 </span>
                                 <span>Remover Underline</span>
                             </button>
-                        </p>
+                    </p>
 
-                    </div>
-
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
-                    </div>
                 </div>
 
             </div>
 
-            <!-- /EDITOR DE TEXTO -->
+            <div class="field">
+                <div class="control">
+                    <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- /EDITOR DE TEXTO -->
 
         </div>
     </section>
