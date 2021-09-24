@@ -65,7 +65,7 @@
             <!-- Cabeçalho dados OI -->
             <div class="container is-fullhd">
 
-                <!-- Usando o elemento title para ajustar o tamanho dos campos e deixar centralizado, age como uma grid -->
+                <!-- Usando o elemento tile para ajustar o tamanho dos campos e deixar centralizado, age como uma grid -->
                 <div class="tile is-ancestor">
 
                     <!-- Elemento que garante o espaça da esquerda -->
@@ -355,404 +355,157 @@
                     <!-- /BLOCO ESQUERDO -->
 
                     <!-- BLOCO CENTRO -->
-                    <div class="tile is-parent">
-                        <div class="title is-child">
+                    <div class="tile is-parent is-vertical">
 
-                            <!-- buttons cliente -->
-                            <p>Causa Cliente</p>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local
-                            Sem Energia</button>
-                            <!-- /buttons cliente -->
+                        <!-- buttons cliente -->
+                        <div class="tile is-child">
 
-                            <!-- buttons operadora -->
-                            <p>Causa Operadora</p>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem
-                            Queimado</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra
-                            - Rompimento</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea
-                            - Rompimento</button>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea -
-                            Manobra</button>
-                            <!-- /buttons operadora -->
+                            <div class="field">
 
-                            <!-- buttons voz -->
-                            <p>Voz</p>
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no
-                            PABX</button>
-                            <!-- /buttons voz -->
+                                <label class="label">Causa Cliente</label>
 
-                            <!-- buttons outra causa -->
-                            <!-- input -->
+                                <div class="field">
 
-                            <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
-                                <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
-                                <span class="icon is-small is-left">
-                                <i class="fas fa-bug"></i>
-                            </span>
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">
+                                        Abertura Indevida
+                                    </button>
+
+                                </div>
+                                <div class="field">
+
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">
+                                        Local Sem Energia
+                                    </button>
+
+                                </div>
+
                             </div>
-                            <!-- /input -->
+                        </div>
+                        <!-- /buttons cliente -->
 
-                            <!-- button -->
-                            <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
-                            <!-- /button -->
+                        <!-- buttons operadora -->
+                        <div class="tile is-child">
 
-                            <!-- checkbox -->
-                            <label class="checkbox" style="padding-top: 10px;">
-                            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
-                            Causa Cliente ?
-                        </label>
-                            <!-- /checkbox -->
-                            <!-- buttons outra causa -->
-                            <!-- linha -->
-                            <hr size=7>
+                            <div class="field">
 
+                                <label class="label">Causa Operadora</label>
+
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                                </div>
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                                </div>
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem Queimado</button>
+                                </div>
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
+                                </div>
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
+                                </div>
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+                                </div>
+
+                            </div>
 
                         </div>
+                        <!-- /buttons operadora -->
+
+                        <!-- buttons voz -->
+                        <div class="tile is-child">
+
+                            <div class="field">
+
+                                <label class="label">Voz</label>
+
+                                <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no PABX</button>
+
+                            </div>
+
+                        </div>
+                        <!-- /buttons voz -->
+
+                        <!-- buttons outra causa -->
+                        <div class="tile is-child">
+
+                            <div class="field">
+
+                                <!-- input -->
+                                <div class="field">
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
+                                        <span class="icon is-small is-left"><i class="fas fa-bug"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /input -->
+
+                                <!-- button -->
+                                <div class="field">
+
+                                    <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+
+                                    <!-- checkbox -->
+                                    <div class="field">
+                                        <label class="checkbox">
+                                            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
+                                            Causa Cliente 
+                                        ?</label>
+                                    </div>
+                                    <!-- /checkbox -->
+
+                                </div>
+                                <!-- /button -->
+
+                            </div>
+
+                        </div>
+                        <!-- buttons outra causa -->
                     </div>
-                    <!-- /BLOCO CENTRO -->
+                </div>
+                <!-- /BLOCO CENTRO -->
 
-                    <!-- BLOCO DIREITO -->
-                    <div class="tile is-parent">
-                        <div class="title is-child">
+                <!-- BLOCO DIREITO -->
+                <div class="tile is-parent">
+                    <div class="tile is-child">
 
-                            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
+                        <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
                                 <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
                                 Aguardando Validação ?
                             </label>
 
-                            <div class="control">
-                                <label class="radio">
+                        <div class="control">
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="0" checked>
                                     Pendente validar com CPD amanhã
                                 </label>
-                                <br>
-                                <label class="radio">
+                            <br>
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="1">
                                     Pendente validar com Residente amanhã
                                 </label>
-                                <br>
-                                <label class="radio">
+                            <br>
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="2">
                                     Solicitado validação ao CPD
                                 </label>
-                                <br>
-                                <label class="radio">
+                            <br>
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="3">
                                     Monitoração por 24 h
                                 </label>
-                                <br>
-                                <label class="radio">
+                            <br>
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="5">
                                     Pendente Baixa do Posto
                                 </label>
-                                <br>
-                                <label class="radio">
+                            <br>
+                            <label class="radio">
                                     <input type="radio" name="radioPendenteCliente" value="4">
                                     Pendente Diagnostico
                                 </label>
-                            </div>
-
-                            <br>
-
-                            <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
-                                <button class="button is-link is-light">Códigos de Encerramento R2</button>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- /BLOCO DIREITO -->
-
-                </div>
-                <!-- /Bloco ancestral que envolve todos os outros blocos -->
-                <!-- /Grid de blocos para dividir em 3 partes a tela -->
-
-
-                <div class="is-horizontal">
-
-                    <!-- BLOCO ESQUERDO -->
-                    <div class="container is-width-400px">
-
-                        <!-- select -->
-                        <div class="container">
-
-                            <div class="field">
-                                <div class="control">
-
-                                    <div class="select is-small">
-                                        <select id="falha">
-                                            <option value="Inoperante" selected>Inoperante</option>
-                                            <option value="BaixoDesempenho">Baixo Desempenho</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- buttons -->
-                                    <div class="buttons are-small is-right">
-                                        <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
-                                        <button class="button is-info" onclick="buttonLog()">Log</button>
-                                    </div>
-                                    <!-- /buttons -->
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- select -->
-
-                        <!-- data de abertura -->
-                        <div class="container adjustment-padding-top">
-
-                            <div class="field">
-
-                                <label class="label is-small">Data de Abertura</label>
-
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-calendar-minus"></i>
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- data de abertura -->
-
-                        <!-- linha -->
-                        <hr size=7>
-
-                        <!-- data de normalização -->
-                        <div class="container">
-
-                            <label class="label is-small">Data de Normalização</label>
-
-                            <div class="field is-grouped">
-
-                                <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-calendar-check"></i>
-                                    </span>
-                                </div>
-
-                                <!-- buttons -->
-                                <p class="control">
-                                    <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
-                                        Copiar
-                                    </a>
-                                </p>
-                                <!-- /buttons -->
-
-                            </div>
-
-                        </div>
-                        <!-- data de normalização -->
-
-                        <!-- calcular tempo do router -->
-                        <div class="container adjustment-padding-top">
-
-                            <label class="label is-small">Tempo UP do Router</label>
-
-                            <div class="field is-grouped">
-
-                                <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-clock"></i>
-                                    </span>
-                                </div>
-
-                                <!-- buttons -->
-                                <p class="control">
-                                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">
-                                        Calcular
-                                    </a>
-                                </p>
-                                <!-- /buttons -->
-
-                            </div>
-
-                        </div>
-                        <!-- /calcular tempo do router -->
-
-                        <!-- linha -->
-                        <hr size=7>
-
-                        <!-- validação -->
-                        <div class="container">
-
-                            <label class="label is-small">Validado por</label>
-
-                            <div class="field is-grouped">
-
-                                <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user-tie"></i>
-                                    </span>
-                                </div>
-
-                                <!-- buttons -->
-                                <p class="control">
-                                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">
-                                        Copiar
-                                    </a>
-                                </p>
-                                <!-- /buttons -->
-
-                            </div>
-
-                            <!-- radio buttons -->
-                            <div class="control" style="padding-bottom: 3px;">
-                                <label class="radio">
-                                    <input type="radio" name="radioValidacao" value="0" checked>
-                                    CPD
-                                </label>
-
-                                <label class="radio">
-                                    <input type="radio" name="radioValidacao" value="1">
-                                    Residente
-                                </label>
-                            </div>
-                            <!-- /radio buttons -->
-
-                        </div>
-                        <!-- /validação -->
-
-                        <!-- senha -->
-                        <div class="container">
-
-                            <label class="label is-small">Senha</label>
-
-                            <div class="field is-grouped">
-
-                                <div class="control has-icons-left has-icons-right is-expanded">
-                                    <input id="senha" class="input is-small" type="text" placeholder="*****">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-unlock-alt"></i>
-                                    </span>
-                                </div>
-
-                                <p class="control">
-                                    <a class="button is-small is-info" onclick="buttonCopySenha()">
-                                        Copiar
-                                    </a>
-                                </p>
-
-                            </div>
-
-                            <label class="checkbox">
-                                <input id="checkboxChamadoManual" value="manual" type="checkbox">
-                                Manual, Não possui senha ?
-                            </label>
-
-                        </div>
-                        <!-- /senha -->
-
-                        <!-- linha -->
-                        <hr size=7>
-
-                    </div>
-                    <!-- /BLOCO ESQUERDO -->
-
-                    <!-- BLOCO CENTRO -->
-                    <div class="container is-width-400px">
-
-                        <!-- buttons cliente -->
-                        <p>Causa Cliente</p>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local
-                            Sem Energia</button>
-                        <!-- /buttons cliente -->
-
-                        <!-- buttons operadora -->
-                        <p>Causa Operadora</p>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem
-                            Queimado</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra
-                            - Rompimento</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea
-                            - Rompimento</button>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea -
-                            Manobra</button>
-                        <!-- /buttons operadora -->
-
-                        <!-- buttons voz -->
-                        <p>Voz</p>
-                        <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no
-                            PABX</button>
-                        <!-- /buttons voz -->
-
-                        <!-- buttons outra causa -->
-                        <!-- input -->
-
-                        <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
-                            <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-bug"></i>
-                            </span>
-                        </div>
-                        <!-- /input -->
-
-                        <!-- button -->
-                        <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
-                        <!-- /button -->
-
-                        <!-- checkbox -->
-                        <label class="checkbox" style="padding-top: 10px;">
-                            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
-                            Causa Cliente ?
-                        </label>
-                        <!-- /checkbox -->
-                        <!-- buttons outra causa -->
-                        <!-- linha -->
-                        <hr size=7>
-                    </div>
-                    <!-- /BLOCO CENTRO -->
-
-                    <!-- BLOCO DIREITO -->
-                    <div class="container is-width-400px">
-
-                        <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
-                            <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
-                            Aguardando Validação ?
-                        </label>
-
-                        <div class="control">
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="0" checked>
-                                Pendente validar com CPD amanhã
-                            </label>
-                            <br>
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="1">
-                                Pendente validar com Residente amanhã
-                            </label>
-                            <br>
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="2">
-                                Solicitado validação ao CPD
-                            </label>
-                            <br>
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="3">
-                                Monitoração por 24 h
-                            </label>
-                            <br>
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="5">
-                                Pendente Baixa do Posto
-                            </label>
-                            <br>
-                            <label class="radio">
-                                <input type="radio" name="radioPendenteCliente" value="4">
-                                Pendente Diagnostico
-                            </label>
                         </div>
 
                         <br>
@@ -762,435 +515,734 @@
                         </a>
 
                     </div>
-                    <!-- /BLOCO DIREITO -->
-
                 </div>
+                <!-- /BLOCO DIREITO -->
+
             </div>
-            <!-- /ENCERRAMENTO -->
+            <!-- /Bloco ancestral que envolve todos os outros blocos -->
+            <!-- /Grid de blocos para dividir em 3 partes a tela -->
 
-            <!-- ABERTURA -->
-            <!-- OEMP -->
-            <div id="abertura" class="container is-fullhd">
 
-                <!-- Grid de blocos para dividir em 3 partes a tela -->
-                <!-- Bloco ancestral que envolve todos os outros blocos -->
-                <div class="tile is-ancestor">
+            <div class="is-horizontal">
 
-                    <!-- BLOCO ABERTURA -->
-                    <div class="tile is-parent">
-                        <div class="tile is-child is-vertical">
+                <!-- BLOCO ESQUERDO -->
+                <div class="container is-width-400px">
 
-                            <label class="label">Abertura</label>
+                    <!-- select -->
+                    <div class="container">
 
-                            <!-- Campo Nome da Operadora -->
-                            <div class="field">
-                                <label class="label is-small">Nome da Operadora</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
+                        <div class="field">
+                            <div class="control">
+
+                                <div class="select is-small">
+                                    <select id="falha">
+                                            <option value="Inoperante" selected>Inoperante</option>
+                                            <option value="BaixoDesempenho">Baixo Desempenho</option>
+                                        </select>
                                 </div>
-                            </div>
-                            <!-- /Campo Nome da Operadora -->
 
-                            <!-- Campo Chamado da Operadora -->
-                            <div class="field">
-                                <label class="label is-small">Chamado</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
+                                <!-- buttons -->
+                                <div class="buttons are-small is-right">
+                                    <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
+                                    <button class="button is-info" onclick="buttonLog()">Log</button>
                                 </div>
-                            </div>
-                            <!-- /Campo Chamado da Operadora -->
+                                <!-- /buttons -->
 
-                            <!-- Campo Desgnação -->
-                            <div class="field">
-                                <label class="label is-small">Designação</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
-                                </div>
                             </div>
-                            <!-- /Campo Desgnação -->
+                        </div>
 
-                            <!-- Campo Atendente -->
-                            <div class="field">
-                                <label class="label is-small">Atendente / Tecnico</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user-circle"></i></span>
-                                </div>
-                            </div>
-                            <!-- /Campo Atendente -->
+                    </div>
+                    <!-- select -->
 
-                            <!-- Campo Obs -->
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
-                                </div>
-                            </div>
-                            <!-- /Campo Obs -->
+                    <!-- data de abertura -->
+                    <div class="container adjustment-padding-top">
 
-                            <!-- Botão -->
-                            <div class="field">
-                                <div class="control">
-                                    <button class="button is-primary">OK</button>
-                                </div>
+                        <div class="field">
+
+                            <label class="label is-small">Data de Abertura</label>
+
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-minus"></i>
+                                    </span>
                             </div>
-                            <!-- /Botão -->
 
                         </div>
+
                     </div>
-                    <!-- /BLOCO ABERTURA -->
+                    <!-- data de abertura -->
 
-                    <!-- BLOCO ATUALIZAÇÃO -->
-                    <div class="tile is-parent">
-                        <div class="tile is-child is-vertical">
+                    <!-- linha -->
+                    <hr size=7>
 
-                            <label class="label">Atualização</label>
+                    <!-- data de normalização -->
+                    <div class="container">
 
-                            <!-- Nome da Operadora -->
-                            <div class="field">
-                                <label class="label is-small">Operadora</label>
-                                <div class="field has-addons">
+                        <label class="label is-small">Data de Normalização</label>
 
-                                    <!-- Campo Opeadora -->
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
-                                        <span class="icon is-small is-left">
+                        <div class="field is-grouped">
+
+                            <div class="control has-icons-left has-icons-right is-expanded">
+                                <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </span>
+                            </div>
+
+                            <!-- buttons -->
+                            <p class="control">
+                                <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
+                                        Copiar
+                                    </a>
+                            </p>
+                            <!-- /buttons -->
+
+                        </div>
+
+                    </div>
+                    <!-- data de normalização -->
+
+                    <!-- calcular tempo do router -->
+                    <div class="container adjustment-padding-top">
+
+                        <label class="label is-small">Tempo UP do Router</label>
+
+                        <div class="field is-grouped">
+
+                            <div class="control has-icons-left has-icons-right is-expanded">
+                                <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                            </div>
+
+                            <!-- buttons -->
+                            <p class="control">
+                                <a onclick="buttonCalcularRouter()" class="button is-small is-info">
+                                        Calcular
+                                    </a>
+                            </p>
+                            <!-- /buttons -->
+
+                        </div>
+
+                    </div>
+                    <!-- /calcular tempo do router -->
+
+                    <!-- linha -->
+                    <hr size=7>
+
+                    <!-- validação -->
+                    <div class="container">
+
+                        <label class="label is-small">Validado por</label>
+
+                        <div class="field is-grouped">
+
+                            <div class="control has-icons-left has-icons-right is-expanded">
+                                <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-user-tie"></i>
+                                    </span>
+                            </div>
+
+                            <!-- buttons -->
+                            <p class="control">
+                                <a class="button is-small is-info" onclick="buttonCopyValidacao()">
+                                        Copiar
+                                    </a>
+                            </p>
+                            <!-- /buttons -->
+
+                        </div>
+
+                        <!-- radio buttons -->
+                        <div class="control" style="padding-bottom: 3px;">
+                            <label class="radio">
+                                    <input type="radio" name="radioValidacao" value="0" checked>
+                                    CPD
+                                </label>
+
+                            <label class="radio">
+                                    <input type="radio" name="radioValidacao" value="1">
+                                    Residente
+                                </label>
+                        </div>
+                        <!-- /radio buttons -->
+
+                    </div>
+                    <!-- /validação -->
+
+                    <!-- senha -->
+                    <div class="container">
+
+                        <label class="label is-small">Senha</label>
+
+                        <div class="field is-grouped">
+
+                            <div class="control has-icons-left has-icons-right is-expanded">
+                                <input id="senha" class="input is-small" type="text" placeholder="*****">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-unlock-alt"></i>
+                                    </span>
+                            </div>
+
+                            <p class="control">
+                                <a class="button is-small is-info" onclick="buttonCopySenha()">
+                                        Copiar
+                                    </a>
+                            </p>
+
+                        </div>
+
+                        <label class="checkbox">
+                                <input id="checkboxChamadoManual" value="manual" type="checkbox">
+                                Manual, Não possui senha ?
+                            </label>
+
+                    </div>
+                    <!-- /senha -->
+
+                    <!-- linha -->
+                    <hr size=7>
+
+                </div>
+                <!-- /BLOCO ESQUERDO -->
+
+                <!-- BLOCO CENTRO -->
+                <div class="container is-width-400px">
+
+                    <!-- buttons cliente -->
+                    <p>Causa Cliente</p>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">Local
+                            Sem Energia</button>
+                    <!-- /buttons cliente -->
+
+                    <!-- buttons operadora -->
+                    <p>Causa Operadora</p>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem
+                            Queimado</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra
+                            - Rompimento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea
+                            - Rompimento</button>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea -
+                            Manobra</button>
+                    <!-- /buttons operadora -->
+
+                    <!-- buttons voz -->
+                    <p>Voz</p>
+                    <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no
+                            PABX</button>
+                    <!-- /buttons voz -->
+
+                    <!-- buttons outra causa -->
+                    <!-- input -->
+
+                    <div class="control has-icons-left has-icons-right is-expanded" style="margin-top: 15px; margin-bottom: 15px;">
+                        <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-bug"></i>
+                            </span>
+                    </div>
+                    <!-- /input -->
+
+                    <!-- button -->
+                    <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
+                    <!-- /button -->
+
+                    <!-- checkbox -->
+                    <label class="checkbox" style="padding-top: 10px;">
+                            <input id="checkboxCausaCliente" value="cliente" type="checkbox">
+                            Causa Cliente ?
+                        </label>
+                    <!-- /checkbox -->
+                    <!-- buttons outra causa -->
+                    <!-- linha -->
+                    <hr size=7>
+                </div>
+                <!-- /BLOCO CENTRO -->
+
+                <!-- BLOCO DIREITO -->
+                <div class="container is-width-400px">
+
+                    <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
+                            <input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
+                            Aguardando Validação ?
+                        </label>
+
+                    <div class="control">
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="0" checked>
+                                Pendente validar com CPD amanhã
+                            </label>
+                        <br>
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="1">
+                                Pendente validar com Residente amanhã
+                            </label>
+                        <br>
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="2">
+                                Solicitado validação ao CPD
+                            </label>
+                        <br>
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="3">
+                                Monitoração por 24 h
+                            </label>
+                        <br>
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="5">
+                                Pendente Baixa do Posto
+                            </label>
+                        <br>
+                        <label class="radio">
+                                <input type="radio" name="radioPendenteCliente" value="4">
+                                Pendente Diagnostico
+                            </label>
+                    </div>
+
+                    <br>
+
+                    <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
+                        <button class="button is-link is-light">Códigos de Encerramento R2</button>
+                    </a>
+
+                </div>
+                <!-- /BLOCO DIREITO -->
+
+            </div>
+        </div>
+        <!-- /ENCERRAMENTO -->
+
+        <!-- ABERTURA -->
+        <!-- OEMP -->
+        <div id="abertura" class="container is-fullhd">
+
+            <!-- Grid de blocos para dividir em 3 partes a tela -->
+            <!-- Bloco ancestral que envolve todos os outros blocos -->
+            <div class="tile is-ancestor">
+
+                <!-- BLOCO ABERTURA -->
+                <div class="tile is-parent">
+                    <div class="tile is-child is-vertical">
+
+                        <label class="label">Abertura</label>
+
+                        <!-- Campo Nome da Operadora -->
+                        <div class="field">
+                            <label class="label is-small">Nome da Operadora</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                    <!-- /Campo Opeadora -->
+                            </div>
+                        </div>
+                        <!-- /Campo Nome da Operadora -->
 
-                                    <!-- Select -->
-                                    <div class="control">
-                                        <div class="select is-small">
-                                            <select>
+                        <!-- Campo Chamado da Operadora -->
+                        <div class="field">
+                            <label class="label is-small">Chamado</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                            </div>
+                        </div>
+                        <!-- /Campo Chamado da Operadora -->
+
+                        <!-- Campo Desgnação -->
+                        <div class="field">
+                            <label class="label is-small">Designação</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                            </div>
+                        </div>
+                        <!-- /Campo Desgnação -->
+
+                        <!-- Campo Atendente -->
+                        <div class="field">
+                            <label class="label is-small">Atendente / Tecnico</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                            </div>
+                        </div>
+                        <!-- /Campo Atendente -->
+
+                        <!-- Campo Obs -->
+                        <div class="field">
+                            <div class="control">
+                                <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <!-- /Campo Obs -->
+
+                        <!-- Botão -->
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">OK</button>
+                            </div>
+                        </div>
+                        <!-- /Botão -->
+
+                    </div>
+                </div>
+                <!-- /BLOCO ABERTURA -->
+
+                <!-- BLOCO ATUALIZAÇÃO -->
+                <div class="tile is-parent">
+                    <div class="tile is-child is-vertical">
+
+                        <label class="label">Atualização</label>
+
+                        <!-- Nome da Operadora -->
+                        <div class="field">
+                            <label class="label is-small">Operadora</label>
+                            <div class="field has-addons">
+
+                                <!-- Campo Opeadora -->
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user-circle"></i></span>
+                                </div>
+                                <!-- /Campo Opeadora -->
+
+                                <!-- Select -->
+                                <div class="control">
+                                    <div class="select is-small">
+                                        <select>
                                                 <option>Selecione</option>
                                                 <option>Vivo</option>
                                                 <option>Telespazio</option>
                                                 <option>Hughes</option>
                                             </select>
-                                        </div>
                                     </div>
-                                    <!-- /Select -->
-
                                 </div>
-                            </div>
-                            <!-- /Nome da Operadora -->
+                                <!-- /Select -->
 
-                            <!-- Nome do Atendente / Tecnico -->
-                            <div class="field">
-                                <label class="label is-small">Atendente / Tecnico</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
+                            </div>
+                        </div>
+                        <!-- /Nome da Operadora -->
+
+                        <!-- Nome do Atendente / Tecnico -->
+                        <div class="field">
+                            <label class="label is-small">Atendente / Tecnico</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                                 </span>
-                                </div>
                             </div>
-                            <!-- /Nome do Atendente / Tecnico -->
+                        </div>
+                        <!-- /Nome do Atendente / Tecnico -->
 
 
-                            <!-- Chamado da Operadora -->
-                            <div class="field">
-                                <label class="label is-small">Chamado da Operadora</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
-                                    <span class="icon is-small is-left">
+                        <!-- Chamado da Operadora -->
+                        <div class="field">
+                            <label class="label is-small">Chamado da Operadora</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
-                                </div>
                             </div>
-                            <!-- /Chamado da Operadora -->
+                        </div>
+                        <!-- /Chamado da Operadora -->
 
-                            <!-- Campo Descrição da Informação -->
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
-                                </div>
+                        <!-- Campo Descrição da Informação -->
+                        <div class="field">
+                            <div class="control">
+                                <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
                             </div>
-                            <!-- /Campo Descrição da Informação -->
+                        </div>
+                        <!-- /Campo Descrição da Informação -->
 
-                            <!-- Botão -->
-                            <div class="field">
-                                <div class="control">
-                                    <button class="button is-primary">OK</button>
-                                </div>
+                        <!-- Botão -->
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">OK</button>
                             </div>
-                            <!-- /Botão -->
+                        </div>
+                        <!-- /Botão -->
+
+                    </div>
+                </div>
+                <!-- /BLOCO ATUALIZAÇÃO -->
+
+                <!-- BLOCO PENDENCIA -->
+                <div class="tile is-parent">
+                    <div class="tile is-child is-vertical">
+
+                        <label class="label">Pendencia</label>
+
+                        <!-- Nome do Retorno Final / Telefone -->
+                        <div class="field">
+                            <label class="label is-small">Retorno Final</label>
+
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user-circle"></i></span>
+                            </div>
 
                         </div>
-                    </div>
-                    <!-- /BLOCO ATUALIZAÇÃO -->
+                        <!-- /Nome do Retorno Final / Telefone -->
 
-                    <!-- BLOCO PENDENCIA -->
-                    <div class="tile is-parent">
-                        <div class="tile is-child is-vertical">
 
-                            <label class="label">Pendencia</label>
-
-                            <!-- Nome do Retorno Final / Telefone -->
-                            <div class="field">
-                                <label class="label is-small">Retorno Final</label>
-
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                        <!-- Codigo da Pendencia -->
+                        <div class="field">
+                            <label class="label is-small">Codigo da Pendencia</label>
+                            <div class="field has-addons">
+                                <!-- Campo Opeadora -->
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
                                     <span class="icon is-small is-left">
-                                    <i class="fas fa-user-circle"></i></span>
-                                </div>
-
-                            </div>
-                            <!-- /Nome do Retorno Final / Telefone -->
-
-
-                            <!-- Codigo da Pendencia -->
-                            <div class="field">
-                                <label class="label is-small">Codigo da Pendencia</label>
-                                <div class="field has-addons">
-                                    <!-- Campo Opeadora -->
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
-                                        <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                    <!-- /Campo Opeadora -->
-                                    <!-- Select -->
-                                    <div class="control">
-                                        <div class="select is-small">
-                                            <select>
+                                </div>
+                                <!-- /Campo Opeadora -->
+                                <!-- Select -->
+                                <div class="control">
+                                    <div class="select is-small">
+                                        <select>
                                                 <option>Selecione</option>
                                                 <option>4053 - Agendado</option>
                                                 <option>4056 - Aguandando  Confirmação</option>
                                                 <option>4055 - Monitoração</option>
                                             </select>
-                                        </div>
                                     </div>
-                                    <!-- /Select -->
                                 </div>
+                                <!-- /Select -->
                             </div>
-                            <!-- /Codigo da Pendencia -->
-
-                            <!-- Data da Pendencia -->
-                            <div class="field">
-
-                                <label class="label is-small">Data e Hora da Pendencia</label>
-
-                                <div class="field is-grouped">
-
-                                    <!-- has-addons - Deixa na horizontal colado -->
-                                    <!-- is-grouped - Deixa na horizontal separado -->
-
-                                    <!-- Campo Data -->
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-
-                                        <!-- is-expanded  - Espande o campo ate o final do espaço disponivel -->
-                                        <!-- has-icons-left has-icons-right - usados para add um espaço nas laterais do campo -->
-
-                                        <input id="emailCliente" class="input is-small" type="date">
-                                    </div>
-                                    <!-- /Campo Data -->
-
-                                    <!-- Campo Hora -->
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="time">
-                                    </div>
-                                    <!-- /Campo Hora -->
-
-                                </div>
-                            </div>
-                            <!-- /Data da Pendencia -->
-
-                            <!-- Campo Motivo da Pendencia -->
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
-                                </div>
-                            </div>
-                            <!-- /Campo Motivo da Pendencia -->
-
-                            <!-- Botão -->
-                            <div class="field">
-                                <div class="control">
-                                    <button class="button is-primary">OK</button>
-                                </div>
-                            </div>
-                            <!-- /Botão -->
-
                         </div>
+                        <!-- /Codigo da Pendencia -->
+
+                        <!-- Data da Pendencia -->
+                        <div class="field">
+
+                            <label class="label is-small">Data e Hora da Pendencia</label>
+
+                            <div class="field is-grouped">
+
+                                <!-- has-addons - Deixa na horizontal colado -->
+                                <!-- is-grouped - Deixa na horizontal separado -->
+
+                                <!-- Campo Data -->
+                                <div class="control has-icons-left has-icons-right is-expanded">
+
+                                    <!-- is-expanded  - Espande o campo ate o final do espaço disponivel -->
+                                    <!-- has-icons-left has-icons-right - usados para add um espaço nas laterais do campo -->
+
+                                    <input id="emailCliente" class="input is-small" type="date">
+                                </div>
+                                <!-- /Campo Data -->
+
+                                <!-- Campo Hora -->
+                                <div class="control has-icons-left has-icons-right is-expanded">
+                                    <input id="emailCliente" class="input is-small" type="time">
+                                </div>
+                                <!-- /Campo Hora -->
+
+                            </div>
+                        </div>
+                        <!-- /Data da Pendencia -->
+
+                        <!-- Campo Motivo da Pendencia -->
+                        <div class="field">
+                            <div class="control">
+                                <textarea id="editorTextarea" class="textarea" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <!-- /Campo Motivo da Pendencia -->
+
+                        <!-- Botão -->
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">OK</button>
+                            </div>
+                        </div>
+                        <!-- /Botão -->
+
                     </div>
-                    <!-- /BLOCO PENDENCIA -->
-
                 </div>
-                <!-- /Bloco ancestral que envolve todos os outros blocos -->
-                <!-- /Grid de blocos para dividir em 3 partes a tela -->
-
+                <!-- /BLOCO PENDENCIA -->
 
             </div>
-            <!-- /OEMP -->
-            <!-- /ABERTURA -->
+            <!-- /Bloco ancestral que envolve todos os outros blocos -->
+            <!-- /Grid de blocos para dividir em 3 partes a tela -->
 
-            <!-- EMAIL -->
-            <div id="email" class="container">
-                <div class="is-width-400px">
-                    <label class="label">Assunto para Email</label>
 
-                    <div class="field">
-                        <label class="label is-small">Cliente</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
-                            <span class="icon is-small is-left">
+        </div>
+        <!-- /OEMP -->
+        <!-- /ABERTURA -->
+
+        <!-- EMAIL -->
+        <div id="email" class="container">
+            <div class="is-width-400px">
+                <label class="label">Assunto para Email</label>
+
+                <div class="field">
+                    <label class="label is-small">Cliente</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                        <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <label class="label is-small">Circuito</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                            <span class="icon is-small is-left">
+                <div class="field">
+                    <label class="label is-small">Circuito</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                        <span class="icon is-small is-left">
                                 <i class="fas fa-ethernet"></i>
                             </span>
-                        </div>
                     </div>
-
-                    <div class="field">
-                        <label class="label is-small">Protocolo OI</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label is-small">Chamado Interno</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label is-small">Complemento</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-headset"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <hr size=7>
-
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
-
                 </div>
+
+                <div class="field">
+                    <label class="label is-small">Protocolo OI</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Chamado Interno</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Complemento</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
+                        <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                    </div>
+                </div>
+
+                <hr size=7>
+
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+
             </div>
-            <!-- /EMAIL -->
+        </div>
+        <!-- /EMAIL -->
 
-            <!-- EDITOR DE TEXTO -->
-            <div id="editor" class="container">
+        <!-- EDITOR DE TEXTO -->
+        <div id="editor" class="container">
 
-                <div class="field is-grouped">
+            <div class="field is-grouped">
 
-                    <p class="control">
-                        <button class="button is-info" onclick="editorCopiar()">
+                <p class="control">
+                    <button class="button is-info" onclick="editorCopiar()">
                             Copiar
                         </button>
-                    </p>
+                </p>
 
 
-                    <div class="field has-addons">
+                <div class="field has-addons">
 
-                        <p class="control">
-                            <button class="button" onclick="editorMauisculo()">
+                    <p class="control">
+                        <button class="button" onclick="editorMauisculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-up-alt"></i>
                                 </span>
                                 <span>Maiúsculo</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" onclick="editorMinusculo()">
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorMinusculo()">
                                 <span class="icon is-small">
                                     <i class="fas fa-font"></i>
                                     <i class="fas fa-level-down-alt"></i>
                                 </span>
                                 <span>Minúsculo</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" disabled>
+                    </p>
+                    <p class="control">
+                        <button class="button" disabled>
                                 <span class="icon is-small">
                                     <i class="fas fa-remove-format"></i>
                                 </span>
                                 <span>Remover Acentos</span>
                             </button>
-                        </p>
-                        <p class="control">
-                            <button class="button" onclick="editorUnderline()">
+                    </p>
+                    <p class="control">
+                        <button class="button" onclick="editorUnderline()">
                                 <span class="icon is-small">
                                     <i class="fas fa-underline"></i>
                                 </span>
                                 <span>Remover Underline</span>
                             </button>
-                        </p>
+                    </p>
 
-                    </div>
-
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
-                    </div>
                 </div>
 
             </div>
-            <!-- /EDITOR DE TEXTO -->
 
-
-            <!-- -------- -->
-
-
-            <!-- MODAL - Tela para colocar o log de teste -->
-            <div id="myModal" class="modal">
-                <div class="modal-background"></div>
-
-                <div class="modal-card">
-
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Log's</p>
-                        <button class="delete" aria-label="close" onclick="modalClose()"></button>
-                    </header>
-
-                    <section class="modal-card-body">
-
-                        <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
-
-                    </section>
-
-                    <footer class="modal-card-foot">
-                        <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
-                        <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
-                        <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
-                    </footer>
-
+            <div class="field">
+                <div class="control">
+                    <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
                 </div>
             </div>
-            <!-- /MODAL -->
+
+        </div>
+        <!-- /EDITOR DE TEXTO -->
+
+
+        <!-- -------- -->
+
+
+        <!-- MODAL - Tela para colocar o log de teste -->
+        <div id="myModal" class="modal">
+            <div class="modal-background"></div>
+
+            <div class="modal-card">
+
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Log's</p>
+                    <button class="delete" aria-label="close" onclick="modalClose()"></button>
+                </header>
+
+                <section class="modal-card-body">
+
+                    <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
+
+                </section>
+
+                <footer class="modal-card-foot">
+                    <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
+                    <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
+                    <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
+                </footer>
+
+            </div>
+        </div>
+        <!-- /MODAL -->
 
         </div>
     </section>

@@ -32,7 +32,8 @@
 /* MUDA A ORIENTAÇÃO DOS BLOCOS PARA A HORIZONTAL
 CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
 
-@media (min-width: 1200px) {
+
+/* @media (min-width: 1200px) {
     .is-horizontal {
         display: flex;
         flex-direction: row;
@@ -40,7 +41,7 @@ CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
     .is-horizontal div {
         flex-direction: unset
     }
-}
+} */
 
 
 /* .is-right {
@@ -52,16 +53,18 @@ CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
     float: right;
 } */
 
-.input {
+
+/* .input {
     overflow: hidden;
     padding: 0 3px 0 0;
 }
 
 .input input {
     width: 100%
-}
+} */
 
-.gap-button {
+
+/* .gap-button {
     margin-top: 3px;
     margin-bottom: 3px;
-}
+} */
