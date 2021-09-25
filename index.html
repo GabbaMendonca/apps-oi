@@ -62,86 +62,67 @@
     <section class="hero is-light">
         <div class="hero-body hero-bory-padding-top">
 
+
             <!-- Cabeçalho dados OI -->
             <div class="container is-fullhd">
+                <div class="columns">
+                    <div class="column is-4 is-offset-4">
 
-                <!-- Usando o elemento tile para ajustar o tamanho dos campos e deixar centralizado, age como uma grid -->
-                <div class="tile is-ancestor">
+                        <!-- Label com seta para esconder o campo ID e NOME -->
+                        <div class="control">
 
-                    <!-- Elemento que garante o espaça da esquerda -->
-                    <div class="tile is-parent"></div>
+                            <!-- Main container - Usado o tributo level para alinhar o label e a seta -->
+                            <nav class="level is-mobile">
+                                <!-- Left side - onde esta o label -->
+                                <div class="level-left">
 
-                    <!-- Elmento com os dados no centro -->
-                    <div class="tile is-parent">
+                                    <label class="label is-small level-item" id="label-cabecalho">OI</label>
 
-                        <div class="tile is-child is-vertical">
+                                </div>
 
+                                <!-- Right side - onde esta a seta -->
+                                <div class="level-right">
 
-                            <!-- Label com seta para esconder o campo ID e NOME -->
-                            <div class="control">
-
-                                <!-- Main container - Usado o tributo level para alinhar o label e a seta -->
-                                <nav class="level">
-                                    <!-- Left side - onde esta o label -->
-                                    <div class="level-left">
-
-                                        <label class="label is-small level-item" id="label-cabecalho">OI</label>
-
-                                    </div>
-
-                                    <!-- Right side - onde esta a seta -->
-                                    <div class="level-right">
-
-                                        <a onclick="ocultarCabecalho()" class="level-item">
-                                            <span class="icon" style="padding-bottom:7px">
+                                    <a onclick="ocultarCabecalho()" class="level-item">
+                                        <span class="icon" style="padding-bottom:7px">
                                                 <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h" ></i>
                                                 </span>
-                                        </a>
+                                    </a>
 
-                                    </div>
-                                </nav>
-
-                            </div>
-                            <!-- /Label com seta para esconder o campo ID e NOME -->
-
-
-                            <!-- div para esconder os elementos -->
-                            <div id="cabecalho">
-                                <!-- Campo ID -->
-                                <div class="field">
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="oi" class="input is-small" type="text" placeholder="OI">
-                                        <span class="icon is-small is-left">
-                                        <i class="fas fa-id-badge"></i></span>
-                                    </div>
                                 </div>
-                                <!-- /Campo ID -->
-
-                                <!-- Campo Nome -->
-                                <div class="field">
-                                    <label class="label is-small">Nome</label>
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
-                                        <span class="icon is-small is-left">
-                                        <i class="fas fa-signature"></i></span>
-                                    </div>
-                                </div>
-                                <!-- /Campo Nome  -->
-                            </div>
-                            <!-- /div para esconder os elementos -->
+                            </nav>
 
                         </div>
-                        <!-- is-child -->
+                        <!-- /Label com seta para esconder o campo ID e NOME -->
+
+
+                        <!-- div para esconder os elementos -->
+                        <div id="cabecalho">
+                            <!-- Campo ID -->
+                            <div class="field">
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="oi" class="input is-small" type="text" placeholder="OI">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-id-badge"></i></span>
+                                </div>
+                            </div>
+                            <!-- /Campo ID -->
+
+                            <!-- Campo Nome -->
+                            <div class="field">
+                                <label class="label is-small">Nome</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-signature"></i></span>
+                                </div>
+                            </div>
+                            <!-- /Campo Nome  -->
+                        </div>
+                        <!-- /div para esconder os elementos -->
 
                     </div>
-                    <!-- is-parent -->
-
-                    <!-- Elemento que garante o espaça da esquerda -->
-                    <div class="tile is-parent"></div>
-
                 </div>
-                <!-- is-ancestor -->
-
             </div>
             <!-- /Cabeçalho dados OI -->
 
@@ -214,7 +195,7 @@
                             <!-- data de abertura -->
 
                             <!-- linha -->
-                            <hr>
+                            <!-- <hr> -->
 
                             <!-- data de normalização -->
                             <div class="field">
@@ -271,7 +252,7 @@
                             <!-- /calcular tempo do router -->
 
                             <!-- linha -->
-                            <hr>
+                            <!-- <hr> -->
 
                             <!-- Campo validação e radio buttons -->
                             <div class="field">
@@ -802,66 +783,82 @@
             <!-- /ABERTURA -->
 
             <!-- EMAIL -->
-            <div id="email" class="container">
-                <div class="is-width-400px">
-                    <label class="label">Assunto para Email</label>
+            <div id="email" class="container is-fullhd">
 
-                    <div class="field">
-                        <label class="label is-small">Cliente</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
-                            <span class="icon is-small is-left">
+                <div class="columns">
+                    <div class="column is-4 is-offset-4">
+
+                        <label class="label">Assunto para Email</label>
+
+                        <div class="field">
+                            <label class="label is-small">Cliente</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label is-small">Circuito</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                            <span class="icon is-small is-left">
+                        <div class="field">
+                            <label class="label is-small">Circuito</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-ethernet"></i>
                             </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label is-small">Protocolo OI</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
-                            <span class="icon is-small is-left">
+                        <div class="field">
+                            <label class="label is-small">Protocolo OI</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label is-small">Chamado Interno</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                            <span class="icon is-small is-left">
+                        <div class="field">
+                            <label class="label is-small">Chamado Interno</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label is-small">Complemento</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
-                            <span class="icon is-small is-left">
+                        <div class="field">
+                            <label class="label is-small">Complemento</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
+                                <span class="icon is-small is-left">
                                 <i class="fas fa-headset"></i>
                             </span>
+                            </div>
                         </div>
+
+                        <hr>
+
+                        <div class="field">
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
+                        </div>
+
+                        <div class="field">
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
+                        </div>
+
+                        <div class="field">
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                        </div>
+
+                        <div class="field">
+                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+                        </div>
+
                     </div>
-
-                    <hr size=7>
-
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                    <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
 
                 </div>
             </div>
@@ -870,6 +867,11 @@
             <!-- EDITOR DE TEXTO -->
             <div id="editor" class="container">
 
+                <div class="field">
+                    <label class="label">Editor de Texto</label>
+                </div>
+
+                <!-- botões -->
                 <div class="field is-grouped">
 
                     <p class="control">
@@ -919,12 +921,17 @@
                     </div>
 
                 </div>
+                <!-- /botões -->
 
+                <!-- text area -->
                 <div class="field">
                     <div class="control">
                         <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
                     </div>
                 </div>
+                <!-- /text area -->
+
+
 
             </div>
             <!-- /EDITOR DE TEXTO -->
