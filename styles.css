@@ -3,6 +3,10 @@
     color: aliceblue;
 } */
 
+.hero-bory-padding-top {
+    padding-top: 15px;
+}
+
 .adjustment-padding-top {
     padding-top: 6px;
 }
@@ -12,13 +16,6 @@
 
 .remove-margin-bottom {
     margin-bottom: 0 !important;
-}
-
-
-/* RETIRA PADDIND DO HERO */
-
-.remove-padding-bottom {
-    padding-top: 0 !important;
 }
 
 
@@ -35,7 +32,8 @@
 /* MUDA A ORIENTAÇÃO DOS BLOCOS PARA A HORIZONTAL
 CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
 
-@media (min-width: 1200px) {
+
+/* @media (min-width: 1200px) {
     .is-horizontal {
         display: flex;
         flex-direction: row;
@@ -43,27 +41,30 @@ CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
     .is-horizontal div {
         flex-direction: unset
     }
-}
+} */
 
-.is-right {
+
+/* .is-right {
     float: right;
-}
+} */
 
 
 /* .button {
     float: right;
 } */
 
-.input {
+
+/* .input {
     overflow: hidden;
     padding: 0 3px 0 0;
 }
 
 .input input {
     width: 100%
-}
+} */
 
-.gap-button {
+
+/* .gap-button {
     margin-top: 3px;
     margin-bottom: 3px;
-}
+} */
