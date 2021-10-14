@@ -128,7 +128,7 @@ Reset Nos Equipamentos : ${opcReset}`
             mascara += `\n--- LOG --- \n${data["log"]}`
         }
 
-        console.log(mascara)
+        copyToClipboard(mascara)
     }
 }
 
