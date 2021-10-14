@@ -107,7 +107,7 @@ class Abertura {
             `COLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}
 Proativo : ${opcProativo}
 Reincidente : ${opcReincidente}
-Cicuito : ${data["abCPD"]}
+Cicuito : ${data["abCircuito"]}
 
 CPD : ${data["abCPD"]}
 Contato Local : ${data["abContatoLocal"]}
@@ -119,7 +119,10 @@ Reclamacao : ${data["abFalha"]}
 TS : ${opcTS}
 Possui Backup : ${opcBackup}
 Energia Eletrica : ${opcEletrica}
-Reset Nos Equipamentos : ${opcReset}`
+Reset Nos Equipamentos : ${opcReset}
+
+Encerramento/Aprazamento : 0800 282 5231 op. 1/4
+Testes : RI - PTFA 0800 282 5626 / RII - 0800 642 1119 op. 2/1`
 
         if (data["log"] != '') {
             mascara += `\n--- LOG --- \n${data["log"]}`
