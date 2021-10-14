@@ -1,25 +1,3 @@
-// === CLIPBOARD ===
-
-
-function copyToClipboard(text) {
-    var dummy = document.createElement("textarea");
-    // to avoid breaking orgain page when copying more words
-    // cant copy when adding below this code
-    // dummy.style.display = 'none'
-    document.body.appendChild(dummy);
-    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-    dummy.value = text;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-
-    console.log(text);
-}
-
-
-// === CLIPBOARD ===
-
-
 // === CALCULO DO ROUTER ===
 
 
@@ -146,7 +124,7 @@ function router(data) {
 // === VIEW  ===
 
 
-function getView() {
+function getViewEncerramento() {
     let data = {}
 
     // Input
@@ -284,8 +262,8 @@ function makeEncerramento(data) {
         `VALIDADO POR : ${data["validacao"]}`
 
     mascara = mascara + verificaRadioValidacao(data)
-    
-    if (data["log"]){
+
+    if (data["log"]) {
 
         mascara = mascara + "\n --- LOG ---\n" +
             `${data["log"]}`
@@ -341,7 +319,7 @@ function makeMascara(data, causa, solucao) {
 class Mascara {
 
     constructor() {
-        this._data = getView()
+        this._data = getViewEncerramento()
 
         this._causa = {
             "cliente": "CLIENTE",
@@ -475,7 +453,6 @@ function buttonReclamacaoIndevida() {
 function buttonLocalSemEnergia() {
     m = new Mascara()
     m.localSemEnergia()
-
 }
 
 function buttonCausaNaoDetectada() {

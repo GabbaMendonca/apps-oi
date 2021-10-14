@@ -1,7 +1,7 @@
 class Email {
 
     constructor() {
-        this._data = this.getView()
+        this._data = this._getView()
 
         this._solicitacao = {
             "agendamento": "AGENDAMENTO",
@@ -11,7 +11,7 @@ class Email {
         }
     }
 
-    getView() {
+    _getView() {
         let data = {}
 
         data["cliente"] = document.querySelector("#emailCliente").value.toUpperCase()
@@ -24,29 +24,29 @@ class Email {
     }
 
     agendamento() {
-        this.makeMascara(this._data, this._solicitacao.agendamento)
+        this._makeMascara(this._data, this._solicitacao.agendamento)
     }
 
     validacao() {
-        this.makeMascara(this._data, this._solicitacao.validacao)
+        this._makeMascara(this._data, this._solicitacao.validacao)
     }
 
     escalonamento() {
-        this.makeMascara(this._data, this._solicitacao.escalonamento)
+        this._makeMascara(this._data, this._solicitacao.escalonamento)
     }
 
     posicionamento() {
-        this.makeMascara(this._data, this._solicitacao.posicionamento)
+        this._makeMascara(this._data, this._solicitacao.posicionamento)
     }
 
-    makeMascara(data, solicitacao) {
+    _makeMascara(data, solicitacao) {
         let mascara = `[OI][${data.cliente}][${solicitacao}] - ${data.circuto} - PROTOCOLO OI : ${data.protocoloOi}`
-        
-        if(data.protocoloCliente){
+
+        if (data.protocoloCliente) {
             mascara = mascara + ` - CHAMADO INTERNO : ${data.protocoloCliente}`
         }
 
-        if(data.complemento){
+        if (data.complemento) {
             mascara = mascara + ` - ${data.complemento}`
         }
 
