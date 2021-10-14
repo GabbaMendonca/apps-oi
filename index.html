@@ -12,7 +12,7 @@
     <title>Apps OI</title>
 </head>
 
-<body onload="encerramento()">
+<body onload="abertura()">
 
     <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
     <div class="tabs is-centered remove-margin-bottom">
@@ -518,8 +518,339 @@
             <!-- /ENCERRAMENTO -->
 
             <!-- ABERTURA -->
-            <!-- OEMP -->
             <div id="abertura" class="container is-fullhd">
+
+                <div class="field">
+                    <label class="label">Abertura</label>
+                </div>
+
+                <div class="columns">
+
+                    <!-- COLUNA DA ESQUERDA -->
+                    <div class="column">
+
+                        <!-- campo circuto -->
+                        <div class="field">
+                            <label class="label is-small">Circuito</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="abCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-ethernet"></i>
+                            </span>
+                            </div>
+                        </div>
+                        <!-- /campo circuto -->
+
+                        <!-- radio - proativo -->
+                        <div class="field">
+
+                            <label class="label is-small">Missão Critica</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioCritico">
+                                            Sim
+                                            </label>
+
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioCritico" checked>
+                                            Não
+                                            </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - proativo -->
+
+                        <!-- radio - proativo -->
+                        <div class="field">
+
+                            <label class="label is-small">Proativo</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioProativo" value="0" checked>
+                                            Sim
+                                            </label>
+
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioProativo" value="1">
+                                            Não
+                                            </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - proativo -->
+
+                        <!-- radio - reincidente -->
+                        <div class="field">
+
+                            <label class="label is-small">Reincidente</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioReincidente" value="0">
+                                            Sim
+                                            </label>
+
+                                    <label class="radio">
+                                            <input type="radio" name="abRadioReincidente" value="1" checked>
+                                            Não
+                                            </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - reincidente -->
+
+                    </div>
+                    <!-- /COLUNA DA ESQUERDA -->
+
+                    <!-- COLUNA DO CENTRO -->
+                    <div class="column">
+
+                        <div class="field">
+                            <label class="label is-small">Contatos do CPD</label>
+
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="abTextareaCPD" class="textarea is-small" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="field">
+                            <label class="label is-small">Contato Local</label>
+
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="abTextareaContatoLocal" class="textarea is-small" rows="1"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="field">
+                            <label class="label is-small">Horario de Acesso</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="abAcesso" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label is-small">Chamado Interno</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label is-small">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="abEmail" class="input is-small" type="text" placeholder="Local / UNIORG">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-headset"></i>
+                            </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /COLUNA DO CENTRO -->
+
+                    <!-- COLUNA DA DIREITA -->
+                    <div class="column">
+
+                        <!-- Select - Reclamação -->
+                        <!-- Campo do select e botões -->
+                        <div class="field">
+
+                            <label class="label is-small">Reclamação</label>
+
+                            <!-- Usando o elemento level para alinha os botoẽs -->
+                            <div class="level">
+
+                                <!-- Left side - onde esta o select -->
+                                <div class="level-left">
+
+                                    <!-- select -->
+                                    <div class="select is-small">
+                                        <select id="abFalha">
+                                        <option value="Inoperante" selected>Inoperante</option>
+                                        <option value="BaixoDesempenho">Intermitente</option>
+                                        <option value="BaixoDesempenho">Perda de Pacotes</option>
+                                        <option value="BaixoDesempenho">Lentidão</option>
+                                        <option value="BaixoDesempenho">Configuração</option>
+                                    </select>
+                                    </div>
+                                    <!-- select -->
+
+                                </div>
+
+                                <!-- Right side - onde estão os botoẽs -->
+                                <div class="level-right">
+
+                                    <!-- buttons -->
+                                    <div class="buttons">
+                                        <button class="button is-info" onclick="abButtonLimpar()">Limpar</button>
+                                        <button class="button is-info" onclick="buttonLog()">Log</button>
+                                    </div>
+                                    <!-- /buttons -->
+
+                                </div>
+
+                            </div>
+                            <!-- /Usando o elemento level para alinha os botoẽs -->
+
+                        </div>
+                        <!-- /Campo do select e botões -->
+                        <!-- /Select - Reclamação -->
+
+                        <!-- radio - Troubleshooting -->
+                        <div class="field">
+
+                            <label class="label is-small">Troubleshooting</label>
+
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="abTs" value="0">
+                                    OK
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abTs" value="1" checked>
+                                    Pendente
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abTs" value="2">
+                                    Sem Sucesso
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - Troubleshooting -->
+
+                        <!-- radio - Backup -->
+                        <div class="field">
+
+                            <label class="label is-small">Possui Backup</label>
+
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="abBackup" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abBackup" value="1">
+                                    Não
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abBackup" value="2" checked>
+                                    Sem Confirmação
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - Backup -->
+
+                        <!-- radio - Eletrica -->
+                        <div class="field">
+
+                            <label class="label is-small">Energia Eletrica</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="abEletrica" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abEletrica" value="1">
+                                    Não
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abEletrica" value="2" checked>
+                                    Sem Confirmação
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - Eletrica -->
+
+                        <!-- radio - Reset -->
+                        <div class="field">
+
+                            <label class="label is-small">Reset nos Equipamentos</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="abReset" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abReset" value="1">
+                                    Não
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abReset" value="2" checked>
+                                    Sem Confirmação
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - Reset -->
+
+                        <!-- Botão -->
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                            </div>
+                        </div>
+                        <!-- /Botão -->
+                    </div>
+                    <!-- COLUNA DA DIREITA -->
+
+                </div>
+
+            </div>
+            <!-- /ABERTURA -->
+
+            <!-- OEMP -->
+            <div id="oemp" class="container is-fullhd" hidden>
 
                 <!-- Grid de blocos para dividir em 3 partes a tela -->
                 <!-- Bloco ancestral que envolve todos os outros blocos -->
@@ -535,7 +866,7 @@
                             <div class="field">
                                 <label class="label is-small">Nome da Operadora</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempOperadora" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                 </div>
@@ -546,7 +877,7 @@
                             <div class="field">
                                 <label class="label is-small">Chamado</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempChamado" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                 </div>
@@ -557,7 +888,7 @@
                             <div class="field">
                                 <label class="label is-small">Designação</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempDesignacao" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                 </div>
@@ -568,7 +899,7 @@
                             <div class="field">
                                 <label class="label is-small">Atendente / Tecnico</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempAtendente" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                 </div>
@@ -608,7 +939,7 @@
 
                                     <!-- Campo Opeadora -->
                                     <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
+                                        <input id="oempAtualizacaoOperadora" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
                                         <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                     </div>
@@ -635,7 +966,7 @@
                             <div class="field">
                                 <label class="label is-small">Atendente / Tecnico</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempAtualizacaoAtendente" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                                 </span>
@@ -648,7 +979,7 @@
                             <div class="field">
                                 <label class="label is-small">Chamado da Operadora</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempAtualizacaoChamadoOper" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                 <i class="fas fa-user-circle"></i>
                             </span>
@@ -687,7 +1018,7 @@
                                 <label class="label is-small">Retorno Final</label>
 
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="emailCliente" class="input is-small" type="text" placeholder="Nome">
+                                    <input id="oempPendenciaPendencia" class="input is-small" type="text" placeholder="Nome">
                                     <span class="icon is-small is-left">
                                     <i class="fas fa-user-circle"></i></span>
                                 </div>
@@ -702,7 +1033,7 @@
                                 <div class="field has-addons">
                                     <!-- Campo Opeadora -->
                                     <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
+                                        <input id="oempPendenciaCodPendencia" class="input is-small" type="text" placeholder="Vivo, Telepazio ...">
                                         <span class="icon is-small is-left">
                                         <i class="fas fa-user-circle"></i></span>
                                     </div>
@@ -739,13 +1070,13 @@
                                         <!-- is-expanded  - Espande o campo ate o final do espaço disponivel -->
                                         <!-- has-icons-left has-icons-right - usados para add um espaço nas laterais do campo -->
 
-                                        <input id="emailCliente" class="input is-small" type="date">
+                                        <input id="oempAtualizacaoData" class="input is-small" type="date">
                                     </div>
                                     <!-- /Campo Data -->
 
                                     <!-- Campo Hora -->
                                     <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="emailCliente" class="input is-small" type="time">
+                                        <input id="oempAtualizacaoHora" class="input is-small" type="time">
                                     </div>
                                     <!-- /Campo Hora -->
 
@@ -780,7 +1111,6 @@
 
             </div>
             <!-- /OEMP -->
-            <!-- /ABERTURA -->
 
             <!-- EMAIL -->
             <div id="email" class="container is-fullhd">
@@ -861,6 +1191,7 @@
                     </div>
 
                 </div>
+
             </div>
             <!-- /EMAIL -->
 
@@ -993,6 +1324,7 @@
     <script src="email.js"></script>
     <script src="modal.js"></script>
     <script src="editor.js"></script>
+    <script src="utilidade.js"></script>
 
     <script>
         function abertura() {
