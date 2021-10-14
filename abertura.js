@@ -47,10 +47,7 @@ class Abertura {
 
     limpar() {
 
-        // input
-        document.querySelector("#oi").value = ''
-        document.querySelector("#nome").value = ''
-            // esquerda
+        // esquerda
         document.querySelector("#abCircuito").value = ''
             //centro
         document.querySelector("#abTextareaCPD").value = ''
