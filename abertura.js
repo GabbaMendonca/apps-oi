@@ -52,13 +52,13 @@ class Abertura {
     limpar() {
 
         // esquerda
+        //centro
         document.querySelector("#abCliente").value = ''
-            //centro
+        document.querySelector("#abCPD").value = ''
+        document.querySelector("#abAcesso").value = ''
         document.querySelector("#abChamadoInterno").value = ''
         document.querySelector("#abEmail").value = ''
-        document.querySelector("#abAcesso").value = ''
-            // document.querySelector("#abTextareaCPD").value = ''
-            // document.querySelector("#abTextareaContatoLocal").value = ''
+        document.querySelector("#abDescricao").value = ''
             //direita
 
         textareaLog.value = ''
