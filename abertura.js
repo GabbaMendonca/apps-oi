@@ -7,37 +7,41 @@ class Abertura {
     _getView() {
         let data = {}
 
-        // input
+        // cabeçalho
         data["oi"] = document.querySelector("#oi").value
         data["nome"] = document.querySelector("#nome").value.toUpperCase()
-            // esquerda
-        data["abCircuito"] = document.querySelector("#abCircuito").value
-            //centro
-        data["abCPD"] = document.querySelector("#abTextareaCPD").value
-        data["abContatoLocal"] = document.querySelector("#abTextareaContatoLocal").value
-        data["abAcesso"] = document.querySelector("#abAcesso").value
-        data["abEmail"] = document.querySelector("#abEmail").value
-            //direita
-        data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
-        data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
 
-        //checkbox
-        data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-
-        // Radio
-        // esquerda
+        //=== esquerda ===
+        // radio
         data["abCritico"] = document.getElementsByName("abRadioCritico")
         data["abProativo"] = document.getElementsByName("abRadioProativo")
         data["abReincidente"] = document.getElementsByName("abRadioReincidente")
-            //esqueda
-        data["abTs"] = document.getElementsByName("abTs")
-        data["abBackup"] = document.getElementsByName("abBackup")
-        data["abEletrica"] = document.getElementsByName("abEletrica")
-        data["abReset"] = document.getElementsByName("abReset")
+
+        //=== centro ===
+        data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
+        data["abCPD"] = document.querySelector("#abCPD").value
+        data["abAcesso"] = document.querySelector("#abAcesso").value
+        data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
+        data["abEmail"] = document.querySelector("#abEmail").value
+        data["abDescricao"] = document.querySelector("#abDescricao").value.toUpperCase()
+
+        //=== direita ===
 
         // Select
         let select = document.querySelector('#abFalha');
         data["abFalha"] = select.options[select.selectedIndex].text;
+
+        //Radio
+        // data["abTs"] = document.getElementsByName("abTs")
+        // data["abBackup"] = document.getElementsByName("abBackup")
+        data["abEletrica"] = document.getElementsByName("abEletrica")
+        data["abReset"] = document.getElementsByName("abReset")
+        data["abTestes"] = document.getElementsByName("abTestes")
+        data["ab103"] = document.getElementsByName("ab103")
+        data["ab104"] = document.getElementsByName("ab104")
+        data["ab109"] = document.getElementsByName("ab109")
+
+
 
         // Log
         data["log"] = textareaLog.value
@@ -48,15 +52,14 @@ class Abertura {
     limpar() {
 
         // esquerda
-        document.querySelector("#abCircuito").value = ''
+        document.querySelector("#abCliente").value = ''
             //centro
-        document.querySelector("#abTextareaCPD").value = ''
-        document.querySelector("#abTextareaContatoLocal").value = ''
-        document.querySelector("#abAcesso").value = ''
+        document.querySelector("#abChamadoInterno").value = ''
         document.querySelector("#abEmail").value = ''
+        document.querySelector("#abAcesso").value = ''
+            // document.querySelector("#abTextareaCPD").value = ''
+            // document.querySelector("#abTextareaContatoLocal").value = ''
             //direita
-        document.querySelector("#abChamadoInterno").value = ''
-        document.querySelector("#abChamadoInterno").value = ''
 
         textareaLog.value = ''
 
@@ -70,8 +73,8 @@ class Abertura {
 
         // radio do proativo e reincidente
         let radio1 = {
-            '0': 'Sim',
-            '1': 'Não',
+            '0': 'SIM',
+            '1': 'NAO',
             'false': '',
         }
 
@@ -85,47 +88,57 @@ class Abertura {
 
         //radio com backup, eletrica e reset
         let radio3 = {
-            '0': 'Sim',
-            '1': 'Não',
-            '2': 'Sem Confirmação',
+            '0': 'SIM',
+            '1': 'NAO',
+            '2': 'N/A',
             'false': '',
         }
 
+
+        let opcReset = radio3[verificaRadio(data.abReset)]
+        let opcEletrica = radio3[verificaRadio(data.abEletrica)]
+        let opcTestes = radio3[verificaRadio(data.abTestes)]
+
+        let opc103 = radio1[verificaRadio(data.ab103)]
+        let opc104 = radio1[verificaRadio(data.ab104)]
+        let opc109 = radio1[verificaRadio(data.ab109)]
+
         // let opcCritico = radio1[verificaRadio(this._data["abCritico"])]
-        let opcProativo = radio1[verificaRadio(data["abProativo"])]
-        let opcReincidente = radio1[verificaRadio(data["abReincidente"])]
-
-        let opcTS = radio2[verificaRadio(data["abTs"])]
-
-        let opcBackup = radio3[verificaRadio(data["abBackup"])]
-        let opcEletrica = radio3[verificaRadio(data["abEletrica"])]
-        let opcReset = radio3[verificaRadio(data["abReset"])]
+        // let opcProativo = radio1[verificaRadio(data["abProativo"])]
+        // let opcReincidente = radio1[verificaRadio(data["abReincidente"])]
+        // let opcTS = radio2[verificaRadio(data.abTs)]
+        // let opcBackup = radio3[verificaRadio(data["abBackup"])]
 
 
+        let mascara = `MASCARA DE ABERTURA\n`
 
-        let mascara =
-            `COLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}
-Proativo : ${opcProativo}
-Reincidente : ${opcReincidente}
-Cicuito : ${data["abCircuito"]}
+        mascara += `PREMIUM | PERÍMETRO: VTAL - PROTOCOLO DO CLIENTE: `
+        if (data.abChamadoInterno != '') {
+            mascara += `${data.abChamadoInterno}\n`
+        } else {
+            mascara += `Sem Chamado\n`
+        }
 
-CPD : ${data["abCPD"]}
-Contato Local : ${data["abContatoLocal"]}
-Horario de Acesso : ${data["abAcesso"]}
-Chamado Interno  : ${data["abChamadoInterno"]}
-Email  : ${data["abEmail"]}
+        mascara += `CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}\n`
 
-Reclamacao : ${data["abFalha"]}
-TS : ${opcTS}
-Possui Backup : ${opcBackup}
-Energia Eletrica : ${opcEletrica}
-Reset Nos Equipamentos : ${opcReset}
+        mascara += `EMAIL DO CLIENTE: `
+        if (data.abEmail != '') {
+            mascara += `${data.abEmail}\n`
+        } else {
+            mascara += `N/A\n`
+        }
 
-Encerramento/Aprazamento : 0800 282 5231 op. 1/4
-Testes : RI - PTFA 0800 282 5626 / RII - 0800 642 1119 op. 2/1`
+        mascara += `RECLAMANTE: CGS-SP OI${data.oi} - ${data.nome} - PROATIVO\n`
 
-        if (data["log"] != '') {
-            mascara += `\n--- LOG --- \n${data["log"]}`
+        mascara += `ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha}\n`
+
+        mascara += `CHECKLIST: REALIZADO RESET?: ${opcReset} / SEM ENERGIA?: ${opcEletrica} / AUTORIZA PARA TESTES?: ${opcTestes}\n`
+        mascara += `CHECKLIST: SINAL 103? ${opc103} / SINAL 104? ${opc104} / SINAL 109? ${opc109}\n`
+        mascara += `DESCRICAO: ${data.abDescricao}`
+
+        if (data.log != '') {
+            mascara += `\n--- LOG ---\n`
+            mascara += `${ data.log }`
         }
 
         copyToClipboard(mascara)
