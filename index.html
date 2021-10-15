@@ -529,18 +529,6 @@
                     <!-- COLUNA DA ESQUERDA -->
                     <div class="column">
 
-                        <!-- campo circuto -->
-                        <div class="field">
-                            <label class="label is-small">Circuito</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                                <span class="icon is-small is-left">
-                                <i class="fas fa-ethernet"></i>
-                            </span>
-                            </div>
-                        </div>
-                        <!-- /campo circuto -->
-
                         <!-- radio - proativo -->
                         <div class="field">
 
@@ -549,12 +537,12 @@
 
                                 <div class="control">
                                     <label class="radio">
-                                            <input type="radio" name="abRadioCritico">
+                                            <input type="radio" name="abRadioCritico" disabled>
                                             Sim
                                             </label>
 
                                     <label class="radio">
-                                            <input type="radio" name="abRadioCritico" checked>
+                                            <input type="radio" name="abRadioCritico" disabled>
                                             Não
                                             </label>
                                 </div>
@@ -572,12 +560,12 @@
 
                                 <div class="control">
                                     <label class="radio">
-                                            <input type="radio" name="abRadioProativo" value="0" checked>
+                                            <input type="radio" name="abRadioProativo" value="0" disabled>
                                             Sim
                                             </label>
 
                                     <label class="radio">
-                                            <input type="radio" name="abRadioProativo" value="1">
+                                            <input type="radio" name="abRadioProativo" value="1" disabled>
                                             Não
                                             </label>
                                 </div>
@@ -595,12 +583,12 @@
 
                                 <div class="control">
                                     <label class="radio">
-                                            <input type="radio" name="abRadioReincidente" value="0">
+                                            <input type="radio" name="abRadioReincidente" value="0" disabled>
                                             Sim
                                             </label>
 
                                     <label class="radio">
-                                            <input type="radio" name="abRadioReincidente" value="1" checked>
+                                            <input type="radio" name="abRadioReincidente" value="1" disabled>
                                             Não
                                             </label>
                                 </div>
@@ -616,28 +604,30 @@
                     <!-- COLUNA DO CENTRO -->
                     <div class="column">
 
+                        <!-- campo cliente -->
+                        <div class="field">
+                            <label class="label is-small">Cliente</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="abCliente" class="input is-small" type="text">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-ethernet"></i>
+                            </span>
+                            </div>
+                        </div>
+                        <!-- /campo cliente -->
+
+                        <!-- campo contatos do cpd -->
                         <div class="field">
                             <label class="label is-small">Contatos do CPD</label>
-
                             <div class="field">
                                 <div class="control">
-                                    <textarea id="abTextareaCPD" class="textarea is-small" rows="2"></textarea>
+                                    <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
                                 </div>
                             </div>
-
                         </div>
+                        <!-- /campo contatos do cpd -->
 
-                        <div class="field">
-                            <label class="label is-small">Contato Local</label>
-
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="abTextareaContatoLocal" class="textarea is-small" rows="1"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-
+                        <!-- campo horario de acesso -->
                         <div class="field">
                             <label class="label is-small">Horario de Acesso</label>
                             <div class="control has-icons-left has-icons-right">
@@ -647,7 +637,9 @@
                             </span>
                             </div>
                         </div>
+                        <!-- /campo horario de acesso -->
 
+                        <!-- campo chamado interno -->
                         <div class="field">
                             <label class="label is-small">Chamado Interno</label>
                             <div class="control has-icons-left has-icons-right">
@@ -657,7 +649,9 @@
                             </span>
                             </div>
                         </div>
+                        <!-- /campo chamado interno -->
 
+                        <!-- campo email -->
                         <div class="field">
                             <label class="label is-small">Email</label>
                             <div class="control has-icons-left has-icons-right">
@@ -667,7 +661,19 @@
                             </span>
                             </div>
                         </div>
+                        <!-- /campo email -->
 
+                        <!-- campo descrição -->
+                        <div class="field">
+                            <label class="label is-small">Descrição</label>
+
+                            <div class="field">
+                                <div class="control">
+                                    <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /campo descrição -->
 
                     </div>
                     <!-- /COLUNA DO CENTRO -->
@@ -729,12 +735,12 @@
 
                                 <div class="control">
                                     <label class="radio">
-                                    <input type="radio" name="abTs" value="0">
+                                    <input type="radio" name="abTs" value="0" disabled>
                                     OK
                                     </label>
 
                                     <label class="radio">
-                                    <input type="radio" name="abTs" value="1" checked>
+                                    <input type="radio" name="abTs" value="1" disabled>
                                     Pendente
                                     </label>
 
@@ -758,17 +764,17 @@
 
                                 <div class="control">
                                     <label class="radio">
-                                    <input type="radio" name="abBackup" value="0">
+                                    <input type="radio" name="abBackup" value="0" disabled>
                                     Sim
                                     </label>
 
                                     <label class="radio">
-                                    <input type="radio" name="abBackup" value="1">
+                                    <input type="radio" name="abBackup" value="1" disabled>
                                     Não
                                     </label>
 
                                     <label class="radio">
-                                    <input type="radio" name="abBackup" value="2" checked>
+                                    <input type="radio" name="abBackup" value="2" disabled>
                                     Sem Confirmação
                                     </label>
                                 </div>
@@ -833,6 +839,103 @@
 
                         </div>
                         <!-- /radio - Reset -->
+
+                        <!-- radio - Testes -->
+                        <div class="field">
+
+                            <label class="label is-small">Autoriza parar para testes</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="abTestes" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abTestes" value="1" checked>
+                                    Não
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="abTestes" value="2" checked>
+                                    Sem Confirmação
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - Testes -->
+
+                        <!-- radio - 103 -->
+                        <div class="field">
+
+                            <label class="label is-small">Status 103</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="ab103" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="ab103" value="1" checked>
+                                    Não
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - 103 -->
+
+                        <!-- radio - 104 -->
+                        <div class="field">
+
+                            <label class="label is-small">Status 104</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="ab104" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="ab104" value="1" checked>
+                                    Não
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - 104 -->
+
+                        <!-- radio - 109 -->
+                        <div class="field">
+
+                            <label class="label is-small">Status 109</label>
+                            <div class="field is-narrow">
+
+                                <div class="control">
+                                    <label class="radio">
+                                    <input type="radio" name="ab109" value="0">
+                                    Sim
+                                    </label>
+
+                                    <label class="radio">
+                                    <input type="radio" name="ab109" value="1" checked>
+                                    Não
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /radio - 109 -->
 
                         <!-- Botão -->
                         <div class="field">
