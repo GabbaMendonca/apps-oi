@@ -131,24 +131,26 @@ function getViewEncerramento() {
     data["oi"] = document.querySelector("#oi").value
     data["nome"] = document.querySelector("#nome").value.toUpperCase()
     data["abertura"] = document.querySelector("#dataAbertura").value
+    data["encerramento"] = document.querySelector("#dataEncerramento").value
     data["normalizacao"] = document.querySelector("#dataNormalizacao").value
     data["router"] = document.querySelector("#router").value
     data["validacao"] = document.querySelector("#validacao").value.toUpperCase()
+    data["telefone"] = document.querySelector("#telefone").value.toUpperCase()
     data["senha"] = document.querySelector("#senha").value.toUpperCase()
     data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
 
     // Checkbox
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-    data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
+        // data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
     data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
 
     // Radio
-    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
+    // data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
     data["radioValidacao"] = document.getElementsByName("radioValidacao")
 
     // Select
-    let select = document.querySelector('#falha');
-    data["falha"] = select.options[select.selectedIndex].text;
+    // let select = document.querySelector('#falha');
+    // data["falha"] = select.options[select.selectedIndex].text;
 
     // Log
     data["log"] = textareaLog.value
@@ -229,6 +231,10 @@ function verificaRadioValidacao(data) {
 
                     return " RESIDENTE"
 
+                case '2':
+
+                    return " CGS"
+
                 default:
                     alert("Esse não tem !!!");
             }
@@ -239,36 +245,38 @@ function verificaRadioValidacao(data) {
 }
 
 function makeEncerramento(data) {
-    let mascara = " --- ENCERRAMENTO ---"
+    let mascara = "MASCARA DE ENCERRAMENTO\n"
 
+    mascara += "PREMIUM | PERÍMETRO: VTAL\n"
+    mascara += `CLIENTE AUTORIZADOR: ${data.validacao}`
+    mascara += verificaRadioValidacao(data)
+    mascara += ` TEL: ${data.telefone}\n`
+    mascara += `FALHA INICIO : ${data.abertura}\n`
+    mascara += `FALHA FIM: ${data.encerramento}\n`
+    mascara += `NORMALIZACAO: ${data.normalizacao}\n`
+    mascara += `CAUSA/SOLUCAO : [${data.causa}] ${data.solucao}\n`
+
+    if (data.log) {
+
+        mascara = mascara + "LOG: \n" +
+            `${data.log}\n`
+
+    }
+
+    mascara += `COLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}\n`
 
     if (data["checkboxChamadoManual"]) {
-        mascara = mascara + ` > SENHA : MANUAL, NAO POSSUI SENHA`
+        mascara = mascara + `SENHA : MANUAL, NAO POSSUI SENHA\n`
 
     } else {
 
         if (data["senha"] != "") {
-            mascara = mascara + ` > SENHA : ${data["senha"]}`
+            mascara = mascara + `SENHA : ${data["senha"]}\n`
         }
 
     }
 
 
-    mascara = mascara + `\nCOLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}\n` +
-        `FALHA : ${data["falha"]}\n` +
-        `HORARIO DA FALHA : ${data["abertura"]}\n` +
-        `HARARIO DE NORMALIZACAO : ${data["normalizacao"]}\n` +
-        `CAUSA / SOLUCAO : ${data["causa"]} - ${data["solucao"]}\n` +
-        `VALIDADO POR : ${data["validacao"]}`
-
-    mascara = mascara + verificaRadioValidacao(data)
-
-    if (data["log"]) {
-
-        mascara = mascara + "\n --- LOG ---\n" +
-            `${data["log"]}`
-
-    }
 
     return mascara
 }
@@ -280,7 +288,7 @@ function makeValidacao(data) {
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}`
 
-    mascara = mascara + verificaRadioPendenteValidar(data)
+    mascara += verificaRadioPendenteValidar(data.radioPendenteCliente)
 
     return mascara
 }
