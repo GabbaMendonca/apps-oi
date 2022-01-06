@@ -33,14 +33,18 @@ class Abertura {
 
         //Radio
         // data["abTs"] = document.getElementsByName("abTs")
-        // data["abBackup"] = document.getElementsByName("abBackup")
+
         data["abEletrica"] = document.getElementsByName("abEletrica")
         data["abReset"] = document.getElementsByName("abReset")
         data["abTestes"] = document.getElementsByName("abTestes")
+
         data["ab103"] = document.getElementsByName("ab103")
         data["ab104"] = document.getElementsByName("ab104")
         data["ab109"] = document.getElementsByName("ab109")
 
+        data["abProativo"] = document.getElementsByName("abRadioProativo")
+        data["abReincidente"] = document.getElementsByName("abRadioReincidente")
+        data["abBackup"] = document.getElementsByName("abBackup")
 
 
         // Log
@@ -71,56 +75,45 @@ class Abertura {
 
     _makeMascara(data) {
 
-        // radio do proativo e reincidente
-        let radio1 = {
-            '0': 'SIM',
-            '1': 'NAO',
-            'false': '',
-        }
 
-        // radio do TS
-        let radio2 = {
-            '0': 'OK',
-            '1': 'Pendente',
-            '2': 'Sem Sucesso',
-            'false': '',
-        }
-
-        //radio com backup, eletrica e reset
-        let radio3 = {
+        // radio com reset, eletrica e testes
+        let radio = {
             '0': 'SIM',
             '1': 'NAO',
             '2': 'N/A',
             'false': '',
         }
 
+        let opcReset = radio[verificaRadio(data.abReset)]
+        let opcEletrica = radio[verificaRadio(data.abEletrica)]
+        let opcTestes = radio[verificaRadio(data.abTestes)]
 
-        let opcReset = radio3[verificaRadio(data.abReset)]
-        let opcEletrica = radio3[verificaRadio(data.abEletrica)]
-        let opcTestes = radio3[verificaRadio(data.abTestes)]
+        let opc103 = radio[verificaRadio(data.ab103)]
+        let opc104 = radio[verificaRadio(data.ab104)]
+        let opc109 = radio[verificaRadio(data.ab109)]
 
-        let opc103 = radio1[verificaRadio(data.ab103)]
-        let opc104 = radio1[verificaRadio(data.ab104)]
-        let opc109 = radio1[verificaRadio(data.ab109)]
+        let opcProativo = radio[verificaRadio(data["abProativo"])]
+        let opcReincidente = radio[verificaRadio(data["abReincidente"])]
+        let opcBackup = radio[verificaRadio(data["abBackup"])]
 
         // let opcCritico = radio1[verificaRadio(this._data["abCritico"])]
-        // let opcProativo = radio1[verificaRadio(data["abProativo"])]
-        // let opcReincidente = radio1[verificaRadio(data["abReincidente"])]
         // let opcTS = radio2[verificaRadio(data.abTs)]
-        // let opcBackup = radio3[verificaRadio(data["abBackup"])]
 
 
         let mascara = `MASCARA DE ABERTURA\n`
 
-        mascara += `PREMIUM | PERÍMETRO: VTAL - PROTOCOLO DO CLIENTE: `
+        mascara += `PREMIUM | PERIMETRO: VTAL - PROTOCOLO DO CLIENTE: `
+
+        // Verifica se cliente tem chamado interno
         if (data.abChamadoInterno != '') {
             mascara += `${data.abChamadoInterno}\n`
         } else {
-            mascara += `Sem Chamado\n`
+            mascara += `N/A\n`
         }
 
         mascara += `CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}\n`
 
+        // Verifica se cliente tem endereço de email
         mascara += `EMAIL DO CLIENTE: `
         if (data.abEmail != '') {
             mascara += `${data.abEmail}\n`
@@ -128,13 +121,20 @@ class Abertura {
             mascara += `N/A\n`
         }
 
-        mascara += `RECLAMANTE: CGS-SP OI${data.oi} - ${data.nome} - PROATIVO\n`
+        mascara += `RECLAMANTE: CEC-SP OI${data.oi} - ${data.nome}\n`
 
-        mascara += `ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha}\n`
+        if (data.abAcesso == "") {
+            mascara += `ACESSO: 08:00 AS 18:00 HS - RECLAMACAO: ${data.abFalha.toUpperCase()}\n`
+        } else {
+            mascara += `ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha.toUpperCase()}\n`
+        }
 
-        mascara += `CHECKLIST: REALIZADO RESET?: ${opcReset} / SEM ENERGIA?: ${opcEletrica} / AUTORIZA PARA TESTES?: ${opcTestes}\n`
+        mascara += `CHECKLIST: REALIZADO RESET?: ${opcReset} / SEM ENERGIA?: ${opcEletrica} / AUTORIZA PARAR TESTES?: ${opcTestes}\n`
         mascara += `CHECKLIST: SINAL 103? ${opc103} / SINAL 104? ${opc104} / SINAL 109? ${opc109}\n`
-        mascara += `DESCRICAO: ${data.abDescricao}`
+
+        mascara += `DESCRICAO: PROATIVO: ${opcProativo} / REINCIDENTE: ${opcReincidente} / POSSUI BACKUP ATIVO: ${opcBackup}\n`
+        mascara += `ENCERRAMENTO/AGENDAMENTO : 0800 282 5231 1/5/5\n`
+        mascara += `${data.abDescricao}`
 
         if (data.log != '') {
             mascara += `\n--- LOG ---\n`

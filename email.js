@@ -39,6 +39,16 @@ class Email {
         this._makeMascara(this._data, this._solicitacao.posicionamento)
     }
 
+    limpar() {
+
+        document.querySelector("#emailCliente").value = ""
+        document.querySelector("#emailCircuito").value = ""
+        document.querySelector("#emailProtocoloOi").value = ""
+        document.querySelector("#emailProtocoloCliente").value = ""
+        document.querySelector("#emailComplemento").value = ""
+
+    }
+
     _makeMascara(data, solicitacao) {
         let mascara = `[OI][${data.cliente}][${solicitacao}] - ${data.circuto} - PROTOCOLO OI : ${data.protocoloOi}`
 
@@ -79,6 +89,11 @@ function buttonEmailEscalonamento() {
 function buttonEmailPosicionamento() {
     e = new Email()
     e.posicionamento()
+}
+
+function buttonEmailLimpar() {
+    e = new Email()
+    e.limpar()
 }
 
 

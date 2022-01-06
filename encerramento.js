@@ -141,11 +141,11 @@ function getViewEncerramento() {
 
     // Checkbox
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-        // data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
+    data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
     data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
 
     // Radio
-    // data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
+    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
     data["radioValidacao"] = document.getElementsByName("radioValidacao")
 
     // Select
@@ -172,7 +172,7 @@ function verificaRadioPendenteValidar(data) {
     // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
     // Para isso usamos um for onde percorremos as opções
 
-    for (var i = 0, length = data["radioPendenteCliente"].length; i < length; i++) {
+    for (var i = 0, length = data.radioPendenteCliente.length; i < length; i++) {
 
         // Conforme corremos com o for verificamos se a opção esta setada
 
@@ -203,7 +203,7 @@ function verificaRadioPendenteValidar(data) {
 
                 case '4':
 
-                    return "PENDENTE DIAGNOSTICO"
+                    return "\nPENDENTE DIAGNOSTICO"
 
                 default:
                     alert("Esse não tem !!!");
@@ -245,17 +245,40 @@ function verificaRadioValidacao(data) {
 }
 
 function makeEncerramento(data) {
+
+    // Monta as linha por linha a mascara de encerramento.
+
     let mascara = "MASCARA DE ENCERRAMENTO\n"
 
-    mascara += "PREMIUM | PERÍMETRO: VTAL\n"
+    mascara += "PREMIUM | PERIMETRO: VTAL\n"
+
+
+    // Campo  CLIENTE AUTORIZADOR:   TEL:
+    // Valida o Radio Button : CPD - RESIDENTE - CGS
     mascara += `CLIENTE AUTORIZADOR: ${data.validacao}`
     mascara += verificaRadioValidacao(data)
     mascara += ` TEL: ${data.telefone}\n`
+
+
     mascara += `FALHA INICIO : ${data.abertura}\n`
-    mascara += `FALHA FIM: ${data.encerramento}\n`
+
+
+    // Verifica se o campo "FALHA FIM" esta prenchido, se estiver usa a data do campo.
+    // Se não estiver prenche com a data atual.
+    if (data.encerramento == "") {
+
+        d = getDate()
+        mascara += `FALHA FIM: ${d.dia}/${d.mes}/${d.ano} ${d.hora}:${d.minuto}\n`
+
+    } else {
+        mascara += `FALHA FIM: ${data.encerramento}\n`
+    }
+
+
     mascara += `NORMALIZACAO: ${data.normalizacao}\n`
     mascara += `CAUSA/SOLUCAO : [${data.causa}] ${data.solucao}\n`
 
+    // Verifica o campo LOG esta vazio
     if (data.log) {
 
         mascara = mascara + "LOG: \n" +
@@ -263,8 +286,11 @@ function makeEncerramento(data) {
 
     }
 
+
     mascara += `COLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}\n`
 
+
+    // Verifcia se tem senha de enceramento a ser anexada
     if (data["checkboxChamadoManual"]) {
         mascara = mascara + `SENHA : MANUAL, NAO POSSUI SENHA\n`
 
@@ -277,7 +303,6 @@ function makeEncerramento(data) {
     }
 
 
-
     return mascara
 }
 
@@ -288,7 +313,7 @@ function makeValidacao(data) {
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}`
 
-    mascara += verificaRadioPendenteValidar(data.radioPendenteCliente)
+    mascara += verificaRadioPendenteValidar(data)
 
     return mascara
 }
