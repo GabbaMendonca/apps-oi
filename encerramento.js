@@ -315,6 +315,8 @@ function makeValidacao(data) {
 
     mascara += verificaRadioPendenteValidar(data)
 
+    mascara = posicionar(mascara)
+
     return mascara
 }
 
@@ -526,6 +528,18 @@ function buttonFalhaPABX() {
 function buttonOutraCausa() {
     m = new Mascara()
     m.outraCausa()
+}
+
+function buttonCasoNovo() {
+    copyToClipboard("CASO NOVO. EM ANALISE.")
+}
+
+function buttonEncerrado() {
+    copyToClipboard("ENCERRADO.")
+}
+
+function buttonAgendadoPara() {
+    copyToClipboard("ENCERRADO.")
 }
 
 // === BUTTONS ===
