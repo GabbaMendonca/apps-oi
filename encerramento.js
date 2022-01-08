@@ -315,7 +315,8 @@ function makeValidacao(data) {
 
     mascara += verificaRadioPendenteValidar(data)
 
-    mascara = posicionar(mascara)
+    e = new Editor()
+    mascara = e.posicionar(mascara)
 
     return mascara
 }
