@@ -33,9 +33,7 @@ class Editor {
     }
 
     posicionar(palavra) {
-
-        palavra = `& ${palavra} &`
-        return palavra
+        return `& ${palavra} &`
     }
 
     stc(palavra) {
@@ -45,7 +43,7 @@ class Editor {
 
         for (let letra in palavra) {
 
-            if (letra == (78 * linha)) {
+            if (letra == (75 * linha)) {
 
                 linha += 1
 
@@ -68,37 +66,6 @@ class Editor {
                     } else {
                         palavra = palavra.substr(0, letra_) + "\n" + palavra.substr(letra_ + 1);
                     }
-
-                    // if (linha == 8) {
-
-                    //     let stc = document.querySelector("#stc")
-
-                    //     let textArea = document.createElement("textarea")
-                    //     textArea.classList.add("textarea")
-                    //     textArea.id = "editor1"
-                    //     textArea.rows = 10
-
-                    //     let button = document.createElement("button")
-                    //     button.classList.add("button", "is-info")
-                    //     button.onclick = editorCopiar2
-                    //     button.innerHTML = "Copiar"
-
-                    //     let p_button = document.createElement("p")
-                    //     p_button.classList.add("control")
-                    //     p_button.appendChild(button)
-
-                    //     let div_button = document.createElement("div")
-                    //     div_button.classList.add("field")
-                    //     div_button.appendChild(p_button)
-
-                    //     stc.appendChild(div_button)
-                    //     stc.appendChild(textArea)
-
-                    //     textArea.value = palavra.substr(letra_ + 1)
-
-                    // } else {
-                    //     palavra = palavra.substr(0, letra_) + "\n" + palavra.substr(letra_ + 1);
-                    // }
                 }
             }
         }
@@ -152,12 +119,6 @@ function editorCopiar() {
 
     copyToClipboard(editorTextArea.value)
 
-}
-
-function editorCopiar2(id) {
-    e2 = document.querySelector("#editor1")
-
-    copyToClipboard(e2.value)
 }
 
 function editorLimpar() {
