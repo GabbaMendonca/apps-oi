@@ -117,8 +117,7 @@ function getViewEncerramento() {
 
 function verificaRadioPendenteValidar(data) {
 
-    date = getDate()
-    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00 H"
+    dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
 
     // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
     // Para isso usamos um for onde percorremos as opções
@@ -218,8 +217,7 @@ function makeEncerramento(data) {
     // Se não estiver prenche com a data atual.
     if (data.encerramento == "") {
 
-        d = getDate()
-        mascara += `FALHA FIM: ${d.dia}/${d.mes}/${d.ano} ${d.hora}:${d.minuto}\n`
+        mascara += `FALHA FIM: ${moment().format("DD/MM/YYYY kk:mm:ss")}\n`
 
     } else {
         mascara += `FALHA FIM: ${data.encerramento}\n`
