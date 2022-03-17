@@ -3,12 +3,53 @@
     color: aliceblue;
 } */
 
+
+/* INFORMAÇÕES */
+
+.my-instruction {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.my-hide {
+    display: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: small;
+}
+
+.my-instruction:hover+.my-hide {
+    display: block;
+}
+
 .hero-bory-padding-top {
     padding-top: 15px;
 }
 
 .adjustment-padding-top {
     padding-top: 6px;
+}
+
+
+/* /INFORMAÇÕES */
+
+.my-card {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.my-label {
+    text-align: center;
+}
+
+.my-info {
+    color: #363636 !important;
+    border-color: #b5b5b5 !important;
+}
+
+.my-info:hover {
+    color: #fff !important;
 }
 
 
