@@ -133,7 +133,7 @@ function verificaRadioPendenteValidar(data) {
             switch (data["radioPendenteCliente"][i].value) {
                 case '0':
 
-                    return "\nPENDENTE VALIDAR COM CPD " + dataValidacao
+                    return "\nPENDENTE VALIDAR COM CPD/RESIDENTE " + dataValidacao
 
                 case '1':
 
@@ -141,7 +141,7 @@ function verificaRadioPendenteValidar(data) {
 
                 case '2':
 
-                    return "\nSOLICITADO VALIDAÇÃO AO CPD"
+                    return "\nSOLICITADO VALIDAÇÃO AO CPD/RESIDENTE"
 
                 case '3':
 
@@ -257,8 +257,6 @@ function makeEncerramento(data) {
 
 function makeValidacao(data) {
 
-
-
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}`
 
@@ -354,6 +352,7 @@ class Mascara {
         document.querySelector("#dataNormalizacao").value = ""
         document.querySelector("#router").value = ""
         document.querySelector("#validacao").value = ""
+        document.querySelector("#telefone").value = ""
         document.querySelector("#senha").value = ""
         document.querySelector("#outraCausa").value = ""
         document.querySelector("#checkboxCausaCliente").checked = false
@@ -492,7 +491,7 @@ function buttonOutraCausa() {
 }
 
 function buttonCasoNovo() {
-    copyToClipboard("CASO NOVO. EM ANALISE.")
+    copyToClipboard("CASO NOVO. EM ANALISE.\n& CASO EM TRIAGEM NA REDE. &")
 }
 
 function buttonEncerrado() {
