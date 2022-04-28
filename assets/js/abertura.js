@@ -46,6 +46,7 @@ class Abertura {
         data["abReincidente"] = document.getElementsByName("abRadioReincidente")
         data["abBackup"] = document.getElementsByName("abBackup")
 
+        data["abPerimetro"] = document.getElementsByName("abPerimetro")
 
         // Log
         data["log"] = textareaLog.value
@@ -75,12 +76,17 @@ class Abertura {
 
     _makeMascara(data) {
 
-
         // radio com reset, eletrica e testes
         let radio = {
             '0': 'SIM',
             '1': 'NAO',
             '2': 'N/A',
+            'false': '',
+        }
+
+        let radio2 = {
+            '0': 'VTAL',
+            '1': 'OI',
             'false': '',
         }
 
@@ -96,13 +102,15 @@ class Abertura {
         let opcReincidente = radio[verificaRadio(data["abReincidente"])]
         let opcBackup = radio[verificaRadio(data["abBackup"])]
 
+        let opcPerimetro = radio2[verificaRadio(data.abPerimetro)]
+
         // let opcCritico = radio1[verificaRadio(this._data["abCritico"])]
         // let opcTS = radio2[verificaRadio(data.abTs)]
 
 
         let mascara = `MASCARA DE ABERTURA\n`
 
-        mascara += `PREMIUM | PERIMETRO: VTAL - PROTOCOLO DO CLIENTE: `
+        mascara += `PREMIUM | PERIMETRO: ${opcPerimetro} - PROTOCOLO DO CLIENTE: `
 
         // Verifica se cliente tem chamado interno
         if (data.abChamadoInterno != '') {
@@ -129,10 +137,10 @@ class Abertura {
             mascara += `ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha.toUpperCase()}\n`
         }
 
-        mascara += `CHECKLIST: REALIZADO RESET?: ${opcReset} / SEM ENERGIA?: ${opcEletrica} / AUTORIZA PARAR TESTES?: ${opcTestes}\n`
-        mascara += `CHECKLIST: SINAL 103? ${opc103} / SINAL 104? ${opc104} / SINAL 109? ${opc109}\n`
+        mascara += `CHECKLIST: REALIZADO RESET?:${opcReset}/SEM ENERGIA?:${opcEletrica}/AUTORIZA PARAR TESTES?:${opcTestes}\n`
+        mascara += `CHECKLIST: SINAL 103?${opc103}/SINAL 104?${opc104}/SINAL 109?${opc109}\n`
 
-        mascara += `DESCRICAO: PROATIVO: ${opcProativo} / REINCIDENTE: ${opcReincidente} / POSSUI BACKUP ATIVO: ${opcBackup}\n`
+        mascara += `DESCRICAO: PROATIVO:${opcProativo} / REINCIDENTE:${opcReincidente} / POSSUI BACKUP ATIVO:${opcBackup}\n`
         mascara += `ENCERRAMENTO/AGENDAMENTO : 0800 282 5231 1/5/5\n`
         mascara += `${data.abDescricao}`
 
