@@ -1,4 +1,4 @@
-<link href="retro.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/retro.css" rel="stylesheet" type="text/css" />
 
 # Códigos de Encerramento
 

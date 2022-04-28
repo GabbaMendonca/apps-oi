@@ -7,7 +7,7 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
     <title>Apps OI</title>
 </head>
@@ -141,228 +141,199 @@
                     <div class="tile is-parent">
                         <div class="tile is-child">
 
-                            <!-- Campo do select e botões -->
-                            <div class="field">
 
-                                <!-- Usando o elemento level para alinha os botoẽs -->
-                                <div class="level">
+                            <!-- Card 1 -->
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
 
-                                    <!-- Left side - onde esta o select -->
-                                    <div class="level-left">
+                                        <label class="label my-label">Calcular a Hora de Normalização</label>
 
-                                        <!-- select -->
-                                        <!-- <div class="select is-small">
-											<select id="falha">
-											<option value="Inoperante" selected>Inoperante</option>
-											<option value="BaixoDesempenho">Baixo Desempenho</option>
-										</select>
-										</div> -->
-                                        <!-- select -->
+                                        <!-- calcular tempo do router -->
+                                        <div class="field">
 
-                                    </div>
+                                            <label class="label is-small">Tempo UP do Router<i class="fas fa-info-circle my-instruction"></i>
+                                                <div class="my-hide">Insira o tempo que o <strong>BGP</strong> esta <strong>UP</strong> para realizar o calculo da <strong>Data de Normaliação</strong> do circuito.</div>
+                                            </label>
 
-                                    <!-- Right side - onde estão os botoẽs -->
-                                    <div class="level-right">
+                                            <div class="field is-grouped">
 
-                                        <!-- buttons -->
-                                        <div class="buttons are-small">
-                                            <button class="button is-info" onclick="buttonLimpar()">Limpar</button>
-                                            <button class="button is-info" onclick="buttonLog()">Log</button>
+                                                <div class="control has-icons-left has-icons-right is-expanded">
+                                                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                                                    <span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+                                                </div>
+
+                                                <!-- buttons -->
+                                                <p class="control">
+                                                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">Calcular</a>
+                                                </p>
+                                                <!-- /buttons -->
+
+                                            </div>
+
                                         </div>
-                                        <!-- /buttons -->
+                                        <!-- /calcular tempo do router -->
+
+                                        <!-- data de normalização -->
+                                        <div class="field">
+
+                                            <label class="label is-small">Data de Normalização<i class="fas fa-info-circle my-instruction"></i>
+                                                <div class="my-hide">Você pode usar a data em que o circuito normalizou para gerar a <strong>mascara de encerramento</strong> ou <strong>mensagens rápidas </strong>.</div>
+                                            </label>
+
+                                            <div class="field is-grouped">
+
+                                                <div class="control has-icons-left has-icons-right is-expanded">
+                                                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                                    <span class="icon is-small is-left">
+                                                                    <i class="fas fa-calendar-check"></i>
+                                                                </span>
+                                                </div>
+
+                                                <!-- buttons -->
+                                                <p class="control">
+                                                    <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">Copiar</a>
+                                                </p>
+                                                <!-- /buttons -->
+
+                                            </div>
+
+                                        </div>
+                                        <!-- data de normalização -->
 
                                     </div>
-
                                 </div>
-                                <!-- /Usando o elemento level para alinha os botoẽs -->
-
                             </div>
-                            <!-- /Campo do select e botões -->
+                            <!-- /Card 1 -->
 
-                            <!-- data de abertura -->
-                            <div class="field">
+                            <!-- Card 2 -->
+                            <div class="card my-card">
+                                <div class="card-content">
+                                    <div class="content">
 
-                                <label class="label is-small">Data de Abertura</label>
+                                        <label class="label my-label">Mascara de Encerramento</label>
 
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                    <span class="icon is-small is-left">
-										<i class="fas fa-calendar-minus"></i>
-									</span>
-                                </div>
+                                        <!-- data de abertura -->
+                                        <div class="field">
 
-                            </div>
-                            <!-- data de abertura -->
+                                            <label class="label is-small">Data de Abertura<i class="fas fa-info-circle is my-instruction"></i>
+                                                <div class="my-hide">Insira a data de abertura do reparo.</div>
+                                            </label>
 
-                            <!-- data de abertura -->
-                            <div class="field">
+                                            <div class="control has-icons-left has-icons-right">
+                                                <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                                <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
+                                            </div>
 
-                                <label class="label is-small">Data do encerramento</label>
+                                        </div>
+                                        <!-- /data de abertura -->
 
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="dataEncerramento" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                    <p class="help is-danger">Deixar em branco inseri a hora atual.</p>
-                                    <span class="icon is-small is-left">
-										<i class="fas fa-calendar-minus"></i>
-									</span>
-                                </div>
+                                        <!-- data de Encerramento -->
+                                        <div class="field">
 
-                            </div>
-                            <!-- data de abertura -->
+                                            <label class="label is-small">Data do encerramento<i class="fas fa-info-circle is my-instruction"></i>
+                                                <div class="my-hide">Hora em que o reparo foi validado com o cliente.</div>
+                                            </label>
 
-                            <!-- linha -->
-                            <!-- <hr> -->
+                                            <div class="control has-icons-left has-icons-right">
+                                                <input id="dataEncerramento" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                                <p class="help is-danger">Deixar em branco inseri a hora atual.</p>
+                                                <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
+                                            </div>
 
-                            <!-- data de normalização -->
-                            <div class="field">
+                                        </div>
+                                        <!-- /data de Encerramento -->
 
-                                <label class="label is-small">Data de Normalização</label>
+                                        <!-- linha -->
+                                        <hr>
 
-                                <div class="field is-grouped">
+                                        <!-- Campo validação e radio buttons -->
+                                        <div class="field">
 
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                        <span class="icon is-small is-left">
-										<i class="fas fa-calendar-check"></i>
-									</span>
+                                            <label class="label is-small">Validado por<i class="fas fa-info-circle is my-instruction"></i>
+                                                <div class="my-hide">Nome de quem validou o reparo.</div>
+                                            </label>
+
+                                            <!-- Campo validação -->
+                                            <div class="field is-grouped">
+
+                                                <!-- Campo validação -->
+                                                <div class="control has-icons-left has-icons-right is-expanded">
+                                                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                                                    <span class="icon is-small is-left"><i class="fas fa-user-tie"></i></span>
+                                                </div>
+                                                <!-- Campo validação -->
+
+                                                <!-- buttons -->
+                                                <p class="control">
+                                                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">Copiar</a>
+                                                </p>
+                                                <!-- /buttons -->
+
+                                            </div>
+                                            <!-- /Campo validação -->
+
+                                            <!-- Radio buttons -->
+                                            <div class="field">
+                                                <label class="radio"><input type="radio" name="radioValidacao" value="0" checked> CPD </label>
+                                                <label class="radio"><input type="radio" name="radioValidacao" value="1"> Residente </label>
+                                                <label class="radio"><input type="radio" name="radioValidacao" value="2"> CGS </label>
+                                            </div>
+                                            <!-- /Radio buttons -->
+
+                                        </div>
+                                        <!-- Campo validação e radio buttons -->
+
+                                        <!-- campo telefone -->
+                                        <div class="field">
+                                            <label class="label is-small">Telefone</label>
+                                            <div class="control has-icons-left has-icons-right">
+                                                <input id="telefone" class="input is-small" type="text" placeholder="DDD NUMERO">
+                                                <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                            </div>
+                                        </div>
+                                        <!-- /campo telefone -->
+
+                                        <!-- linha -->
+                                        <hr>
+
+                                        <!-- senha -->
+                                        <div class="field">
+
+                                            <label class="label is-small">Senha<i class="fas fa-info-circle is my-instruction"></i>
+                                                <div class="my-hide">Insira a senha de encerramento.
+                                                <br>Se não tiver senha deixe em branco.
+                                                <br>Caso seja reparo manual marque a caixa abaixo.</div>
+                                            </label>
+
+                                            <div class="field is-grouped">
+                                                <div class="control has-icons-left has-icons-right is-expanded">
+                                                    <input id="senha" class="input is-small" type="text" placeholder="*****">
+                                                    <span class="icon is-small is-left"><i class="fas fa-unlock-alt"></i></span>
+                                                </div>
+
+                                                <p class="control">
+                                                    <a class="button is-small is-info" onclick="buttonCopySenha()">Copiar</a>
+                                                </p>
+
+                                            </div>
+
+                                            <label class="checkbox"><input id="checkboxChamadoManual" value="manual" type="checkbox"> Reparo manual, não possui senha </label>
+                                        </div>
+                                        <!-- /senha -->
+
+
                                     </div>
-
-                                    <!-- buttons -->
-                                    <p class="control">
-                                        <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">
-										Copiar
-									</a>
-                                    </p>
-                                    <!-- /buttons -->
-
-                                </div>
-
-                            </div>
-                            <!-- data de normalização -->
-
-                            <!-- calcular tempo do router -->
-                            <div class="field">
-
-                                <label class="label is-small">Tempo UP do Router</label>
-
-                                <div class="field is-grouped">
-
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
-                                        <span class="icon is-small is-left">
-										<i class="fas fa-clock"></i>
-									</span>
-                                    </div>
-
-                                    <!-- buttons -->
-                                    <p class="control">
-                                        <a onclick="buttonCalcularRouter()" class="button is-small is-info">
-										Calcular
-									</a>
-                                    </p>
-                                    <!-- /buttons -->
-
-                                </div>
-
-                            </div>
-                            <!-- /calcular tempo do router -->
-
-                            <!-- linha -->
-                            <!-- <hr> -->
-
-                            <!-- Campo validação e radio buttons -->
-                            <div class="field">
-
-                                <label class="label is-small">Validado por</label>
-
-                                <!-- Campo validação -->
-                                <div class="field is-grouped">
-
-                                    <!-- Campo validação -->
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
-                                        <span class="icon is-small is-left">
-										<i class="fas fa-user-tie"></i>
-									</span>
-                                    </div>
-                                    <!-- Campo validação -->
-
-                                    <!-- buttons -->
-                                    <p class="control">
-                                        <a class="button is-small is-info" onclick="buttonCopyValidacao()">
-										Copiar
-									</a>
-                                    </p>
-                                    <!-- /buttons -->
-
-                                </div>
-                                <!-- /Campo validação -->
-
-                                <!-- Radio buttons -->
-                                <div class="field">
-
-                                    <label class="radio">
-										<input type="radio" name="radioValidacao" value="0" checked>
-										CPD
-									</label>
-
-                                    <label class="radio">
-										<input type="radio" name="radioValidacao" value="1">
-										Residente
-									</label>
-
-                                    <label class="radio">
-										<input type="radio" name="radioValidacao" value="2">
-										CGS
-									</label>
-
-                                </div>
-                                <!-- /Radio buttons -->
-
-                            </div>
-                            <!-- Campo validação e radio buttons -->
-
-                            <!-- campo telefone -->
-                            <div class="field">
-                                <label class="label is-small">Telefone</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input id="telefone" class="input is-small" type="text" placeholder="DDD NUMERO">
-                                    <span class="icon is-small is-left">
-								<i class="fas fa-headset"></i>
-							</span>
                                 </div>
                             </div>
-                            <!-- /campo telefone -->
+                            <!-- /Card 2 -->
 
-                            <!-- senha -->
-                            <div class="field">
-
-                                <label class="label is-small">Senha</label>
-
-                                <div class="field is-grouped">
-
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="senha" class="input is-small" type="text" placeholder="*****">
-                                        <span class="icon is-small is-left">
-										<i class="fas fa-unlock-alt"></i>
-									</span>
-                                    </div>
-
-                                    <p class="control">
-                                        <a class="button is-small is-info" onclick="buttonCopySenha()">
-										Copiar
-									</a>
-                                    </p>
-
-                                </div>
-
-                                <label class="checkbox">
-									<input id="checkboxChamadoManual" value="manual" type="checkbox">
-									Manual, Não possui senha ?
-								</label>
-
+                            <!-- Botões -->
+                            <div class="buttons are-small">
+                                <button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
+                                <button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
                             </div>
-                            <!-- /senha -->
+                            <!-- /Botões -->
 
                         </div>
                     </div>
@@ -371,114 +342,113 @@
                     <!-- BLOCO CENTRO -->
                     <div class="tile is-parent is-vertical">
 
-                        <!-- buttons cliente -->
-                        <div class="tile is-child">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                            <div class="field">
+                                    <label class="label my-label">Encerramento<i class="fas fa-info-circle my-instruction"></i>
+                                        <div class="my-hide">Abaixo estão as <strong>opções mais comuns</strong> de encerramento.
+                                            <br>Basta <strong>clicar em um botão</strong> para <strong>gerar a mascara</strong> de encerramento.
+                                            <br>Caso o seu motivo não estaja aqui <strong>use a opção Outra Causa.</strong></div>
+                                    </label>
 
-                                <label class="label">Causa Cliente</label>
-
-                                <div class="field">
-
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonReclamacaoIndevida()">
-										Abertura Indevida
-									</button>
-
-                                </div>
-                                <div class="field">
-
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonLocalSemEnergia()">
-										Local Sem Energia
-									</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- /buttons cliente -->
-
-                        <!-- buttons operadora -->
-                        <div class="tile is-child">
-
-                            <div class="field">
-
-                                <label class="label">Causa Operadora</label>
-
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
-                                </div>
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
-                                </div>
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonModemQueimado()">Modem Queimado</button>
-                                </div>
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
-                                </div>
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
-                                </div>
-                                <div class="field">
-                                    <button class="button is-small is-fullwidth gap-button" onclick="buttonRedeaManobra()">Redea - Manobra</button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /buttons operadora -->
-
-                        <!-- buttons voz -->
-                        <div class="tile is-child">
-
-                            <div class="field">
-
-                                <label class="label">Voz</label>
-
-                                <button class="button is-small is-fullwidth gap-button" onclick="buttonFalhaPABX()">Falha no PABX</button>
-
-                            </div>
-
-                        </div>
-                        <!-- /buttons voz -->
-
-                        <!-- buttons outra causa -->
-                        <div class="tile is-child">
-
-                            <div class="field">
-
-                                <!-- input -->
-                                <div class="field">
-                                    <div class="control has-icons-left has-icons-right is-expanded">
-                                        <input id="outraCausa" class="input is-small" type="text" placeholder="Bug">
-                                        <span class="icon is-small is-left"><i class="fas fa-bug"></i></span>
-                                    </div>
-                                </div>
-                                <!-- /input -->
-
-                                <!-- button -->
-                                <div class="field">
-
-                                    <button class="button is-small is-fullwidth" onclick="buttonOutraCausa()">Outra Causa</button>
-
-                                </div>
-                                <!-- /button -->
-
-                                <!-- checkbox -->
-                                <div class="field">
+                                    <!-- buttons cliente -->
                                     <div class="field">
-                                        <label class="checkbox">
-											<input id="checkboxCausaCliente" value="cliente" type="checkbox">
-											Causa Cliente
-										?</label>
+
+                                        <label class="label">Causa Cliente</label>
+
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonReclamacaoIndevida()">Abertura Indevida</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonLocalSemEnergia()">Local Sem Energia</button>
+                                        </div>
+
                                     </div>
+                                    <!-- /buttons cliente -->
+
+                                    <!-- buttons operadora -->
+                                    <div class="field">
+
+                                        <label class="label">Causa Operadora</label>
+
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonCausaNaoDetectada()">Causa Não Detectada</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonGabineteQueimado()">Gabinete Queimado</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonModemQueimado()">Modem Queimado</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonFibraRompimento()">Fibra - Rompimento</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonRedeaRompimento()">Redea - Rompimento</button>
+                                        </div>
+                                        <div class="field">
+                                            <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonRedeaManobra()">Redea - Manobra</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- /buttons operadora -->
+
+                                    <!-- buttons voz -->
+                                    <div class="field">
+
+                                        <label class="label">Voz</label>
+
+                                        <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonFalhaPABX()">Falha no PABX</button>
+
+                                    </div>
+
+                                    <!-- /buttons voz -->
+
+                                    <!-- buttons outra causa -->
+                                    <div class="tile is-child">
+
+                                        <div class="field">
+
+                                            <label class="label">Outra Causa<i class="fas fa-info-circle my-instruction"></i>
+                                                <div class="my-hide">Escreva no campo abaixo <strong>Bug</strong>  qual a falha caso ela for diferente dos motivos acima.
+                                                    <br>Se for causa cliente marque a caixa <strong>"Causa Cliente ?"</strong>.</div>
+                                            </label>
+
+                                            <!-- input -->
+                                            <div class="field">
+                                                <div class="control has-icons-left has-icons-right is-expanded">
+                                                    <input id="outraCausa" class="input is-small is-info" type="text" placeholder="Bug">
+                                                    <span class="icon is-small is-left"><i class="fas fa-bug"></i></span>
+                                                </div>
+                                            </div>
+                                            <!-- /input -->
+
+                                            <!-- button -->
+                                            <div class="field">
+
+                                                <button class="button is-small is-fullwidth is-info" onclick="buttonOutraCausa()">Outra Causa</button>
+
+                                            </div>
+                                            <!-- /button -->
+
+                                            <!-- checkbox -->
+                                            <div class="field">
+                                                <div class="field">
+                                                    <label class="checkbox"><input id="checkboxCausaCliente" value="cliente" type="checkbox"> Causa Cliente ? </label>
+                                                </div>
+                                            </div>
+                                            <!-- /checkbox -->
+
+                                        </div>
+
+                                    </div>
+                                    <!-- buttons outra causa -->
+
                                 </div>
-                                <!-- /checkbox -->
-
                             </div>
-
                         </div>
-                        <!-- buttons outra causa -->
+
                     </div>
                     <!-- /BLOCO CENTRO -->
 
@@ -486,108 +456,134 @@
                     <div class="tile is-parent">
                         <div class="tile is-child">
 
-                            <!-- Atualizações -->
-                            <div class="field">
+                            <!-- Card Mensagens Rapidas -->
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
 
-                                <label class="label">Atualizações</label>
+                                        <!-- Atualizações -->
+                                        <div class="field">
 
-                                <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;">
-									<input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox">
-									Aguardando Validação ?</label>
+                                            <label class="label my-label">Atualizações<i class="fas fa-info-circle my-instruction"></i>
+                                                <div class="my-hide">Se como eu você não gosta de digitar sempre a mesma informação,
+                                                    esta aréa fornece <strong>mensagens de atualização rapida</strong>
+                                                    que são comuns no 360 e ferramentas de atualização.
+                                                    <strong>Todas são geradas com & para posicionamento.</strong>
+                                                    Basta <strong>'setar' a caixa "Mensagens Rapidas"</strong>, e escolher uma opção abaixo para <strong>modificar o motivo da mensagem</strong>,
+                                                    use os <strong>botões do card encerramento</strong> para gerar a atualização. </div>
+                                            </label>
 
-                                <div class="field">
+                                            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;"><input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox"> Mensagens Rapidas </label>
 
-                                    <div class="control">
-                                        <label class="radio">
-										<input type="radio" name="radioPendenteCliente" value="0" checked>
-										Pendente validar com CPD amanhã</label>
-                                    </div>
+                                            <label class="label is-small">Motivo da Mensagem</label>
 
-                                    <div class="control">
-                                        <label class="radio">
+                                            <div class="field">
+
+                                                <div class="control">
+                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="0" checked> Pendente validar com CPD/Residente amanhã </label>
+                                                </div>
+
+                                                <!-- <div class="control">
+                                                    <label class="radio">
 									<input type="radio" name="radioPendenteCliente" value="1">
-									Pendente validar com Residente amanhã</label>
-                                    </div>
+									Pendente validar com Residente amanhã</label> 
+                                            </div> -->
 
-                                    <div class="control">
-                                        <label class="radio">
-									<input type="radio" name="radioPendenteCliente" value="2">
-									Solicitado validação ao CPD</label>
-                                    </div>
+                                                <div class="control">
+                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="2"> Solicitado validação ao CPD/Residente </label>
+                                                </div>
 
-                                    <div class="control">
-                                        <label class="radio">
-									<input type="radio" name="radioPendenteCliente" value="3">
-									Monitoração por 24 h</label>
-                                    </div>
+                                                <div class="control">
+                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="3"> Monitoração por 24 h </label>
+                                                </div>
 
-                                    <div class="control">
-                                        <label class="radio">
-									<input type="radio" name="radioPendenteCliente" value="5">
-									Pendente Baixa do Posto</label>
-                                    </div>
+                                                <div class="control">
+                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="5"> Pendente Baixa do Posto </label>
+                                                </div>
 
-                                    <div class="control">
-                                        <label class="radio">
-									<input type="radio" name="radioPendenteCliente" value="4">
-									Pendente Diagnostico</label>
-                                    </div>
+                                                <div class="control">
+                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="4"> Pendente Diagnostico </label>
+                                                </div>
 
+                                            </div>
+
+                                        </div>
+                                        <!-- /Atualizações -->
+
+                                    </div>
                                 </div>
-
                             </div>
-                            <!-- /Atualizações -->
+                            <!-- /Card Mensagens Rapidas -->
 
-                            <!-- Mensagens Rapidas -->
-                            <div class="field">
 
-                                <label class="label is-small">Mensagens Rapidas</label>
+                            <!-- Card Mensagens Instantâneas -->
+                            <div class="card my-card">
+                                <div class="card-content">
+                                    <div class="content">
 
-                                <div class="field">
 
-                                    <button class="button is-small is-fullwidth" onclick="buttonCasoNovo()">
-										Caso Novo
-									</button>
+                                        <div class="field">
 
-                                </div>
+                                            <label class="label is-small">Mensagens Instantâneas<i class="fas fa-info-circle my-instruction"></i>
+                                                <div class="my-hide">Aqui temos outras mensagens que usamos com frequência.
+                                                    <br>Basta clicar no botão para usar.</div>
+                                            </label>
 
-                                <div class="field">
+                                            <div class="field">
 
-                                    <button class="button is-small is-fullwidth" onclick="buttonEncerrado()">
-										Encerrado
-									</button>
+                                                <button class="button is-small is-fullwidth is-primary" onclick="buttonCasoNovo()">Caso Novo</button>
 
-                                </div>
+                                            </div>
 
-                                <div class="field has-addons">
+                                            <div class="field">
 
-                                    <button class="button is-small is-fullwidth" onclick="buttonAgendadoPara()" disabled>
-										Agendado Para
-									</button>
+                                                <button class="button is-small is-fullwidth is-primary" onclick="buttonEncerrado()">Encerrado</button>
 
-                                    <div class="field">
-                                        <input class="input is-small" type="date" disabled>
+                                            </div>
+
+                                            <div class="field has-addons">
+
+                                                <button class="button is-small is-fullwidth" onclick="buttonAgendadoPara()" disabled>Agendado Para</button>
+
+                                                <div class="field">
+                                                    <input class="input is-small" type="date" disabled>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+
                                     </div>
-
                                 </div>
-
-
                             </div>
-                            <!-- /Mensagens Rapidas -->
+                            <!-- /Card Mensagens Instantâneas -->
 
-                            <div class="field">
-                                <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
-                                    <button class="button is-link is-light">Códigos de Encerramento R2</button>
-                                </a>
+
+                            <!-- Card Codigos de encerramento -->
+                            <div class="card my-card">
+                                <div class="card-content">
+                                    <div class="content">
+
+                                        <div class="field">
+                                            <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
+                                                <button class="button is-small is-link is-fullwidth">Códigos de Encerramento R2</button>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
+                        <!-- /BLOCO DIREITO -->
+
                     </div>
-                    <!-- /BLOCO DIREITO -->
+                    <!-- /Bloco ancestral que envolve todos os outros blocos -->
+                    <!-- /Grid de blocos para dividir em 3 partes a tela -->
 
                 </div>
-                <!-- /Bloco ancestral que envolve todos os outros blocos -->
-                <!-- /Grid de blocos para dividir em 3 partes a tela -->
-
             </div>
             <!-- /ENCERRAMENTO -->
 
@@ -603,205 +599,108 @@
                     <!-- COLUNA DA ESQUERDA -->
                     <div class="column">
 
+                        <!-- buttons topo - limpar e log-->
+                        <div class="field">
+                            <div class="buttons">
+                                <button class="button is-info is-small is-fullwidth" onclick="abButtonLimpar()">Limpar</button>
+                                <button class="button is-info is-small is-fullwidth" onclick="buttonLog()">Log</button>
+                            </div>
+                        </div>
+                        <!-- /buttons topo - limpar e log-->
+
                         <!-- Select - Reclamação -->
                         <!-- Campo do select e botões -->
                         <div class="field">
 
                             <label class="label is-small">Reclamação <i class="fas fa-bug"></i></label>
 
-                            <!-- Usando o elemento level para alinha os botoẽs -->
-                            <div class="level">
-
-                                <!-- Left side - onde esta o select -->
-                                <div class="level-left">
-
-                                    <!-- select -->
-                                    <div class="select is-small">
-                                        <select id="abFalha">
-										<option value="Inoperante" selected>Inoperante</option>
-										<option value="BaixoDesempenho">Intermitente</option>
-										<option value="BaixoDesempenho">Perda de Pacotes</option>
-										<option value="BaixoDesempenho">Lentidão</option>
-										<option value="BaixoDesempenho">Configuração</option>
+                            <!-- select -->
+                            <div class="select is-small is-fullwidth">
+                                <select id="abFalha">
+										<option selected>Inoperante</option>
+										<option>Intermitente</option>
+										<option>Perda de Pacotes</option>
+										<option>Taxa de Erro</option>
+										<option>Lentidão</option>
+										<option>Configuração</option>
+										<option>DDR - Inoperante</option>
+										<option>DDR - Intermitente</option>
+										<option>DDR - Não completa p/ num específico</option>
 									</select>
-                                    </div>
-                                    <!-- select -->
-
-                                </div>
-
-                                <!-- Right side - onde estão os botoẽs -->
-                                <div class="level-right">
-
-                                    <!-- buttons -->
-                                    <div class="buttons">
-                                        <button class="button is-info" onclick="abButtonLimpar()">Limpar</button>
-                                        <button class="button is-info" onclick="buttonLog()">Log</button>
-                                    </div>
-                                    <!-- /buttons -->
-
-                                </div>
-
                             </div>
-                            <!-- /Usando o elemento level para alinha os botoẽs -->
+                            <!-- select -->
 
                         </div>
                         <!-- /Campo do select e botões -->
                         <!-- /Select - Reclamação -->
 
-                        <!-- radio - Reset -->
-                        <div class="field">
+                        <!-- Radio Buttons  -->
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                            <label class="label is-small">Realizado Reset ?</label>
-                            <div class="field is-narrow">
+                                    <label class="label my-label">Troubleshooting<i class="fas fa-info-circle my-instruction"></i>
+                                        <div class="my-hide">Abaixo estão as opções para TS.</div>
+                                    </label>
 
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abReset" value="0">
-									Sim
-									</label>
+                                    <!-- radio - Reset -->
+                                    <div class="field">
+                                        <label class="label is-small">Realizado Reset ?</label>
 
-                                    <label class="radio">
-									<input type="radio" name="abReset" value="1" checked>
-									Não
-									</label>
+                                        <label class="radio"><input type="radio" name="abReset" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abReset" value="1" checked> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Reset -->
 
-                                    <!-- <label class="radio">
-									<input type="radio" name="abReset" value="2" checked>
-									Sem Confirmação
-									</label> -->
+                                    <!-- radio - Eletrica -->
+                                    <div class="field">
+                                        <label class="label is-small">Sem Energia ?</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="1"> Não</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="2" checked> Sem Confirmação</label>
+                                    </div>
+                                    <!-- /radio - Eletrica -->
+
+                                    <!-- radio - Testes -->
+                                    <div class="field">
+                                        <label class="label is-small">Autoriza parar para testes ?</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="0" checked> Sim</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="1"> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abTestes" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Testes -->
+
+                                    <!-- radio - 103 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 103 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 103 -->
+
+                                    <!-- radio - 104 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 104 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 104 -->
+
+                                    <!-- radio - 109 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 109 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 109 -->
+
                                 </div>
-
                             </div>
-
                         </div>
-                        <!-- /radio - Reset -->
-
-                        <!-- radio - Eletrica -->
-                        <div class="field">
-
-                            <label class="label is-small">Sem Energia ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="1">
-									Não
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="2" checked>
-									Sem Confirmação
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - Eletrica -->
-
-
-
-                        <!-- radio - Testes -->
-                        <div class="field">
-
-                            <label class="label is-small">Autoriza parar para testes ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abTestes" value="0" checked>
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abTestes" value="1">
-									Não
-									</label>
-
-                                    <!-- <label class="radio">
-									<input type="radio" name="abTestes" value="2" checked>
-									Sem Confirmação
-									</label> -->
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - Testes -->
-
-                        <!-- radio - 103 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 103 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab103" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab103" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 103 -->
-
-                        <!-- radio - 104 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 104 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab104" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab104" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 104 -->
-
-                        <!-- radio - 109 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 109 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab109" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab109" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 109 -->
+                        <!-- /Card 1 -->
+                        <!-- /Radio Buttons  -->
 
                     </div>
                     <!-- /COLUNA DA ESQUERDA -->
@@ -809,77 +708,87 @@
                     <!-- COLUNA DO CENTRO -->
                     <div class="column">
 
-                        <!-- campo cliente -->
-                        <div class="field">
-                            <label class="label is-small">Cliente</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abCliente" class="input is-small" type="text">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-ethernet"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo cliente -->
+                        <!-- Card 2 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                        <!-- campo contatos do cpd -->
-                        <div class="field">
-                            <label class="label is-small">Contatos do CPD</label>
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                    <!-- radio - V.tal OI -->
+                                    <div class="field">
+                                        <label class="label is-small">Qual o perímetro ?</label>
+
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - - V.tal OI -->
+
+                                    <!-- campo cliente -->
+                                    <div class="field">
+                                        <label class="label is-small">Cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abCliente" class="input is-small" type="text">
+                                            <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo cliente -->
+
+                                    <!-- campo contatos do cpd -->
+                                    <div class="field">
+                                        <label class="label is-small">Contatos do CPD</label>
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo contatos do cpd -->
+
+                                    <!-- campo horario de acesso -->
+                                    <div class="field">
+                                        <label class="label is-small">Horario de Acesso</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                            <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo horario de acesso -->
+
+                                    <!-- campo chamado interno -->
+                                    <div class="field">
+                                        <label class="label is-small">Chamado Interno do cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo chamado interno -->
+
+                                    <!-- campo email -->
+                                    <div class="field">
+                                        <label class="label is-small">Email</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo email -->
+
+                                    <!-- campo descrição -->
+                                    <div class="field">
+                                        <label class="label is-small">Descrição</label>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo descrição -->
+
                                 </div>
                             </div>
                         </div>
-                        <!-- /campo contatos do cpd -->
-
-                        <!-- campo horario de acesso -->
-                        <div class="field">
-                            <label class="label is-small">Horario de Acesso</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p>
-                                <span class="icon is-small is-left">
-								<i class="fas fa-clock"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo horario de acesso -->
-
-                        <!-- campo chamado interno -->
-                        <div class="field">
-                            <label class="label is-small">Chamado Interno do cliente</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-headset"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo chamado interno -->
-
-                        <!-- campo email -->
-                        <div class="field">
-                            <label class="label is-small">Email</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-headset"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo email -->
-
-                        <!-- campo descrição -->
-                        <div class="field">
-                            <label class="label is-small">Descrição</label>
-
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /campo descrição -->
 
                     </div>
                     <!-- /COLUNA DO CENTRO -->
@@ -887,89 +796,94 @@
                     <!-- COLUNA DA DIREITA -->
                     <div class="column">
 
-                        <label class="label">Informações Complementares</label>
+                        <!-- Card 3 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                        <!-- radio - proativo -->
-                        <div class="field">
+                                    <label class="label">Informações Complementares</label>
 
-                            <label class="label is-small">Proativo ?</label>
-                            <div class="field is-narrow">
+                                    <!-- radio - proativo -->
+                                    <div class="field">
 
-                                <div class="control">
-                                    <label class="radio">
+                                        <label class="label is-small">Proativo ?</label>
+                                        <div class="field is-narrow">
+
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abRadioProativo" value="0" checked>
 									Sim
 									</label>
 
-                                    <label class="radio">
+                                                <label class="radio">
 									<input type="radio" name="abRadioProativo" value="1">
 									Não
 									</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - proativo -->
+                                    </div>
+                                    <!-- /radio - proativo -->
 
-                        <!-- radio - reincidente -->
-                        <div class="field">
+                                    <!-- radio - reincidente -->
+                                    <div class="field">
 
-                            <label class="label is-small">Reincidente ?</label>
-                            <div class="field is-narrow">
+                                        <label class="label is-small">Reincidente ?</label>
+                                        <div class="field is-narrow">
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 											<input type="radio" name="abRadioReincidente" value="0">
 											Sim
 											</label>
 
-                                    <label class="radio">
+                                                <label class="radio">
 											<input type="radio" name="abRadioReincidente" value="1" checked>
 											Não
 											</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - reincidente -->
+                                    </div>
+                                    <!-- /radio - reincidente -->
 
-                        <!-- radio - Backup -->
-                        <div class="field">
+                                    <!-- radio - Backup -->
+                                    <div class="field">
 
-                            <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
+                                        <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
 
-                            <div class="field is-narrow">
+                                        <div class="field is-narrow">
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="0">
 									Sim, possiu backup ativo
 									</label>
-                                </div>
+                                            </div>
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="1">
 									Não, local esta isolado
 									</label>
-                                </div>
+                                            </div>
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="2" checked>
 									Sem Confirmação, cliente não soube informar
 									</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - Backup -->
+                                    </div>
+                                    <!-- /radio - Backup -->
 
-                        <!-- radio - Troubleshooting -->
-                        <!-- <div class="field">
+                                    <!-- radio - Troubleshooting -->
+                                    <!-- <div class="field">
 
 							<label class="label is-small">Troubleshooting</label>
 
@@ -995,15 +909,19 @@
 							</div>
 
 						</div> -->
-                        <!-- /radio - Troubleshooting -->
+                                    <!-- /radio - Troubleshooting -->
 
-                        <!-- Botão -->
-                        <div class="field">
-                            <div class="control">
-                                <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                                    <!-- Botão -->
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Botão -->
+
+                                </div>
                             </div>
                         </div>
-                        <!-- /Botão -->
 
                     </div>
                     <!-- COLUNA DA DIREITA -->
@@ -1019,7 +937,9 @@
                 <div class="columns">
                     <div class="column is-4 is-offset-4">
 
-                        <label class="label">Assunto para Email</label>
+                        <label class="label">Assunto para Email<i class="fas fa-info-circle my-instruction"></i>
+                            <div class="my-hide">Esta sessão serve para fazer o assunto do e-mail de maneira rapida e padrão.</div>
+                        </label>
 
                         <div class="field">
                             <label class="label is-small">Cliente</label>
@@ -1237,25 +1157,35 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
+
+            <p>
+                <strong>Atenção !!!</strong>
+                <br>Este site é mantido e atualizado voluntariamente para agilizar a demanda de trabalho e de maneira nenhuma deve <strong>substituir</strong> algum procedimento ou orientação.
+                <br> Seu compartilhamento e uso é livre.
+            </p>
             <p>
                 <a href="https://bulma.io">
                     <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128" height="24">
                 </a>
             </p>
+
             <p>
-                <strong>Apps OI</strong> by Gabba | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
+                <strong>Apps OI</strong> by Gabriel "Gabba" Mendonça | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
             </p>
+
         </div>
     </footer>
 
     <!-- /FOOTER -->
 
-    <script src="abertura.js"></script>
-    <script src="encerramento.js"></script>
-    <script src="email.js"></script>
-    <script src="modal.js"></script>
-    <script src="editor.js"></script>
-    <script src="utilidade.js"></script>
+    <script src="assets/js/abertura.js"></script>
+    <script src="assets/js/encerramento.js"></script>
+    <script src="assets/js/email.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/editor.js"></script>
+    <script src="assets/js/utilidade.js"></script>
+    <!-- <script src="test.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 
     <script>
         function abertura() {

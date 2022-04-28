@@ -1,122 +1,73 @@
 // === CALCULO DO ROUTER ===
 
+function CalculateDateRouter() {
 
-function getDate() {
+    return {
 
-    let currentDate = {}
+        splitTime: (timeRouterUp) => {
 
-    let date = new Date()
+            /* Recede a tempo que o BGP esta up e devolve um dicionario com as informações splitadas.  */
 
-    currentDate.hora = date.getHours()
-    currentDate.minuto = date.getMinutes()
-    currentDate.dia = date.getDate()
-    currentDate.mes = date.getMonth() + 1
-    currentDate.ano = date.getFullYear()
+            let timeRouter = {}
 
-    return currentDate
+            timeRouterUp = timeRouterUp.toUpperCase()
+
+            if (timeRouterUp.includes("D")) {
+
+                let timeRouterSplit = timeRouterUp.split("D")
+                let timeRouterDay = timeRouterSplit[0]
+
+                timeRouterSplit = timeRouterSplit[1].split("H")
+                let timeRouterHour = timeRouterSplit[0]
+
+                timeRouterSplit = timeRouterSplit[1].split("M")
+                let timeRouterMin = timeRouterSplit[0]
+
+                timeRouter["day"] = timeRouterDay
+                timeRouter["hour"] = timeRouterHour
+                timeRouter["minute"] = timeRouterMin
+
+                return timeRouter
+
+            }
+
+            if (timeRouterUp.includes("H")) {
+
+                let timeRouterSplit = timeRouterUp.split("H")
+                let timeRouterHour = timeRouterSplit[0]
+
+                timeRouterSplit = timeRouterSplit[1].split("M")
+                let timeRouterMin = timeRouterSplit[0]
+
+                timeRouter["hour"] = timeRouterHour
+                timeRouter["minute"] = timeRouterMin
+
+                return timeRouter
+
+            }
+
+            if (timeRouterUp.includes(":")) {
+
+                timeRouterUp = timeRouterUp.split(":")
+
+                timeRouter["hour"] = timeRouterUp[0]
+                timeRouter["minute"] = timeRouterUp[1]
+
+                return timeRouter
+
+            }
+
+        },
+
+        calculateNormalizationDate: (timeRouter) => {
+
+            /* Recebe um dicionario com o tempo que o BGP esta UP,
+            faz a conta e converte para o formato data e hora */
+
+            return moment().subtract(timeRouter).format("DD/MM/YYYY kk:mm:ss");
+        }
+    }
 }
-
-
-function splitTime(routerUp) {
-
-    timeRouter = {}
-
-    let router = routerUp.toUpperCase()
-
-    router = router.split(":")
-
-    if (router.length >= 3) {
-
-        timeRouter["hora"] = router[0]
-        timeRouter["minuto"] = router[1]
-
-    } else {
-
-        router = router[0].split("H")
-        timeRouter["hora"] = router[0]
-
-        router = router[1].split("M")
-        timeRouter["minuto"] = router[0]
-
-    }
-
-    return timeRouter
-}
-
-
-function calculaTimeRouter(date, timeRouter) {
-
-    while (timeRouter.minuto >= 60) {
-
-        // Sempre que o valor em minutos up do router for maior 60 min
-        // vamos dropar 1 hora e subtrair estes 60 min do tempo up do router.
-        // Isso nos permite calcular tempo escritos no formato 00h90m00s
-
-        timeRouter.minuto = timeRouter.minuto - 60
-        date.hora = date.hora - 1
-
-    }
-    if (date.minuto < timeRouter.minuto) {
-
-        // Se minutos do router é maior que o minuto atual,
-        // logo a conta sera a seguinte :
-        // -10 = 10(minuto atual) - 20(tempo up do router)
-        let min = date.minuto - timeRouter.minuto
-
-        // resta -10 que sera subitraido de 60 min referente a hora anterior
-        // usando a propriedade matematica (+ com - igual -)
-        date.minuto = 60 + min
-
-        // e dropamos uma hora da atual
-        date.hora = date.hora - 1
-
-    } else {
-
-        // Se não o resultado não sera negativo
-        // 5 = 10 - 5
-        // Então faremos somente a subtração dos minutos
-
-        date.minuto = date.minuto - timeRouter.minuto
-
-    }
-
-
-    while (timeRouter.hora >= 24) {
-
-        timeRouter.hora = timeRouter.hora - 60
-        date.dia = date.dia - 1
-
-    }
-    if (date.hora < timeRouter.hora) {
-
-        let hora = date.hora - timeRouter.hora
-        date.hora = 24 + hora
-        date.dia = date.dia - 1
-
-    } else {
-
-        date.hora = date.hora - timeRouter.hora
-
-    }
-
-    // Inserimos um zero a esquerda caso o numero se menor que 10
-    date.hora = ("0" + date.hora).slice(-2)
-    date.minuto = ("0" + date.minuto).slice(-2)
-    date.dia = ("0" + date.dia).slice(-2)
-
-    let dataNormalizacao = date.dia + "/" + date.mes + "/" + date.ano + " " + date.hora + ":" + date.minuto + ":00"
-
-    return dataNormalizacao
-}
-
-function router(data) {
-
-    date = getDate()
-    timeRouter = splitTime(data.router)
-
-    return calculaTimeRouter(date, timeRouter)
-}
-
 
 // === CALCULO DO ROUTER ===
 
@@ -166,8 +117,7 @@ function getViewEncerramento() {
 
 function verificaRadioPendenteValidar(data) {
 
-    date = getDate()
-    dataValidacao = (date.dia + 1) + "/" + date.mes + "/" + date.ano + " 09:00 H"
+    dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
 
     // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
     // Para isso usamos um for onde percorremos as opções
@@ -183,7 +133,7 @@ function verificaRadioPendenteValidar(data) {
             switch (data["radioPendenteCliente"][i].value) {
                 case '0':
 
-                    return "\nPENDENTE VALIDAR COM CPD " + dataValidacao
+                    return "\nPENDENTE VALIDAR COM CPD/RESIDENTE " + dataValidacao
 
                 case '1':
 
@@ -191,7 +141,7 @@ function verificaRadioPendenteValidar(data) {
 
                 case '2':
 
-                    return "\nSOLICITADO VALIDAÇÃO AO CPD"
+                    return "\nSOLICITADO VALIDAÇÃO AO CPD/RESIDENTE"
 
                 case '3':
 
@@ -267,8 +217,7 @@ function makeEncerramento(data) {
     // Se não estiver prenche com a data atual.
     if (data.encerramento == "") {
 
-        d = getDate()
-        mascara += `FALHA FIM: ${d.dia}/${d.mes}/${d.ano} ${d.hora}:${d.minuto}\n`
+        mascara += `FALHA FIM: ${moment().format("DD/MM/YYYY kk:mm:ss")}\n`
 
     } else {
         mascara += `FALHA FIM: ${data.encerramento}\n`
@@ -307,8 +256,6 @@ function makeEncerramento(data) {
 }
 
 function makeValidacao(data) {
-
-
 
     let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
         `${data["solucao"]}`
@@ -377,7 +324,12 @@ class Mascara {
     }
 
     calcularRouter() {
-        document.querySelector("#dataNormalizacao").value = router(this._data)
+
+        let calcDateRouter = CalculateDateRouter()
+
+        let timeRouterUp = calcDateRouter.splitTime(this._data.router)
+        return calcDateRouter.calculateNormalizationDate(timeRouterUp)
+
     }
 
     CopyDataNormalizacao() {
@@ -400,6 +352,7 @@ class Mascara {
         document.querySelector("#dataNormalizacao").value = ""
         document.querySelector("#router").value = ""
         document.querySelector("#validacao").value = ""
+        document.querySelector("#telefone").value = ""
         document.querySelector("#senha").value = ""
         document.querySelector("#outraCausa").value = ""
         document.querySelector("#checkboxCausaCliente").checked = false
@@ -437,15 +390,21 @@ class Mascara {
     redeaManobra() {
         makeMascara(this._data, this._causa.operadora, this._solucao.redeaManobra)
     }
+
+    // Voz
     buttonFalhaPABX() {
         makeMascara(this._data, this._causa.cliente, this._solucao.falhaPABX)
     }
+
+    // Outra Falha
     outraCausa() {
+
         if (this._data["checkboxCausaCliente"]) {
             makeMascara(this._data, this._causa.cliente, this._data.outraCausa)
         } else {
             makeMascara(this._data, this._causa.operadora, this._data.outraCausa)
         }
+
     }
 }
 
@@ -463,7 +422,7 @@ function buttonLimpar() {
 
 function buttonCalcularRouter() {
     m = new Mascara()
-    m.calcularRouter()
+    document.querySelector("#dataNormalizacao").value = m.calcularRouter()
 }
 
 function buttonCopyDataNormalizacao() {
@@ -532,7 +491,7 @@ function buttonOutraCausa() {
 }
 
 function buttonCasoNovo() {
-    copyToClipboard("CASO NOVO. EM ANALISE.")
+    copyToClipboard("CASO NOVO. EM ANALISE.\n& CASO EM TRIAGEM NA REDE. &")
 }
 
 function buttonEncerrado() {
