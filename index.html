@@ -599,205 +599,108 @@
                     <!-- COLUNA DA ESQUERDA -->
                     <div class="column">
 
+                        <!-- buttons topo - limpar e log-->
+                        <div class="field">
+                            <div class="buttons">
+                                <button class="button is-info is-small is-fullwidth" onclick="abButtonLimpar()">Limpar</button>
+                                <button class="button is-info is-small is-fullwidth" onclick="buttonLog()">Log</button>
+                            </div>
+                        </div>
+                        <!-- /buttons topo - limpar e log-->
+
                         <!-- Select - Reclamação -->
                         <!-- Campo do select e botões -->
                         <div class="field">
 
                             <label class="label is-small">Reclamação <i class="fas fa-bug"></i></label>
 
-                            <!-- Usando o elemento level para alinha os botoẽs -->
-                            <div class="level">
-
-                                <!-- Left side - onde esta o select -->
-                                <div class="level-left">
-
-                                    <!-- select -->
-                                    <div class="select is-small">
-                                        <select id="abFalha">
-										<option value="Inoperante" selected>Inoperante</option>
-										<option value="BaixoDesempenho">Intermitente</option>
-										<option value="BaixoDesempenho">Perda de Pacotes</option>
-										<option value="BaixoDesempenho">Lentidão</option>
-										<option value="BaixoDesempenho">Configuração</option>
+                            <!-- select -->
+                            <div class="select is-small is-fullwidth">
+                                <select id="abFalha">
+										<option selected>Inoperante</option>
+										<option>Intermitente</option>
+										<option>Perda de Pacotes</option>
+										<option>Taxa de Erro</option>
+										<option>Lentidão</option>
+										<option>Configuração</option>
+										<option>DDR - Inoperante</option>
+										<option>DDR - Intermitente</option>
+										<option>DDR - Não completa p/ num específico</option>
 									</select>
-                                    </div>
-                                    <!-- select -->
-
-                                </div>
-
-                                <!-- Right side - onde estão os botoẽs -->
-                                <div class="level-right">
-
-                                    <!-- buttons -->
-                                    <div class="buttons">
-                                        <button class="button is-info" onclick="abButtonLimpar()">Limpar</button>
-                                        <button class="button is-info" onclick="buttonLog()">Log</button>
-                                    </div>
-                                    <!-- /buttons -->
-
-                                </div>
-
                             </div>
-                            <!-- /Usando o elemento level para alinha os botoẽs -->
+                            <!-- select -->
 
                         </div>
                         <!-- /Campo do select e botões -->
                         <!-- /Select - Reclamação -->
 
-                        <!-- radio - Reset -->
-                        <div class="field">
+                        <!-- Radio Buttons  -->
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                            <label class="label is-small">Realizado Reset ?</label>
-                            <div class="field is-narrow">
+                                    <label class="label my-label">Troubleshooting<i class="fas fa-info-circle my-instruction"></i>
+                                        <div class="my-hide">Abaixo estão as opções para TS.</div>
+                                    </label>
 
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abReset" value="0">
-									Sim
-									</label>
+                                    <!-- radio - Reset -->
+                                    <div class="field">
+                                        <label class="label is-small">Realizado Reset ?</label>
 
-                                    <label class="radio">
-									<input type="radio" name="abReset" value="1" checked>
-									Não
-									</label>
+                                        <label class="radio"><input type="radio" name="abReset" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abReset" value="1" checked> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Reset -->
 
-                                    <!-- <label class="radio">
-									<input type="radio" name="abReset" value="2" checked>
-									Sem Confirmação
-									</label> -->
+                                    <!-- radio - Eletrica -->
+                                    <div class="field">
+                                        <label class="label is-small">Sem Energia ?</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="1"> Não</label>
+                                        <label class="radio"><input type="radio" name="abEletrica" value="2" checked> Sem Confirmação</label>
+                                    </div>
+                                    <!-- /radio - Eletrica -->
+
+                                    <!-- radio - Testes -->
+                                    <div class="field">
+                                        <label class="label is-small">Autoriza parar para testes ?</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="0" checked> Sim</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="1"> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abTestes" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Testes -->
+
+                                    <!-- radio - 103 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 103 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 103 -->
+
+                                    <!-- radio - 104 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 104 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 104 -->
+
+                                    <!-- radio - 109 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 109 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 109 -->
+
                                 </div>
-
                             </div>
-
                         </div>
-                        <!-- /radio - Reset -->
-
-                        <!-- radio - Eletrica -->
-                        <div class="field">
-
-                            <label class="label is-small">Sem Energia ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="1">
-									Não
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abEletrica" value="2" checked>
-									Sem Confirmação
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - Eletrica -->
-
-
-
-                        <!-- radio - Testes -->
-                        <div class="field">
-
-                            <label class="label is-small">Autoriza parar para testes ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="abTestes" value="0" checked>
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="abTestes" value="1">
-									Não
-									</label>
-
-                                    <!-- <label class="radio">
-									<input type="radio" name="abTestes" value="2" checked>
-									Sem Confirmação
-									</label> -->
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - Testes -->
-
-                        <!-- radio - 103 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 103 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab103" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab103" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 103 -->
-
-                        <!-- radio - 104 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 104 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab104" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab104" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 104 -->
-
-                        <!-- radio - 109 -->
-                        <div class="field">
-
-                            <label class="label is-small">Led 109 Acesso ?</label>
-                            <div class="field is-narrow">
-
-                                <div class="control">
-                                    <label class="radio">
-									<input type="radio" name="ab109" value="0">
-									Sim
-									</label>
-
-                                    <label class="radio">
-									<input type="radio" name="ab109" value="1" checked>
-									Não
-									</label>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /radio - 109 -->
+                        <!-- /Card 1 -->
+                        <!-- /Radio Buttons  -->
 
                     </div>
                     <!-- /COLUNA DA ESQUERDA -->
@@ -805,77 +708,87 @@
                     <!-- COLUNA DO CENTRO -->
                     <div class="column">
 
-                        <!-- campo cliente -->
-                        <div class="field">
-                            <label class="label is-small">Cliente</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abCliente" class="input is-small" type="text">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-ethernet"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo cliente -->
+                        <!-- Card 2 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                        <!-- campo contatos do cpd -->
-                        <div class="field">
-                            <label class="label is-small">Contatos do CPD</label>
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                    <!-- radio - V.tal OI -->
+                                    <div class="field">
+                                        <label class="label is-small">Qual o perímetro ?</label>
+
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - - V.tal OI -->
+
+                                    <!-- campo cliente -->
+                                    <div class="field">
+                                        <label class="label is-small">Cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abCliente" class="input is-small" type="text">
+                                            <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo cliente -->
+
+                                    <!-- campo contatos do cpd -->
+                                    <div class="field">
+                                        <label class="label is-small">Contatos do CPD</label>
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo contatos do cpd -->
+
+                                    <!-- campo horario de acesso -->
+                                    <div class="field">
+                                        <label class="label is-small">Horario de Acesso</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                            <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo horario de acesso -->
+
+                                    <!-- campo chamado interno -->
+                                    <div class="field">
+                                        <label class="label is-small">Chamado Interno do cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo chamado interno -->
+
+                                    <!-- campo email -->
+                                    <div class="field">
+                                        <label class="label is-small">Email</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo email -->
+
+                                    <!-- campo descrição -->
+                                    <div class="field">
+                                        <label class="label is-small">Descrição</label>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo descrição -->
+
                                 </div>
                             </div>
                         </div>
-                        <!-- /campo contatos do cpd -->
-
-                        <!-- campo horario de acesso -->
-                        <div class="field">
-                            <label class="label is-small">Horario de Acesso</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p>
-                                <span class="icon is-small is-left">
-								<i class="fas fa-clock"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo horario de acesso -->
-
-                        <!-- campo chamado interno -->
-                        <div class="field">
-                            <label class="label is-small">Chamado Interno do cliente</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-headset"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo chamado interno -->
-
-                        <!-- campo email -->
-                        <div class="field">
-                            <label class="label is-small">Email</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
-                                <span class="icon is-small is-left">
-								<i class="fas fa-headset"></i>
-							</span>
-                            </div>
-                        </div>
-                        <!-- /campo email -->
-
-                        <!-- campo descrição -->
-                        <div class="field">
-                            <label class="label is-small">Descrição</label>
-
-                            <div class="field">
-                                <div class="control">
-                                    <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /campo descrição -->
 
                     </div>
                     <!-- /COLUNA DO CENTRO -->
@@ -883,89 +796,94 @@
                     <!-- COLUNA DA DIREITA -->
                     <div class="column">
 
-                        <label class="label">Informações Complementares</label>
+                        <!-- Card 3 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                        <!-- radio - proativo -->
-                        <div class="field">
+                                    <label class="label">Informações Complementares</label>
 
-                            <label class="label is-small">Proativo ?</label>
-                            <div class="field is-narrow">
+                                    <!-- radio - proativo -->
+                                    <div class="field">
 
-                                <div class="control">
-                                    <label class="radio">
+                                        <label class="label is-small">Proativo ?</label>
+                                        <div class="field is-narrow">
+
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abRadioProativo" value="0" checked>
 									Sim
 									</label>
 
-                                    <label class="radio">
+                                                <label class="radio">
 									<input type="radio" name="abRadioProativo" value="1">
 									Não
 									</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - proativo -->
+                                    </div>
+                                    <!-- /radio - proativo -->
 
-                        <!-- radio - reincidente -->
-                        <div class="field">
+                                    <!-- radio - reincidente -->
+                                    <div class="field">
 
-                            <label class="label is-small">Reincidente ?</label>
-                            <div class="field is-narrow">
+                                        <label class="label is-small">Reincidente ?</label>
+                                        <div class="field is-narrow">
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 											<input type="radio" name="abRadioReincidente" value="0">
 											Sim
 											</label>
 
-                                    <label class="radio">
+                                                <label class="radio">
 											<input type="radio" name="abRadioReincidente" value="1" checked>
 											Não
 											</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - reincidente -->
+                                    </div>
+                                    <!-- /radio - reincidente -->
 
-                        <!-- radio - Backup -->
-                        <div class="field">
+                                    <!-- radio - Backup -->
+                                    <div class="field">
 
-                            <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
+                                        <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
 
-                            <div class="field is-narrow">
+                                        <div class="field is-narrow">
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="0">
 									Sim, possiu backup ativo
 									</label>
-                                </div>
+                                            </div>
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="1">
 									Não, local esta isolado
 									</label>
-                                </div>
+                                            </div>
 
-                                <div class="control">
-                                    <label class="radio">
+                                            <div class="control">
+                                                <label class="radio">
 									<input type="radio" name="abBackup" value="2" checked>
 									Sem Confirmação, cliente não soube informar
 									</label>
-                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
 
-                        </div>
-                        <!-- /radio - Backup -->
+                                    </div>
+                                    <!-- /radio - Backup -->
 
-                        <!-- radio - Troubleshooting -->
-                        <!-- <div class="field">
+                                    <!-- radio - Troubleshooting -->
+                                    <!-- <div class="field">
 
 							<label class="label is-small">Troubleshooting</label>
 
@@ -991,15 +909,19 @@
 							</div>
 
 						</div> -->
-                        <!-- /radio - Troubleshooting -->
+                                    <!-- /radio - Troubleshooting -->
 
-                        <!-- Botão -->
-                        <div class="field">
-                            <div class="control">
-                                <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                                    <!-- Botão -->
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Botão -->
+
+                                </div>
                             </div>
                         </div>
-                        <!-- /Botão -->
 
                     </div>
                     <!-- COLUNA DA DIREITA -->
