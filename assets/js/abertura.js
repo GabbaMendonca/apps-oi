@@ -139,7 +139,7 @@ function abButtonGerarMascaraAbertura() {
 function abButtonEnviarParaEditor() {
     data = pegarDadosMascaraAbertura()
     mascara = abGerarMascaraAbertura(data)
-    editorTextArea.value = mascara
+    editorTextArea.value = mascara + editorTextArea.value
     editor()
 }
 
