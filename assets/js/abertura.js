@@ -1,164 +1,157 @@
-class Abertura {
+function pegarDadosMascaraAbertura() {
+    let data = {}
 
-    constructor() {
-        this._data = this._getView()
-    }
+    // cabeçalho
+    data["oi"] = document.querySelector("#oi").value
+    data["nome"] = document.querySelector("#nome").value.toUpperCase()
 
-    _getView() {
-        let data = {}
+    // Coluna da Esquerda da Mascara de Abertura
+    // Select
+    let select = document.querySelector('#abFalha');
+    data["abFalha"] = select.options[select.selectedIndex].text.toUpperCase();
 
-        // cabeçalho
-        data["oi"] = document.querySelector("#oi").value
-        data["nome"] = document.querySelector("#nome").value.toUpperCase()
+    // Radio Buttons
+    data["abReset"] = document.getElementsByName("abReset")
+    data["abEnergia"] = document.getElementsByName("abEnergia")
+    data["abTestes"] = document.getElementsByName("abTestes")
+    data["ab103"] = document.getElementsByName("ab103")
+    data["ab104"] = document.getElementsByName("ab104")
+    data["ab109"] = document.getElementsByName("ab109")
 
-        //=== esquerda ===
-        // radio
-        data["abCritico"] = document.getElementsByName("abRadioCritico")
-        data["abProativo"] = document.getElementsByName("abRadioProativo")
-        data["abReincidente"] = document.getElementsByName("abRadioReincidente")
+    // Coluna do Centro da Mascara de Abertura
+    data["abPerimetro"] = document.getElementsByName("abPerimetro")
+    data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
+    data["abCPD"] = document.querySelector("#abCPD").value
+    data["abAcesso"] = document.querySelector("#abAcesso").value
+    data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
+    data["abEmail"] = document.querySelector("#abEmail").value
+    data["abDescricao"] = document.querySelector("#abDescricao").value.toUpperCase()
+    data["abEventoMassivo"] = document.querySelector("#abEventoMassivo").value.toUpperCase()
 
-        //=== centro ===
-        data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
-        data["abCPD"] = document.querySelector("#abCPD").value
-        data["abAcesso"] = document.querySelector("#abAcesso").value
-        data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
-        data["abEmail"] = document.querySelector("#abEmail").value
-        data["abDescricao"] = document.querySelector("#abDescricao").value.toUpperCase()
+    // Coluna da Direita da Mascara de Abertura
+    // Radio Buttons
+    data["abProativo"] = document.getElementsByName("abRadioProativo")
+    data["abReincidente"] = document.getElementsByName("abRadioReincidente")
+    data["abBackup"] = document.getElementsByName("abBackup")
 
-        //=== direita ===
+    // Log
+    data["log"] = textareaLog.value
 
-        // Select
-        let select = document.querySelector('#abFalha');
-        data["abFalha"] = select.options[select.selectedIndex].text;
+    return data
+}
 
-        //Radio
-        // data["abTs"] = document.getElementsByName("abTs")
+// ================================
 
-        data["abEletrica"] = document.getElementsByName("abEletrica")
-        data["abReset"] = document.getElementsByName("abReset")
-        data["abTestes"] = document.getElementsByName("abTestes")
+function abVerificaStausRadiosAbertura(data) {
 
-        data["ab103"] = document.getElementsByName("ab103")
-        data["ab104"] = document.getElementsByName("ab104")
-        data["ab109"] = document.getElementsByName("ab109")
+    let radio = { '0': 'SIM', '1': 'NAO', '2': 'N/A', 'false': '' }
+    let radio2 = { '0': 'VTAL', '1': 'OI', 'false': '' }
 
-        data["abProativo"] = document.getElementsByName("abRadioProativo")
-        data["abReincidente"] = document.getElementsByName("abRadioReincidente")
-        data["abBackup"] = document.getElementsByName("abBackup")
+    data.abPerimetro = radio2[verificaRadio(data.abPerimetro)]
+    data.abReset = radio[verificaRadio(data.abReset)]
+    data.abEnergia = radio[verificaRadio(data.abEnergia)]
+    data.abTestes = radio[verificaRadio(data.abTestes)]
+    data.ab103 = radio[verificaRadio(data.ab103)]
+    data.ab104 = radio[verificaRadio(data.ab104)]
+    data.ab109 = radio[verificaRadio(data.ab109)]
+    data.abProativo = radio[verificaRadio(data.abProativo)]
+    data.abReincidente = radio[verificaRadio(data.abReincidente)]
+    data.abBackup = radio[verificaRadio(data.abBackup)]
 
-        data["abPerimetro"] = document.getElementsByName("abPerimetro")
+    return data
+}
 
-        // Log
-        data["log"] = textareaLog.value
+function abVerificaChamadoInterno(data) {
+    data.abChamadoInterno = data.abChamadoInterno == '' ? "N/A" : data.abChamadoInterno
+    return data
+}
 
-        return data
-    }
+function abVerificaEmailCliente(data) {
+    data.abEmail = data.abEmail == '' ? "N/A" : data.abEmail
+    return data
+}
 
-    limpar() {
+function abVerificaHorarioAcesso(data) {
+    data.abAcesso = data.abAcesso == '' ? '08:00 AS 18:00 HS' : data.abAcesso.toUpperCase()
+    return data
+}
 
-        // esquerda
-        //centro
-        document.querySelector("#abCliente").value = ''
-        document.querySelector("#abCPD").value = ''
-        document.querySelector("#abAcesso").value = ''
-        document.querySelector("#abChamadoInterno").value = ''
-        document.querySelector("#abEmail").value = ''
-        document.querySelector("#abDescricao").value = ''
-            //direita
+function abVerificaEventoMassivo(data) {
+    data.abDescricao += data.abEventoMassivo == '' ? '' : `--- CIRCUTOS ASSOCIADOS ---\n${ data.abEventoMassivo }`
+    return data
+}
 
-        textareaLog.value = ''
+function abVerificaLog(data) {
+    data.log = data.log == '' ? '' : `--- LOG ---\n${ data.log }`
+    return data
+}
 
-    }
+function abMascaraDeAbertura(data) {
 
-    gerarMascara() {
-        this._makeMascara(this._data)
-    }
+    let mascara = `MASCARA DE ABERTURA
+PREMIUM | PERIMETRO: ${data.abPerimetro} - PROTOCOLO DO CLIENTE: ${data.abChamadoInterno}
+CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}
+EMAIL DO CLIENTE: ${data.abEmail}
+RECLAMANTE: CEC-SP OI ${data.oi} - ${data.nome}
+ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha}
+CHECKLIST: REALIZADO RESET?:${data.abReset}/SEM ENERGIA?:${data.abEnergia}/AUTORIZA PARAR TESTES?:${data.abTestes}
+CHECKLIST: SINAL 103?${data.ab103}/SINAL 104?${data.ab104}/SINAL 109?${data.ab109}
+DESCRICAO: PROATIVO:${data.abProativo} / REINCIDENTE:${data.abReincidente} / POSSUI BACKUP ATIVO:${data.abBackup}
+ENCERRAMENTO/AGENDAMENTO : 0800 282 5231 1/5/5
+${data.abDescricao}`
 
-    _makeMascara(data) {
+    return mascara
+}
 
-        // radio com reset, eletrica e testes
-        let radio = {
-            '0': 'SIM',
-            '1': 'NAO',
-            '2': 'N/A',
-            'false': '',
-        }
+function abGerarMascaraAbertura(data) {
 
-        let radio2 = {
-            '0': 'VTAL',
-            '1': 'OI',
-            'false': '',
-        }
+    data = abVerificaStausRadiosAbertura(data)
+    data = abVerificaChamadoInterno(data)
+    data = abVerificaEmailCliente(data)
+    data = abVerificaHorarioAcesso(data)
+    data = abVerificaEventoMassivo(data)
+    data = abVerificaLog(data)
 
-        let opcReset = radio[verificaRadio(data.abReset)]
-        let opcEletrica = radio[verificaRadio(data.abEletrica)]
-        let opcTestes = radio[verificaRadio(data.abTestes)]
+    return abMascaraDeAbertura(data)
+}
 
-        let opc103 = radio[verificaRadio(data.ab103)]
-        let opc104 = radio[verificaRadio(data.ab104)]
-        let opc109 = radio[verificaRadio(data.ab109)]
+// ================================
 
-        let opcProativo = radio[verificaRadio(data["abProativo"])]
-        let opcReincidente = radio[verificaRadio(data["abReincidente"])]
-        let opcBackup = radio[verificaRadio(data["abBackup"])]
+function abButtonGerarMascaraAbertura() {
+    data = pegarDadosMascaraAbertura()
+    mascara = abGerarMascaraAbertura(data)
+    copyToClipboard(mascara)
+}
 
-        let opcPerimetro = radio2[verificaRadio(data.abPerimetro)]
-
-        // let opcCritico = radio1[verificaRadio(this._data["abCritico"])]
-        // let opcTS = radio2[verificaRadio(data.abTs)]
-
-
-        let mascara = `MASCARA DE ABERTURA\n`
-
-        mascara += `PREMIUM | PERIMETRO: ${opcPerimetro} - PROTOCOLO DO CLIENTE: `
-
-        // Verifica se cliente tem chamado interno
-        if (data.abChamadoInterno != '') {
-            mascara += `${data.abChamadoInterno}\n`
-        } else {
-            mascara += `N/A\n`
-        }
-
-        mascara += `CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}\n`
-
-        // Verifica se cliente tem endereço de email
-        mascara += `EMAIL DO CLIENTE: `
-        if (data.abEmail != '') {
-            mascara += `${data.abEmail}\n`
-        } else {
-            mascara += `N/A\n`
-        }
-
-        mascara += `RECLAMANTE: CEC-SP OI${data.oi} - ${data.nome}\n`
-
-        if (data.abAcesso == "") {
-            mascara += `ACESSO: 08:00 AS 18:00 HS - RECLAMACAO: ${data.abFalha.toUpperCase()}\n`
-        } else {
-            mascara += `ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha.toUpperCase()}\n`
-        }
-
-        mascara += `CHECKLIST: REALIZADO RESET?:${opcReset}/SEM ENERGIA?:${opcEletrica}/AUTORIZA PARAR TESTES?:${opcTestes}\n`
-        mascara += `CHECKLIST: SINAL 103?${opc103}/SINAL 104?${opc104}/SINAL 109?${opc109}\n`
-
-        mascara += `DESCRICAO: PROATIVO:${opcProativo} / REINCIDENTE:${opcReincidente} / POSSUI BACKUP ATIVO:${opcBackup}\n`
-        mascara += `ENCERRAMENTO/AGENDAMENTO : 0800 282 5231 1/5/5\n`
-        mascara += `${data.abDescricao}`
-
-        if (data.log != '') {
-            mascara += `\n--- LOG ---\n`
-            mascara += `${ data.log }`
-        }
-
-        copyToClipboard(mascara)
-    }
+function abButtonEnviarParaEditor() {
+    data = pegarDadosMascaraAbertura()
+    mascara = abGerarMascaraAbertura(data)
+    editorTextArea.value = mascara + editorTextArea.value
+    editor()
 }
 
 function abButtonLimpar() {
-    a = new Abertura()
-    a.limpar()
-}
+    // Coluna da Esquerda da Mascara de Abertura
+    document.getElementsByName("abReset")[1].checked = true
+    document.getElementsByName("abEnergia")[2].checked = true
+    document.getElementsByName("abTestes")[0].checked = true
+    document.getElementsByName("ab103")[1].checked = true
+    document.getElementsByName("ab104")[1].checked = true
+    document.getElementsByName("ab109")[1].checked = true
 
-function abGerarMascara() {
-    a = new Abertura()
-    a.gerarMascara()
+    // Coluna do Centro da Mascara de Abertura
+    document.querySelector("#abCliente").value = ''
+    document.querySelector("#abCPD").value = ''
+    document.querySelector("#abAcesso").value = ''
+    document.querySelector("#abChamadoInterno").value = ''
+    document.querySelector("#abEmail").value = ''
+    document.querySelector("#abDescricao").value = ''
+    document.querySelector("#abEventoMassivo").value = ''
+
+    // Coluna da Direita da Mascara de Abertura
+    document.getElementsByName("abRadioProativo")[0].checked = true
+    document.getElementsByName("abRadioReincidente")[1].checked = true
+    document.getElementsByName("abBackup")[2].checked = true
+
+    textareaLog.value = ''
 }
