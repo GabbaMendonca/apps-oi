@@ -615,7 +615,7 @@
                             <label class="label is-small">Reclamação <i class="fas fa-bug"></i></label>
 
                             <!-- select -->
-                            <div class="select is-small is-fullwidth">
+                            <div class="select is-fullwidth">
                                 <select id="abFalha">
 										<option selected>Inoperante</option>
 										<option>Intermitente</option>
@@ -623,6 +623,7 @@
 										<option>Taxa de Erro</option>
 										<option>Lentidão</option>
 										<option>Configuração</option>
+										<option>Evento de Vulto</option>
 										<option>DDR - Inoperante</option>
 										<option>DDR - Intermitente</option>
 										<option>DDR - Não completa p/ num específico</option>
@@ -657,9 +658,9 @@
                                     <!-- radio - Eletrica -->
                                     <div class="field">
                                         <label class="label is-small">Sem Energia ?</label>
-                                        <label class="radio"><input type="radio" name="abEletrica" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="abEletrica" value="1"> Não</label>
-                                        <label class="radio"><input type="radio" name="abEletrica" value="2" checked> Sem Confirmação</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="1"> Não</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="2" checked> Sem Confirmação</label>
                                     </div>
                                     <!-- /radio - Eletrica -->
 
@@ -780,7 +781,19 @@
 
                                         <div class="field">
                                             <div class="control">
-                                                <textarea id="abDescricao" class="textarea is-small" rows="5"></textarea>
+                                                <textarea id="abDescricao" class="textarea is-small" rows="7"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo descrição -->
+
+                                    <!-- campo descrição -->
+                                    <div class="field">
+                                        <label class="label is-small">Circutos Associados | Evento Massivo</label>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abEventoMassivo" class="textarea is-small" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -914,7 +927,15 @@
                                     <!-- Botão -->
                                     <div class="field">
                                         <div class="control">
-                                            <button class="button is-primary is-fullwidth" onclick="abGerarMascara()">Gerar Mascara</button>
+                                            <button class="button is-primary is-fullwidth" onclick="abButtonGerarMascaraAbertura()">Gerar Mascara</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Botão -->
+
+                                    <!-- Botão -->
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" onclick="abButtonEnviarParaEditor()">Enviar para o Editor de Texto</button>
                                         </div>
                                     </div>
                                     <!-- /Botão -->
