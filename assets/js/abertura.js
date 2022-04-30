@@ -5,13 +5,20 @@ function pegarDadosMascaraAbertura() {
     data["oi"] = document.querySelector("#oi").value
     data["nome"] = document.querySelector("#nome").value.toUpperCase()
 
-    //=== esquerda ===
-    // radio
-    data["abCritico"] = document.getElementsByName("abRadioCritico")
-    data["abProativo"] = document.getElementsByName("abRadioProativo")
-    data["abReincidente"] = document.getElementsByName("abRadioReincidente")
+    // Coluna da Esquerda da Mascara de Abertura
+    // Select
+    let select = document.querySelector('#abFalha');
+    data["abFalha"] = select.options[select.selectedIndex].text.toUpperCase();
 
-    //=== centro ===
+    // Radio Buttons
+    data["abReset"] = document.getElementsByName("abReset")
+    data["abEnergia"] = document.getElementsByName("abEnergia")
+    data["abTestes"] = document.getElementsByName("abTestes")
+    data["ab103"] = document.getElementsByName("ab103")
+    data["ab104"] = document.getElementsByName("ab104")
+    data["ab109"] = document.getElementsByName("ab109")
+
+    // Coluna do Centro da Mascara de Abertura
     data["abPerimetro"] = document.getElementsByName("abPerimetro")
     data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
     data["abCPD"] = document.querySelector("#abCPD").value
@@ -21,28 +28,11 @@ function pegarDadosMascaraAbertura() {
     data["abDescricao"] = document.querySelector("#abDescricao").value.toUpperCase()
     data["abEventoMassivo"] = document.querySelector("#abEventoMassivo").value.toUpperCase()
 
-    //=== direita ===
-
-    // Select
-    let select = document.querySelector('#abFalha');
-    data["abFalha"] = select.options[select.selectedIndex].text;
-
-    //Radio
-    // data["abTs"] = document.getElementsByName("abTs")
-
-    data["abEnergia"] = document.getElementsByName("abEnergia")
-    data["abReset"] = document.getElementsByName("abReset")
-    data["abTestes"] = document.getElementsByName("abTestes")
-
-    data["ab103"] = document.getElementsByName("ab103")
-    data["ab104"] = document.getElementsByName("ab104")
-    data["ab109"] = document.getElementsByName("ab109")
-
+    // Coluna da Direita da Mascara de Abertura
+    // Radio Buttons
     data["abProativo"] = document.getElementsByName("abRadioProativo")
     data["abReincidente"] = document.getElementsByName("abRadioReincidente")
     data["abBackup"] = document.getElementsByName("abBackup")
-
-
 
     // Log
     data["log"] = textareaLog.value
@@ -58,15 +48,12 @@ function abVerificaStausRadiosAbertura(data) {
     let radio2 = { '0': 'VTAL', '1': 'OI', 'false': '' }
 
     data.abPerimetro = radio2[verificaRadio(data.abPerimetro)]
-
     data.abReset = radio[verificaRadio(data.abReset)]
     data.abEnergia = radio[verificaRadio(data.abEnergia)]
     data.abTestes = radio[verificaRadio(data.abTestes)]
-
     data.ab103 = radio[verificaRadio(data.ab103)]
     data.ab104 = radio[verificaRadio(data.ab104)]
     data.ab109 = radio[verificaRadio(data.ab109)]
-
     data.abProativo = radio[verificaRadio(data.abProativo)]
     data.abReincidente = radio[verificaRadio(data.abReincidente)]
     data.abBackup = radio[verificaRadio(data.abBackup)]
@@ -106,7 +93,7 @@ PREMIUM | PERIMETRO: ${data.abPerimetro} - PROTOCOLO DO CLIENTE: ${data.abChamad
 CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}
 EMAIL DO CLIENTE: ${data.abEmail}
 RECLAMANTE: CEC-SP OI ${data.oi} - ${data.nome}
-ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha.toUpperCase()}
+ACESSO: ${data.abAcesso} - RECLAMACAO: ${data.abFalha}
 CHECKLIST: REALIZADO RESET?:${data.abReset}/SEM ENERGIA?:${data.abEnergia}/AUTORIZA PARAR TESTES?:${data.abTestes}
 CHECKLIST: SINAL 103?${data.ab103}/SINAL 104?${data.ab104}/SINAL 109?${data.ab109}
 DESCRICAO: PROATIVO:${data.abProativo} / REINCIDENTE:${data.abReincidente} / POSSUI BACKUP ATIVO:${data.abBackup}
@@ -144,8 +131,15 @@ function abButtonEnviarParaEditor() {
 }
 
 function abButtonLimpar() {
-    // esquerda
-    //centro
+    // Coluna da Esquerda da Mascara de Abertura
+    document.getElementsByName("abReset")[1].checked = true
+    document.getElementsByName("abEnergia")[2].checked = true
+    document.getElementsByName("abTestes")[0].checked = true
+    document.getElementsByName("ab103")[1].checked = true
+    document.getElementsByName("ab104")[1].checked = true
+    document.getElementsByName("ab109")[1].checked = true
+
+    // Coluna do Centro da Mascara de Abertura
     document.querySelector("#abCliente").value = ''
     document.querySelector("#abCPD").value = ''
     document.querySelector("#abAcesso").value = ''
@@ -153,7 +147,11 @@ function abButtonLimpar() {
     document.querySelector("#abEmail").value = ''
     document.querySelector("#abDescricao").value = ''
     document.querySelector("#abEventoMassivo").value = ''
-        //direita
+
+    // Coluna da Direita da Mascara de Abertura
+    document.getElementsByName("abRadioProativo")[0].checked = true
+    document.getElementsByName("abRadioReincidente")[1].checked = true
+    document.getElementsByName("abBackup")[2].checked = true
 
     textareaLog.value = ''
 }
