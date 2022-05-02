@@ -82,7 +82,7 @@ function abVerificaEventoMassivo(data) {
 }
 
 function abVerificaLog(data) {
-    data.log = data.log == '' ? '' : `--- LOG ---\n${ data.log }`
+    data.abDescricao += data.log == '' ? '' : `--- LOG ---\n${ data.log }`
     return data
 }
 
@@ -109,8 +109,8 @@ function abGerarMascaraAbertura(data) {
     data = abVerificaChamadoInterno(data)
     data = abVerificaEmailCliente(data)
     data = abVerificaHorarioAcesso(data)
-    data = abVerificaEventoMassivo(data)
     data = abVerificaLog(data)
+    data = abVerificaEventoMassivo(data)
 
     return abMascaraDeAbertura(data)
 }
