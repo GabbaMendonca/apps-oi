@@ -36,7 +36,10 @@
     </div>
 
     <script>
-        function createButtonList(value, ...addClass) {
+        const inputClient = document.querySelector("#inputClient")
+        const clientList = document.querySelector("#clientList")
+
+        function createButtonList(value, onclick_, ...addClass) {
             const p = document.createElement("p")
             const button = document.createElement("button")
             const span = document.createElement("span")
@@ -48,22 +51,25 @@
             p.classList.add("control")
             button.classList.add("button")
 
-            if (addClass != "")
+            if (addClass)
                 addClass.forEach(class_ => {
                     button.classList.add(class_)
                 })
+
+            if (onclick_)
+                button.addEventListener("click", onclick_)
 
             return p
         }
 
         function addButtonListClient() {
-            let inputClient = document.querySelector("#inputClient").value
-            let clientList = document.querySelector("#clientList")
 
-            if (inputClient == "") return
+            let input = inputClient.value
 
-            let buttonClient = createButtonList(inputClient, "is-small", "is-fullwidth")
-            let buttonRemove = createButtonList("-", "is-danger", "is-small")
+            if (!input) return
+
+            let buttonClient = createButtonList(input, "", "is-small", "is-fullwidth")
+            let buttonRemove = createButtonList("-", removeButtonListClient, "is-danger", "is-small")
             buttonClient.classList.add("is-expanded")
 
             const div = document.createElement("div")
@@ -71,8 +77,13 @@
 
             div.appendChild(buttonClient)
             div.appendChild(buttonRemove)
+            div.id = input
 
             clientList.appendChild(div)
+        }
+
+        function removeButtonListClient() {
+            alert(input)
         }
     </script>
 
