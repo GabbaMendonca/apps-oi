@@ -36,6 +36,40 @@
         const inputClient = document.querySelector("#inputClient")
         const clientList = document.querySelector("#clientList")
 
+        let myLocalStorage = [{
+            id: 10,
+            name: "Copasa"
+        }, {
+            id: 20,
+            name: "RNP"
+        }, {
+            id: 30,
+            name: "Via Varejo"
+        }, ]
+
+        function loadClientList() {
+            myLocalStorage.forEach(element => {
+                const buttonList = createButtonList(element.name, element.id)
+                clientList.appendChild(buttonList)
+            });
+        }
+
+        function removeLocalStorage(id) {
+            myLocalStorage = myLocalStorage.filter(element => {
+                if (element.id != id)
+                    return element
+            })
+        }
+
+        function addLocalStorage(name, id) {
+            myLocalStorage.push({
+                id: id,
+                name: name
+            })
+        }
+
+        loadClientList()
+
         function generateID() {
             return Math.round(Math.random() * 1000)
         }
@@ -56,26 +90,7 @@
             return btn
         }
 
-        class CreateButton {
-            constructor(name) {
-                this.p = document.createElement("p")
-                this.button = document.createElement("button")
-
-                this.button.innerHTML = name
-                this.p.classList.add("control")
-                this.button.classList.add("button")
-
-                this.p.appendChild(this.button)
-            }
-
-            getButton() {
-                return this.p
-            }
-        }
-
-        function createButtonList(name) {
-            let id = generateID()
-
+        function createButtonList(name, id) {
             const buttonClient = createButton(name)
             buttonClient.button.classList.add("is-small", "is-fullwidth")
             buttonClient.p.classList.add("is-expanded")
@@ -97,17 +112,20 @@
         }
 
         function addButtonListClient() {
-            let input = inputClient.value
-            if (!input) return
+            let name = inputClient.value
+            if (!name) return
 
-            let buttonList = createButtonList(input)
+            const id = generateID()
+            const buttonList = createButtonList(name, id)
             clientList.appendChild(buttonList)
+            addLocalStorage(name, id)
         }
 
         function removeButtonListClient() {
             event.preventDefault()
-            const lineList = document.getElementById(event.target.id)
-            lineList.remove()
+            const buttonList = document.getElementById(event.target.id)
+            buttonList.remove()
+            removeLocalStorage(event.target.id)
         }
     </script>
 
