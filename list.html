@@ -6,31 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <title>Test List Client</title>
+    <title>List Client</title>
 </head>
 
 <body>
     <div class="container is-max-desktop">
 
-        <div class="field">
-            <div class="field has-addons">
+        <div class="card" style="margin-top: 3rem;">
+            <div class="card-content">
 
-                <input id="inputClient" class="input is-small" type="text" placeholder="Text input">
-                <p class="control"><button class="button is-success is-small" onclick="addButtonListClient()">
-                    <span>+</span></button></p>
+                <div class="field">
+                    <div class="field has-addons">
+
+                        <input id="inputClient" class="input is-small" type="text" placeholder="Text input">
+                        <p class="control"><button class="button is-success is-small" onclick="addButtonListClient()">
+                        <span>+</span></button></p>
+
+                    </div>
+                </div>
+
+                <div id="clientList" class="field"></div>
 
             </div>
-        </div>
-
-        <div id="clientList" class="field">
-
-            <!-- <div class="field has-addons">
-                <p class="control is-expanded"><button class="button is-small is-fullwidth"><span>Gabba</span></button></p>
-                <p class="control"><button class="button is-danger is-small"><span>-</span></button></p>
-            </div> -->
-
-
-
         </div>
 
     </div>
@@ -39,51 +36,78 @@
         const inputClient = document.querySelector("#inputClient")
         const clientList = document.querySelector("#clientList")
 
-        function createButtonList(value, onclick_, ...addClass) {
-            const p = document.createElement("p")
-            const button = document.createElement("button")
-            const span = document.createElement("span")
+        function generateID() {
+            return Math.round(Math.random() * 1000)
+        }
 
-            p.appendChild(button)
-            button.appendChild(span)
-            span.innerHTML = value
+        function createButton(name) {
+            let btn = {}
+            btn.p = document.createElement("p")
+            btn.button = document.createElement("button")
 
-            p.classList.add("control")
-            button.classList.add("button")
+            btn.getButton = () => {
+                btn.button.innerHTML = name
+                btn.p.classList.add("control")
+                btn.button.classList.add("button")
+                btn.p.appendChild(btn.button)
+                return btn.p
+            }
 
-            if (addClass)
-                addClass.forEach(class_ => {
-                    button.classList.add(class_)
-                })
+            return btn
+        }
 
-            if (onclick_)
-                button.addEventListener("click", onclick_)
+        class CreateButton {
+            constructor(name) {
+                this.p = document.createElement("p")
+                this.button = document.createElement("button")
 
-            return p
+                this.button.innerHTML = name
+                this.p.classList.add("control")
+                this.button.classList.add("button")
+
+                this.p.appendChild(this.button)
+            }
+
+            getButton() {
+                return this.p
+            }
+        }
+
+        function createButtonList(name) {
+            let id = generateID()
+
+            const buttonClient = createButton(name)
+            buttonClient.button.classList.add("is-small", "is-fullwidth")
+            buttonClient.p.classList.add("is-expanded")
+
+            const buttonRemove = createButton("-")
+            buttonRemove.button.classList.add("is-small", "is-danger")
+            buttonRemove.button.addEventListener("click", removeButtonListClient)
+            buttonRemove.button.id = id
+
+            const lineList = document.createElement("div")
+            lineList.classList.add("field", "has-addons")
+            lineList.style.marginBottom = "0.10rem"
+            lineList.id = id
+
+            lineList.appendChild(buttonClient.getButton())
+            lineList.appendChild(buttonRemove.getButton())
+
+            return lineList
         }
 
         function addButtonListClient() {
-
             let input = inputClient.value
-
             if (!input) return
 
-            let buttonClient = createButtonList(input, "", "is-small", "is-fullwidth")
-            let buttonRemove = createButtonList("-", removeButtonListClient, "is-danger", "is-small")
-            buttonClient.classList.add("is-expanded")
-
-            const div = document.createElement("div")
-            div.classList.add("field", "has-addons")
-
-            div.appendChild(buttonClient)
-            div.appendChild(buttonRemove)
-            div.id = input
-
-            clientList.appendChild(div)
+            let buttonList = createButtonList(input)
+            clientList.appendChild(buttonList)
         }
 
         function removeButtonListClient() {
-            alert(input)
+            event.preventDefault()
+            const lineList = document.getElementById(event.target.id)
+            lineList.remove()
         }
     </script>
 
