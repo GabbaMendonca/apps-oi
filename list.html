@@ -16,9 +16,10 @@
             <div class="card-content">
 
                 <div class="field">
+
                     <div class="field has-addons">
 
-                        <input id="inputClient" class="input is-small" type="text" placeholder="Text input">
+                        <input id="inputClient" class="input is-small" type="text" placeholder="Nome do cliente ...">
                         <p class="control"><button class="button is-success is-small" onclick="addButtonListClient()">
                         <span>+</span></button></p>
 
@@ -35,40 +36,41 @@
     <script>
         const inputClient = document.querySelector("#inputClient")
         const clientList = document.querySelector("#clientList")
+        let clients = []
 
-        let myLocalStorage = [{
-            id: 10,
-            name: "Copasa"
-        }, {
-            id: 20,
-            name: "RNP"
-        }, {
-            id: 30,
-            name: "Via Varejo"
-        }, ]
+        function updateLocalStorage() {
+            localStorage.setItem('clients', JSON.stringify(clients))
+        }
+
+        function loadLocalStorage() {
+            if (localStorage.getItem('clients')) {
+                clients = JSON.parse(localStorage.getItem('clients'))
+                loadClientList()
+            }
+        }
+
+        loadLocalStorage()
 
         function loadClientList() {
-            myLocalStorage.forEach(element => {
+            clients.forEach(element => {
                 const buttonList = createButtonList(element.name, element.id)
                 clientList.appendChild(buttonList)
             });
         }
 
         function removeLocalStorage(id) {
-            myLocalStorage = myLocalStorage.filter(element => {
+            clients = clients.filter(element => {
                 if (element.id != id)
                     return element
             })
         }
 
         function addLocalStorage(name, id) {
-            myLocalStorage.push({
+            clients.push({
                 id: id,
                 name: name
             })
         }
-
-        loadClientList()
 
         function generateID() {
             return Math.round(Math.random() * 1000)
@@ -119,6 +121,7 @@
             const buttonList = createButtonList(name, id)
             clientList.appendChild(buttonList)
             addLocalStorage(name, id)
+            updateLocalStorage()
         }
 
         function removeButtonListClient() {
@@ -126,6 +129,7 @@
             const buttonList = document.getElementById(event.target.id)
             buttonList.remove()
             removeLocalStorage(event.target.id)
+            updateLocalStorage()
         }
     </script>
 
