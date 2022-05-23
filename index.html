@@ -496,211 +496,209 @@
 
                 <!-- Grid de blocos para dividir em 3 partes a tela -->
                 <!-- Bloco ancestral que envolve todos os outros blocos -->
-                <div class="tile is-ancestor">
+                <div class="columns">
 
                     <!-- BLOCO ESQUERDO -->
-                    <div class="tile is-parent">
-                        <div class="tile is-child">
+                    <div class="column">
 
-                            <!-- Botões -->
-                            <div class="buttons are-small">
-                                <button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
-                                <button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
-                            </div>
-                            <!-- /Botões -->
+                        <!-- Botões -->
+                        <div class="buttons are-small">
+                            <button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
+                            <button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
+                        </div>
+                        <!-- /Botões -->
 
-                            <!-- Card 1 -->
-                            <div class="card">
-                                <div class="card-content">
-                                    <div class="content">
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                                        <label class="label my-label">Calcular a Hora de Normalização</label>
+                                    <label class="label my-label">Calcular a Hora de Normalização</label>
 
-                                        <!-- calcular tempo do router -->
-                                        <div class="field">
+                                    <!-- calcular tempo do router -->
+                                    <div class="field">
 
-                                            <label class="label is-small">Tempo UP do Router<i class="fas fa-info-circle my-instruction"></i>
+                                        <label class="label is-small">Tempo UP do Router<i class="fas fa-info-circle my-instruction"></i>
                                                 <div class="my-hide">Insira o tempo que o <strong>BGP</strong> esta <strong>UP</strong> para realizar o calculo da <strong>Data de Normaliação</strong> do circuito.</div>
                                             </label>
 
-                                            <div class="field is-grouped">
+                                        <div class="field is-grouped">
 
-                                                <div class="control has-icons-left has-icons-right is-expanded">
-                                                    <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
-                                                    <span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
-                                                </div>
-
-                                                <!-- buttons -->
-                                                <p class="control">
-                                                    <a onclick="buttonCalcularRouter()" class="button is-small is-info">Calcular</a>
-                                                </p>
-                                                <!-- /buttons -->
-
+                                            <div class="control has-icons-left has-icons-right is-expanded">
+                                                <input id="router" class="input is-small" type="text" placeholder="--h--m--s">
+                                                <span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
                                             </div>
 
+                                            <!-- buttons -->
+                                            <p class="control">
+                                                <a onclick="buttonCalcularRouter()" class="button is-small is-info">Calcular</a>
+                                            </p>
+                                            <!-- /buttons -->
+
                                         </div>
-                                        <!-- /calcular tempo do router -->
 
-                                        <!-- data de normalização -->
-                                        <div class="field">
+                                    </div>
+                                    <!-- /calcular tempo do router -->
 
-                                            <label class="label is-small">Data de Normalização<i class="fas fa-info-circle my-instruction"></i>
+                                    <!-- data de normalização -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Data de Normalização<i class="fas fa-info-circle my-instruction"></i>
                                                 <div class="my-hide">Você pode usar a data em que o circuito normalizou para gerar a <strong>mascara de encerramento</strong> ou <strong>mensagens rápidas </strong>.</div>
                                             </label>
 
-                                            <div class="field is-grouped">
+                                        <div class="field is-grouped">
 
-                                                <div class="control has-icons-left has-icons-right is-expanded">
-                                                    <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                                    <span class="icon is-small is-left">
+                                            <div class="control has-icons-left has-icons-right is-expanded">
+                                                <input id="dataNormalizacao" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                                <span class="icon is-small is-left">
                                                                     <i class="fas fa-calendar-check"></i>
                                                                 </span>
-                                                </div>
-
-                                                <!-- buttons -->
-                                                <p class="control">
-                                                    <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">Copiar</a>
-                                                </p>
-                                                <!-- /buttons -->
-
                                             </div>
 
+                                            <!-- buttons -->
+                                            <p class="control">
+                                                <a class="button is-small is-info" onclick="buttonCopyDataNormalizacao()">Copiar</a>
+                                            </p>
+                                            <!-- /buttons -->
+
                                         </div>
-                                        <!-- data de normalização -->
 
                                     </div>
+                                    <!-- data de normalização -->
+
                                 </div>
                             </div>
-                            <!-- /Card 1 -->
+                        </div>
+                        <!-- /Card 1 -->
 
-                            <!-- Card 2 -->
-                            <div class="card my-card">
-                                <div class="card-content">
-                                    <div class="content">
+                        <!-- Card 2 -->
+                        <div class="card my-card">
+                            <div class="card-content">
+                                <div class="content">
 
-                                        <label class="label my-label">Mascara de Encerramento</label>
+                                    <label class="label my-label">Mascara de Encerramento</label>
 
-                                        <!-- data de abertura -->
-                                        <div class="field">
+                                    <!-- data de abertura -->
+                                    <div class="field">
 
-                                            <label class="label is-small">Data de Abertura<i class="fas fa-info-circle is my-instruction"></i>
+                                        <label class="label is-small">Data de Abertura<i class="fas fa-info-circle is my-instruction"></i>
                                                 <div class="my-hide">Insira a data de abertura do reparo.</div>
                                             </label>
 
-                                            <div class="control has-icons-left has-icons-right">
-                                                <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                                <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
-                                            </div>
-
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="dataAbertura" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                            <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
                                         </div>
-                                        <!-- /data de abertura -->
 
-                                        <!-- data de Encerramento -->
-                                        <div class="field">
+                                    </div>
+                                    <!-- /data de abertura -->
 
-                                            <label class="label is-small">Data do encerramento<i class="fas fa-info-circle is my-instruction"></i>
+                                    <!-- data de Encerramento -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Data do encerramento<i class="fas fa-info-circle is my-instruction"></i>
                                                 <div class="my-hide">Hora em que o reparo foi validado com o cliente.</div>
                                             </label>
 
-                                            <div class="control has-icons-left has-icons-right">
-                                                <input id="dataEncerramento" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                                <p class="help is-danger">Deixar em branco inseri a hora atual.</p>
-                                                <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
-                                            </div>
-
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="dataEncerramento" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                            <p class="help is-danger">Deixar em branco inseri a hora atual.</p>
+                                            <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
                                         </div>
-                                        <!-- /data de Encerramento -->
 
-                                        <!-- linha -->
-                                        <hr>
+                                    </div>
+                                    <!-- /data de Encerramento -->
 
-                                        <!-- Campo validação e radio buttons -->
-                                        <div class="field">
+                                    <!-- linha -->
+                                    <hr>
 
-                                            <label class="label is-small">Validado por<i class="fas fa-info-circle is my-instruction"></i>
+                                    <!-- Campo validação e radio buttons -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Validado por<i class="fas fa-info-circle is my-instruction"></i>
                                                 <div class="my-hide">Nome de quem validou o reparo.</div>
                                             </label>
 
+                                        <!-- Campo validação -->
+                                        <div class="field is-grouped">
+
                                             <!-- Campo validação -->
-                                            <div class="field is-grouped">
-
-                                                <!-- Campo validação -->
-                                                <div class="control has-icons-left has-icons-right is-expanded">
-                                                    <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
-                                                    <span class="icon is-small is-left"><i class="fas fa-user-tie"></i></span>
-                                                </div>
-                                                <!-- Campo validação -->
-
-                                                <!-- buttons -->
-                                                <p class="control">
-                                                    <a class="button is-small is-info" onclick="buttonCopyValidacao()">Copiar</a>
-                                                </p>
-                                                <!-- /buttons -->
-
+                                            <div class="control has-icons-left has-icons-right is-expanded">
+                                                <input id="validacao" class="input is-small" type="text" placeholder="Residente / CPD">
+                                                <span class="icon is-small is-left"><i class="fas fa-user-tie"></i></span>
                                             </div>
-                                            <!-- /Campo validação -->
+                                            <!-- Campo validação -->
 
-                                            <!-- Radio buttons -->
-                                            <div class="field">
-                                                <label class="radio"><input type="radio" name="radioValidacao" value="0" checked> CPD </label>
-                                                <label class="radio"><input type="radio" name="radioValidacao" value="1"> Residente </label>
-                                                <label class="radio"><input type="radio" name="radioValidacao" value="2"> CGS </label>
-                                            </div>
-                                            <!-- /Radio buttons -->
+                                            <!-- buttons -->
+                                            <p class="control">
+                                                <a class="button is-small is-info" onclick="buttonCopyValidacao()">Copiar</a>
+                                            </p>
+                                            <!-- /buttons -->
 
                                         </div>
-                                        <!-- Campo validação e radio buttons -->
+                                        <!-- /Campo validação -->
 
-                                        <!-- campo telefone -->
+                                        <!-- Radio buttons -->
                                         <div class="field">
-                                            <label class="label is-small">Telefone</label>
-                                            <div class="control has-icons-left has-icons-right">
-                                                <input id="telefone" class="input is-small" type="text" placeholder="DDD NUMERO">
-                                                <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
-                                            </div>
+                                            <label class="radio"><input type="radio" name="radioValidacao" value="0" checked> CPD </label>
+                                            <label class="radio"><input type="radio" name="radioValidacao" value="1"> Residente </label>
+                                            <label class="radio"><input type="radio" name="radioValidacao" value="2"> CGS </label>
                                         </div>
-                                        <!-- /campo telefone -->
+                                        <!-- /Radio buttons -->
 
-                                        <!-- linha -->
-                                        <hr>
+                                    </div>
+                                    <!-- Campo validação e radio buttons -->
 
-                                        <!-- senha -->
-                                        <div class="field">
+                                    <!-- campo telefone -->
+                                    <div class="field">
+                                        <label class="label is-small">Telefone</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="telefone" class="input is-small" type="text" placeholder="DDD NUMERO">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo telefone -->
 
-                                            <label class="label is-small">Senha<i class="fas fa-info-circle is my-instruction"></i>
+                                    <!-- linha -->
+                                    <hr>
+
+                                    <!-- senha -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Senha<i class="fas fa-info-circle is my-instruction"></i>
                                                 <div class="my-hide">Insira a senha de encerramento.
                                                 <br>Se não tiver senha deixe em branco.
                                                 <br>Caso seja reparo manual marque a caixa abaixo.</div>
                                             </label>
 
-                                            <div class="field is-grouped">
-                                                <div class="control has-icons-left has-icons-right is-expanded">
-                                                    <input id="senha" class="input is-small" type="text" placeholder="*****">
-                                                    <span class="icon is-small is-left"><i class="fas fa-unlock-alt"></i></span>
-                                                </div>
-
-                                                <p class="control">
-                                                    <a class="button is-small is-info" onclick="buttonCopySenha()">Copiar</a>
-                                                </p>
-
+                                        <div class="field is-grouped">
+                                            <div class="control has-icons-left has-icons-right is-expanded">
+                                                <input id="senha" class="input is-small" type="text" placeholder="*****">
+                                                <span class="icon is-small is-left"><i class="fas fa-unlock-alt"></i></span>
                                             </div>
 
-                                            <label class="checkbox"><input id="checkboxChamadoManual" value="manual" type="checkbox"> Reparo manual, não possui senha </label>
+                                            <p class="control">
+                                                <a class="button is-small is-info" onclick="buttonCopySenha()">Copiar</a>
+                                            </p>
+
                                         </div>
-                                        <!-- /senha -->
 
-
+                                        <label class="checkbox"><input id="checkboxChamadoManual" value="manual" type="checkbox"> Reparo manual, não possui senha </label>
                                     </div>
+                                    <!-- /senha -->
+
+
                                 </div>
                             </div>
-                            <!-- /Card 2 -->
-
                         </div>
+                        <!-- /Card 2 -->
+
                     </div>
                     <!-- /BLOCO ESQUERDO -->
 
                     <!-- BLOCO CENTRO -->
-                    <div class="tile is-parent is-vertical">
+                    <div class="column">
 
                         <div class="card">
                             <div class="card-content">
@@ -813,18 +811,17 @@
                     <!-- /BLOCO CENTRO -->
 
                     <!-- BLOCO DIREITO -->
-                    <div class="tile is-parent">
-                        <div class="tile is-child">
+                    <div class="column">
 
-                            <!-- Card Mensagens Rapidas -->
-                            <div class="card">
-                                <div class="card-content">
-                                    <div class="content">
+                        <!-- Card Mensagens Rapidas -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
 
-                                        <!-- Atualizações -->
-                                        <div class="field">
+                                    <!-- Atualizações -->
+                                    <div class="field">
 
-                                            <label class="label my-label">Atualizações<i class="fas fa-info-circle my-instruction"></i>
+                                        <label class="label my-label">Atualizações<i class="fas fa-info-circle my-instruction"></i>
                                                 <div class="my-hide">Se como eu você não gosta de digitar sempre a mesma informação,
                                                     esta aréa fornece <strong>mensagens de atualização rapida</strong>
                                                     que são comuns no 360 e ferramentas de atualização.
@@ -833,115 +830,109 @@
                                                     use os <strong>botões do card encerramento</strong> para gerar a atualização. </div>
                                             </label>
 
-                                            <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;"><input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox"> Mensagens Rapidas </label>
+                                        <label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;"><input id="checkboxAguardandoValidacao" value="agudandoValidacao" type="checkbox"> Mensagens Rapidas </label>
 
-                                            <label class="label is-small">Motivo da Mensagem</label>
+                                        <label class="label is-small">Motivo da Mensagem</label>
 
-                                            <div class="field">
+                                        <div class="field">
 
-                                                <div class="control">
-                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="0" checked> Pendente validar com CPD/Residente amanhã </label>
-                                                </div>
+                                            <div class="control">
+                                                <label class="radio"><input type="radio" name="radioPendenteCliente" value="0" checked> Pendente validar com CPD/Residente amanhã </label>
+                                            </div>
 
-                                                <!-- <div class="control">
+                                            <!-- <div class="control">
                                                     <label class="radio">
 									<input type="radio" name="radioPendenteCliente" value="1">
 									Pendente validar com Residente amanhã</label> 
                                             </div> -->
 
-                                                <div class="control">
-                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="2"> Solicitado validação ao CPD/Residente </label>
-                                                </div>
+                                            <div class="control">
+                                                <label class="radio"><input type="radio" name="radioPendenteCliente" value="2"> Solicitado validação ao CPD/Residente </label>
+                                            </div>
 
-                                                <div class="control">
-                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="3"> Monitoração por 24 h </label>
-                                                </div>
+                                            <div class="control">
+                                                <label class="radio"><input type="radio" name="radioPendenteCliente" value="3"> Monitoração por 24 h </label>
+                                            </div>
 
-                                                <div class="control">
-                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="5"> Pendente Baixa do Posto </label>
-                                                </div>
+                                            <div class="control">
+                                                <label class="radio"><input type="radio" name="radioPendenteCliente" value="5"> Pendente Baixa do Posto </label>
+                                            </div>
 
-                                                <div class="control">
-                                                    <label class="radio"><input type="radio" name="radioPendenteCliente" value="4"> Pendente Diagnostico </label>
-                                                </div>
-
+                                            <div class="control">
+                                                <label class="radio"><input type="radio" name="radioPendenteCliente" value="4"> Pendente Diagnostico </label>
                                             </div>
 
                                         </div>
-                                        <!-- /Atualizações -->
 
                                     </div>
+                                    <!-- /Atualizações -->
+
                                 </div>
                             </div>
-                            <!-- /Card Mensagens Rapidas -->
+                        </div>
+                        <!-- /Card Mensagens Rapidas -->
+
+                        <!-- Card Mensagens Instantâneas -->
+                        <div class="card my-card">
+                            <div class="card-content">
+                                <div class="content">
 
 
-                            <!-- Card Mensagens Instantâneas -->
-                            <div class="card my-card">
-                                <div class="card-content">
-                                    <div class="content">
+                                    <div class="field">
 
-
-                                        <div class="field">
-
-                                            <label class="label is-small">Mensagens Instantâneas<i class="fas fa-info-circle my-instruction"></i>
+                                        <label class="label is-small">Mensagens Instantâneas<i class="fas fa-info-circle my-instruction"></i>
                                                 <div class="my-hide">Aqui temos outras mensagens que usamos com frequência.
                                                     <br>Basta clicar no botão para usar.</div>
                                             </label>
 
-                                            <div class="field">
+                                        <div class="field">
 
-                                                <button class="button is-small is-fullwidth is-primary" onclick="buttonCasoNovo()">Caso Novo</button>
-
-                                            </div>
-
-                                            <div class="field">
-
-                                                <button class="button is-small is-fullwidth is-primary" onclick="buttonEncerrado()">Encerrado</button>
-
-                                            </div>
-
-                                            <div class="field has-addons">
-
-                                                <button class="button is-small is-fullwidth" onclick="buttonAgendadoPara()" disabled>Agendado Para</button>
-
-                                                <div class="field">
-                                                    <input class="input is-small" type="date" disabled>
-                                                </div>
-
-                                            </div>
-
+                                            <button class="button is-small is-fullwidth is-primary" onclick="buttonCasoNovo()">Caso Novo</button>
 
                                         </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Card Mensagens Instantâneas -->
-
-
-                            <!-- Card Codigos de encerramento -->
-                            <div class="card my-card">
-                                <div class="card-content">
-                                    <div class="content">
 
                                         <div class="field">
-                                            <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
-                                                <button class="button is-small is-link is-fullwidth">Códigos de Encerramento R2</button>
-                                            </a>
+
+                                            <button class="button is-small is-fullwidth is-primary" onclick="buttonEncerrado()">Encerrado</button>
+
                                         </div>
 
+                                        <div class="field has-addons">
+
+                                            <button class="button is-small is-fullwidth" onclick="buttonAgendadoPara()" disabled>Agendado Para</button>
+
+                                            <div class="field">
+                                                <input class="input is-small" type="date" disabled>
+                                            </div>
+
+                                        </div>
+
+
                                     </div>
+
+
                                 </div>
                             </div>
-
                         </div>
-                        <!-- /BLOCO DIREITO -->
+                        <!-- /Card Mensagens Instantâneas -->
+
+                        <!-- Card Codigos de encerramento -->
+                        <div class="card my-card">
+                            <div class="card-content">
+                                <div class="content">
+
+                                    <div class="field">
+                                        <a href="https://gabbamendonca.github.io/apps-oi/encerramento">
+                                            <button class="button is-small is-link is-fullwidth">Códigos de Encerramento R2</button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-                    <!-- /Bloco ancestral que envolve todos os outros blocos -->
-                    <!-- /Grid de blocos para dividir em 3 partes a tela -->
+                    <!-- /BLOCO DIREITO -->
 
                 </div>
             </div>
@@ -953,80 +944,86 @@
                 <div class="columns is-centered">
                     <div class="column is-4">
 
-                        <label class="label">Assunto para Email<i class="fas fa-info-circle my-instruction"></i>
+                        <div class="card">
+                            <div class="card-content">
+
+                                <label class="label">Assunto para Email<i class="fas fa-info-circle my-instruction"></i>
                             <div class="my-hide">Esta sessão serve para fazer o assunto do e-mail de maneira rapida e padrão.</div>
                         </label>
 
-                        <div class="field">
-                            <label class="label is-small">Cliente</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
-                                <span class="icon is-small is-left">
+                                <div class="field">
+                                    <label class="label is-small">Cliente</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCliente" class="input is-small" type="text" placeholder="Cliente">
+                                        <span class="icon is-small is-left">
 								<i class="fas fa-user-circle"></i>
 							</span>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="field">
-                            <label class="label is-small">Circuito</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
-                                <span class="icon is-small is-left">
+                                <div class="field">
+                                    <label class="label is-small">Circuito</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailCircuito" class="input is-small" type="text" placeholder="ABC 1234567">
+                                        <span class="icon is-small is-left">
 								<i class="fas fa-ethernet"></i>
 							</span>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="field">
-                            <label class="label is-small">Protocolo OI</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
-                                <span class="icon is-small is-left">
+                                <div class="field">
+                                    <label class="label is-small">Protocolo OI</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailProtocoloOi" class="input is-small" type="text" placeholder="12345">
+                                        <span class="icon is-small is-left">
 								<i class="fas fa-headset"></i>
 							</span>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="field">
-                            <label class="label is-small">Chamado Interno</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                                <span class="icon is-small is-left">
+                                <div class="field">
+                                    <label class="label is-small">Chamado Interno</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailProtocoloCliente" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                        <span class="icon is-small is-left">
 								<i class="fas fa-headset"></i>
 							</span>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="field">
-                            <label class="label is-small">Complemento</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
-                                <span class="icon is-small is-left">
+                                <div class="field">
+                                    <label class="label is-small">Complemento</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="emailComplemento" class="input is-small" type="text" placeholder="Local / UNIORG">
+                                        <span class="icon is-small is-left">
 								<i class="fas fa-headset"></i>
 							</span>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="field">
+                                    <button class="button is-info is-small is-fullwidth gap-button" onclick="buttonEmailLimpar()">Limpar</button>
+                                </div>
+
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonEmailAgendamento()">Agendamento</button>
+                                </div>
+
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonEmailValidacao()">Validação</button>
+                                </div>
+
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonEmailEscalonamento()">Escalonamento</button>
+                                </div>
+
+                                <div class="field">
+                                    <button class="button is-small is-fullwidth gap-button my-info is-info is-outlined" onclick="buttonEmailPosicionamento()">Posicionamento</button>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <hr>
-
-                        <div class="field">
-                            <button class="button is-info is-small is-fullwidth gap-button" onclick="buttonEmailLimpar()">Limpar</button>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailAgendamento()">Agendamento</button>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailValidacao()">Validação</button>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailEscalonamento()">Escalonamento</button>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-small is-fullwidth gap-button" onclick="buttonEmailPosicionamento()">Posicionamento</button>
                         </div>
 
                     </div>
