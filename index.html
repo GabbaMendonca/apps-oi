@@ -15,7 +15,7 @@
 <body onload="abertura()">
 
     <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
-    <div class="tabs is-centered remove-margin-bottom">
+    <nav class="tabs is-centered remove-margin-bottom">
         <ul>
 
             <!-- Guia Abertura -->
@@ -55,42 +55,38 @@
             </li>
 
         </ul>
-    </div>
+    </nav>
     <!-- /nav | Menu Superior -->
 
     <!-- PAGE -->
     <section class="hero is-light">
         <div class="hero-body hero-bory-padding-top">
 
-
             <!-- Cabeçalho dados OI -->
             <div class="container is-fullhd">
-                <div class="columns">
-                    <div class="column is-4 is-offset-4">
+                <div class="columns is-centered">
+                    <div class="column is-4">
 
                         <!-- Label com seta para esconder o campo ID e NOME -->
                         <div class="control">
 
                             <!-- Main container - Usado o tributo level para alinhar o label e a seta -->
-                            <nav class="level is-mobile">
+                            <div class="level is-mobile">
                                 <!-- Left side - onde esta o label -->
                                 <div class="level-left">
-
                                     <label class="label is-small level-item" id="label-cabecalho">OI</label>
-
                                 </div>
 
                                 <!-- Right side - onde esta a seta -->
                                 <div class="level-right">
-
                                     <a onclick="ocultarCabecalho()" class="level-item">
                                         <span class="icon" style="padding-bottom:7px">
-												<i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h" ></i>
-												</span>
+                                            <i id="seta" class="fas fa-chevron-circle-up" data-fa-transform="flip-h" >                                                
+                                            </i>
+                                        </span>
                                     </a>
-
                                 </div>
-                            </nav>
+                            </div>
 
                         </div>
                         <!-- /Label com seta para esconder o campo ID e NOME -->
@@ -130,6 +126,371 @@
             <!-- -------- -->
 
 
+            <!-- ABERTURA -->
+            <div id="abertura" class="container is-fullhd">
+
+                <div class="columns">
+
+                    <!-- COLUNA DA ESQUERDA -->
+                    <div class="column">
+
+                        <!-- buttons topo - limpar e log-->
+                        <div class="field">
+                            <div class="buttons">
+                                <button class="button is-info is-small is-fullwidth" onclick="abButtonLimpar()">Limpar</button>
+                                <button class="button is-info is-small is-fullwidth" onclick="buttonLog()">Log</button>
+                            </div>
+                        </div>
+                        <!-- /buttons topo - limpar e log-->
+
+                        <div class="field">
+                            <label class="label">Abertura</label>
+                        </div>
+
+                        <!-- Select - Reclamação -->
+                        <!-- Campo do select e botões -->
+                        <div class="field">
+                            <label class="label is-small">Reclamação <i class="fas fa-bug"></i></label>
+
+                            <!-- select -->
+                            <div class="select is-fullwidth">
+                                <select id="abFalha">
+                                                    <option selected>Inoperante</option>
+                                                    <option>Intermitente</option>
+                                                    <option>Perda de Pacotes</option>
+                                                    <option>Taxa de Erro</option>
+                                                    <option>Lentidão</option>
+                                                    <option>Configuração</option>
+                                                    <option>Evento de Vulto</option>
+                                                    <option>DDR - Inoperante</option>
+                                                    <option>DDR - Intermitente</option>
+                                                    <option>DDR - Não completa p/ num específico</option>
+                                                </select>
+                            </div>
+                            <!-- select -->
+                        </div>
+                        <!-- /Campo do select e botões -->
+                        <!-- /Select - Reclamação -->
+
+                        <!-- Radio Buttons  -->
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+
+                                    <label class="label my-label">Troubleshooting<i class="fas fa-info-circle my-instruction"></i>
+                                        <div class="my-hide">Abaixo estão as opções para TS.</div>
+                                    </label>
+
+                                    <!-- radio - Reset -->
+                                    <div class="field">
+                                        <label class="label is-small">Realizado Reset ?</label>
+
+                                        <label class="radio"><input type="radio" name="abReset" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abReset" value="1" checked> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Reset -->
+
+                                    <!-- radio - Eletrica -->
+                                    <div class="field">
+                                        <label class="label is-small">Sem Energia ?</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="1"> Não</label>
+                                        <label class="radio"><input type="radio" name="abEnergia" value="2" checked> Sem Confirmação</label>
+                                    </div>
+                                    <!-- /radio - Eletrica -->
+
+                                    <!-- radio - Testes -->
+                                    <div class="field">
+                                        <label class="label is-small">Autoriza parar para testes ?</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="0" checked> Sim</label>
+                                        <label class="radio"><input type="radio" name="abTestes" value="1"> Não</label>
+                                        <!-- <label class="radio"><input type="radio" name="abTestes" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - Testes -->
+
+                                    <!-- radio - 103 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 103 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab103" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 103 -->
+
+                                    <!-- radio - 104 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 104 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab104" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 104 -->
+
+                                    <!-- radio - 109 -->
+                                    <div class="field">
+                                        <label class="label is-small">Led 109 Acesso ?</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="0"> Sim</label>
+                                        <label class="radio"><input type="radio" name="ab109" value="1" checked> Não</label>
+                                    </div>
+                                    <!-- /radio - 109 -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Card 1 -->
+                        <!-- /Radio Buttons  -->
+
+                    </div>
+                    <!-- /COLUNA DA ESQUERDA -->
+
+                    <!-- COLUNA DO CENTRO -->
+                    <div class="column">
+
+                        <!-- Card 2 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+
+
+
+                                    <!-- radio - V.tal OI -->
+                                    <div class="field">
+                                        <label class="label is-small">Qual o perímetro ?</label>
+
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
+                                        <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
+                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                    </div>
+                                    <!-- /radio - - V.tal OI -->
+
+                                    <!-- campo cliente -->
+                                    <div class="field">
+                                        <label class="label is-small">Cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abCliente" class="input is-small" type="text">
+                                            <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo cliente -->
+
+                                    <!-- campo contatos do cpd -->
+                                    <div class="field">
+                                        <label class="label is-small">Contatos do CPD</label>
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo contatos do cpd -->
+
+                                    <!-- campo horario de acesso -->
+                                    <div class="field">
+                                        <label class="label is-small">Horario de Acesso</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                            <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo horario de acesso -->
+
+                                    <!-- campo chamado interno -->
+                                    <div class="field">
+                                        <label class="label is-small">Chamado Interno do cliente</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo chamado interno -->
+
+                                    <!-- campo email -->
+                                    <div class="field">
+                                        <label class="label is-small">Email</label>
+                                        <div class="control has-icons-left has-icons-right">
+                                            <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
+                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- /campo email -->
+
+                                    <!-- campo descrição -->
+                                    <div class="field">
+                                        <label class="label is-small">Descrição</label>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abDescricao" class="textarea is-small" rows="7"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo descrição -->
+
+                                    <!-- campo descrição -->
+                                    <div class="field">
+                                        <label class="label is-small">Circutos Associados | Evento Massivo</label>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea id="abEventoMassivo" class="textarea is-small" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /campo descrição -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /COLUNA DO CENTRO -->
+
+                    <!-- COLUNA DA DIREITA -->
+                    <div class="column">
+
+                        <!-- Card 3 -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+
+                                    <label class="label">Informações Complementares</label>
+
+                                    <!-- radio - proativo -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Proativo ?</label>
+                                        <div class="field is-narrow">
+
+                                            <div class="control">
+                                                <label class="radio">
+                                                <input type="radio" name="abRadioProativo" value="0" checked>
+                                                Sim
+                                                </label>
+
+                                                <label class="radio">
+                                                <input type="radio" name="abRadioProativo" value="1">
+                                                Não
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /radio - proativo -->
+
+                                    <!-- radio - reincidente -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Reincidente ?</label>
+                                        <div class="field is-narrow">
+
+                                            <div class="control">
+                                                <label class="radio">
+                                                        <input type="radio" name="abRadioReincidente" value="0">
+                                                        Sim
+                                                        </label>
+
+                                                <label class="radio">
+                                                        <input type="radio" name="abRadioReincidente" value="1" checked>
+                                                        Não
+                                                        </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /radio - reincidente -->
+
+                                    <!-- radio - Backup -->
+                                    <div class="field">
+
+                                        <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
+
+                                        <div class="field is-narrow">
+
+                                            <div class="control">
+                                                <label class="radio">
+                                                <input type="radio" name="abBackup" value="0">
+                                                Sim, possiu backup ativo
+                                                </label>
+                                            </div>
+
+                                            <div class="control">
+                                                <label class="radio">
+                                                <input type="radio" name="abBackup" value="1">
+                                                Não, local esta isolado
+                                                </label>
+                                            </div>
+
+                                            <div class="control">
+                                                <label class="radio">
+                                                <input type="radio" name="abBackup" value="2" checked>
+                                                Sem Confirmação, cliente não soube informar
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /radio - Backup -->
+
+                                    <!-- radio - Troubleshooting -->
+                                    <!-- <div class="field">
+            
+                                        <label class="label is-small">Troubleshooting</label>
+            
+                                        <div class="field is-narrow">
+            
+                                            <div class="control">
+                                                <label class="radio">
+                                                <input type="radio" name="abTs" value="0" disabled>
+                                                OK
+                                                </label>
+            
+                                                <label class="radio">
+                                                <input type="radio" name="abTs" value="1" disabled>
+                                                Pendente
+                                                </label>
+            
+                                                <label class="radio">
+                                                <input type="radio" name="abTs" value="2" disabled>
+                                                Sem Sucesso
+                                                </label>
+                                            </div>
+            
+                                        </div>
+            
+                                    </div> -->
+                                    <!-- /radio - Troubleshooting -->
+
+                                    <!-- Botão -->
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" onclick="abButtonGerarMascaraAbertura()">Gerar Mascara</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Botão -->
+
+                                    <!-- Botão -->
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" onclick="abButtonEnviarParaEditor()">Enviar para o Editor de Texto</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Botão -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- COLUNA DA DIREITA -->
+
+                </div>
+
+            </div>
+            <!-- /ABERTURA -->
+
             <!-- ENCERRAMENTO -->
             <div id="encerramento" class="container is-fullhd">
 
@@ -141,6 +502,12 @@
                     <div class="tile is-parent">
                         <div class="tile is-child">
 
+                            <!-- Botões -->
+                            <div class="buttons are-small">
+                                <button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
+                                <button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
+                            </div>
+                            <!-- /Botões -->
 
                             <!-- Card 1 -->
                             <div class="card">
@@ -327,13 +694,6 @@
                                 </div>
                             </div>
                             <!-- /Card 2 -->
-
-                            <!-- Botões -->
-                            <div class="buttons are-small">
-                                <button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
-                                <button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
-                            </div>
-                            <!-- /Botões -->
 
                         </div>
                     </div>
@@ -587,376 +947,11 @@
             </div>
             <!-- /ENCERRAMENTO -->
 
-            <!-- ABERTURA -->
-            <div id="abertura" class="container is-fullhd">
-
-                <div class="field">
-                    <label class="label">Abertura</label>
-                </div>
-
-                <div class="columns">
-
-                    <!-- COLUNA DA ESQUERDA -->
-                    <div class="column">
-
-                        <!-- buttons topo - limpar e log-->
-                        <div class="field">
-                            <div class="buttons">
-                                <button class="button is-info is-small is-fullwidth" onclick="abButtonLimpar()">Limpar</button>
-                                <button class="button is-info is-small is-fullwidth" onclick="buttonLog()">Log</button>
-                            </div>
-                        </div>
-                        <!-- /buttons topo - limpar e log-->
-
-                        <!-- Select - Reclamação -->
-                        <!-- Campo do select e botões -->
-                        <div class="field">
-
-                            <label class="label is-small">Reclamação <i class="fas fa-bug"></i></label>
-
-                            <!-- select -->
-                            <div class="select is-fullwidth">
-                                <select id="abFalha">
-										<option selected>Inoperante</option>
-										<option>Intermitente</option>
-										<option>Perda de Pacotes</option>
-										<option>Taxa de Erro</option>
-										<option>Lentidão</option>
-										<option>Configuração</option>
-										<option>Evento de Vulto</option>
-										<option>DDR - Inoperante</option>
-										<option>DDR - Intermitente</option>
-										<option>DDR - Não completa p/ num específico</option>
-									</select>
-                            </div>
-                            <!-- select -->
-
-                        </div>
-                        <!-- /Campo do select e botões -->
-                        <!-- /Select - Reclamação -->
-
-                        <!-- Radio Buttons  -->
-                        <!-- Card 1 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="content">
-
-                                    <label class="label my-label">Troubleshooting<i class="fas fa-info-circle my-instruction"></i>
-                                        <div class="my-hide">Abaixo estão as opções para TS.</div>
-                                    </label>
-
-                                    <!-- radio - Reset -->
-                                    <div class="field">
-                                        <label class="label is-small">Realizado Reset ?</label>
-
-                                        <label class="radio"><input type="radio" name="abReset" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="abReset" value="1" checked> Não</label>
-                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
-                                    </div>
-                                    <!-- /radio - Reset -->
-
-                                    <!-- radio - Eletrica -->
-                                    <div class="field">
-                                        <label class="label is-small">Sem Energia ?</label>
-                                        <label class="radio"><input type="radio" name="abEnergia" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="abEnergia" value="1"> Não</label>
-                                        <label class="radio"><input type="radio" name="abEnergia" value="2" checked> Sem Confirmação</label>
-                                    </div>
-                                    <!-- /radio - Eletrica -->
-
-                                    <!-- radio - Testes -->
-                                    <div class="field">
-                                        <label class="label is-small">Autoriza parar para testes ?</label>
-                                        <label class="radio"><input type="radio" name="abTestes" value="0" checked> Sim</label>
-                                        <label class="radio"><input type="radio" name="abTestes" value="1"> Não</label>
-                                        <!-- <label class="radio"><input type="radio" name="abTestes" value="2" checked>Sem Confirmação</label> -->
-                                    </div>
-                                    <!-- /radio - Testes -->
-
-                                    <!-- radio - 103 -->
-                                    <div class="field">
-                                        <label class="label is-small">Led 103 Acesso ?</label>
-                                        <label class="radio"><input type="radio" name="ab103" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="ab103" value="1" checked> Não</label>
-                                    </div>
-                                    <!-- /radio - 103 -->
-
-                                    <!-- radio - 104 -->
-                                    <div class="field">
-                                        <label class="label is-small">Led 104 Acesso ?</label>
-                                        <label class="radio"><input type="radio" name="ab104" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="ab104" value="1" checked> Não</label>
-                                    </div>
-                                    <!-- /radio - 104 -->
-
-                                    <!-- radio - 109 -->
-                                    <div class="field">
-                                        <label class="label is-small">Led 109 Acesso ?</label>
-                                        <label class="radio"><input type="radio" name="ab109" value="0"> Sim</label>
-                                        <label class="radio"><input type="radio" name="ab109" value="1" checked> Não</label>
-                                    </div>
-                                    <!-- /radio - 109 -->
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Card 1 -->
-                        <!-- /Radio Buttons  -->
-
-                    </div>
-                    <!-- /COLUNA DA ESQUERDA -->
-
-                    <!-- COLUNA DO CENTRO -->
-                    <div class="column">
-
-                        <!-- Card 2 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="content">
-
-                                    <!-- radio - V.tal OI -->
-                                    <div class="field">
-                                        <label class="label is-small">Qual o perímetro ?</label>
-
-                                        <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
-                                        <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
-                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
-                                    </div>
-                                    <!-- /radio - - V.tal OI -->
-
-                                    <!-- campo cliente -->
-                                    <div class="field">
-                                        <label class="label is-small">Cliente</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abCliente" class="input is-small" type="text">
-                                            <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo cliente -->
-
-                                    <!-- campo contatos do cpd -->
-                                    <div class="field">
-                                        <label class="label is-small">Contatos do CPD</label>
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo contatos do cpd -->
-
-                                    <!-- campo horario de acesso -->
-                                    <div class="field">
-                                        <label class="label is-small">Horario de Acesso</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                            <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo horario de acesso -->
-
-                                    <!-- campo chamado interno -->
-                                    <div class="field">
-                                        <label class="label is-small">Chamado Interno do cliente</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo chamado interno -->
-
-                                    <!-- campo email -->
-                                    <div class="field">
-                                        <label class="label is-small">Email</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
-                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo email -->
-
-                                    <!-- campo descrição -->
-                                    <div class="field">
-                                        <label class="label is-small">Descrição</label>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abDescricao" class="textarea is-small" rows="7"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo descrição -->
-
-                                    <!-- campo descrição -->
-                                    <div class="field">
-                                        <label class="label is-small">Circutos Associados | Evento Massivo</label>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abEventoMassivo" class="textarea is-small" rows="5"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo descrição -->
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /COLUNA DO CENTRO -->
-
-                    <!-- COLUNA DA DIREITA -->
-                    <div class="column">
-
-                        <!-- Card 3 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="content">
-
-                                    <label class="label">Informações Complementares</label>
-
-                                    <!-- radio - proativo -->
-                                    <div class="field">
-
-                                        <label class="label is-small">Proativo ?</label>
-                                        <div class="field is-narrow">
-
-                                            <div class="control">
-                                                <label class="radio">
-									<input type="radio" name="abRadioProativo" value="0" checked>
-									Sim
-									</label>
-
-                                                <label class="radio">
-									<input type="radio" name="abRadioProativo" value="1">
-									Não
-									</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /radio - proativo -->
-
-                                    <!-- radio - reincidente -->
-                                    <div class="field">
-
-                                        <label class="label is-small">Reincidente ?</label>
-                                        <div class="field is-narrow">
-
-                                            <div class="control">
-                                                <label class="radio">
-											<input type="radio" name="abRadioReincidente" value="0">
-											Sim
-											</label>
-
-                                                <label class="radio">
-											<input type="radio" name="abRadioReincidente" value="1" checked>
-											Não
-											</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /radio - reincidente -->
-
-                                    <!-- radio - Backup -->
-                                    <div class="field">
-
-                                        <label class="label is-small">Local Esta Operando Pelo Backup ?</label>
-
-                                        <div class="field is-narrow">
-
-                                            <div class="control">
-                                                <label class="radio">
-									<input type="radio" name="abBackup" value="0">
-									Sim, possiu backup ativo
-									</label>
-                                            </div>
-
-                                            <div class="control">
-                                                <label class="radio">
-									<input type="radio" name="abBackup" value="1">
-									Não, local esta isolado
-									</label>
-                                            </div>
-
-                                            <div class="control">
-                                                <label class="radio">
-									<input type="radio" name="abBackup" value="2" checked>
-									Sem Confirmação, cliente não soube informar
-									</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /radio - Backup -->
-
-                                    <!-- radio - Troubleshooting -->
-                                    <!-- <div class="field">
-
-							<label class="label is-small">Troubleshooting</label>
-
-							<div class="field is-narrow">
-
-								<div class="control">
-									<label class="radio">
-									<input type="radio" name="abTs" value="0" disabled>
-									OK
-									</label>
-
-									<label class="radio">
-									<input type="radio" name="abTs" value="1" disabled>
-									Pendente
-									</label>
-
-									<label class="radio">
-									<input type="radio" name="abTs" value="2" disabled>
-									Sem Sucesso
-									</label>
-								</div>
-
-							</div>
-
-						</div> -->
-                                    <!-- /radio - Troubleshooting -->
-
-                                    <!-- Botão -->
-                                    <div class="field">
-                                        <div class="control">
-                                            <button class="button is-primary is-fullwidth" onclick="abButtonGerarMascaraAbertura()">Gerar Mascara</button>
-                                        </div>
-                                    </div>
-                                    <!-- /Botão -->
-
-                                    <!-- Botão -->
-                                    <div class="field">
-                                        <div class="control">
-                                            <button class="button is-primary is-fullwidth" onclick="abButtonEnviarParaEditor()">Enviar para o Editor de Texto</button>
-                                        </div>
-                                    </div>
-                                    <!-- /Botão -->
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- COLUNA DA DIREITA -->
-
-                </div>
-
-            </div>
-            <!-- /ABERTURA -->
-
             <!-- EMAIL -->
             <div id="email" class="container is-fullhd">
 
-                <div class="columns">
-                    <div class="column is-4 is-offset-4">
+                <div class="columns is-centered">
+                    <div class="column is-4">
 
                         <label class="label">Assunto para Email<i class="fas fa-info-circle my-instruction"></i>
                             <div class="my-hide">Esta sessão serve para fazer o assunto do e-mail de maneira rapida e padrão.</div>
@@ -1035,147 +1030,113 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
             <!-- /EMAIL -->
-        </div>
 
-        <!-- EDITOR DE TEXTO -->
-        <div id="editor" class="container">
+            <!-- EDITOR DE TEXTO -->
+            <div id="editor" class="container is-max-desktop">
 
-            <div class="field">
-                <label class="label">Editor de Texto</label>
-            </div>
+                <div class="field">
+                    <label class="label">Editor de Texto</label>
+                </div>
 
-            <!-- botões -->
-            <div class="field is-grouped">
-
-                <p class="control">
-                    <button class="button is-info" onclick="editorCopiar()">
-							Copiar
-						</button>
-                </p>
-                <p class="control">
-                    <button class="button is-info" onclick="editorLimpar()">
-							Limpar
-						</button>
-                </p>
-
-                <div class="field has-addons">
+                <!-- botões -->
+                <div class="field is-grouped">
 
                     <p class="control">
-                        <button class="button" onclick="editorMauisculo()">
+                        <button class="button is-info" onclick="editorCopiar()">
+							Copiar
+						</button>
+                    </p>
+                    <p class="control">
+                        <button class="button is-info" onclick="editorLimpar()">
+							Limpar
+						</button>
+                    </p>
+
+                    <div class="field has-addons">
+
+                        <p class="control">
+                            <button class="button" onclick="editorMauisculo()">
 								<span class="icon is-small">
 									<i class="fas fa-font"></i>
 									<i class="fas fa-level-up-alt"></i>
 								</span>
 								<span>Maiúsculo</span>
 							</button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorMinusculo()">
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorMinusculo()">
 								<span class="icon is-small">
 									<i class="fas fa-font"></i>
 									<i class="fas fa-level-down-alt"></i>
 								</span>
 								<span>Minúsculo</span>
 							</button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorRemoverAcento()">
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorRemoverAcento()">
 								<span class="icon is-small">
 									<i class="fas fa-remove-format"></i>
 								</span>
 								<span>Remover Acentos</span>
 							</button>
-                    </p>
-                    <p class="control">
-                        <button class="button" onclick="editorUnderline()">
+                        </p>
+                        <p class="control">
+                            <button class="button" onclick="editorUnderline()">
 								<span class="icon is-small">
 									<i class="fas fa-underline"></i>
 								</span>
 								<span>Remover Underline</span>
 							</button>
-                    </p>
+                        </p>
 
-                    <p class="control">
-                        <button class="button" onclick="editorPosicionar()">
+                        <p class="control">
+                            <button class="button" onclick="editorPosicionar()">
 								<span class="icon is-small">
 									<i class="fas fa-map-marker-alt"></i>
 								</span>
 								<span>&</span>
 							</button>
-                    </p>
+                        </p>
 
-                    <p class="control">
-                        <button class="button" onclick="editorSTC()">
+                        <p class="control">
+                            <button class="button" onclick="editorSTC()">
 								<span class="icon is-small">
 									<i class="fas fa-align-justify"></i>
 								</span>
 								<span>STC</span>
 							</button>
-                    </p>
+                        </p>
+
+                    </div>
 
                 </div>
+                <!-- /botões -->
 
-            </div>
-            <!-- /botões -->
-
-            <!-- text area -->
-            <div class="field">
-                <div class="control">
-                    <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+                <!-- text area -->
+                <div class="field">
+                    <div class="control">
+                        <textarea id="editorTextarea" class="textarea" rows="20"></textarea>
+                    </div>
                 </div>
-            </div>
 
-            <div class="field" id="stc">
+                <div class="field" id="stc">
 
-            </div>
-            <!-- /text area -->
-
+                </div>
+                <!-- /text area -->
 
 
-        </div>
-        <!-- /EDITOR DE TEXTO -->
-
-
-        <!-- -------- -->
-
-
-        <!-- MODAL - Tela para colocar o log de teste -->
-        <div id="myModal" class="modal">
-            <div class="modal-background"></div>
-
-            <div class="modal-card">
-
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Log's</p>
-                    <button class="delete" aria-label="close" onclick="modalClose()"></button>
-                </header>
-
-                <section class="modal-card-body">
-
-                    <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
-
-                </section>
-
-                <footer class="modal-card-foot">
-                    <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
-                    <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
-                    <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
-                </footer>
 
             </div>
+            <!-- /EDITOR DE TEXTO -->
         </div>
-        <!-- /MODAL -->
 
-        </div>
     </section>
     <!-- /PAGE -->
 
     <!-- FOOTER -->
-
     <footer class="footer">
         <div class="content has-text-centered">
 
@@ -1199,13 +1160,39 @@
 
     <!-- /FOOTER -->
 
+    <!-- MODAL - Tela para colocar o log de teste -->
+    <div id="myModal" class="modal">
+        <div class="modal-background"></div>
+
+        <div class="modal-card">
+
+            <header class="modal-card-head">
+                <p class="modal-card-title">Log's</p>
+                <button class="delete" aria-label="close" onclick="modalClose()"></button>
+            </header>
+
+            <section class="modal-card-body">
+
+                <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
+
+            </section>
+
+            <footer class="modal-card-foot">
+                <!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
+                <button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
+                <button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
+            </footer>
+
+        </div>
+    </div>
+    <!-- /MODAL -->
+
     <script src="assets/js/abertura.js"></script>
     <script src="assets/js/encerramento.js"></script>
     <script src="assets/js/email.js"></script>
     <script src="assets/js/modal.js"></script>
     <script src="assets/js/editor.js"></script>
     <script src="assets/js/utilidade.js"></script>
-    <!-- <script src="test.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 
     <script>
