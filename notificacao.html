@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <style>
+        .grid_notification {
+            position: absolute;
+            z-index: 900;
+            width: 100%;
+            top: 1rem;
+            display: block;
+        }
+        
+        .notification {
+            width: 800px;
+            display: none;
+            left: 50%;
+            margin-left: -400px;
+            animation: effect 1s ease-out forwards;
+        }
+        
+        @keyframes effect {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Notificação</title>
+</head>
+
+<body>
+    <div id="grid_notification" class="grid_notification"></div>
+
+    <div class="container has-text-centered">
+        <div class="card" style="margin-top:35rem;">
+            <div class="card-content">
+                <a id="button" class="button is-success">Success</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const grid_notification = document.getElementById("grid_notification")
+            // const del = document.getElementById("delete")
+        const button = document.getElementById("button")
+
+        function CreateNotification() {
+            let myself = {}
+            myself.notification = document.createElement('div')
+            myself.button = document.createElement('button')
+
+            myself.getNotification = () => {
+                myself.notification.appendChild(myself.button)
+                return myself.notification
+            }
+
+            return myself
+        }
+
+        function addNotification() {
+            const notification = CreateNotification()
+            notification.notification.id = "notification"
+            notification.notification.classList.add("notification", "is-primary")
+            notification.notification.style.display = "block"
+            notification.button.id = "delete"
+
+            notification.notification.innerHTML = `Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet
+        fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.`
+
+            notification.button.classList.add("delete")
+            console.log(notification.getNotification())
+            return notification.getNotification()
+        }
+
+        button.addEventListener('click', () => {
+            grid_notification.appendChild(addNotification())
+        })
+
+        del.addEventListener('click', () => {
+            // notification.style.display = "none"
+        })
+    </script>
+
+</body>
+
+</html>
