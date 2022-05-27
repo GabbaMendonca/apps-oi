@@ -90,6 +90,8 @@
 
             notification.buttonClose.id = "delete"
             notification.buttonClose.classList.add("delete")
+            notification.buttonClose.addEventListener("click", buttonCloseNotification)
+
 
             return notification.getNotification()
         }
@@ -110,14 +112,20 @@
 
             setTimeout(() => {
                 fadeOutNotification()
-                setTimeout(removeNotification, 450)
-            }, 3000)
+                setTimeout(removeNotification, 500)
+            }, 4000)
 
+        }
+
+        function buttonCloseNotification(params) {
+            console.log(params)
         }
 
         function closeNotification(notification) {
             notification.parentNode.removeChild(notification)
         }
+
+
 
         // function timeCloseNotification(notification) {
         //     setTimeout(() => closeNotification(notification), 3000)
