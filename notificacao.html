@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
     <style>
-        .grid_notification {
+        .gridNotification {
             position: absolute;
             z-index: 900;
             width: 100%;
+            height: 0px;
             top: 1rem;
             display: block;
+            overflow: visible;
         }
         
         .notification {
             width: 800px;
-            display: none;
+            display: block;
             left: 50%;
             margin-left: -400px;
-            animation: openNotification 1s ease-out forwards;
+            animation: fadeIntNotification 1s ease-out forwards;
         }
         
-        @keyframes openNotification {
+        @keyframes fadeIntNotification {
             from {
                 transform: translateX(100%);
                 opacity: 0;
@@ -52,7 +54,7 @@
 </head>
 
 <body>
-    <div id="grid_notification" class="grid_notification"></div>
+    <div id="gridNotification" class="gridNotification"></div>
 
     <div class="container has-text-centered">
         <div class="card" style="margin-top:35rem;">
@@ -63,8 +65,7 @@
     </div>
 
     <script>
-        const grid_notification = document.getElementById("grid_notification")
-            // const del = document.getElementById("delete")
+        const gridNotification = document.getElementById("gridNotification")
         const button = document.getElementById("button")
         button.addEventListener('click', addNotification)
 
@@ -83,15 +84,11 @@
 
         function createNotification(content) {
             const notification = Notification()
-            notification.notification.id = "notification"
             notification.notification.classList.add("notification", "is-primary")
-            notification.notification.style.display = "block"
             notification.notification.innerHTML = content
 
-            notification.buttonClose.id = "delete"
             notification.buttonClose.classList.add("delete")
             notification.buttonClose.addEventListener("click", buttonCloseNotification)
-
 
             return notification.getNotification()
         }
@@ -101,48 +98,23 @@
 
         function addNotification() {
             const notification = createNotification(content)
-            grid_notification.appendChild(notification)
+            gridNotification.appendChild(notification)
             autoCloseNotification(notification)
-
         }
 
         function autoCloseNotification(notification) {
             const fadeOutNotification = () => notification.classList.add("fadeOutNotification")
-            const removeNotification = () => closeNotification(notification)
+            const removeGridNotification = () => setTimeout(notification.remove(), 500)
 
             setTimeout(() => {
                 fadeOutNotification()
-                setTimeout(removeNotification, 500)
+                removeGridNotification()
             }, 4000)
-
         }
 
-        function buttonCloseNotification(params) {
-            console.log(params)
+        function buttonCloseNotification(event) {
+            event.target.parentNode.remove()
         }
-
-        function closeNotification(notification) {
-            notification.parentNode.removeChild(notification)
-        }
-
-
-
-        // function timeCloseNotification(notification) {
-        //     setTimeout(() => closeNotification(notification), 3000)
-        // }
-
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-        //         const $notification = $delete.parentNode;
-        //         $delete.addEventListener('click', () => {
-        //             $notification.parentNode.removeChild($notification);
-        //         });
-        //     });
-        // });
-
-        // del.addEventListener('click', () => {
-        //     // notification.style.display = "none"
-        // })
     </script>
 
 </body>
