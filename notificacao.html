@@ -23,7 +23,8 @@
             display: block;
             left: 50%;
             margin-left: -400px;
-            animation: fadeIntNotification 1s ease-out forwards;
+            animation: fadeIntNotification .5s ease-out forwards;
+            margin-bottom: .5rem !important;
         }
         
         @keyframes fadeIntNotification {
@@ -38,14 +39,16 @@
         }
         
         .fadeOutNotification {
-            animation: fadeOutNotification 0.5s ease-out forwards;
+            animation: fadeOutNotification .5s ease-out forwards;
         }
         
         @keyframes fadeOutNotification {
             from {
+                transform: translateY(0%);
                 opacity: 1;
             }
             to {
+                transform: translateY(100%);
                 opacity: 0;
             }
         }
@@ -104,12 +107,12 @@
 
         function autoCloseNotification(notification) {
             const fadeOutNotification = () => notification.classList.add("fadeOutNotification")
-            const removeGridNotification = () => setTimeout(notification.remove(), 500)
+            const removeGridNotification = () => notification.remove()
 
             setTimeout(() => {
                 fadeOutNotification()
-                removeGridNotification()
-            }, 4000)
+                setTimeout(removeGridNotification, 500)
+            }, 3000)
         }
 
         function buttonCloseNotification(event) {
