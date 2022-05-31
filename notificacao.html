@@ -62,15 +62,25 @@
     <div class="container has-text-centered">
         <div class="card" style="margin-top:35rem;">
             <div class="card-content">
-                <a id="button" class="button is-success">Success</a>
+                <a id="buttonS" class="button is-success">Success</a>
+                <a id="buttonI" class="button is-info">Info</a>
+                <a id="buttonW" class="button is-warning">Warning</a>
+                <a id="buttonD" class="button is-danger">Danger</a>
             </div>
         </div>
     </div>
 
     <script>
         const gridNotification = document.getElementById("gridNotification")
-        const button = document.getElementById("button")
-        button.addEventListener('click', addNotification)
+        const buttonS = document.getElementById("buttonS")
+        const buttonI = document.getElementById("buttonI")
+        const buttonW = document.getElementById("buttonW")
+        const buttonD = document.getElementById("buttonD")
+
+        buttonS.addEventListener('click', () => addNotification("Success"))
+        buttonI.addEventListener('click', () => addNotification("Info"))
+        buttonW.addEventListener('click', () => addNotification("Warning"))
+        buttonD.addEventListener('click', () => addNotification("Danger"))
 
         function Notification() {
             let myself = {}
@@ -96,10 +106,7 @@
             return notification.getNotification()
         }
 
-        const content = `Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet
-        fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.`
-
-        function addNotification() {
+        function addNotification(content) {
             const notification = createNotification(content)
             gridNotification.appendChild(notification)
             autoCloseNotification(notification)
