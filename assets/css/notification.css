@@ -1,0 +1,44 @@
+.gridNotification {
+    position: absolute;
+    z-index: 900;
+    width: 100%;
+    height: 0px;
+    top: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+.notification {
+    width: 800px;
+    display: block;
+    left: 50%;
+    margin-left: -400px;
+    animation: fadeIntNotification .5s ease-out forwards;
+    margin-bottom: .5rem !important;
+}
+
+@keyframes fadeIntNotification {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+.fadeOutNotification {
+    animation: fadeOutNotification .5s ease-out forwards;
+}
+
+@keyframes fadeOutNotification {
+    from {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
