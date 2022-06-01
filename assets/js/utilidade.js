@@ -19,7 +19,8 @@ function copyToClipboard(text) {
     document.body.removeChild(dummy);
 
     console.log(text);
-    alert("A mascara foi copiada para a área de transferência. (Ctrl + C)\n\n" + text)
+    addNotification(`A mascara foi copiada para a área de transferência. (Ctrl + C) \n\n ${text}`)
+        // alert("A mascara foi copiada para a área de transferência. (Ctrl + C)\n\n" + text)
 }
 
 

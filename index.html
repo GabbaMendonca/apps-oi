@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
 
     <title>Apps OI</title>
 </head>
 
-<body onload="abertura()">
+<body onload="init()">
 
     <!-- nav | Menu Superior - Seleciona função a ser utilizada -->
     <nav class="tabs is-centered remove-margin-bottom">
@@ -97,7 +97,7 @@
                             <!-- Campo ID -->
                             <div class="field">
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="oi" class="input is-small" type="text" placeholder="OI">
+                                    <input id="oi" class="input is-small" type="text" placeholder="OI" onblur="updateCabecalho()">
                                     <span class="icon is-small is-left">
 										<i class="fas fa-id-badge"></i></span>
                                 </div>
@@ -108,7 +108,7 @@
                             <div class="field">
                                 <label class="label is-small">Nome</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui">
+                                    <input id="nome" class="input is-small" type="text" placeholder="Seu Nome Aqui" onblur="updateCabecalho()">
                                     <span class="icon is-small is-left">
 										<i class="fas fa-signature"></i></span>
                                 </div>
@@ -264,12 +264,18 @@
                                     <!-- /radio - - V.tal OI -->
 
                                     <!-- campo cliente -->
-                                    <div class="field">
-                                        <label class="label is-small">Cliente</label>
-                                        <div class="control has-icons-left has-icons-right">
+                                    <label class="label is-small">Cliente</label>
+                                    <div class="field has-addons">
+                                        <div class="control has-icons-left has-icons-right is-expanded">
                                             <input id="abCliente" class="input is-small" type="text">
                                             <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
                                         </div>
+
+                                        <p class="control">
+                                            <button class="button is-success is-small" onclick="addButtonListClient()">
+                                                <span>+</span>
+                                            </button>
+                                        </p>
                                     </div>
                                     <!-- /campo cliente -->
 
@@ -1154,7 +1160,6 @@
 
         </div>
     </footer>
-
     <!-- /FOOTER -->
 
     <!-- MODAL - Tela para colocar o log de teste -->
@@ -1184,92 +1189,20 @@
     </div>
     <!-- /MODAL -->
 
+    <!-- NOTIFICATION -->
+    <div id="gridNotification" class="gridNotification"></div>
+    <!-- /NOTIFICATION -->
+
     <script src="assets/js/abertura.js"></script>
     <script src="assets/js/encerramento.js"></script>
     <script src="assets/js/email.js"></script>
-    <script src="assets/js/modal.js"></script>
     <script src="assets/js/editor.js"></script>
     <script src="assets/js/utilidade.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/notification.js"></script>
+    <script src="assets/js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-
-    <script>
-        function abertura() {
-            document.getElementById("abertura").hidden = false
-            document.querySelector("#tab_abertura").classList.add("is-active")
-
-            document.getElementById("encerramento").hidden = true
-            document.querySelector("#tab_encerramento").classList.remove("is-active")
-
-            document.getElementById("email").hidden = true
-            document.querySelector("#tab_email").classList.remove("is-active")
-
-            document.getElementById("editor").hidden = true
-            document.querySelector("#tab_editor").classList.remove("is-active")
-        }
-
-        function encerramento() {
-            document.getElementById("abertura").hidden = true
-            document.querySelector("#tab_abertura").classList.remove("is-active")
-
-            document.getElementById("encerramento").hidden = false
-            document.querySelector("#tab_encerramento").classList.add("is-active")
-
-            document.getElementById("email").hidden = true
-            document.querySelector("#tab_email").classList.remove("is-active")
-
-            document.getElementById("editor").hidden = true
-            document.querySelector("#tab_editor").classList.remove("is-active")
-        }
-
-        function email() {
-            document.getElementById("abertura").hidden = true
-            document.querySelector("#tab_abertura").classList.remove("is-active")
-
-            document.getElementById("encerramento").hidden = true
-            document.querySelector("#tab_encerramento").classList.remove("is-active")
-
-            document.getElementById("email").hidden = false
-            document.querySelector("#tab_email").classList.add("is-active")
-
-            document.getElementById("editor").hidden = true
-            document.querySelector("#tab_editor").classList.remove("is-active")
-        }
-
-        function editor() {
-            document.getElementById("encerramento").hidden = true
-            document.querySelector("#tab_encerramento").classList.remove("is-active")
-
-            document.getElementById("abertura").hidden = true
-            document.querySelector("#tab_abertura").classList.remove("is-active")
-
-            document.getElementById("email").hidden = true
-            document.querySelector("#tab_email").classList.remove("is-active")
-
-            document.getElementById("editor").hidden = false
-            document.querySelector("#tab_editor").classList.add("is-active")
-        }
-
-
-
-        function ocultarCabecalho() {
-
-            cabecalho = document.getElementById("cabecalho")
-            label_cabecalho = document.getElementById("label-cabecalho")
-            seta = document.getElementById("seta")
-
-            if (cabecalho.hidden == false) {
-                seta.setAttribute("data-fa-transform", "flip-v")
-                cabecalho.hidden = true
-                label_cabecalho.innerText = ""
-
-            } else {
-                seta.setAttribute("data-fa-transform", "flip-h")
-                cabecalho.hidden = false
-                label_cabecalho.innerText = "OI"
-            }
-
-        }
-    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
 </body>
 

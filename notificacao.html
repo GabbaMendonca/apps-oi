@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <style>
+        .gridNotification {
+            position: absolute;
+            z-index: 900;
+            width: 100%;
+            height: 0px;
+            top: 1rem;
+            display: block;
+            overflow: visible;
+        }
+        
+        .notification {
+            width: 800px;
+            display: block;
+            left: 50%;
+            margin-left: -400px;
+            animation: fadeIntNotification .5s ease-out forwards;
+            margin-bottom: .5rem !important;
+        }
+        
+        @keyframes fadeIntNotification {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+        }
+        
+        .fadeOutNotification {
+            animation: fadeOutNotification .5s ease-out forwards;
+        }
+        
+        @keyframes fadeOutNotification {
+            from {
+                transform: translateY(0%);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+    <title>Notificação</title>
+</head>
+
+<body>
+    <div id="gridNotification" class="gridNotification"></div>
+
+    <div class="container has-text-centered">
+        <div class="card" style="margin-top:35rem;">
+            <div class="card-content">
+                <a id="buttonS" class="button is-success">Success</a>
+                <a id="buttonI" class="button is-info">Info</a>
+                <a id="buttonW" class="button is-warning">Warning</a>
+                <a id="buttonD" class="button is-danger">Danger</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gridNotification = document.getElementById("gridNotification")
+        const buttonS = document.getElementById("buttonS")
+        const buttonI = document.getElementById("buttonI")
+        const buttonW = document.getElementById("buttonW")
+        const buttonD = document.getElementById("buttonD")
+
+        buttonS.addEventListener('click', () => addNotification("Success"))
+        buttonI.addEventListener('click', () => addNotification("Info"))
+        buttonW.addEventListener('click', () => addNotification("Warning"))
+        buttonD.addEventListener('click', () => addNotification("Danger"))
+
+        function Notification() {
+            let myself = {}
+            myself.notification = document.createElement('div')
+            myself.buttonClose = document.createElement('button')
+
+            myself.getNotification = () => {
+                myself.notification.appendChild(myself.buttonClose)
+                return myself.notification
+            }
+
+            return myself
+        }
+
+        function createNotification(content) {
+            const notification = Notification()
+            notification.notification.classList.add("notification", "is-primary")
+            notification.notification.innerHTML = content
+
+            notification.buttonClose.classList.add("delete")
+            notification.buttonClose.addEventListener("click", buttonCloseNotification)
+
+            return notification.getNotification()
+        }
+
+        function addNotification(content) {
+            const notification = createNotification(content)
+            gridNotification.appendChild(notification)
+            autoCloseNotification(notification)
+        }
+
+        function autoCloseNotification(notification) {
+            const fadeOutNotification = () => notification.classList.add("fadeOutNotification")
+            const removeGridNotification = () => notification.remove()
+
+            setTimeout(() => {
+                fadeOutNotification()
+                setTimeout(removeGridNotification, 500)
+            }, 3000)
+        }
+
+        function buttonCloseNotification(event) {
+            event.target.parentNode.remove()
+        }
+    </script>
+
+</body>
+
+</html>
