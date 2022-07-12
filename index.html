@@ -249,102 +249,99 @@
                         <!-- Card 2 -->
                         <div class="card">
                             <div class="card-content">
-                                <div class="content">
 
+                                <!-- radio - V.tal OI -->
+                                <div class="field">
+                                    <label class="label is-small">Qual o perímetro ?</label>
 
+                                    <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
+                                    <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
+                                    <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                </div>
+                                <!-- /radio - - V.tal OI -->
 
-                                    <!-- radio - V.tal OI -->
-                                    <div class="field">
-                                        <label class="label is-small">Qual o perímetro ?</label>
-
-                                        <label class="radio"><input type="radio" name="abPerimetro" value="0" checked> V.tal</label>
-                                        <label class="radio"><input type="radio" name="abPerimetro" value="1"> OI</label>
-                                        <!-- <label class="radio"><input type="radio" name="abReset" value="2" checked>Sem Confirmação</label> -->
+                                <!-- campo cliente -->
+                                <label class="label is-small">Cliente</label>
+                                <div class="field has-addons">
+                                    <div class="control has-icons-left has-icons-right is-expanded">
+                                        <input id="abCliente" class="input is-small" type="text">
+                                        <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
                                     </div>
-                                    <!-- /radio - - V.tal OI -->
 
-                                    <!-- campo cliente -->
-                                    <label class="label is-small">Cliente</label>
-                                    <div class="field has-addons">
-                                        <div class="control has-icons-left has-icons-right is-expanded">
-                                            <input id="abCliente" class="input is-small" type="text">
-                                            <span class="icon is-small is-left"><i class="fas fa-ethernet"></i></span>
-                                        </div>
-
-                                        <p class="control">
-                                            <button class="button is-success is-small" onclick="addButtonListClient()">
+                                    <p class="control">
+                                        <button class="button is-success is-small" onclick="adButtonAddClientList()">
                                                 <span>+</span>
                                             </button>
-                                        </p>
-                                    </div>
-                                    <!-- /campo cliente -->
-
-                                    <!-- campo contatos do cpd -->
-                                    <div class="field">
-                                        <label class="label is-small">Contatos do CPD</label>
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo contatos do cpd -->
-
-                                    <!-- campo horario de acesso -->
-                                    <div class="field">
-                                        <label class="label is-small">Horario de Acesso</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
-                                            <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo horario de acesso -->
-
-                                    <!-- campo chamado interno -->
-                                    <div class="field">
-                                        <label class="label is-small">Chamado Interno do cliente</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
-                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo chamado interno -->
-
-                                    <!-- campo email -->
-                                    <div class="field">
-                                        <label class="label is-small">Email</label>
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
-                                            <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
-                                        </div>
-                                    </div>
-                                    <!-- /campo email -->
-
-                                    <!-- campo descrição -->
-                                    <div class="field">
-                                        <label class="label is-small">Descrição</label>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abDescricao" class="textarea is-small" rows="7"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo descrição -->
-
-                                    <!-- campo descrição -->
-                                    <div class="field">
-                                        <label class="label is-small">Circutos Associados | Evento Massivo</label>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea id="abEventoMassivo" class="textarea is-small" rows="5"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /campo descrição -->
-
+                                    </p>
                                 </div>
+                                <div id="abClientList" class="field"></div>
+                                <!-- /campo cliente -->
+
+                                <!-- campo contatos do cpd -->
+                                <div class="field">
+                                    <label class="label is-small">Contatos do CPD</label>
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea id="abCPD" class="textarea is-small" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /campo contatos do cpd -->
+
+                                <!-- campo horario de acesso -->
+                                <div class="field">
+                                    <label class="label is-small">Horario de Acesso</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="abAcesso" class="input is-small" type="text" placeholder="--/--/---- --:--:--">
+                                        <p class="help is-danger">Deixar em branco inseri "08:00 AS 18:00 HS" automaticamente.</p><span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /campo horario de acesso -->
+
+                                <!-- campo chamado interno -->
+                                <div class="field">
+                                    <label class="label is-small">Chamado Interno do cliente</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="abChamadoInterno" class="input is-small" type="text" placeholder="Interno / Task / INC">
+                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /campo chamado interno -->
+
+                                <!-- campo email -->
+                                <div class="field">
+                                    <label class="label is-small">Email</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input id="abEmail" class="input is-small" type="text" placeholder="oi@oi.com.br">
+                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                    </div>
+                                </div>
+                                <!-- /campo email -->
+
+                                <!-- campo descrição -->
+                                <div class="field">
+                                    <label class="label is-small">Descrição</label>
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea id="abDescricao" class="textarea is-small" rows="7"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /campo descrição -->
+
+                                <!-- campo descrição -->
+                                <div class="field">
+                                    <label class="label is-small">Circutos Associados | Evento Massivo</label>
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea id="abEventoMassivo" class="textarea is-small" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /campo descrição -->
+
                             </div>
                         </div>
 
@@ -1201,6 +1198,8 @@
     <script src="assets/js/modal.js"></script>
     <script src="assets/js/notification.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/localStorage.js"></script>
+    <script src="assets/js/list.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 

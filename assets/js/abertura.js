@@ -155,3 +155,12 @@ function abButtonLimpar() {
 
     textareaLog.value = ''
 }
+
+function adButtonAddClientList() {
+    const name = document.getElementById("abCliente").value
+
+    if (!name) return
+
+    const clientList = List("abClientList")
+    clientList.addLine(name)
+}

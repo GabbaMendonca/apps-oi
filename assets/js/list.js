@@ -1,18 +1,27 @@
-function List() {
+function List(IdNameList) {
 
     function _getList(IdNameList) {
         return document.getElementById(IdNameList)
     }
 
-    function addLine(IdNameList, nameLine) {
+    function addLine(nameLine) {
         const list = _getList(IdNameList)
+
         const lineList = LineList(IdNameList, nameLine)
         list.appendChild(lineList.createLineList())
+
+        const storage = LocalStorageSingleton.getInstance()
+        storage.addLocalStorage(IdNameList, lineList.idNumber, nameLine)
+        storage.updateLocalStorage()
     }
 
-    function removeLine(idLine) {
-        const lineList = document.getElementById(idLine)
+    function removeLine(idNumber) {
+        const lineList = document.getElementById(`${IdNameList}.${idNumber}`)
         lineList.remove()
+
+        const storage = LocalStorageSingleton.getInstance()
+        storage.removeLocalStorage(IdNameList, idNumber)
+        storage.updateLocalStorage()
     }
 
     return { addLine, removeLine }
@@ -20,7 +29,8 @@ function List() {
 
 function LineList(nameList, nameLine) {
 
-    const id = `${nameList}.${generateID()}`
+    const idNumber = generateID()
+    const id = `${nameList}.${idNumber}`
     const buttonNameLine = ButtonList(nameLine)
     const buttonRemove = ButtonList("-")
     const lineList = document.createElement("div")
@@ -56,7 +66,7 @@ function LineList(nameList, nameLine) {
         return line
     }
 
-    return { createLineList, id }
+    return { createLineList, id, idNumber }
 }
 
 function ButtonList(name) {
@@ -80,6 +90,8 @@ function generateID() {
 
 function removeLineList(event) {
     event.preventDefault()
-    const lineList = List()
-    lineList.removeLine(event.target.id)
+    var idSplit = event.target.id.split(".")
+
+    const lineList = List(idSplit[0])
+    lineList.removeLine(idSplit[1])
 }
