@@ -161,6 +161,27 @@ function adButtonAddClientList() {
 
     if (!name) return
 
-    const clientList = List("abClientList")
-    clientList.addLine(name)
+    // const abClientList = new List("abClientList")
+    const abClientList = _List("abClientList")
+    abClientList.addLine(name)
+
+    const storage = LocalStorageSingleton.getInstance()
+    storage.addLocalStorage("abClientList", abClientList.idLine, name)
+    storage.updateLocalStorage()
+}
+
+function loadScreenAbertura() {
+    const storage = LocalStorageSingleton.getInstance()
+    storage.downloadBrowserLocalStorage()
+
+    const abClientListStorage = storage.getListLocalStorage("abClientList")
+    const abClientList = new List("abClientList")
+
+    for (const key in abClientListStorage) {
+
+        const nameLine = abClientListStorage[key]
+        const idLine = key
+
+        abClientList.addLine(nameLine, idLine)
+    }
 }

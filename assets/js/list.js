@@ -4,7 +4,7 @@
  * Here we have the functions responsible for 
  * managing the lists.
  * 
- * Just use the List function passing the list ID as a
+ * Just use the List function passing the neme list as a
  * parameter and use addLine to pass the contents
  * of the line.
  * 
@@ -12,51 +12,72 @@
  * Aqui temos as funções responsáveis por
  * gerenciar as listas.
  * 
- * Basta usar a função List passando o ID da
- * lista como parâmetro e usar addLine para passar o
+ * Basta usar a função List passando o nome da lista
+ * como parâmetro e usar addLine para passar o
  * conteúdo da linha.
  */
 
 /**
  * Managing all application lists
  * @param {string} IdNameList ID of the list.
- * @returns
+ * @returns {object} 
  */
-function List(IdNameList) {
+function _List(nameList) {
+    var idLine = 0
 
-    function _getList(IdNameList) {
-        return document.getElementById(IdNameList)
+    function _getList(nameList) {
+        return document.getElementById(nameList)
     }
 
-    /**
-     * Add line to a list
-     * @param {string} nameLine Receive the name of a line
-     */
-    function addLine(nameLine) {
-        const list = _getList(IdNameList)
+    function addLine(nameLine, idLine = false) {
+        const list = _getList(nameList)
 
-        const lineList = LineList(IdNameList, nameLine)
+        !idLine ? this.idLine = generateID() : this.idLine = idLine
+
+        const lineList = LineList(nameList, nameLine, this.idLine)
         list.appendChild(lineList.createLineList())
-
-        const storage = LocalStorageSingleton.getInstance()
-        storage.addLocalStorage(IdNameList, lineList.idNumber, nameLine)
-        storage.updateLocalStorage()
     }
 
-    /**
-     * Remove line to a list
-     * @param {string} idNumber Receive the ID of a line
-     */
-    function removeLine(idNumber) {
-        const lineList = document.getElementById(`${IdNameList}.${idNumber}`)
+    function removeLine(idLine) {
+        const lineList = document.getElementById(`${nameList}.${idLine}`)
         lineList.remove()
 
         const storage = LocalStorageSingleton.getInstance()
-        storage.removeLocalStorage(IdNameList, idNumber)
+        storage.removeLocalStorage(nameList, idLine)
         storage.updateLocalStorage()
     }
 
-    return { addLine, removeLine }
+    return { addLine, removeLine, idLine }
+}
+
+class List {
+    constructor(nameList) {
+        this.nameList = nameList
+        this.idLine = 0
+    }
+
+    _getList(nameList) {
+        return document.getElementById(nameList)
+    }
+
+    addLine(nameLine, idLine = false) {
+        const list = this._getList(this.nameList)
+
+        !idLine ? this.idLine = generateID() : this.idLine = idLine
+
+        const lineList = LineList(this.nameList, nameLine, this.idLine)
+        list.appendChild(lineList.createLineList())
+    }
+
+    removeLine(idLine) {
+        const lineList = document.getElementById(`${this.nameList}.${idLine}`)
+        lineList.remove()
+
+        const storage = LocalStorageSingleton.getInstance()
+        storage.removeLocalStorage(this.nameList, idLine)
+        storage.updateLocalStorage()
+    }
+
 }
 
 /**
@@ -65,10 +86,9 @@ function List(IdNameList) {
  * @param {string} nameLine Receive  the name of a line
  * @returns 
  */
-function LineList(nameList, nameLine) {
+function LineList(nameList, nameLine, idLine) {
 
-    const idNumber = generateID()
-    const id = `${nameList}.${idNumber}`
+    const id = `${nameList}.${idLine}`
     const buttonNameLine = ButtonList(nameLine)
     const buttonRemove = ButtonList("-")
     const lineList = document.createElement("div")
@@ -104,7 +124,7 @@ function LineList(nameList, nameLine) {
         return line
     }
 
-    return { createLineList, id, idNumber }
+    return { createLineList, id, idLine }
 }
 
 /**
@@ -143,6 +163,6 @@ function removeLineList(event) {
     event.preventDefault()
     var idSplit = event.target.id.split(".")
 
-    const lineList = List(idSplit[0])
+    const lineList = new List(idSplit[0])
     lineList.removeLine(idSplit[1])
 }
