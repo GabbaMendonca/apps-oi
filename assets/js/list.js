@@ -19,38 +19,12 @@
 
 /**
  * Managing all application lists
- * @param {string} IdNameList ID of the list.
- * @returns {object} 
  */
-function _List(nameList) {
-    var idLine = 0
-
-    function _getList(nameList) {
-        return document.getElementById(nameList)
-    }
-
-    function addLine(nameLine, idLine = false) {
-        const list = _getList(nameList)
-
-        !idLine ? this.idLine = generateID() : this.idLine = idLine
-
-        const lineList = LineList(nameList, nameLine, this.idLine)
-        list.appendChild(lineList.createLineList())
-    }
-
-    function removeLine(idLine) {
-        const lineList = document.getElementById(`${nameList}.${idLine}`)
-        lineList.remove()
-
-        const storage = LocalStorageSingleton.getInstance()
-        storage.removeLocalStorage(nameList, idLine)
-        storage.updateLocalStorage()
-    }
-
-    return { addLine, removeLine, idLine }
-}
-
 class List {
+    /**
+     * 
+     * @param {string} nameList ID of the list.
+     */
     constructor(nameList) {
         this.nameList = nameList
         this.idLine = 0
@@ -65,7 +39,7 @@ class List {
 
         !idLine ? this.idLine = generateID() : this.idLine = idLine
 
-        const lineList = LineList(this.nameList, nameLine, this.idLine)
+        const lineList = new LineList(this.nameList, nameLine, idLine)
         list.appendChild(lineList.createLineList())
     }
 
@@ -79,72 +53,94 @@ class List {
     }
 
 }
-
 /**
  * Create a line for the list 
- * @param {string} nameList Receive  the name of a list
- * @param {string} nameLine Receive  the name of a line
- * @returns 
  */
-function LineList(nameList, nameLine, idLine) {
+class LineList {
+    /**
+     * 
+     * @param {string} nameList The name of a list
+     * @param {string} nameLine The name of a line
+     * @param {string} idLine The ID of a line
+     */
+    constructor(nameList, nameLine, idLine) {
+        this.nameList = nameList
+        this.nameLine = nameLine
+        this.idLine = idLine
 
-    const id = `${nameList}.${idLine}`
-    const buttonNameLine = ButtonList(nameLine)
-    const buttonRemove = ButtonList("-")
-    const lineList = document.createElement("div")
-
-    function _buildButtonName() {
-        buttonNameLine.button.classList.add("is-small", "is-fullwidth")
-        buttonNameLine.p.classList.add("is-expanded")
-        return buttonNameLine.getButton()
+        this.id = `${nameList}.${idLine}`
+        this.buttonNameLine = new ButtonList(nameLine)
+        this.buttonRemove = new ButtonList("-")
+        this.lineList = document.createElement("div")
     }
 
-    function _buildButtonRemove() {
-        buttonRemove.button.classList.add("is-small", "is-danger")
-        buttonRemove.button.addEventListener("click", removeLineList)
-        buttonRemove.button.id = id
-        return buttonRemove.getButton()
+    _buildButtonName() {
+        this.buttonNameLine.button.classList.add("is-small", "is-fullwidth")
+        this.buttonNameLine.p.classList.add("is-expanded")
+
+        return this.buttonNameLine.getButton()
     }
 
-    function _buildLine() {
-        lineList.classList.add("field", "has-addons")
-        lineList.style.marginBottom = "0.10rem"
-        lineList.id = id
-        return lineList
+    _buildButtonRemove() {
+        this.buttonRemove.button.classList.add("is-small", "is-danger")
+        this.buttonRemove.button.addEventListener("click", this._removeLineList)
+        this.buttonRemove.button.id = this.id
+
+        return this.buttonRemove.getButton()
     }
 
-    function createLineList() {
-        const buttonName = _buildButtonName()
-        const buttonRemove = _buildButtonRemove()
-        const line = _buildLine()
+    _buildLine() {
+        this.lineList.classList.add("field", "has-addons")
+        this.lineList.style.marginBottom = "0.10rem"
+        this.lineList.id = this.id
+
+        return this.lineList
+    }
+
+    _removeLineList(event) {
+        event.preventDefault()
+        var idSplit = event.target.id.split(".")
+
+        const lineList = new List(idSplit[0])
+        lineList.removeLine(idSplit[1])
+    }
+
+    createLineList() {
+        const buttonName = this._buildButtonName()
+        const buttonRemove = this._buildButtonRemove()
+        const line = this._buildLine()
 
         line.appendChild(buttonName)
         line.appendChild(buttonRemove)
 
         return line
     }
-
-    return { createLineList, id, idLine }
 }
-
 /**
  * Create a button for the line
- * @param {string} name Receive the name of a button
- * @returns 
  */
-function ButtonList(name) {
-    return {
-        p: document.createElement("p"),
-        button: document.createElement("button"),
+class ButtonList {
+    /**
+     * 
+     * @param {string} name The name of a button
+     */
+    constructor(name) {
+        this.name = name
 
-        getButton() {
-            this.button.innerHTML = name
-            this.p.classList.add("control")
-            this.button.classList.add("button")
-            this.p.appendChild(this.button)
-            return this.p
-        },
+        this.p = document.createElement("p")
+        this.button = document.createElement("button")
     }
+
+    getButton() {
+        this.button.innerHTML = this.name
+        this.button.classList.add("button")
+
+        this.p.classList.add("control")
+        this.p.appendChild(this.button)
+
+        return this.p
+    }
+
 }
 
 /**
@@ -153,16 +149,4 @@ function ButtonList(name) {
  */
 function generateID() {
     return Math.round(Math.random() * 1000)
-}
-
-/**
- * Remove a line a the list
- * @param {object} event Receive an object from the DOM
- */
-function removeLineList(event) {
-    event.preventDefault()
-    var idSplit = event.target.id.split(".")
-
-    const lineList = new List(idSplit[0])
-    lineList.removeLine(idSplit[1])
 }

@@ -161,8 +161,7 @@ function adButtonAddClientList() {
 
     if (!name) return
 
-    // const abClientList = new List("abClientList")
-    const abClientList = _List("abClientList")
+    const abClientList = new List("abClientList")
     abClientList.addLine(name)
 
     const storage = LocalStorageSingleton.getInstance()
