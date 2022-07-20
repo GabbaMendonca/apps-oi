@@ -1,39 +1,37 @@
-function Storage() {
-    var storage;
-
-    initialize()
-
-    function initialize() {
-        getLocalStorage()
-        if (!storage) storage = new Object({})
+class Storage {
+    constructor() {
+        this.storage;
+        this._initialize()
     }
 
-    function addLocalStorage(key, id, value) {
-        if (storage[`${key}`]) {
-            storage[`${key}`][`${id}`] = value
+    _initialize() {
+        this.downloadBrowserLocalStorage()
+        if (!this.storage) this.storage = new Object({})
+    }
+
+    addLocalStorage(key, id, value) {
+        if (this.storage[`${key}`]) {
+            this.storage[`${key}`][`${id}`] = value
         } else {
-            storage[`${key}`] = {}
-            storage[`${key}`][`${id}`] = value
+            this.storage[`${key}`] = {}
+            this.storage[`${key}`][`${id}`] = value
         }
     }
 
-    function removeLocalStorage(key, id) {
-        delete storage[`${key}`][`${id}`]
+    removeLocalStorage(key, id) {
+        delete this.storage[`${key}`][`${id}`]
     }
 
-    function updateLocalStorage() {
-        localStorage.setItem("app_oi", JSON.stringify(storage))
+    updateLocalStorage() {
+        localStorage.setItem("app_oi", JSON.stringify(this.storage))
     }
 
-    function getLocalStorage() {
-        storage = JSON.parse(localStorage.getItem("app_oi"))
+    getListLocalStorage(key) {
+        return this.storage[`${key}`]
     }
 
-    return {
-        addLocalStorage,
-        removeLocalStorage,
-        updateLocalStorage,
-        getLocalStorage,
+    downloadBrowserLocalStorage() {
+        this.storage = JSON.parse(localStorage.getItem("app_oi"))
     }
 }
 
@@ -42,7 +40,7 @@ var LocalStorageSingleton = (function() {
     var instance;
 
     function createInstance() {
-        var object = Storage();
+        var object = new Storage();
         return object;
     }
 
