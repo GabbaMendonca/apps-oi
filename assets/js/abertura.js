@@ -184,3 +184,13 @@ function loadScreenAbertura() {
         abClientList.addLine(nameLine, idLine)
     }
 }
+
+const inputCliente = document.getElementById("abCliente")
+
+inputCliente.addEventListener("focus", () => {
+    document.getElementById("abClientList").classList.add("open-list")
+})
+
+inputCliente.addEventListener("blur", () => {
+    document.getElementById("abClientList").classList.remove("open-list")
+})

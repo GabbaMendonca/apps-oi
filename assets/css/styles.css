@@ -1,9 +1,3 @@
-/* body {
-    background-color: rgb(33, 0, 37);
-    color: aliceblue;
-} */
-
-
 /* INFORMAÇÕES */
 
 .my-instruction {
@@ -70,42 +64,32 @@
 }
 
 
-/* MUDA A ORIENTAÇÃO DOS BLOCOS PARA A HORIZONTAL
-CASO A JANELA ESTAJA MAIOR QUE 1200 PX */
+/* LISTA */
 
-
-/* @media (min-width: 1200px) {
-    .is-horizontal {
-        display: flex;
-        flex-direction: row;
-    }
-    .is-horizontal div {
-        flex-direction: unset
-    }
-} */
-
-
-/* .is-right {
-    float: right;
-} */
-
-
-/* .button {
-    float: right;
-} */
-
-
-/* .input {
+.list {
+    max-height: 0;
     overflow: hidden;
-    padding: 0 3px 0 0;
+    animation: closelist .5s ease-in-out forwards;
 }
 
-.input input {
-    width: 100%
-} */
+@keyframes closelist {
+    from {
+        max-height: 500px;
+    }
+    to {
+        max-height: 0;
+    }
+}
 
+.open-list {
+    animation: openlist .5s ease-in-out forwards;
+}
 
-/* .gap-button {
-    margin-top: 3px;
-    margin-bottom: 3px;
-} */
+@keyframes openlist {
+    from {
+        max-height: 0;
+    }
+    to {
+        max-height: 500px;
+    }
+}
