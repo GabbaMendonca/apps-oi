@@ -46,10 +46,6 @@ class List {
     removeLine(idLine) {
         const lineList = document.getElementById(`${this.nameList}.${idLine}`)
         lineList.remove()
-
-        const storage = LocalStorageSingleton.getInstance()
-        storage.removeLocalStorage(this.nameList, idLine)
-        storage.updateLocalStorage()
     }
 
 }
@@ -77,6 +73,7 @@ class LineList {
     _buildButtonName() {
         this.buttonNameLine.button.classList.add("is-small", "is-fullwidth")
         this.buttonNameLine.p.classList.add("is-expanded")
+        this.buttonNameLine.button.addEventListener("click", this._returnNameButtonForInput)
 
         return this.buttonNameLine.getButton()
     }
@@ -84,7 +81,6 @@ class LineList {
     _buildButtonRemove() {
         this.buttonRemove.button.classList.add("is-small", "is-danger")
         this.buttonRemove.button.addEventListener("click", this._removeLineList)
-        this.buttonRemove.button.id = this.id
 
         return this.buttonRemove.getButton()
     }
@@ -99,10 +95,23 @@ class LineList {
 
     _removeLineList(event) {
         event.preventDefault()
-        var idSplit = event.target.id.split(".")
+        var idSplit = event.target.parentNode.parentNode.id.split(".")
 
         const lineList = new List(idSplit[0])
         lineList.removeLine(idSplit[1])
+
+        const storage = LocalStorageSingleton.getInstance()
+        storage.removeLocalStorage(idSplit[0], idSplit[1])
+        storage.updateLocalStorage()
+    }
+
+    _returnNameButtonForInput(event) {
+        event.preventDefault()
+        var idSplit = event.target.parentNode.parentNode.id.split(".")[0]
+        var value = event.target.innerHTML
+
+        var input = document.getElementById(idSplit.replace("List", ""))
+        input.value = value
     }
 
     createLineList() {
@@ -140,7 +149,6 @@ class ButtonList {
 
         return this.p
     }
-
 }
 
 /**

@@ -69,7 +69,7 @@
 .list {
     max-height: 0;
     overflow: hidden;
-    animation: closelist .5s ease-in-out forwards;
+    animation: closelist 1s ease-in-out forwards;
 }
 
 @keyframes closelist {

@@ -20,7 +20,7 @@ function pegarDadosMascaraAbertura() {
 
     // Coluna do Centro da Mascara de Abertura
     data["abPerimetro"] = document.getElementsByName("abPerimetro")
-    data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
+    data["abCliente"] = document.querySelector("#abClient").value.toUpperCase()
     data["abCPD"] = document.querySelector("#abCPD").value
     data["abAcesso"] = document.querySelector("#abAcesso").value
     data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
@@ -140,7 +140,7 @@ function abButtonLimpar() {
     document.getElementsByName("ab109")[1].checked = true
 
     // Coluna do Centro da Mascara de Abertura
-    document.querySelector("#abCliente").value = ''
+    document.querySelector("#abClient").value = ''
     document.querySelector("#abCPD").value = ''
     document.querySelector("#abAcesso").value = ''
     document.querySelector("#abChamadoInterno").value = ''
@@ -157,7 +157,7 @@ function abButtonLimpar() {
 }
 
 function adButtonAddClientList() {
-    const name = document.getElementById("abCliente").value
+    const name = document.getElementById("abClient").value
 
     if (!name) return
 
@@ -185,7 +185,7 @@ function loadScreenAbertura() {
     }
 }
 
-const inputCliente = document.getElementById("abCliente")
+const inputCliente = document.getElementById("abClient")
 
 inputCliente.addEventListener("focus", () => {
     document.getElementById("abClientList").classList.add("open-list")
@@ -193,4 +193,5 @@ inputCliente.addEventListener("focus", () => {
 
 inputCliente.addEventListener("blur", () => {
     document.getElementById("abClientList").classList.remove("open-list")
+
 })

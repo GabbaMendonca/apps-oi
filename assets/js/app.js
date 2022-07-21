@@ -44,7 +44,7 @@ function createButton(value, addClass) {
 }
 
 function addButtonListClient() {
-    let inputClient = document.querySelector("#abCliente").value
+    let inputClient = document.querySelector("#abClient").value
     let clientList = document.querySelector("#clientList")
 
     if (inputClient == "") return
