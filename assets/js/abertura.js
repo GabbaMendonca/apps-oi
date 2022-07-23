@@ -20,7 +20,7 @@ function pegarDadosMascaraAbertura() {
 
     // Coluna do Centro da Mascara de Abertura
     data["abPerimetro"] = document.getElementsByName("abPerimetro")
-    data["abCliente"] = document.querySelector("#abCliente").value.toUpperCase()
+    data["abCliente"] = document.querySelector("#abClient").value.toUpperCase()
     data["abCPD"] = document.querySelector("#abCPD").value
     data["abAcesso"] = document.querySelector("#abAcesso").value
     data["abChamadoInterno"] = document.querySelector("#abChamadoInterno").value
@@ -140,7 +140,7 @@ function abButtonLimpar() {
     document.getElementsByName("ab109")[1].checked = true
 
     // Coluna do Centro da Mascara de Abertura
-    document.querySelector("#abCliente").value = ''
+    document.querySelector("#abClient").value = ''
     document.querySelector("#abCPD").value = ''
     document.querySelector("#abAcesso").value = ''
     document.querySelector("#abChamadoInterno").value = ''
@@ -155,3 +155,47 @@ function abButtonLimpar() {
 
     textareaLog.value = ''
 }
+
+function adButtonAddClientList() {
+    const name = document.getElementById("abClient").value
+
+    if (!name) return
+
+    const list = new List("abClientList")
+    list.addLine(name)
+
+    const storage = LocalStorageSingleton.getInstance()
+    storage.addLocalStorage("abClientList", list.idLine, name)
+    storage.updateLocalStorage()
+}
+
+function loadScreenAbertura() {
+    const storage = LocalStorageSingleton.getInstance()
+    storage.downloadBrowserLocalStorage()
+
+    const abClientListStorage = storage.getListLocalStorage("abClientList")
+
+    if (abClientListStorage) {
+        const abClientList = new List("abClientList")
+
+        for (const key in abClientListStorage) {
+
+            const nameLine = abClientListStorage[key]
+            const idLine = key
+
+            abClientList.addLine(nameLine, idLine)
+        }
+    }
+
+}
+
+const inputCliente = document.getElementById("abClient")
+
+inputCliente.addEventListener("focus", () => {
+    document.getElementById("abClientList").classList.add("open-list")
+})
+
+inputCliente.addEventListener("blur", () => {
+    document.getElementById("abClientList").classList.remove("open-list")
+
+})
