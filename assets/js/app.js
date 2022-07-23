@@ -1,6 +1,8 @@
 function init() {
-    abertura()
+    // abertura()
+    encerramento()
     loadScreenAbertura()
+    loadScreenEncerramento()
         // getCabecalho()
 }
 
