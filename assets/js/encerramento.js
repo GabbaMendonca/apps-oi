@@ -85,7 +85,7 @@ function getViewEncerramento() {
     data["encerramento"] = document.querySelector("#dataEncerramento").value
     data["normalizacao"] = document.querySelector("#dataNormalizacao").value
     data["router"] = document.querySelector("#router").value
-    data["validacao"] = document.querySelector("#validacao").value.toUpperCase()
+    data["validacao"] = document.querySelector("#enValidation").value.toUpperCase()
     data["telefone"] = document.querySelector("#telefone").value.toUpperCase()
     data["senha"] = document.querySelector("#senha").value.toUpperCase()
     data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
@@ -351,7 +351,7 @@ class Mascara {
         document.querySelector("#dataAbertura").value = ""
         document.querySelector("#dataNormalizacao").value = ""
         document.querySelector("#router").value = ""
-        document.querySelector("#validacao").value = ""
+        document.querySelector("#enValidation").value = ""
         document.querySelector("#telefone").value = ""
         document.querySelector("#senha").value = ""
         document.querySelector("#outraCausa").value = ""
@@ -503,3 +503,47 @@ function buttonAgendadoPara() {
 }
 
 // === BUTTONS ===
+
+function enButtonAddClientList() {
+    const name = document.getElementById("enValidation").value
+
+    if (!name) return
+
+    const list = new List("enValidationList")
+    list.addLine(name)
+
+    const storage = LocalStorageSingleton.getInstance()
+    storage.addLocalStorage("enValidationList", list.idLine, name)
+    storage.updateLocalStorage()
+}
+
+function loadScreenEncerramento() {
+    const storage = LocalStorageSingleton.getInstance()
+    storage.downloadBrowserLocalStorage()
+
+    const abClientListStorage = storage.getListLocalStorage("enValidationList")
+
+    if (abClientListStorage) {
+        const abClientList = new List("enValidationList")
+
+        for (const key in abClientListStorage) {
+
+            const nameLine = abClientListStorage[key]
+            const idLine = key
+
+            abClientList.addLine(nameLine, idLine)
+        }
+    }
+
+}
+
+const inputValidation = document.getElementById("enValidation")
+
+inputValidation.addEventListener("focus", () => {
+    document.getElementById("enValidationList").classList.add("open-list")
+})
+
+inputValidation.addEventListener("blur", () => {
+    document.getElementById("enValidationList").classList.remove("open-list")
+
+})
