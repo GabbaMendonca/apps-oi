@@ -39,7 +39,7 @@ class List {
 
         !idLine ? this.idLine = generateID() : this.idLine = idLine
 
-        const lineList = new LineList(this.nameList, nameLine, idLine)
+        const lineList = new LineList(this.nameList, nameLine, this.idLine)
         list.appendChild(lineList.createLineList())
     }
 
