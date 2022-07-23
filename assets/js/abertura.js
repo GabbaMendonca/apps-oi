@@ -161,11 +161,11 @@ function adButtonAddClientList() {
 
     if (!name) return
 
-    const abClientList = new List("abClientList")
-    abClientList.addLine(name)
+    const list = new List("abClientList")
+    list.addLine(name)
 
     const storage = LocalStorageSingleton.getInstance()
-    storage.addLocalStorage("abClientList", abClientList.idLine, name)
+    storage.addLocalStorage("abClientList", list.idLine, name)
     storage.updateLocalStorage()
 }
 
@@ -174,15 +174,19 @@ function loadScreenAbertura() {
     storage.downloadBrowserLocalStorage()
 
     const abClientListStorage = storage.getListLocalStorage("abClientList")
-    const abClientList = new List("abClientList")
 
-    for (const key in abClientListStorage) {
+    if (abClientListStorage) {
+        const abClientList = new List("abClientList")
 
-        const nameLine = abClientListStorage[key]
-        const idLine = key
+        for (const key in abClientListStorage) {
 
-        abClientList.addLine(nameLine, idLine)
+            const nameLine = abClientListStorage[key]
+            const idLine = key
+
+            abClientList.addLine(nameLine, idLine)
+        }
     }
+
 }
 
 const inputCliente = document.getElementById("abClient")
