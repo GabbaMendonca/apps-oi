@@ -1,12 +1,7 @@
 class Storage {
     constructor() {
         this.storage;
-        this._initialize()
-    }
-
-    _initialize() {
         this.downloadBrowserLocalStorage()
-        if (!this.storage) this.storage = new Object({})
     }
 
     addLocalStorage(key, id, value) {
@@ -31,7 +26,8 @@ class Storage {
     }
 
     downloadBrowserLocalStorage() {
-        this.storage = JSON.parse(localStorage.getItem("app_oi"))
+        const browserStorage = JSON.parse(localStorage.getItem("app_oi"))
+        browserStorage != null ? this.storage = browserStorage : this.storage = new Object({})
     }
 }
 
@@ -46,10 +42,10 @@ var LocalStorageSingleton = (function() {
 
     return {
         getInstance: function() {
-            if (!instance) {
-                instance = createInstance();
+            if (!this.instance) {
+                this.instance = createInstance();
             }
-            return instance;
+            return this.instance;
         }
     };
 })();
