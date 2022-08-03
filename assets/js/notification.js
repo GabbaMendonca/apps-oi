@@ -28,19 +28,17 @@ function addNotification(content) {
 
 /**
  * Create the basic HTML structure for the notification
- * @returns object - node - Create a notification
  */
-function Notification_() {
-    let myself = {}
-    myself.notification = document.createElement('div')
-    myself.buttonClose = document.createElement('button')
-
-    myself.getNotification = () => {
-        myself.notification.appendChild(myself.buttonClose)
-        return myself.notification
+class Notification {
+    constructor() {
+        this.notification = document.createElement('div')
+        this.buttonClose = document.createElement('button')
     }
 
-    return myself
+    getNotification() {
+        this.notification.appendChild(this.buttonClose)
+        return this.notification
+    }
 }
 
 /**
@@ -49,7 +47,7 @@ function Notification_() {
  * @returns object - node - Notification HTML structure
  */
 function createNotification(content) {
-    const notification = Notification_()
+    const notification = new Notification()
     notification.notification.classList.add("notification", "is-info")
     notification.notification.innerText = content
 
