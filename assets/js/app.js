@@ -115,6 +115,22 @@ function editor() {
     document.querySelector("#tab_editor").classList.add("is-active")
 }
 
+function posicionamento() {
+    document.getElementById("encerramento").hidden = true
+    document.querySelector("#tab_encerramento").classList.remove("is-active")
+
+    document.getElementById("abertura").hidden = true
+    document.querySelector("#tab_abertura").classList.remove("is-active")
+
+    document.getElementById("email").hidden = true
+    document.querySelector("#tab_email").classList.remove("is-active")
+
+    document.getElementById("editor").hidden = true
+    document.querySelector("#tab_editor").classList.remove("is-active")
+
+    document.getElementById("posicionamento").hidden = false
+    document.querySelector("#tab_posicionamento").classList.add("is-active")
+}
 
 
 function ocultarCabecalho() {
