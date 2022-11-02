@@ -15,57 +15,62 @@ function getScreenPosicionamento() {
 
     return data
 }
+class Posicionamento {
+    constructor(data) {
+        this.data = data
+    }
 
+    _poCabecalhoPosicionamento(data) {
+        if (data.posto == "CLD") return `${data.posto} - & TECNICO DE CAMPO\n`
+        if (data.posto == "FIBRA") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE FIBRA\n`
+        if (data.posto == "TRANSMISSÃO") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE TRANSMISSÃO\n`
+        if (data.posto == "REDEA") return 'REDEA - & REDE METALICA ROMPIDA/COM DEFEITO\n'
+    }
 
-function poCabecalhoPosicionamento(data) {
-    if (data.posto == "CLD") return `${data.posto} - & TECNICO DE CAMPO\n`
-    if (data.posto == "FIBRA") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE FIBRA\n`
-    if (data.posto == "TRANSMISSÃO") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE TRANSMISSÃO\n`
-    if (data.posto == "REDEA") return 'REDEA - & REDE METALICA ROMPIDA/COM DEFEITO\n'
+    _poCausa(data) {
+        return data.causa == "" ? '' : `CAUSA : ${data.causa}\n`
+    }
+
+    _poLocalidade(data) {
+        return data.localidade == "" ? '' : `LOCALIDADE : ${data.localidade}\n`
+    }
+
+    _poEscalonado(data) {
+        return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
+    }
+
+    _poEscalonado(data) {
+        return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
+    }
+
+    _poProxStatus(data) {
+        return data.proxStatus == "" ? '' : `/ ${data.proxStatus}`
+    }
+
+    _poDetalhes(data) {
+        return data.detalhes == "" ? '' : `\nDETALHES :  ${data.detalhes}`
+    }
+
+    _poLog(data) {
+        return data.log == "" ? '' : `\nLOG'S :  ${data.log}`
+    }
+
+    posicionamento() {
+        return `${this._poCabecalhoPosicionamento(this.data)}` +
+            `${this._poCausa(this.data)}` +
+            `${this._poLocalidade(this.data)}` +
+            `DESCRIÇÃO : ${this.data.descricao}\n` +
+            `${this._poEscalonado(this.data)}` +
+            `PREVISÃO ESTIMADA/PROX. STATUS : ${this.data.previsao} ${this._poProxStatus(this.data)} &` +
+            `${this._poDetalhes(this.data)}` +
+            `${this._poLog(this.data)}`
+    }
 }
 
-function poCausa(data) {
-    return data.causa == "" ? '' : `CAUSA : ${data.causa}\n`
-}
-
-function poLocalidade(data) {
-    return data.localidade == "" ? '' : `LOCALIDADE : ${data.localidade}\n`
-}
-
-function poEscalonado(data) {
-    return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
-}
-
-function poEscalonado(data) {
-    return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
-}
-
-function poProxStatus(data) {
-    return data.proxStatus == "" ? '' : `/ ${data.proxStatus}`
-}
-
-function poDetalhes(data) {
-    return data.detalhes == "" ? '' : `\nDETALHES :  ${data.detalhes}`
-}
-
-function poLog(data) {
-    return data.log == "" ? '' : `\nLOG'S :  ${data.log}`
-}
-
-function poPosicionamento(data) {
-    return `${poCabecalhoPosicionamento(data)}` +
-        `${poCausa(data)}` +
-        `${poLocalidade(data)}` +
-        `DESCRIÇÃO : ${data.descricao}\n` +
-        `${poEscalonado(data)}` +
-        `PREVISÃO ESTIMADA/PROX. STATUS : ${data.previsao} ${poProxStatus(data)} &` +
-        `${poDetalhes(data)}` +
-        `${poLog(data)}`
-}
-
-function poButtonGerarTexto() {
-    data = getScreenPosicionamento()
-    texto = poPosicionamento(data)
-    console.log(texto)
-    copyToClipboard(texto)
+function poButtonGerarPosicionamento() {
+    dataScreenPosicionamento = getScreenPosicionamento()
+    posicionamento = new Posicionamento(dataScreenPosicionamento)
+    copyToClipboard(
+        posicionamento.posicionamento()
+    )
 }
