@@ -72,6 +72,9 @@ function abertura() {
 
     document.getElementById("editor").hidden = true
     document.querySelector("#tab_editor").classList.remove("is-active")
+
+    document.getElementById("posicionamento").hidden = true
+    document.querySelector("#tab_posicionamento").classList.remove("is-active")
 }
 
 function encerramento() {
@@ -86,6 +89,9 @@ function encerramento() {
 
     document.getElementById("editor").hidden = true
     document.querySelector("#tab_editor").classList.remove("is-active")
+
+    document.getElementById("posicionamento").hidden = true
+    document.querySelector("#tab_posicionamento").classList.remove("is-active")
 }
 
 function email() {
@@ -100,6 +106,11 @@ function email() {
 
     document.getElementById("editor").hidden = true
     document.querySelector("#tab_editor").classList.remove("is-active")
+
+    document.getElementById("posicionamento").hidden = true
+    document.querySelector("#tab_posicionamento").classList.remove("is-active")
+
+
 }
 
 function editor() {
@@ -114,6 +125,9 @@ function editor() {
 
     document.getElementById("editor").hidden = false
     document.querySelector("#tab_editor").classList.add("is-active")
+
+    document.getElementById("posicionamento").hidden = true
+    document.querySelector("#tab_posicionamento").classList.remove("is-active")
 }
 
 function posicionamento() {
