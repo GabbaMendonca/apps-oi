@@ -97,3 +97,7 @@
 .my-router:hover {
     background-color: hsl(171, 100%, 29%);
 }
+
+.field-label {
+    margin-right: 0.5rem;
+}
