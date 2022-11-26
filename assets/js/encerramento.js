@@ -1,71 +1,73 @@
 // === CALCULO DO ROUTER ===
 
-function CalculateDateRouter() {
+class CalculateDateRouter {
 
-    return {
+    /**
+     * Recede a tempo que o BGP esta up e devolve um dicionario com as informações splitadas.
+     * @param {string} timeRouterUp Tempo que o BGP esta up.
+     * @returns Dicionario com as informações splitadas.
+     */
+    splitTime(timeRouterUp) {
 
-        splitTime: (timeRouterUp) => {
+        let timeRouter = {}
 
-            /* Recede a tempo que o BGP esta up e devolve um dicionario com as informações splitadas.  */
+        timeRouterUp = timeRouterUp.toUpperCase()
 
-            let timeRouter = {}
+        if (timeRouterUp.includes("D")) {
 
-            timeRouterUp = timeRouterUp.toUpperCase()
+            let timeRouterSplit = timeRouterUp.split("D")
+            let timeRouterDay = timeRouterSplit[0]
 
-            if (timeRouterUp.includes("D")) {
+            timeRouterSplit = timeRouterSplit[1].split("H")
+            let timeRouterHour = timeRouterSplit[0]
 
-                let timeRouterSplit = timeRouterUp.split("D")
-                let timeRouterDay = timeRouterSplit[0]
+            timeRouterSplit = timeRouterSplit[1].split("M")
+            let timeRouterMin = timeRouterSplit[0]
 
-                timeRouterSplit = timeRouterSplit[1].split("H")
-                let timeRouterHour = timeRouterSplit[0]
+            timeRouter["day"] = timeRouterDay
+            timeRouter["hour"] = timeRouterHour
+            timeRouter["minute"] = timeRouterMin
 
-                timeRouterSplit = timeRouterSplit[1].split("M")
-                let timeRouterMin = timeRouterSplit[0]
+            return timeRouter
 
-                timeRouter["day"] = timeRouterDay
-                timeRouter["hour"] = timeRouterHour
-                timeRouter["minute"] = timeRouterMin
-
-                return timeRouter
-
-            }
-
-            if (timeRouterUp.includes("H")) {
-
-                let timeRouterSplit = timeRouterUp.split("H")
-                let timeRouterHour = timeRouterSplit[0]
-
-                timeRouterSplit = timeRouterSplit[1].split("M")
-                let timeRouterMin = timeRouterSplit[0]
-
-                timeRouter["hour"] = timeRouterHour
-                timeRouter["minute"] = timeRouterMin
-
-                return timeRouter
-
-            }
-
-            if (timeRouterUp.includes(":")) {
-
-                timeRouterUp = timeRouterUp.split(":")
-
-                timeRouter["hour"] = timeRouterUp[0]
-                timeRouter["minute"] = timeRouterUp[1]
-
-                return timeRouter
-
-            }
-
-        },
-
-        calculateNormalizationDate: (timeRouter) => {
-
-            /* Recebe um dicionario com o tempo que o BGP esta UP,
-            faz a conta e converte para o formato data e hora */
-
-            return moment().subtract(timeRouter).format("DD/MM/YYYY kk:mm:ss");
         }
+
+        if (timeRouterUp.includes("H")) {
+
+            let timeRouterSplit = timeRouterUp.split("H")
+            let timeRouterHour = timeRouterSplit[0]
+
+            timeRouterSplit = timeRouterSplit[1].split("M")
+            let timeRouterMin = timeRouterSplit[0]
+
+            timeRouter["hour"] = timeRouterHour
+            timeRouter["minute"] = timeRouterMin
+
+            return timeRouter
+
+        }
+
+        if (timeRouterUp.includes(":")) {
+
+            timeRouterUp = timeRouterUp.split(":")
+
+            timeRouter["hour"] = timeRouterUp[0]
+            timeRouter["minute"] = timeRouterUp[1]
+
+            return timeRouter
+
+        }
+
+    }
+
+    /**
+     * Faz o calculo e converte para o formato data e hora
+     * @param {string} timeRouter Recebe um dicionario com o tempo que o BGP esta UP.
+     * @returns Retora uma dtring com a data - "DD/MM/YYYY kk:mm:ss"
+     */
+    calculateNormalizationDate(timeRouter) {
+
+        return moment().subtract(timeRouter).format("DD/MM/YYYY kk:mm:ss");
     }
 }
 
@@ -325,7 +327,7 @@ class Mascara {
 
     calcularRouter() {
 
-        let calcDateRouter = CalculateDateRouter()
+        let calcDateRouter = new CalculateDateRouter()
 
         let timeRouterUp = calcDateRouter.splitTime(this._data.router)
         return calcDateRouter.calculateNormalizationDate(timeRouterUp)
