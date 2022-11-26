@@ -68,9 +68,29 @@ class Posicionamento {
 }
 
 function poButtonGerarPosicionamento() {
-    dataScreenPosicionamento = getScreenPosicionamento()
-    posicionamento = new Posicionamento(dataScreenPosicionamento)
+    let dataScreenPosicionamento = getScreenPosicionamento()
+    let posicionamento = new Posicionamento(dataScreenPosicionamento)
     copyToClipboard(
         posicionamento.posicionamento()
     )
+}
+
+function poButtonEnviarEditor() {
+    let dataScreenPosicionamento = getScreenPosicionamento()
+    let posicionamento = new Posicionamento(dataScreenPosicionamento)
+    editorTextArea.value = posicionamento.posicionamento() + editorTextArea.value
+    editor()
+
+}
+
+function poButtonLimpar() {
+    document.querySelector("#poBa").value = ""
+    document.querySelector("#poCausa").value = ""
+    document.querySelector("#poLocalidade").value = ""
+    document.querySelector("#poDescricao").value = ""
+    document.querySelector("#poEscalonamento").value = ""
+    document.querySelector("#poPrevisao").value = ""
+    document.querySelector("#poProxStatus").value = ""
+    document.querySelector("#poDetalhes").value = ""
+    document.querySelector("#poLog").value = ""
 }
