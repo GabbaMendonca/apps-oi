@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+
+    <title>Comandos Router</title>
+</head>
+
+<body>
+
+    <section class="hero is-light">
+        <div class="hero-body hero-bory-padding-top">
+            <div id="abertura" class="container is-fullhd">
+
+                <div class="buttons is-centered">
+                    <button class="button is-success" onclick="toogleHP()">HP</button>
+                    <button class="button is-info" onclick="toogleDatacom()">Datacom</button>
+                </div>
+
+                <table class="table is-fullwidth is-bordered">
+                    <thead>
+                        <tr>
+                            <th>Alcatel</th>
+                            <th class="js-hp">HP</th>
+                            <th class="js-datacom">Datacom</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="has-text-centered is-selected">Privilegio</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>enable</code></td>
+                            <td class="js-hp"><code>super</code></td>
+                            <td class="js-datacom"><code>enable</code></td>
+                            <td>Entrar no nível de usuário privilegiado</td>
+                        </tr>
+                        <tr>
+                            <td class="js-hp">--</td>
+                            <td class="js-hp"><code>super level-15</code></td>
+                            <td class="js-hp js-datacom">--</td>
+                            <td class="js-hp">Entrar no nível de usuário privilegiado versão HP 1002-4</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="has-text-centered is-selected">Troubleshooting</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>show</code></td>
+                            <td class="js-hp"><code>display</code></td>
+                            <td class="js-datacom"><code>show</code></td>
+                            <td>Mostar</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel" rowspan="2"><code>show version</code></td>
+                            <td class="js-hp" rowspan="2"><code>display version</code></td>
+                            <td class="js-datacom"><code>display version</code></td>
+                            <td>Exibe informações sobre a versão do sistema</td>
+                        </tr>
+                        <tr>
+                            <td class="js-datacom"><code>show uptime</code></td>
+                            <td>Exibe o tempo decorrido desde que o equipamento foi ligado</td>
+                        </tr>
+                        <!-- <tr>
+                            <td class="js-hp"><code>display device manuinfo</code></td>
+                            <td class="js-datacom">--</td>
+                            <td>Exibe o modelo e serial number</td>
+                        </tr> -->
+                        <tr>
+                            <td class="js-alcaatel"><code>show ip bgp summury</code></td>
+                            <td class="js-hp">--</td>
+                            <td class="js-datacom">--</td>
+                            <td>Exibe infomações sobre o BPG</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>show ip interface brief</code></td>
+                            <td class="js-hp"><code>display ip interface brief</code></td>
+                            <td class="js-datacom"><code>show interfaces</code></td>
+                            <td>Exibe as interfaces e os endereços IPs associados</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcaatel"><code>show interface</code>[interface]</td>
+                            <td class="js-hp"><code>display interface</code>[interface]</td>
+                            <td class="js-datacom"><code>show interface</code>[interface]</td>
+                            <td>Exibe o status da interface</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcaatel"><code>reset counters interface</code>[interface]</td>
+                            <td class="js-hp"><code>clear interface</code></td>
+                            <td class="js-datacom">--</td>
+                            <td>Limpa as estatísticas da interface (Famoso zerar os contadores)</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcaatel"><code>show arp</code></td>
+                            <td class="js-hp"><code>display arp</code></td>
+                            <td class="js-datacom"><code>show arp</code></td>
+                            <td>Exibe a tabela ARP</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcaatel"><code>show ip bgp summary</code></td>
+                            <td class="js-hp">--</td>
+                            <td class="js-datacom">--</td>
+                            <td>Exibe o trafego nas interfaces</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="has-text-centered is-selected">Configurações</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>hostname</code></td>
+                            <td class="js-hp"><code>sysname</code></td>
+                            <td class="js-datacom"><code>hostname</code></td>
+                            <td>Atribui/modifica o nome do roteador</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcaatel"><code>show running-config</code></td>
+                            <td class="js-hp"><code>display current-configuration</code></td>
+                            <td class="js-datacom"><code>show running-config</code></td>
+                            <td>Exibe a configuração corrente/atual do roteador</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>show running-config interface</code> serial0/0/0</td>
+                            <td class="js-hp"><code>display current-configuration interface</code> Serial0/0</td>
+                            <td class="js-datacom">--</td>
+                            <td>Exibe a configuração da interface</td>
+                        </tr>
+                        <tr>
+                            <td class="js-alcatel"><code>configure terminal</code></td>
+                            <td class="js-hp"><code>system-view</code></td>
+                            <td class="js-datacom"><code>configure terminal</code></td>
+                            <td>Entrar no nível de configuração</td>
+                        </tr>
+
+
+
+                        <!-- <tr class="is-selected">
+                            <td colspan="4" class="has-text-centered">Configuração</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="./assets/js/router.js"></script>
+</body>
+
+</html>
