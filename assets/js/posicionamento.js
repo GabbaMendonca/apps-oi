@@ -60,9 +60,9 @@ class Posicionamento {
 
 function poButtonGerarPosicionamento() {
     let dataScreenPosicionamento = getScreenPosicionamento()
-    let posicionamento = new Posicionamento(dataScreenPosicionamento)
+    let pos = new Posicionamento(dataScreenPosicionamento)
     copyToClipboard(
-        posicionamento.build()
+        pos.build()
     )
 }
 
