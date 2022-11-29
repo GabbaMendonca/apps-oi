@@ -9,7 +9,6 @@ function getScreenPosicionamento() {
     data["descricao"] = document.querySelector("#poDescricao").value.toUpperCase()
     data["escalonamento"] = document.querySelector("#poEscalonamento").value.toUpperCase()
     data["previsao"] = document.querySelector("#poPrevisao").value.toUpperCase()
-    data["proxStatus"] = document.querySelector("#poProxStatus").value.toUpperCase()
     data["detalhes"] = document.querySelector("#poDetalhes").value.toUpperCase()
     data["log"] = document.querySelector("#poLog").value
 
@@ -21,49 +20,41 @@ class Posicionamento {
     }
 
     _poCabecalhoPosicionamento(data) {
-        if (data.posto == "CLD") return `${data.posto} - & TECNICO DE CAMPO\n`
-        if (data.posto == "FIBRA") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE FIBRA\n`
-        if (data.posto == "TRANSMISSÃO") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE TRANSMISSÃO\n`
-        if (data.posto == "REDEA") return 'REDEA - & REDE METALICA ROMPIDA/COM DEFEITO\n'
+        if (data.posto == "CLD") return `${data.posto} - & TECNICO DE CAMPO.\n`
+        if (data.posto == "FIBRA") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE FIBRA.\n`
+        if (data.posto == "TRANSMISSÃO") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE TRANSMISSÃO.\n`
+        if (data.posto == "REDEA") return 'REDEA - & REDE METALICA ROMPIDA/COM DEFEITO.\n'
     }
 
     _poCausa(data) {
-        return data.causa == "" ? '' : `CAUSA : ${data.causa}\n`
+        return data.causa == "" ? '' : `CAUSA : ${data.causa}.\n`
     }
 
     _poLocalidade(data) {
-        return data.localidade == "" ? '' : `LOCALIDADE : ${data.localidade}\n`
+        return data.localidade == "" ? '' : `LOCALIDADE : ${data.localidade}.\n`
     }
 
     _poEscalonado(data) {
-        return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
-    }
-
-    _poEscalonado(data) {
-        return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}\n`
-    }
-
-    _poProxStatus(data) {
-        return data.proxStatus == "" ? '' : `/ ${data.proxStatus}`
+        return data.escalonamento == "" ? '' : `ESCALONADO : ${data.escalonamento}.\n`
     }
 
     _poDetalhes(data) {
-        return data.detalhes == "" ? '' : `\nDETALHES :  ${data.detalhes}`
+        return data.detalhes == "" ? '' : `\nDETALHES :  ${data.detalhes}.`
     }
 
     _poLog(data) {
-        return data.log == "" ? '' : `\nLOG'S :  ${data.log}`
+        return data.log == "" ? '' : `\nLOG'S :  ${data.log}.`
     }
 
-    posicionamento() {
+    build() {
         return `${this._poCabecalhoPosicionamento(this.data)}` +
             `${this._poCausa(this.data)}` +
             `${this._poLocalidade(this.data)}` +
-            `DESCRIÇÃO : ${this.data.descricao}\n` +
+            `DESCRIÇÃO : ${this.data.descricao}.\n` +
             `${this._poEscalonado(this.data)}` +
-            `PREVISÃO ESTIMADA/PROX. STATUS : ${this.data.previsao} ${this._poProxStatus(this.data)} &` +
+            `PREVISÃO ESTIMADA/PROX. STATUS : ${this.data.previsao}.` +
             `${this._poDetalhes(this.data)}` +
-            `${this._poLog(this.data)}`
+            `${this._poLog(this.data)} &`
     }
 }
 
@@ -71,7 +62,7 @@ function poButtonGerarPosicionamento() {
     let dataScreenPosicionamento = getScreenPosicionamento()
     let posicionamento = new Posicionamento(dataScreenPosicionamento)
     copyToClipboard(
-        posicionamento.posicionamento()
+        posicionamento.build()
     )
 }
 
@@ -80,7 +71,6 @@ function poButtonEnviarEditor() {
     let posicionamento = new Posicionamento(dataScreenPosicionamento)
     editorTextArea.value = posicionamento.posicionamento() + editorTextArea.value
     editor()
-
 }
 
 function poButtonLimpar() {
@@ -90,7 +80,6 @@ function poButtonLimpar() {
     document.querySelector("#poDescricao").value = ""
     document.querySelector("#poEscalonamento").value = ""
     document.querySelector("#poPrevisao").value = ""
-    document.querySelector("#poProxStatus").value = ""
     document.querySelector("#poDetalhes").value = ""
     document.querySelector("#poLog").value = ""
 }
