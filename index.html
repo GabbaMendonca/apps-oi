@@ -1222,7 +1222,7 @@
                                 <div class="field">
                                     <div class="control is-expanded has-icons-left has-icons-right">
                                         <input id="poCausa" class="input is-small" type="text" placeholder="(CAMPO OPCIONAL) Ex.: IDENTIFICADO MUX SEM GERENCIA">
-                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        <span class="icon is-small is-left">&</span>
                                     </div>
                                 </div>
                             </div>
@@ -1236,9 +1236,10 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="control is-expanded has-icons-left has-icons-right">
+                                    <!-- <div class="control is-expanded has-icons-left has-icons-right"> -->
+                                    <div class="control is-expanded">
                                         <input id="poLocalidade" class="input is-small" type="text" placeholder="(CAMPO OPCIONAL) Ex.: CIDADE - ESTADO">
-                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        <!-- <span class="icon is-small is-left"><i class="fas fa-headset"></i></span> -->
                                     </div>
                                 </div>
                             </div>
@@ -1253,7 +1254,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <div class="control is-expanded has-icons-left has-icons-right">
-                                        <textarea id="poDescricao" class="textarea is-small" rows="5" placeholder="Ex.: TRAMITADO PARA O POSTO REALIZAR O ACIONAMENTO DA EQUIPE."></textarea>
+                                        <textarea id="poDescricao" class="textarea is-small" rows="5" placeholder="(CAMPO OBRIGATORIO) Ex.: TRAMITADO PARA O POSTO REALIZAR O ACIONAMENTO DA EQUIPE."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1267,9 +1268,10 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="control is-expanded has-icons-left has-icons-right">
+                                    <!-- <div class="control is-expanded has-icons-left has-icons-right"> -->
+                                    <div class="control is-expanded">
                                         <input id="poEscalonamento" class="input is-small" type="text" placeholder="(CAMPO OPCIONAL) Ex.: ESCALONADO">
-                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                        <!-- <span class="icon is-small is-left"><i class="fas fa-headset"></i></span> -->
                                     </div>
                                 </div>
                             </div>
@@ -1284,25 +1286,27 @@
                             </div>
                             <div class="field-body">
                                 <div class="field">
-                                    <div class="control is-expanded has-icons-left has-icons-right">
-                                        <input id="poPrevisao" class="input is-small" type="text" placeholder="">
-                                        <span class="icon is-small is-left"><i class="fas fa-headset"></i></span>
+                                    <!-- <div class="control is-expanded has-icons-left has-icons-right"> -->
+                                    <div class="control is-expanded has-icons-right">
+                                        <input id="poPrevisao" class="input is-small" type="text" placeholder="(CAMPO OBRIGATORIO)">
+                                        <!-- <span class="icon is-small is-left"><i class="fas fa-headset"></i></span> -->
+                                        <span class="icon is-small is-right">&</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /campo Previsão / Status -->
 
                         <!-- campo Detalhes -->
-                        <div class="field is-horizontal">
-                            <div class="field-label is-small">
-                                <label class="label is-small">Detalhes : </label>
+                        <div class=" field is-horizontal ">
+                            <div class="field-label is-small ">
+                                <label class="label is-small ">Detalhes : </label>
                             </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control is-expanded has-icons-left has-icons-right">
-                                        <textarea id="poDetalhes" class="textarea is-small" rows="2" placeholder="(CAMPO OPCIONAL)"></textarea>
+                            <div class="field-body ">
+                                <div class="field ">
+                                    <div class="control is-expanded has-icons-left has-icons-right ">
+                                        <textarea id="poDetalhes" class="textarea is-small " rows="2 " placeholder="(CAMPO OPCIONAL) Esse campo não sai com & comercial.
+Serve para colocar informações que não devem ser espelhadas para o cliente."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1310,28 +1314,28 @@
                         <!-- /campo Detalhes -->
 
                         <!-- campo Log's -->
-                        <div class="field is-horizontal">
-                            <div class="field-label is-small">
-                                <label class="label is-small">Log's : </label>
+                        <div class="field is-horizontal ">
+                            <div class="field-label is-small ">
+                                <label class="label is-small ">Log's : </label>
                             </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control is-expanded has-icons-left has-icons-right">
-                                        <textarea id="poLog" class="textarea is-small" rows="5" placeholder="(CAMPO OPCIONAL)"></textarea>
+                            <div class="field-body ">
+                                <div class="field ">
+                                    <div class="control is-expanded has-icons-left has-icons-right ">
+                                        <textarea id="poLog" class="textarea is-small " rows="5 " placeholder="(CAMPO OPCIONAL) Esse campo não sai com & comercial."></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /campo Log's -->
 
-                        <div class="field is-horizontal">
-                            <div class="field-label is-small">
+                        <div class="field is-horizontal ">
+                            <div class="field-label is-small ">
                             </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <button class="button is-primary" onclick="poButtonGerarPosicionamento()">Gerar Texto</button>
-                                    <button class="button is-info" onclick="poButtonEnviarEditor()">Enviar para o Editor de Texto</button>
-                                    <button class="button is-info" onclick="poButtonLimpar()">Limpar</button>
+                            <div class="field-body ">
+                                <div class="field ">
+                                    <button class="button is-primary " onclick="poButtonGerarPosicionamento() ">Gerar Texto</button>
+                                    <button class="button is-info " onclick="poButtonEnviarEditor() ">Enviar para o Editor de Texto</button>
+                                    <button class="button is-info " onclick="poButtonLimpar() ">Limpar</button>
                                 </div>
                             </div>
                         </div>
@@ -1347,8 +1351,8 @@
     <!-- /PAGE -->
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="content has-text-centered">
+    <footer class="footer ">
+        <div class="content has-text-centered ">
 
             <p>
                 <strong>Atenção !!!</strong>
@@ -1356,13 +1360,13 @@
                 <br> Seu compartilhamento e uso é livre.
             </p>
             <p>
-                <a href="https://bulma.io">
-                    <img src="https://bulma.io/images/made-with-bulma--black.png" alt="Made with Bulma" width="128" height="24">
+                <a href="https://bulma.io ">
+                    <img src="https://bulma.io/images/made-with-bulma--black.png " alt="Made with Bulma " width="128 " height="24 ">
                 </a>
             </p>
 
             <p>
-                <strong>Apps OI</strong> by Gabriel "Gabba" Mendonça | <i class="fab fa-github"></i> <a href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
+                <strong>Apps OI</strong> by Gabriel "Gabba " Mendonça | <i class="fab fa-github "></i> <a href="https://github.com/GabbaMendonca/apps-oi ">GitHub</a>.
             </p>
 
         </div>
@@ -1370,19 +1374,19 @@
     <!-- /FOOTER -->
 
     <!-- MODAL - Tela para colocar o log de teste -->
-    <div id="myModal" class="modal">
-        <div class="modal-background"></div>
+    <div id="myModal " class="modal ">
+        <div class="modal-background "></div>
 
-        <div class="modal-card">
+        <div class="modal-card ">
 
-            <header class="modal-card-head">
-                <p class="modal-card-title">Log's</p>
-                <button class="delete" aria-label="close" onclick="modalClose()"></button>
+            <header class="modal-card-head ">
+                <p class="modal-card-title ">Log's</p>
+                <button class="delete " aria-label="close " onclick="modalClose() "></button>
             </header>
 
-            <section class="modal-card-body">
+            <section class="modal-card-body ">
 
-                <textarea class="textarea" name="textareaLog" id="textareaLog" cols="73" rows="20" placeholder="Cole os Log's aqui ..."></textarea>
+                <textarea class="textarea " name="textareaLog " id="textareaLog " cols="73 " rows="20 " placeholder="Cole os Log 's aqui ..."></textarea>
 
             </section>
 
