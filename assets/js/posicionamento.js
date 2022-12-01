@@ -52,9 +52,9 @@ class Posicionamento {
             `${this._poLocalidade(this.data)}` +
             `DESCRIÇÃO : ${this.data.descricao}.\n` +
             `${this._poEscalonado(this.data)}` +
-            `PREVISÃO ESTIMADA/PROX. STATUS : ${this.data.previsao}.` +
+            `PREVISÃO ESTIMADA/PROX. STATUS : ${this.data.previsao}. &` +
             `${this._poDetalhes(this.data)}` +
-            `${this._poLog(this.data)} &`
+            `${this._poLog(this.data)}`
     }
 }
 
@@ -68,8 +68,8 @@ function poButtonGerarPosicionamento() {
 
 function poButtonEnviarEditor() {
     let dataScreenPosicionamento = getScreenPosicionamento()
-    let posicionamento = new Posicionamento(dataScreenPosicionamento)
-    editorTextArea.value = posicionamento.posicionamento() + editorTextArea.value
+    let pos = new Posicionamento(dataScreenPosicionamento)
+    editorTextArea.value = pos.build() + editorTextArea.value
     editor()
 }
 
