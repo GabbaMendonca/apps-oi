@@ -211,7 +211,7 @@ class BuildMascaraEncerramento {
     }
 }
 
-class BuildMensagemValidaca {
+class BuildMensagensRapidas {
     constructor(data) {
         this.data = data
     }
@@ -236,7 +236,7 @@ function makeMascara(data, causa, solucao) {
 
     if (data["checkboxAguardandoValidacao"]) {
         copyToClipboard(
-            new BuildMensagemValidaca(data).build()
+            new BuildMensagensRapidas(data).build()
         )
     } else {
         copyToClipboard(
