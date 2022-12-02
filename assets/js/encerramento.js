@@ -112,62 +112,6 @@ function getViewEncerramento() {
 }
 
 
-// === VIEW ===
-
-
-// === MAKE MASCARA ===
-
-function verificaRadioPendenteValidar(data) {
-
-    dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
-
-    // Com checkbox setado vamos verificar agora qual opcão do radiocheck esta setada
-    // Para isso usamos um for onde percorremos as opções
-
-    for (var i = 0, length = data.radioPendenteCliente.length; i < length; i++) {
-
-        // Conforme corremos com o for verificamos se a opção esta setada
-
-        if (data["radioPendenteCliente"][i].checked) {
-
-            // Se sim verificamos qual é essa opção com o switch
-
-            switch (data["radioPendenteCliente"][i].value) {
-                case '0':
-
-                    return "\nPENDENTE VALIDAR COM CPD/RESIDENTE " + dataValidacao
-
-                case '1':
-
-                    return "\nPENDENTE VALIDAR COM RESIDENTE " + dataValidacao
-
-                case '2':
-
-                    return "\nSOLICITADO VALIDAÇÃO AO CPD/RESIDENTE"
-
-                case '3':
-
-                    return "\nEM MONITORAÇÃO POR 24 H"
-
-                case '5':
-
-                    return "\nPENDENTE BAIXA DO POSTO"
-
-                case '4':
-
-                    return "\nPENDENTE DIAGNOSTICO"
-
-                default:
-                    alert("Esse não tem !!!");
-            }
-
-            // Apenas um rádio pode ser verificado logicamente,
-            // interrompemos o resto
-            break;
-        }
-    }
-}
-
 function verificaRadioValidacao(data) {
     let opcoes = {
         "0": "CPD",
@@ -214,12 +158,26 @@ class BuildMascaraEncerramento {
 class BuildMensagensRapidas {
     constructor(data) {
         this.data = data
+        this.dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
+    }
+
+    _radioMensagens() {
+        let opcoes = {
+            '0': "PENDENTE VALIDAR COM CPD/RESIDENTE " + this.dataValidacao,
+            '1': "SOLICITADO VALIDAÇÃO AO CPD/RESIDENTE",
+            '2': "EM MONITORAÇÃO POR 24 H",
+            '3': "PENDENTE BAIXA DO POSTO",
+            '4': "PENDENTE DIAGNOSTICO",
+        }
+
+        let opc = verificaRadio(this.data.radioPendenteCliente)
+        return opcoes[`${opc}`]
     }
 
     build() {
         return `& NORMALIZADO. UP DESDE AS ${this.data.normalizacao}.\n` +
-            `${this.data["solucao"]}.` +
-            `${verificaRadioPendenteValidar(this.data)}. &`
+            `${this.data.solucao}.` +
+            `\n${this._radioMensagens()}. &`
     }
 }
 
