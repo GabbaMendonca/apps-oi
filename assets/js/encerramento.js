@@ -211,17 +211,16 @@ class BuildMascaraEncerramento {
     }
 }
 
-function makeValidacao(data) {
+class BuildMensagemValidaca {
+    constructor(data) {
+        this.data = data
+    }
 
-    let mascara = `NORMALIZADO. UP DESDE AS ${data["normalizacao"]}\n` +
-        `${data["solucao"]}`
-
-    mascara += verificaRadioPendenteValidar(data)
-
-    e = new Editor()
-    mascara = e.posicionar(mascara)
-
-    return mascara
+    build() {
+        return `& NORMALIZADO. UP DESDE AS ${this.data.normalizacao}.\n` +
+            `${this.data["solucao"]}.` +
+            `${verificaRadioPendenteValidar(this.data)}. &`
+    }
 }
 
 function makeMascara(data, causa, solucao) {
@@ -236,13 +235,14 @@ function makeMascara(data, causa, solucao) {
     // Caso contrario copia a mascara de encerramento.
 
     if (data["checkboxAguardandoValidacao"]) {
-        m = makeValidacao(data)
+        copyToClipboard(
+            new BuildMensagemValidaca(data).build()
+        )
     } else {
-        m = new BuildMascaraEncerramento(data).build()
+        copyToClipboard(
+            new BuildMascaraEncerramento(data).build()
+        )
     }
-
-    copyToClipboard(m)
-
 }
 
 
