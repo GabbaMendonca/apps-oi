@@ -168,93 +168,47 @@ function verificaRadioPendenteValidar(data) {
     }
 }
 
-
 function verificaRadioValidacao(data) {
-    for (var i = 0, length = data["radioValidacao"].length; i < length; i++) {
-
-        if (data["radioValidacao"][i].checked) {
-
-            switch (data["radioValidacao"][i].value) {
-                case '0':
-
-                    return " CPD"
-
-                case '1':
-
-                    return " RESIDENTE"
-
-                case '2':
-
-                    return " CGS"
-
-                default:
-                    alert("Esse não tem !!!");
-            }
-
-            break;
-        }
+    let opcoes = {
+        "0": "CPD",
+        "1": "RESIDENTE",
+        "2": "CEC",
     }
+
+    let opc = verificaRadio(data.radioValidacao)
+    return opcoes[`${opc}`]
 }
 
-function makeEncerramento(data) {
-
-    // Monta as linha por linha a mascara de encerramento.
-
-    let mascara = "MASCARA DE ENCERRAMENTO\n"
-
-    mascara += "PREMIUM | PERIMETRO: VTAL\n"
-
-
-    // Campo  CLIENTE AUTORIZADOR:   TEL:
-    // Valida o Radio Button : CPD - RESIDENTE - CGS
-    mascara += `CLIENTE AUTORIZADOR: ${data.validacao}`
-    mascara += verificaRadioValidacao(data)
-    mascara += ` TEL: ${data.telefone}\n`
-
-
-    mascara += `FALHA INICIO : ${data.abertura}\n`
-
-
-    // Verifica se o campo "FALHA FIM" esta prenchido, se estiver usa a data do campo.
-    // Se não estiver prenche com a data atual.
-    if (data.encerramento == "") {
-
-        mascara += `FALHA FIM: ${moment().format("DD/MM/YYYY kk:mm:ss")}\n`
-
-    } else {
-        mascara += `FALHA FIM: ${data.encerramento}\n`
+class BuildMascaraEncerramento {
+    constructor(data) {
+        this.data = data
     }
 
-
-    mascara += `NORMALIZACAO: ${data.normalizacao}\n`
-    mascara += `CAUSA/SOLUCAO : [${data.causa}] ${data.solucao}\n`
-
-    // Verifica o campo LOG esta vazio
-    if (data.log) {
-
-        mascara = mascara + "LOG: \n" +
-            `${data.log}\n`
-
+    _radioValidacao() {
+        return verificaRadioValidacao(this.data)
     }
 
-
-    mascara += `COLABORADOR : CGS SP - ${data["nome"]} - OI${data["oi"]}\n`
-
-
-    // Verifcia se tem senha de enceramento a ser anexada
-    if (data["checkboxChamadoManual"]) {
-        mascara = mascara + `SENHA : MANUAL, NAO POSSUI SENHA\n`
-
-    } else {
-
-        if (data["senha"] != "") {
-            mascara = mascara + `SENHA : ${data["senha"]}\n`
-        }
-
+    _senha() {
+        if (this.data.checkboxChamadoManual) return ` - SENHA : MANUAL, NAO POSSUI SENHA\n`
+        return this.data.senha ? ` - SENHA : ${this.data["senha"]}\n` : '\n'
     }
+    _colaborador() { return `COLABORADOR : CEC SP - ${this.data.nome} - OI${this.data.oi}\n` }
+    _validacao() { return `CLIENTE AUTORIZADOR: ${this.data.validacao}` }
+    _abertura() { return `FALHA INICIO : ${this.data.abertura}\n` }
+    _normalizacao() { return `NORMALIZACAO: ${this.data.normalizacao}\n` }
+    _causa() { return `CAUSA/SOLUCAO : [${this.data.causa}] ${this.data.solucao}\n` }
+    _log() { return this.data.log ? "LOG: \n" + `${this.data.log}\n` : '' }
 
-
-    return mascara
+    build() {
+        return `MASCARA DE ENCERRAMENTO${this._senha()}` +
+            `${this._colaborador()}` +
+            'ATENDIMENTO PERSONALIZADO\n' +
+            `${this._abertura()}` +
+            `${this._normalizacao()}` +
+            `${this._validacao()}` + ` ${this._radioValidacao()}` + ` TEL: ${this.data.telefone}\n` +
+            `${this._causa()}` +
+            `${this._log()}`
+    }
 }
 
 function makeValidacao(data) {
@@ -282,12 +236,9 @@ function makeMascara(data, causa, solucao) {
     // Caso contrario copia a mascara de encerramento.
 
     if (data["checkboxAguardandoValidacao"]) {
-
         m = makeValidacao(data)
-
     } else {
-
-        m = makeEncerramento(data)
+        m = new BuildMascaraEncerramento(data).build()
     }
 
     copyToClipboard(m)
