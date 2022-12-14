@@ -71,47 +71,6 @@ class CalculateDateRouter {
     }
 }
 
-// === CALCULO DO ROUTER ===
-
-
-// === VIEW  ===
-
-
-function getViewEncerramento() {
-    let data = {}
-
-    // Input
-    data["oi"] = document.querySelector("#oi").value
-    data["nome"] = document.querySelector("#nome").value.toUpperCase()
-    data["abertura"] = document.querySelector("#dataAbertura").value
-    data["encerramento"] = document.querySelector("#dataEncerramento").value
-    data["normalizacao"] = document.querySelector("#dataNormalizacao").value
-    data["router"] = document.querySelector("#router").value
-    data["validacao"] = document.querySelector("#enValidation").value.toUpperCase()
-    data["telefone"] = document.querySelector("#telefone").value.toUpperCase()
-    data["senha"] = document.querySelector("#senha").value.toUpperCase()
-    data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
-
-    // Checkbox
-    data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-    data["checkboxMensagemRapida"] = document.querySelector("#checkboxAguardandoValidacao").checked
-    data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
-
-    // Radio
-    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
-    data["radioValidacao"] = document.getElementsByName("radioValidacao")
-
-    // Select
-    // let select = document.querySelector('#falha');
-    // data["falha"] = select.options[select.selectedIndex].text;
-
-    // Log
-    data["log"] = textareaLog.value
-
-    return data
-}
-
-
 function verificaRadioValidacao(data) {
     let opcoes = {
         "0": "CPD",
@@ -128,19 +87,19 @@ class BuildMascaraEncerramento {
         this.data = data
     }
 
-    _radioValidacao() {
-        return verificaRadioValidacao(this.data)
-    }
-
     _senha() {
         if (this.data.checkboxChamadoManual) return ` - SENHA : MANUAL, NAO POSSUI SENHA\n`
         return this.data.senha ? ` - SENHA : ${this.data["senha"]}\n` : '\n'
     }
     _colaborador() { return `COLABORADOR : CEC SP - ${this.data.nome} - OI${this.data.oi}\n` }
-    _validacao() { return `CLIENTE AUTORIZADOR: ${this.data.validacao}` }
     _abertura() { return `FALHA INICIO : ${this.data.abertura}\n` }
     _normalizacao() { return `NORMALIZACAO: ${this.data.normalizacao}\n` }
-    _causa() { return `CAUSA/SOLUCAO : [${this.data.causa}] ${this.data.solucao}\n` }
+    _validacao() { return `CLIENTE AUTORIZADOR: ${this.data.validacao}` }
+    _radioValidacao() { return verificaRadioValidacao(this.data) }
+    _causa() {
+        let solucao = this.data.solucao ? this.data.solucao : ''
+        return `CAUSA/SOLUCAO : [${this.data.causa}] ${solucao}\n`
+    }
     _log() { return this.data.log ? "LOG: \n" + `${this.data.log}\n` : '' }
 
     build() {
@@ -149,7 +108,7 @@ class BuildMascaraEncerramento {
             'ATENDIMENTO PERSONALIZADO\n' +
             `${this._abertura()}` +
             `${this._normalizacao()}` +
-            `${this._validacao()}` + ` ${this._radioValidacao()}` + ` TEL: ${this.data.telefone}\n` +
+            `${this._validacao()}` + ` ${this._radioValidacao()}\n` +
             `${this._causa()}` +
             `${this._log()}`
     }
@@ -199,151 +158,32 @@ class Encerramento {
     }
 }
 
-function makeMascara(data, causa, solucao) {
-
-    data["causa"] = causa
-    data["solucao"] = solucao
-
-    // Verifica se o Checkbox "Aguardando Validação ?" esta setado.
-    // Se estiver muda a mensagem a ser copiada para a area de transferencia,
-    // ao inves da mascara de enceramento, copia a mensagem, 
-    // aguardando a validação do cliente.
-    // Caso contrario copia a mascara de encerramento.
-
-    if (data["checkboxAguardandoValidacao"]) {
-        copyToClipboard(
-            new BuildMensagensRapidas(data).build()
-        )
-    } else {
-        copyToClipboard(
-            new BuildMascaraEncerramento(data).build()
-        )
-    }
+function getScrenEncerramento() {
+    let data = {}
+        // Input
+    data["oi"] = document.querySelector("#oi").value
+    data["nome"] = document.querySelector("#nome").value.toUpperCase()
+    data["abertura"] = document.querySelector("#dataAbertura").value
+    data["normalizacao"] = document.querySelector("#dataNormalizacao").value
+    data["router"] = document.querySelector("#router").value
+    data["validacao"] = document.querySelector("#enValidation").value.toUpperCase()
+    data["senha"] = document.querySelector("#senha").value.toUpperCase()
+    data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
+        // Checkbox
+    data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
+    data["checkboxMensagemRapida"] = document.querySelector("#checkboxAguardandoValidacao").checked
+    data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
+        // Radio
+    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
+    data["radioValidacao"] = document.getElementsByName("radioValidacao")
+        // Log
+    data["log"] = textareaLog.value
+    return data
 }
-
-
-// === MAKE MASCARA ===
-
-
-// ===  ===
-
-
-class Mascara {
-
-    constructor() {
-        this.data = getViewEncerramento()
-
-        this._causa = {
-            "cliente": "CLIENTE",
-            "operadora": "OPERADORA",
-        }
-
-        this._solucao = {
-            "indevida": "ABERTURA INDEVIDA",
-            "energia": "LOCAL SEM ENERGIA",
-            "naoDetectada": "CAUSA NAO DETECTADA",
-
-            "gabinete": "GABINETE QUEIMADO, SUBSTITUIDO",
-            "modem": "MODEM QUEIMADO, SUBSTITUIDO",
-            "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
-            "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
-            "redeaManobra": "REDE METALICA COM DEFEITO, MANOBRADO",
-            "falhaPABX": "FALHA NO PABX DO CLIENTE",
-        }
-    }
-
-    calcularRouter() {
-        let calcDateRouter = new CalculateDateRouter()
-
-        let timeRouterUp = calcDateRouter.splitTime(this.data.router)
-        return calcDateRouter.calculateNormalizationDate(timeRouterUp)
-    }
-
-    CopyDataNormalizacao() {
-        copyToClipboard(this.data["normalizacao"])
-    }
-
-    copyValidacao() {
-        let validado = this.data["validacao"].toUpperCase()
-        validado = validado + verificaRadioValidacao(this.data)
-
-        copyToClipboard(validado)
-    }
-    copySenha() {
-        copyToClipboard("SENHA : " + this.data["senha"])
-    }
-
-
-    limpar() {
-        document.querySelector("#dataAbertura").value = ""
-        document.querySelector("#dataNormalizacao").value = ""
-        document.querySelector("#router").value = ""
-        document.querySelector("#enValidation").value = ""
-        document.querySelector("#telefone").value = ""
-        document.querySelector("#senha").value = ""
-        document.querySelector("#outraCausa").value = ""
-        document.querySelector("#checkboxCausaCliente").checked = false
-        document.querySelector("#checkboxAguardandoValidacao").checked = false
-        document.querySelector("#checkboxChamadoManual").checked = false
-        modalButtonLimpar()
-    }
-
-
-    // Causa Cliente
-    reclamacaoIndevida() {
-        makeMascara(this.data, this._causa.cliente, this._solucao.indevida)
-    }
-    localSemEnergia() {
-        makeMascara(this.data, this._causa.cliente, this._solucao.energia)
-    }
-
-    // Causa Operadora
-    causaNaoDetectada() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.naoDetectada)
-    }
-    gabineteQueimado() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.gabinete)
-    }
-    modemQueimado() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.modem)
-    }
-    fibraRompimento() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.fibraRompimento)
-    }
-    redeaRompimento() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.redeaRompimento)
-    }
-    redeaManobra() {
-        makeMascara(this.data, this._causa.operadora, this._solucao.redeaManobra)
-    }
-
-    // Voz
-    buttonFalhaPABX() {
-        makeMascara(this.data, this._causa.cliente, this._solucao.falhaPABX)
-    }
-
-    // Outra Falha
-    outraCausa() {
-
-        if (this.data["checkboxCausaCliente"]) {
-            makeMascara(this.data, this._causa.cliente, this.data.outraCausa)
-        } else {
-            makeMascara(this.data, this._causa.operadora, this.data.outraCausa)
-        }
-
-    }
-}
-
-
-// ===  ===
-
-
-// === BUTTONS ===
-
 
 class ScrenEncerramento {
     constructor() {
-        this.data = getViewEncerramento()
+        this.data = getScrenEncerramento()
 
         this._causa = {
             "cliente": "CLIENTE",
@@ -411,22 +251,19 @@ class ScrenEncerramento {
         return this.data
     }
     outraCausa() {
-        this.data.checkboxCausaCliente ?
-            this.data.causa = this._causa.cliente : this.data.causa = this._causa.operadora
-        this.data.solucao = this._solucao.outraCausa
+        this.data.causa = this.data.checkboxCausaCliente ? this._causa.cliente : this._causa.operadora
+        this.data.solucao = this.data.outraCausa
         return this.data
     }
-
-
 }
 
+// === BUTTONS ===
 
 function buttonLimpar() {
     document.querySelector("#dataAbertura").value = ""
     document.querySelector("#dataNormalizacao").value = ""
     document.querySelector("#router").value = ""
     document.querySelector("#enValidation").value = ""
-    document.querySelector("#telefone").value = ""
     document.querySelector("#senha").value = ""
     document.querySelector("#outraCausa").value = ""
     document.querySelector("#checkboxCausaCliente").checked = false
@@ -436,7 +273,6 @@ function buttonLimpar() {
 }
 
 function buttonCalcularRouter() {
-
     let calcDateRouter = new CalculateDateRouter()
     let screen = new ScrenEncerramento()
 
@@ -535,8 +371,6 @@ function buttonAgendadoPara() {
     copyToClipboard("ENCERRADO.")
 }
 
-// === BUTTONS ===
-
 function enButtonAddClientList() {
     const name = document.getElementById("enValidation").value
 
@@ -549,6 +383,8 @@ function enButtonAddClientList() {
     storage.addLocalStorage("enValidationList", list.idLine, name)
     storage.updateLocalStorage()
 }
+
+// === /BUTTONS ===
 
 function loadScreenEncerramento() {
     const storage = LocalStorageSingleton.getInstance()
@@ -567,7 +403,6 @@ function loadScreenEncerramento() {
             abClientList.addLine(nameLine, idLine)
         }
     }
-
 }
 
 const inputValidation = document.getElementById("enValidation")
@@ -578,5 +413,4 @@ inputValidation.addEventListener("focus", () => {
 
 inputValidation.addEventListener("blur", () => {
     document.getElementById("enValidationList").classList.remove("open-list")
-
 })
