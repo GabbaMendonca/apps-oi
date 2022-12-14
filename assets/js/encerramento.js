@@ -94,7 +94,7 @@ function getViewEncerramento() {
 
     // Checkbox
     data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-    data["checkboxAguardandoValidacao"] = document.querySelector("#checkboxAguardandoValidacao").checked
+    data["checkboxMensagemRapida"] = document.querySelector("#checkboxAguardandoValidacao").checked
     data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
 
     // Radio
@@ -181,6 +181,24 @@ class BuildMensagensRapidas {
     }
 }
 
+class Encerramento {
+    constructor(data) {
+        this.data = data
+        this.data.checkboxMensagemRapida ? this._mensagemRapida() : this._encerramento()
+    }
+
+    _encerramento() {
+        copyToClipboard(
+            new BuildMascaraEncerramento(this.data).build()
+        )
+    }
+    _mensagemRapida() {
+        copyToClipboard(
+            new BuildMensagensRapidas(this.data).build()
+        )
+    }
+}
+
 function makeMascara(data, causa, solucao) {
 
     data["causa"] = causa
@@ -213,7 +231,7 @@ function makeMascara(data, causa, solucao) {
 class Mascara {
 
     constructor() {
-        this._data = getViewEncerramento()
+        this.data = getViewEncerramento()
 
         this._causa = {
             "cliente": "CLIENTE",
@@ -235,26 +253,24 @@ class Mascara {
     }
 
     calcularRouter() {
-
         let calcDateRouter = new CalculateDateRouter()
 
-        let timeRouterUp = calcDateRouter.splitTime(this._data.router)
+        let timeRouterUp = calcDateRouter.splitTime(this.data.router)
         return calcDateRouter.calculateNormalizationDate(timeRouterUp)
-
     }
 
     CopyDataNormalizacao() {
-        copyToClipboard(this._data["normalizacao"])
+        copyToClipboard(this.data["normalizacao"])
     }
 
     copyValidacao() {
-        let validado = this._data["validacao"].toUpperCase()
-        validado = validado + verificaRadioValidacao(this._data)
+        let validado = this.data["validacao"].toUpperCase()
+        validado = validado + verificaRadioValidacao(this.data)
 
         copyToClipboard(validado)
     }
     copySenha() {
-        copyToClipboard("SENHA : " + this._data["senha"])
+        copyToClipboard("SENHA : " + this.data["senha"])
     }
 
 
@@ -270,50 +286,49 @@ class Mascara {
         document.querySelector("#checkboxAguardandoValidacao").checked = false
         document.querySelector("#checkboxChamadoManual").checked = false
         modalButtonLimpar()
-
     }
 
 
     // Causa Cliente
     reclamacaoIndevida() {
-        makeMascara(this._data, this._causa.cliente, this._solucao.indevida)
+        makeMascara(this.data, this._causa.cliente, this._solucao.indevida)
     }
     localSemEnergia() {
-        makeMascara(this._data, this._causa.cliente, this._solucao.energia)
+        makeMascara(this.data, this._causa.cliente, this._solucao.energia)
     }
 
     // Causa Operadora
     causaNaoDetectada() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.naoDetectada)
+        makeMascara(this.data, this._causa.operadora, this._solucao.naoDetectada)
     }
     gabineteQueimado() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.gabinete)
+        makeMascara(this.data, this._causa.operadora, this._solucao.gabinete)
     }
     modemQueimado() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.modem)
+        makeMascara(this.data, this._causa.operadora, this._solucao.modem)
     }
     fibraRompimento() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.fibraRompimento)
+        makeMascara(this.data, this._causa.operadora, this._solucao.fibraRompimento)
     }
     redeaRompimento() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.redeaRompimento)
+        makeMascara(this.data, this._causa.operadora, this._solucao.redeaRompimento)
     }
     redeaManobra() {
-        makeMascara(this._data, this._causa.operadora, this._solucao.redeaManobra)
+        makeMascara(this.data, this._causa.operadora, this._solucao.redeaManobra)
     }
 
     // Voz
     buttonFalhaPABX() {
-        makeMascara(this._data, this._causa.cliente, this._solucao.falhaPABX)
+        makeMascara(this.data, this._causa.cliente, this._solucao.falhaPABX)
     }
 
     // Outra Falha
     outraCausa() {
 
-        if (this._data["checkboxCausaCliente"]) {
-            makeMascara(this._data, this._causa.cliente, this._data.outraCausa)
+        if (this.data["checkboxCausaCliente"]) {
+            makeMascara(this.data, this._causa.cliente, this.data.outraCausa)
         } else {
-            makeMascara(this._data, this._causa.operadora, this._data.outraCausa)
+            makeMascara(this.data, this._causa.operadora, this.data.outraCausa)
         }
 
     }
@@ -326,79 +341,186 @@ class Mascara {
 // === BUTTONS ===
 
 
+class ScrenEncerramento {
+    constructor() {
+        this.data = getViewEncerramento()
+
+        this._causa = {
+            "cliente": "CLIENTE",
+            "operadora": "OPERADORA",
+        }
+
+        this._solucao = {
+            "aberturaIndevida": "ABERTURA INDEVIDA",
+            "localSemEnergia": "LOCAL SEM ENERGIA",
+            "causaNaoDetectada": "CAUSA NAO DETECTADA",
+
+            "gabineteQueimado": "GABINETE QUEIMADO, SUBSTITUIDO",
+            "modemQueimado": "MODEM QUEIMADO, SUBSTITUIDO",
+            "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
+            "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
+            "redeaManobra": "REDE METALICA COM DEFEITO, MANOBRADO",
+            "falhaPABX": "FALHA NO PABX DO CLIENTE",
+        }
+    }
+
+    aberturaIndevida() {
+        this.data.causa = this._causa.cliente
+        this.data.solucao = this._solucao.aberturaIndevida
+        return this.data
+    }
+    localSemEnergia() {
+        this.data.causa = this._causa.cliente
+        this.data.solucao = this._solucao.localSemEnergia
+        return this.data
+    }
+    causaNaoDetectada() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.causaNaoDetectada
+        return this.data
+    }
+    gabineteQueimado() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.gabineteQueimado
+        return this.data
+    }
+    modemQueimado() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.modemQueimado
+        return this.data
+    }
+    fibraRompimento() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.fibraRompimento
+        return this.data
+    }
+    redeaRompimento() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.redeaRompimento
+        return this.data
+    }
+
+    redeaManobra() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.redeaManobra
+        return this.data
+    }
+    buttonFalhaPABX() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.falhaPABX
+        return this.data
+    }
+    outraCausa() {
+        this.data.checkboxCausaCliente ?
+            this.data.causa = this._causa.cliente : this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.outraCausa
+        return this.data
+    }
+
+
+}
+
+
 function buttonLimpar() {
-    m = new Mascara()
-    m.limpar()
+    document.querySelector("#dataAbertura").value = ""
+    document.querySelector("#dataNormalizacao").value = ""
+    document.querySelector("#router").value = ""
+    document.querySelector("#enValidation").value = ""
+    document.querySelector("#telefone").value = ""
+    document.querySelector("#senha").value = ""
+    document.querySelector("#outraCausa").value = ""
+    document.querySelector("#checkboxCausaCliente").checked = false
+    document.querySelector("#checkboxAguardandoValidacao").checked = false
+    document.querySelector("#checkboxChamadoManual").checked = false
+    modalButtonLimpar()
 }
 
 function buttonCalcularRouter() {
-    m = new Mascara()
-    document.querySelector("#dataNormalizacao").value = m.calcularRouter()
+
+    let calcDateRouter = new CalculateDateRouter()
+    let screen = new ScrenEncerramento()
+
+    let timeRouterSplit = calcDateRouter.splitTime(screen.data.router)
+    let dateRouterUp = calcDateRouter.calculateNormalizationDate(timeRouterSplit)
+
+    document.querySelector("#dataNormalizacao").value = dateRouterUp
 }
 
 function buttonCopyDataNormalizacao() {
-    m = new Mascara()
-    m.CopyDataNormalizacao()
+    let screen = new ScrenEncerramento()
+    copyToClipboard(screen.data.normalizacao)
 }
 
 function buttonCopyValidacao() {
-    m = new Mascara()
-    m.copyValidacao()
+    let screen = new ScrenEncerramento()
+    copyToClipboard(
+        screen.data.validacao + " " + verificaRadioValidacao(screen.data)
+    )
 }
 
 function buttonCopySenha() {
-    m = new Mascara()
-    m.copySenha()
+    let screen = new ScrenEncerramento()
+    copyToClipboard("SENHA : " + screen.data.senha)
 }
 
 function buttonReclamacaoIndevida() {
-    m = new Mascara()
-    m.reclamacaoIndevida()
+    new Encerramento(
+        new ScrenEncerramento().aberturaIndevida()
+    )
 }
 
 function buttonLocalSemEnergia() {
-    m = new Mascara()
-    m.localSemEnergia()
+    new Encerramento(
+        new ScrenEncerramento().localSemEnergia()
+    )
 }
 
 function buttonCausaNaoDetectada() {
-    m = new Mascara()
-    m.causaNaoDetectada()
+    new Encerramento(
+        new ScrenEncerramento().causaNaoDetectada()
+    )
 }
 
 function buttonGabineteQueimado() {
-    m = new Mascara()
-    m.gabineteQueimado()
+    new Encerramento(
+        new ScrenEncerramento().gabineteQueimado()
+    )
 }
 
 function buttonModemQueimado() {
-    m = new Mascara()
-    m.modemQueimado()
+    new Encerramento(
+        new ScrenEncerramento().modemQueimado()
+    )
 }
 
 function buttonFibraRompimento() {
-    m = new Mascara()
-    m.fibraRompimento()
+    new Encerramento(
+        new ScrenEncerramento().fibraRompimento()
+    )
 }
 
 function buttonRedeaRompimento() {
-    m = new Mascara()
-    m.redeaRompimento()
+    new Encerramento(
+        new ScrenEncerramento().redeaRompimento()
+    )
 }
 
 function buttonRedeaManobra() {
-    m = new Mascara()
-    m.redeaManobra()
+    new Encerramento(
+        new ScrenEncerramento().redeaManobra()
+    )
 }
 
 function buttonFalhaPABX() {
-    m = new Mascara()
-    m.buttonFalhaPABX()
+    new Encerramento(
+        new ScrenEncerramento().buttonFalhaPABX()
+    )
 }
 
 function buttonOutraCausa() {
-    m = new Mascara()
-    m.outraCausa()
+    new Encerramento(
+        new ScrenEncerramento().outraCausa()
+    )
 }
 
 function buttonCasoNovo() {
