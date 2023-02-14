@@ -200,6 +200,7 @@ class ScrenEncerramento {
             "fibraRompimento": "ROMPIMENTO DE FIBRA, RECUPERADO",
             "redeaRompimento": "REDE METALICA COM DEFEITO, RECUPERADO",
             "redeaManobra": "REDE METALICA COM DEFEITO, MANOBRADO",
+            "comutadoNaRota": "COMUTADO NA ROTA",
             "falhaPABX": "FALHA NO PABX DO CLIENTE",
         }
     }
@@ -239,10 +240,14 @@ class ScrenEncerramento {
         this.data.solucao = this._solucao.redeaRompimento
         return this.data
     }
-
     redeaManobra() {
         this.data.causa = this._causa.operadora
         this.data.solucao = this._solucao.redeaManobra
+        return this.data
+    }
+    comutadoNaRota() {
+        this.data.causa = this._causa.operadora
+        this.data.solucao = this._solucao.comutadoNaRota
         return this.data
     }
     buttonFalhaPABX() {
@@ -356,6 +361,12 @@ function buttonFalhaPABX() {
 function buttonOutraCausa() {
     new Encerramento(
         new ScrenEncerramento().outraCausa()
+    )
+}
+
+function buttonComutadoNaRota() {
+    new Encerramento(
+        new ScrenEncerramento().comutadoNaRota()
     )
 }
 
