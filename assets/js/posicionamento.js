@@ -2,6 +2,8 @@ function getScreenPosicionamento() {
     let data = {}
 
     data["posto"] = document.querySelector("#poPosto").value
+    data["outroPosto"] = document.querySelector("#poOutroPosto").value.toUpperCase()
+    data["descricaoPosto"] = document.querySelector("#poDescricaoPosto").value.toUpperCase()
     data["perimetro"] = document.querySelector("#poPerimetro").value
     data["ba"] = document.querySelector("#poBa").value
     data["causa"] = document.querySelector("#poCausa").value.toUpperCase()
@@ -14,6 +16,7 @@ function getScreenPosicionamento() {
 
     return data
 }
+
 class Posicionamento {
     constructor(data) {
         this.data = data
@@ -24,6 +27,7 @@ class Posicionamento {
         if (data.posto == "FIBRA") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE FIBRA.\n`
         if (data.posto == "TRANSMISSÃO") return `${data.posto} - ${data.perimetro} - BA ${data.ba} - & FALHA DE TRANSMISSÃO.\n`
         if (data.posto == "REDEA") return 'REDEA - & REDE METALICA ROMPIDA/COM DEFEITO.\n'
+        if (data.posto == "OUTRO") return `${data.outroPosto} - & ${data.descricaoPosto}.\n`
     }
 
     _poCausa(data) {
@@ -48,6 +52,7 @@ class Posicionamento {
 
     build() {
         return `${this._poCabecalhoPosicionamento(this.data)}` +
+            
             `${this._poCausa(this.data)}` +
             `${this._poLocalidade(this.data)}` +
             `DESCRIÇÃO : ${this.data.descricao}.\n` +
@@ -69,7 +74,7 @@ function poButtonGerarPosicionamento() {
 function poButtonEnviarEditor() {
     let dataScreenPosicionamento = getScreenPosicionamento()
     let pos = new Posicionamento(dataScreenPosicionamento)
-    editorTextArea.value = pos.build() + editorTextArea.value
+    editorTextArea.value = pos.build() + "\n\n" + editorTextArea.value
     editor()
 }
 
@@ -82,4 +87,15 @@ function poButtonLimpar() {
     document.querySelector("#poPrevisao").value = ""
     document.querySelector("#poDetalhes").value = ""
     document.querySelector("#poLog").value = ""
+}
+
+function mudarVisibilidadeOutroPosto () {   
+    const selectPosicionamento = document.querySelector("#poPosto")
+    const outroPosto = document.querySelector("#poCampoOutroPosto")
+    
+    if (selectPosicionamento.value == 'OUTRO') {
+        outroPosto.classList.remove('is-hidden')
+    } else {
+        outroPosto.classList.add('is-hidden')
+    }
 }
