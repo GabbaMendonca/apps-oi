@@ -157,7 +157,7 @@
 						<!-- buttons topo - limpar e log-->
 						<div class="field">
 							<div class="buttons">
-								<button class="button is-info is-small is-fullwidth"
+								<button class="button is-danger-1 is-small is-fullwidth"
 									onclick="abButtonLimpar()">Limpar</button>
 								<button class="button is-info is-small is-fullwidth" onclick="buttonLog()">Log</button>
 							</div>
@@ -472,39 +472,10 @@
 									</div>
 									<!-- /radio - Backup -->
 
-									<!-- radio - Troubleshooting -->
-									<!-- <div class="field">
-
-																																																																																<label class="label is-small">Troubleshooting</label>
-
-																																																																																<div class="field is-narrow">
-
-																																																																																								<div class="control">
-																																																																																																<label class="radio">
-																																																																																																<input type="radio" name="abTs" value="0" disabled>
-																																																																																																OK
-																																																																																																</label>
-
-																																																																																																<label class="radio">
-																																																																																																<input type="radio" name="abTs" value="1" disabled>
-																																																																																																Pendente
-																																																																																																</label>
-
-																																																																																																<label class="radio">
-																																																																																																<input type="radio" name="abTs" value="2" disabled>
-																																																																																																Sem Sucesso
-																																																																																																</label>
-																																																																																								</div>
-
-																																																																																</div>
-
-																																																																								</div> -->
-									<!-- /radio - Troubleshooting -->
-
 									<!-- Botão -->
 									<div class="field">
 										<div class="control">
-											<button class="button is-primary is-fullwidth"
+											<button class="button is-small is-primary is-fullwidth"
 												onclick="abButtonGerarMascaraAbertura()">Gerar
 												Mascara</button>
 										</div>
@@ -514,7 +485,7 @@
 									<!-- Botão -->
 									<div class="field">
 										<div class="control">
-											<button class="button is-primary is-fullwidth"
+											<button class="button is-small is-info is-fullwidth"
 												onclick="abButtonEnviarParaEditor()">Enviar para o
 												Editor de Texto</button>
 										</div>
@@ -540,7 +511,7 @@
 					<div class="column">
 						<!-- Bloco Esquerdo - Botões Topo -->
 						<div class="buttons are-small">
-							<button class="button is-info is-fullwidth" onclick="buttonLimpar()">Limpar</button>
+							<button class="button is-danger-1 is-fullwidth" onclick="buttonLimpar()">Limpar</button>
 							<button class="button is-info is-fullwidth" onclick="buttonLog()">Log</button>
 						</div>
 						<!-- /Bloco Esquerdo - Botões Topo -->
@@ -922,14 +893,6 @@
 											<button class="button is-small is-fullwidth is-primary"
 												onclick="buttonEncerrado()">Encerrado</button>
 										</div>
-										<div class="field has-addons">
-											<button class="button is-small is-fullwidth" onclick="buttonAgendadoPara()"
-												disabled>Agendado
-												Para</button>
-											<div class="field">
-												<input class="input is-small" type="date" disabled>
-											</div>
-										</div>
 										<!-- /Buttons -->
 									</div>
 									<!-- /Buttons - Mensagens Instantâneas -->
@@ -1032,7 +995,7 @@
 								<hr>
 
 								<div class="field">
-									<button class="button is-info is-small is-fullwidth gap-button"
+									<button class="button is-danger-1 is-small is-fullwidth gap-button"
 										onclick="buttonEmailLimpar()">Limpar</button>
 								</div>
 
@@ -1054,6 +1017,11 @@
 								<div class="field">
 									<button class="button is-small is-fullwidth gap-button my-info is-info is-outlined"
 										onclick="buttonEmailPosicionamento()">Posicionamento</button>
+								</div>
+
+								<div class="field">
+									<button class="button is-small is-fullwidth gap-button my-info is-info is-outlined"
+										onclick="buttonEmailAbertura()">Abertura</button>
 								</div>
 
 							</div>
@@ -1080,7 +1048,7 @@
 						</button>
 					</p>
 					<p class="control">
-						<button class="button is-info" onclick="editorLimpar()">
+						<button class="button is-danger-1" onclick="editorLimpar()">
 							Limpar
 						</button>
 					</p>
@@ -1132,7 +1100,7 @@
 						</p>
 
 						<p class="control">
-							<button class="button" onclick="editorSTC()">
+							<button class="button" onclick="editorSTC()" disabled>
 								<span class="icon is-small">
 									<i class="fas fa-align-justify"></i>
 								</span>
@@ -1164,12 +1132,15 @@
 
 			<!-- POSICIONAMENTO -->
 			<div id="posicionamento" class="container is-max-desktop">
+				
 				<div class="field">
 					<label class="label">Posicionamento</label>
 				</div>
-				<!-- card - posicionamento -->
+				
+				<!-- card 1 - posicionamento -->
 				<div class="card">
 					<div class="card-content">
+
 						<!-- campo Posto -->
 						<div class="field is-horizontal">
 							<div class="field-label is-small">
@@ -1381,15 +1352,68 @@ Serve para colocar informações que não devem ser espelhadas para o cliente.">
 										Texto</button>
 									<button class="button is-info" onclick="poButtonEnviarEditor()">Enviar para o Editor
 										de Texto</button>
-									<button class="button is-info" onclick="poButtonLimpar()">Limpar</button>
+									<button class="button is-danger-1" onclick="poButtonLimpar()">Limpar</button>
 								</div>
 							</div>
 						</div>
-						<!-- /campo Log's -->
-						
+						<!-- /campo Log's -->						
 					</div>
 				</div>
-				<!-- /card - posicionamento -->
+				<!-- /card 1 - posicionamento -->
+
+				<!-- card 2 - agendamento -->
+				<div class="card my-card">
+					<div class="card-content">
+
+					<div class="field">
+						<label class="label">Agendamento</label>
+					</div>
+
+					<!-- campo Nome(s) do tecnico(s) -->
+					<div class="field is-horizontal">
+						<div class="field-label is-small">
+							<label class="label is-small">Nome(s) do tecnico(s) : </label>
+						</div>
+						<div class="field-body">
+							<!-- text area -->
+							<div class="field">
+								<div class="control">
+									<textarea id="poNomeDoTecnico" class="textarea" rows="2"></textarea>
+								</div>
+							</div>
+							<!-- /text area -->
+						</div>
+					</div>
+					<!-- /campo Nome(s) do tecnico(s) -->
+
+					<!-- campo Nome(s) do tecnico(s) -->
+					<div class="field is-horizontal">
+						<div class="field-label is-small">
+							<label class="label is-small">Data do agendamento : </label>
+						</div>
+						<div class="field-body">
+							<div class="field is-grouped">
+								<!-- input date -->
+								<div class="control is-expanded">
+									<input class="input" type="datetime-local" value="-03:00" name="data_agendamento" id="poDataAgendamento">
+								</div>
+								<!-- /input date -->
+								<div class="control">
+									<button class="button is-primary" onclick="poButtonGerarTextoAgendamento()">Gerar Texto</button>
+								</div>
+								<div class="control">
+									<button class="button is-danger-1" onclick="poButtonLimparAgendamento()">Limpar</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<!-- /campo Nome(s) do tecnico(s) -->
+
+					</div>
+				</div>
+				<!-- /card 2 - agendamento -->
+
 			</div>
 			<!-- /POSICIONAMENTO -->
 		</div>
@@ -1416,7 +1440,7 @@ Serve para colocar informações que não devem ser espelhadas para o cliente.">
 			</p>
 
 			<p>
-				<strong>Apps OI v5.02</strong> by Gabriel"Gabba" Mendonça | <i class="fab fa-github"></i> <a
+				<strong>Apps OI v5.03</strong> by Gabriel"Gabba" Mendonça | <i class="fab fa-github"></i> <a
 					href="https://github.com/GabbaMendonca/apps-oi">GitHub</a>.
 			</p>
 
@@ -1444,7 +1468,7 @@ Serve para colocar informações que não devem ser espelhadas para o cliente.">
 
 			<footer class="modal-card-foot">
 				<!-- <button class="button is-success" onclick="modalButtonOk()">Ok</button> -->
-				<button class="button is-info" onclick="modalButtonLimpar()">Limpar</button>
+				<button class="button is-danger-1" onclick="modalButtonLimpar()">Limpar</button>
 				<button class="button is-info" onclick="modalButtonLog()">Copiar Log</button>
 			</footer>
 
