@@ -1,3 +1,41 @@
+// === ADD EVENTO DE ABRIR E FECHAR A LISTA ===
+
+const inputValidation = document.getElementById("enValidation")
+
+inputValidation.addEventListener("focus", () => {
+    document.getElementById("enValidationList").classList.add("open-list")
+})
+
+inputValidation.addEventListener("blur", () => {
+    document.getElementById("enValidationList").classList.remove("open-list")
+})
+
+// === /ADD EVENTO DE ABRIR E FECHAR A LISTA ===
+
+// === CARREGAR OS DADOS SALVOS DA LISTA ===
+
+function loadScreenEncerramento() {
+    const storage = LocalStorageSingleton.getInstance()
+    storage.downloadBrowserLocalStorage()
+
+    const abClientListStorage = storage.getListLocalStorage("enValidationList")
+
+    if (abClientListStorage) {
+        const abClientList = new List("enValidationList")
+
+        for (const key in abClientListStorage) {
+
+            const nameLine = abClientListStorage[key]
+            const idLine = key
+
+            abClientList.addLine(nameLine, idLine)
+        }
+    }
+}
+
+// === /CARREGAR OS DADOS SALVOS DA LISTA ===
+
+
 // === CALCULO DO ROUTER ===
 
 class CalculateDateRouter {
@@ -71,6 +109,10 @@ class CalculateDateRouter {
     }
 }
 
+// === /CALCULO DO ROUTER ===
+
+// ===  ===
+
 function verificaRadioValidacao(data) {
     let opcoes = {
         "0": "CPD",
@@ -82,108 +124,13 @@ function verificaRadioValidacao(data) {
     return opcoes[`${opc}`]
 }
 
-class BuildMascaraEncerramento {
-    constructor(data) {
-        this.data = data
-    }
+// === / ===
 
-    _senha() {
-        if (this.data.checkboxChamadoManual) return ` - SENHA : MANUAL, NAO POSSUI SENHA\n`
-        return this.data.senha ? ` - SENHA : ${this.data["senha"]}\n` : '\n'
-    }
-    _colaborador() { return `COLABORADOR : CEC SP - ${this.data.nome} - OI${this.data.oi}\n` }
-    _abertura() { return `FALHA INICIO : ${this.data.abertura}\n` }
-    _normalizacao() { return `NORMALIZACAO: ${this.data.normalizacao}\n` }
-    _validacao() { return `CLIENTE AUTORIZADOR: ${this.data.validacao}` }
-    _radioValidacao() { return verificaRadioValidacao(this.data) }
-    _causa() {
-        let solucao = this.data.solucao ? this.data.solucao : ''
-        return `CAUSA/SOLUCAO : [${this.data.causa}] ${solucao}\n`
-    }
-    _log() { return this.data.log ? "LOG: \n" + `${this.data.log}\n` : '' }
+// === VIEW ENCWRRAMENTO ===
 
-    build() {
-        return `MASCARA DE ENCERRAMENTO${this._senha()}` +
-            `${this._colaborador()}` +
-            'ATENDIMENTO PERSONALIZADO\n' +
-            `${this._abertura()}` +
-            `${this._normalizacao()}` +
-            `${this._validacao()}` + ` ${this._radioValidacao()}\n` +
-            `${this._causa()}` +
-            `${this._log()}`
-    }
-}
-
-class BuildMensagensRapidas {
-    constructor(data) {
-        this.data = data
-        this.dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
-    }
-
-    _radioMensagens() {
-        let opcoes = {
-            '0': "PENDENTE VALIDAR COM CPD/RESIDENTE " + this.dataValidacao,
-            '1': "SOLICITADO VALIDAÇÃO AO CPD/RESIDENTE",
-            '2': "EM MONITORAÇÃO POR 24 H",
-            '3': "PENDENTE BAIXA DO POSTO",
-            '4': "PENDENTE DIAGNOSTICO",
-        }
-
-        let opc = verificaRadio(this.data.radioPendenteCliente)
-        return opcoes[`${opc}`]
-    }
-
-    build() {
-        return `& NORMALIZADO. UP DESDE AS ${this.data.normalizacao}.\n` +
-            `${this.data.solucao}.` +
-            `\n${this._radioMensagens()}. &`
-    }
-}
-
-class Encerramento {
-    constructor(data) {
-        this.data = data
-        this.data.checkboxMensagemRapida ? this._mensagemRapida() : this._encerramento()
-    }
-
-    _encerramento() {
-        copyToClipboard(
-            new BuildMascaraEncerramento(this.data).build()
-        )
-    }
-    _mensagemRapida() {
-        copyToClipboard(
-            new BuildMensagensRapidas(this.data).build()
-        )
-    }
-}
-
-function getScrenEncerramento() {
-    let data = {}
-        // Input
-    data["oi"] = document.querySelector("#oi").value
-    data["nome"] = document.querySelector("#nome").value.toUpperCase()
-    data["abertura"] = document.querySelector("#dataAbertura").value
-    data["normalizacao"] = document.querySelector("#dataNormalizacao").value
-    data["router"] = document.querySelector("#router").value
-    data["validacao"] = document.querySelector("#enValidation").value.toUpperCase()
-    data["senha"] = document.querySelector("#senha").value.toUpperCase()
-    data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
-        // Checkbox
-    data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
-    data["checkboxMensagemRapida"] = document.querySelector("#checkboxAguardandoValidacao").checked
-    data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
-        // Radio
-    data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
-    data["radioValidacao"] = document.getElementsByName("radioValidacao")
-        // Log
-    data["log"] = textareaLog.value
-    return data
-}
-
-class ScrenEncerramento {
+class ViewEncerramento {
     constructor() {
-        this.data = getScrenEncerramento()
+        this.data = this.getView()
 
         this._causa = {
             "cliente": "CLIENTE",
@@ -205,6 +152,44 @@ class ScrenEncerramento {
         }
     }
 
+    clearView() {
+        document.querySelector("#dataAbertura").value = ""
+        document.querySelector("#dataNormalizacao").value = ""
+        document.querySelector("#router").value = ""
+        document.querySelector("#enValidation").value = ""
+        document.querySelector("#senha").value = ""
+        document.querySelector("#outraCausa").value = ""
+        document.querySelector("#enCircuito").value = ""
+        document.querySelector("#enChamadoOi").value = ""
+        document.querySelector("#checkboxCausaCliente").checked = false
+        document.querySelector("#checkboxAguardandoValidacao").checked = false
+        document.querySelector("#checkboxChamadoManual").checked = false
+    }
+    getView() {
+        let data = {}
+            // Input
+        data["oi"] = document.querySelector("#oi").value
+        data["nome"] = document.querySelector("#nome").value.toUpperCase()
+        data["abertura"] = document.querySelector("#dataAbertura").value
+        data["normalizacao"] = document.querySelector("#dataNormalizacao").value
+        data["router"] = document.querySelector("#router").value
+        data["validacao"] = document.querySelector("#enValidation").value.toUpperCase()
+        data["senha"] = document.querySelector("#senha").value.toUpperCase()
+        data["outraCausa"] = document.querySelector("#outraCausa").value.toUpperCase()
+        data["circuito"] = document.querySelector("#enCircuito").value.toUpperCase()
+        data["chamadoOi"] = document.querySelector("#enChamadoOi").value.toUpperCase()
+            // Checkbox
+        data["checkboxCausaCliente"] = document.querySelector("#checkboxCausaCliente").checked
+        data["checkboxMensagemRapida"] = document.querySelector("#checkboxAguardandoValidacao").checked
+        data["checkboxMensagemValidacao"] = document.querySelector("#checkboxMensagemValidacao").checked
+        data["checkboxChamadoManual"] = document.querySelector("#checkboxChamadoManual").checked
+            // Radio
+        data["radioPendenteCliente"] = document.getElementsByName("radioPendenteCliente")
+        data["radioValidacao"] = document.getElementsByName("radioValidacao")
+            // Log
+        data["log"] = textareaLog.value
+        return data
+    }
     aberturaIndevida() {
         this.data.causa = this._causa.cliente
         this.data.solucao = this._solucao.aberturaIndevida
@@ -262,24 +247,122 @@ class ScrenEncerramento {
     }
 }
 
-// === BUTTONS ===
+// === /VIEW ENCWRRAMENTO ===
+
+// === FACTORY MENSAGENS ===
+
+class MascaraEncerramento {
+    constructor(data) {
+        this._data = data
+    }
+
+    _senha() {
+        if (this._data.checkboxChamadoManual) return ` - SENHA : MANUAL, NAO POSSUI SENHA\n`
+        return this._data.senha ? ` - SENHA : ${this._data["senha"]}\n` : '\n'
+    }
+    _colaborador() { return `COLABORADOR : CEC SP - ${this._data.nome} - OI${this._data.oi}\n` }
+    _abertura() { return `FALHA INICIO : ${this._data.abertura}\n` }
+    _normalizacao() { return `NORMALIZACAO: ${this._data.normalizacao}\n` }
+    _validacao() { return `CLIENTE AUTORIZADOR: ${this._data.validacao}` }
+    _radioValidacao() { return verificaRadioValidacao(this._data) }
+    _causa() {
+        let solucao = this._data.solucao ? this._data.solucao : ''
+        return `CAUSA/SOLUCAO : [${this._data.causa}] ${solucao}\n`
+    }
+    _log() { return this._data.log ? "LOG: \n" + `${this._data.log}\n` : '' }
+
+    build() {
+        return `MASCARA DE ENCERRAMENTO${this._senha()}` +
+            `${this._colaborador()}` +
+            'ATENDIMENTO PERSONALIZADO\n' +
+            `${this._abertura()}` +
+            `${this._normalizacao()}` +
+            `${this._validacao()}` + ` ${this._radioValidacao()}\n` +
+            `${this._causa()}` +
+            `${this._log()}`
+    }
+}
+
+class MensagensRapidas {
+    constructor(data) {
+        this._data = data
+        this._dataValidacao = moment().add(1, 'days').format("DD/MM/YYYY") + " 09:00 H"
+    }
+
+    _radioMensagens() {
+        let opcoes = {
+            '0': "PENDENTE VALIDAR COM CPD/RESIDENTE " + this._dataValidacao,
+            '1': "SOLICITADO VALIDAÇÃO AO CPD/RESIDENTE",
+            '2': "EM MONITORAÇÃO POR 24 H",
+            '3': "PENDENTE BAIXA DO POSTO",
+            '4': "PENDENTE DIAGNOSTICO",
+        }
+
+        let opc = verificaRadio(this._data.radioPendenteCliente)
+        return opcoes[`${opc}`]
+    }
+
+    build() {
+        return `& NORMALIZADO. UP DESDE AS ${this._data.normalizacao}.\n` +
+            `${this._data.solucao}.` +
+            `\n${this._radioMensagens()}. &`
+    }
+}
+
+class MensagensValidacao{
+    constructor(data) {
+        this._data = data
+    }
+
+    build(){
+        return `*VALIDAÇÃO*\n` +
+        `Boa Tarde !\n` +
+        `Poderia validar por gentileza ?\n\n` +
+        `Chamado OI : ${this._data.chamadoOi}.\n` +
+        `Circuito : ${this._data.circuito}.\n\n` +
+        `Causa : ${this._data.solucao}.`
+    }
+}
+
+class FactoryEncerramento {
+    constructor(data) {
+        this._data = data
+    }
+
+    _mascaraEncerramento() {
+        return new MascaraEncerramento(this._data).build()
+    }
+    _mensagemRapida() {
+        return new MensagensRapidas(this._data).build()
+    }
+    _mensagemValidacao() {
+        return new MensagensValidacao(this._data).build()
+    }
+
+    build(){
+        if (this._data.checkboxMensagemRapida){
+            return this._mensagemRapida()
+        }
+        if (this._data.checkboxMensagemValidacao){
+            return this._mensagemValidacao()
+        }
+        return this._mascaraEncerramento()
+    }
+}
+
+// === /FACTORY MENSAGENS ===
+
+// === BUTTONS/ROUTES/CONTROLLERS ===
 
 function buttonLimpar() {
-    document.querySelector("#dataAbertura").value = ""
-    document.querySelector("#dataNormalizacao").value = ""
-    document.querySelector("#router").value = ""
-    document.querySelector("#enValidation").value = ""
-    document.querySelector("#senha").value = ""
-    document.querySelector("#outraCausa").value = ""
-    document.querySelector("#checkboxCausaCliente").checked = false
-    document.querySelector("#checkboxAguardandoValidacao").checked = false
-    document.querySelector("#checkboxChamadoManual").checked = false
+    let viewEncerramento = new ViewEncerramento()
+    viewEncerramento.clearView()
     modalButtonLimpar()
 }
 
 function buttonCalcularRouter() {
     let calcDateRouter = new CalculateDateRouter()
-    let screen = new ScrenEncerramento()
+    let screen = new ViewEncerramento()
 
     let timeRouterSplit = calcDateRouter.splitTime(screen.data.router)
     let dateRouterUp = calcDateRouter.calculateNormalizationDate(timeRouterSplit)
@@ -288,86 +371,75 @@ function buttonCalcularRouter() {
 }
 
 function buttonCopyDataNormalizacao() {
-    let screen = new ScrenEncerramento()
+    let screen = new ViewEncerramento()
     copyToClipboard(screen.data.normalizacao)
 }
 
 function buttonCopyValidacao() {
-    let screen = new ScrenEncerramento()
+    let screen = new ViewEncerramento()
     copyToClipboard(
         screen.data.validacao + " " + verificaRadioValidacao(screen.data)
     )
 }
 
 function buttonCopySenha() {
-    let screen = new ScrenEncerramento()
+    let screen = new ViewEncerramento()
     copyToClipboard("SENHA : " + screen.data.senha)
 }
 
 function buttonReclamacaoIndevida() {
-    new Encerramento(
-        new ScrenEncerramento().aberturaIndevida()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().aberturaIndevida())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonLocalSemEnergia() {
-    new Encerramento(
-        new ScrenEncerramento().localSemEnergia()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().localSemEnergia())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonCausaNaoDetectada() {
-    new Encerramento(
-        new ScrenEncerramento().causaNaoDetectada()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().causaNaoDetectada())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonGabineteQueimado() {
-    new Encerramento(
-        new ScrenEncerramento().gabineteQueimado()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().gabineteQueimado())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonModemQueimado() {
-    new Encerramento(
-        new ScrenEncerramento().modemQueimado()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().modemQueimado())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonFibraRompimento() {
-    new Encerramento(
-        new ScrenEncerramento().fibraRompimento()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().fibraRompimento())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonRedeaRompimento() {
-    new Encerramento(
-        new ScrenEncerramento().redeaRompimento()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().redeaRompimento())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonRedeaManobra() {
-    new Encerramento(
-        new ScrenEncerramento().redeaManobra()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().redeaManobra())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonFalhaPABX() {
-    new Encerramento(
-        new ScrenEncerramento().buttonFalhaPABX()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().buttonFalhaPABX())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonOutraCausa() {
-    new Encerramento(
-        new ScrenEncerramento().outraCausa()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().outraCausa())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonComutadoNaRota() {
-    new Encerramento(
-        new ScrenEncerramento().comutadoNaRota()
-    )
+    let factoryEncenrramento = new FactoryEncerramento(new ViewEncerramento().comutadoNaRota())
+    copyToClipboard(factoryEncenrramento.build())
 }
 
 function buttonCasoNovo() {
@@ -375,10 +447,6 @@ function buttonCasoNovo() {
 }
 
 function buttonEncerrado() {
-    copyToClipboard("ENCERRADO.")
-}
-
-function buttonAgendadoPara() {
     copyToClipboard("ENCERRADO.")
 }
 
@@ -395,33 +463,4 @@ function enButtonAddClientList() {
     storage.updateLocalStorage()
 }
 
-// === /BUTTONS ===
-
-function loadScreenEncerramento() {
-    const storage = LocalStorageSingleton.getInstance()
-    storage.downloadBrowserLocalStorage()
-
-    const abClientListStorage = storage.getListLocalStorage("enValidationList")
-
-    if (abClientListStorage) {
-        const abClientList = new List("enValidationList")
-
-        for (const key in abClientListStorage) {
-
-            const nameLine = abClientListStorage[key]
-            const idLine = key
-
-            abClientList.addLine(nameLine, idLine)
-        }
-    }
-}
-
-const inputValidation = document.getElementById("enValidation")
-
-inputValidation.addEventListener("focus", () => {
-    document.getElementById("enValidationList").classList.add("open-list")
-})
-
-inputValidation.addEventListener("blur", () => {
-    document.getElementById("enValidationList").classList.remove("open-list")
-})
+// === BUTTONS/ROUTES/CONTROLLERS ===
