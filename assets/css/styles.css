@@ -1,3 +1,13 @@
+/* COLORS */
+
+.is-danger-1{
+    background-color: hsl(0, 100%, 71%);
+    color:hsl(0, 0%, 100%);
+}
+.is-danger-1:hover{
+    color:hsl(0, 0%, 100%);
+}
+
 /* INFORMAÇÕES */
 
 .my-instruction {

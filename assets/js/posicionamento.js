@@ -1,3 +1,5 @@
+// === POSICIONAMENTO ===
+
 function getScreenPosicionamento() {
     let data = {}
 
@@ -73,7 +75,7 @@ function poButtonGerarPosicionamento() {
 
 function poButtonEnviarEditor() {
     let dataScreenPosicionamento = getScreenPosicionamento()
-    let pos = new Posicionamento(dataScreenPosicionamento)
+    let pos = new Age(dataScreenPosicionamento)
     editorTextArea.value = pos.build() + "\n\n" + editorTextArea.value
     editor()
 }
@@ -89,6 +91,8 @@ function poButtonLimpar() {
     document.querySelector("#poLog").value = ""
 }
 
+
+
 function mudarVisibilidadeOutroPosto () {   
     const selectPosicionamento = document.querySelector("#poPosto")
     const outroPosto = document.querySelector("#poCampoOutroPosto")
@@ -99,3 +103,59 @@ function mudarVisibilidadeOutroPosto () {
         outroPosto.classList.add('is-hidden')
     }
 }
+
+// === /POSICIONAMENTO ===
+
+// === AGENDAMENTO ===
+
+function getScreenAgendamento() {
+    let data = {}
+    
+    data["nomeDoTecnico"] = document.querySelector("#poNomeDoTecnico").value.toUpperCase()
+    data["dataAgendamento"] = document.querySelector("#poDataAgendamento").value.toUpperCase()
+
+    return data
+}
+
+class Agendamento {
+    constructor(data) {
+        this.data = data
+    }
+
+    _poNomeDoTecnico(data) {
+        return `${data.nomeDoTecnico}.`
+    }
+
+    _poDataAgendamento(data) {
+        let dateSplitDateHour = data.dataAgendamento.split("T")
+        let dateSplitDate = dateSplitDateHour[0].split("-")
+
+        return `${dateSplitDate[2]}/${dateSplitDate[1]}/${dateSplitDate[0]} AS ${dateSplitDateHour[1]}.`
+    }
+
+    build() {
+        if (!this.data.nomeDoTecnico) return false
+        if (!this.data.dataAgendamento) return false
+
+        return `AGENDADO PARA ${this._poDataAgendamento(this.data)}\n` +
+        `DADOS DOS TECNICOS : \n` +
+        `${this._poNomeDoTecnico(this.data)}`
+    }
+}
+
+function poButtonGerarTextoAgendamento() {
+    let dataScreenAgendamento = getScreenAgendamento()
+    let agenda = new Agendamento(dataScreenAgendamento)
+    let agendaBuild = agenda.build()
+    if (!agendaBuild){
+        alert('Nome do tecnico ou data vazios !!!')
+        return
+    }
+    copyToClipboard(agendaBuild)
+}
+
+function poButtonLimparAgendamento() {
+    document.querySelector("#poNomeDoTecnico").value = ''
+}
+
+// === /AGENDAMENTO ===
