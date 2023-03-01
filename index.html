@@ -16,7 +16,6 @@
 	<!-- nav | Menu Superior - Seleciona função a ser utilizada -->
 	<nav class="tabs is-centered remove-margin-bottom">
 		<ul>
-
 			<!-- Guia Abertura -->
 			<li id="tab_abertura">
 				<a onclick="abertura()">
@@ -25,7 +24,6 @@
 					<span>Abertura</span>
 				</a>
 			</li>
-
 			<!-- Guia Encerramento -->
 			<li id="tab_encerramento">
 				<a onclick="encerramento()">
@@ -34,7 +32,6 @@
 					<span>Encerramento</span>
 				</a>
 			</li>
-
 			<!-- Guia Email -->
 			<li id="tab_email">
 				<a onclick="email()">
@@ -43,7 +40,6 @@
 					<span>E-mail</span>
 				</a>
 			</li>
-
 			<!-- Guia Editor de Texto -->
 			<li id="tab_editor">
 				<a onclick="editor()">
@@ -52,7 +48,6 @@
 					<span>Editor de Texo</span>
 				</a>
 			</li>
-
 			<!-- Guia Editor de Texto -->
 			<li id="tab_posicionamento">
 				<a onclick="posicionamento()">
@@ -61,7 +56,6 @@
 					<span>Posicionamento</span>
 				</a>
 			</li>
-
 			<!-- Comandos de Roteadores -->
 			<li class="has-background-primary">
 				<a href="router.html" target="_blank" class="my-router">
@@ -70,16 +64,13 @@
 					<span class="has-text-white">Comandos de Routers</span>
 				</a>
 			</li>
-
 		</ul>
-
 	</nav>
 	<!-- /nav | Menu Superior -->
 
 	<!-- PAGE -->
 	<section class="hero is-light">
 		<div class="hero-body hero-bory-padding-top">
-
 			<!-- Cabeçalho dados OI -->
 			<div class="container is-fullhd">
 				<div class="columns is-centered">
@@ -109,7 +100,6 @@
 						</div>
 						<!-- /Label com seta para esconder o campo ID e NOME -->
 
-
 						<!-- div para esconder os elementos -->
 						<div id="cabecalho">
 							<!-- Campo ID -->
@@ -134,6 +124,7 @@
 								</div>
 							</div>
 							<!-- /Campo Nome  -->
+
 						</div>
 						<!-- /div para esconder os elementos -->
 
@@ -830,6 +821,10 @@
 											</div>
 										</label>
 										<!-- Checkbox - Mensagens Rapidas -->
+                    <!-- <div class="field">
+                      <label class="radio"><input type="radio" name="radioMensagensAtualizacao"
+                          value="0"> Mensagens Rapidas</label>
+                    </div> -->
 										<label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;"><input
 												id="checkboxAguardandoValidacao" value="agudandoValidacao"
 												type="checkbox"> Mensagens Rapidas
@@ -871,7 +866,72 @@
 							</div>
 						</div>
 						<!-- /Bloco Direito - Card 1 -->
-						<!-- Bloco Direito - Card 2 -->
+            <!-- Bloco Direito - Card 2 -->
+						<div class="card my-card">
+							<div class="card-content">
+                <div class="content">
+									<!-- Atualizações -->
+									<div class="field">
+										<label class="label my-label">Mensagem de Validação<i
+												class="fas fa-info-circle my-instruction"></i>
+											<div class="my-hide">Se como eu você não gosta de digitar sempre a mesma
+												informação, esta aréa fornece <strong>mensagens de atualização
+													rapida</strong>
+												que são comuns no 360 e ferramentas de atualização.
+												<strong>Todas são geradas com & para posicionamento.</strong>
+												Basta <strong>'setar' a caixa"Mensagens Rapidas"</strong>, e escolher
+												uma opção abaixo para
+												<strong>modificar o motivo da mensagem</strong>
+												use os <strong>botões do card encerramento</strong> para gerar a
+												atualização.
+											</div>
+										</label>
+										<!-- Checkbox - Mensagens Rapidas -->
+                    <!-- <div class="field">
+                      <label class="radio"><input type="radio" name="radioMensagensAtualizacao"
+                          value="0"> Solicitar Validação</label>
+                    </div> -->
+
+										<label class="checkbox" style="margin-top: 10px; margin-bottom: 20px;"><input
+												id="checkboxMensagemValidacao" value="agudandoValidacao"
+												type="checkbox"> Solicitar Validação
+										</label>
+										<!-- /Checkbox - Mensagens Rapidas -->
+										<!-- campo circuito -->
+										<div class="field">
+                      <label class="label is-small">Circuito :</label>
+											<div class="control">
+                        <!-- Input -->
+                        <div class="control has-icons-left has-icons-right">
+                          <input id="enCircuito" class="input is-small" type="text"
+                            placeholder="--/--/---- --:--:--">
+                          <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
+                        </div>
+                        <!-- /Input -->		
+											</div>
+										</div>
+										<!-- /campo circuito -->
+										<!-- campo circuito -->
+										<div class="field">
+                      <label class="label is-small">Chamado OI :</label>
+											<div class="control">
+                        <!-- Input -->
+                        <div class="control has-icons-left has-icons-right">
+                          <input id="enChamadoOi" class="input is-small" type="text"
+                            placeholder="--/--/---- --:--:--">
+                          <span class="icon is-small is-left"><i class="fas fa-calendar-minus"></i></span>
+                        </div>
+                        <!-- /Input -->		
+											</div>
+										</div>
+										<!-- /campo circuito -->
+									</div>
+									<!-- /Atualizações -->
+								</div>
+							</div>
+						</div>
+						<!-- /Bloco Direito - Card 2 -->
+						<!-- Bloco Direito - Card 3 -->
 						<div class="card my-card">
 							<div class="card-content">
 								<div class="content">
@@ -899,8 +959,8 @@
 								</div>
 							</div>
 						</div>
-						<!-- /Bloco Direito - Card 2 -->
-						<!-- Bloco Direito - Card 3 -->
+						<!-- /Bloco Direito - Card 3 -->
+						<!-- Bloco Direito - Card 4 -->
 						<div class="card my-card">
 							<div class="card-content">
 								<div class="content">
@@ -915,7 +975,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- /Bloco Direito - Card 3-->
+						<!-- /Bloco Direito - Card 4-->
 					</div>
 					<!-- /BLOCO DIREITO -->
 				</div>
