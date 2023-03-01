@@ -89,7 +89,7 @@ function abVerificaLog(data) {
 function abMascaraDeAbertura(data) {
 
     let mascara = `MASCARA DE ABERTURA
-PREMIUM | PERIMETRO: ${data.abPerimetro} - PROTOCOLO DO CLIENTE: ${data.abChamadoInterno}
+PERSONALIZADO | PERIMETRO: ${data.abPerimetro} - PROTOCOLO DO CLIENTE: ${data.abChamadoInterno}
 CLIENTE: ${data.abCliente} - TEL: ${data.abCPD}
 EMAIL DO CLIENTE: ${data.abEmail}
 RECLAMANTE: CEC-SP OI ${data.oi} - ${data.nome}
