@@ -8,6 +8,7 @@ class Email {
             "validacao": "VALIDAÇÃO",
             "escalonamento": "ESCALONAMENTO",
             "posicionamento": "POSICIONAMENTO",
+            "abertura": "ABERTURA",
         }
     }
 
@@ -37,6 +38,10 @@ class Email {
 
     posicionamento() {
         this._makeMascara(this._data, this._solicitacao.posicionamento)
+    }
+
+    abertura(){
+        this._makeMascara(this._data, this._solicitacao.abertura)
     }
 
     limpar() {
@@ -94,6 +99,11 @@ function buttonEmailPosicionamento() {
 function buttonEmailLimpar() {
     e = new Email()
     e.limpar()
+}
+
+function buttonEmailAbertura() {
+    e = new Email()
+    e.abertura()
 }
 
 
