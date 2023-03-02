@@ -137,9 +137,9 @@ class Agendamento {
         if (!this.data.nomeDoTecnico) return false
         if (!this.data.dataAgendamento) return false
 
-        return `AGENDADO PARA ${this._poDataAgendamento(this.data)}\n` +
+        return `& AGENDADO PARA ${this._poDataAgendamento(this.data)}\n` +
         `DADOS DOS TECNICOS : \n` +
-        `${this._poNomeDoTecnico(this.data)}`
+        `${this._poNomeDoTecnico(this.data)} &`
     }
 }
 
